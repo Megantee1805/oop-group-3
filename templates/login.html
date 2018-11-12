@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+Username <input type="text"> <div></div>
+Password <input type="password"> <div></div>
+<button onclick = 'login()'> Login </button>
+</body>
+    <script>
+        function login() {
+            var username = document.querySelector('input[type="text"]').value;
+            var password = document.querySelector('input[type="password"]').value;
+            console.log(username + "" + password)
+        }
+
+    </script>
+</html>
