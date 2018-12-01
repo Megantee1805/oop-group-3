@@ -11,12 +11,11 @@ def get_db():
 
 class Journal:
     def __init__(self):
-        self.__time = datetime.now
+        self.__time = str(datetime.now().strftime("%d-%m-%y %H:%M:%S"))
         self.__log = {}
 
     def log_meal(self, meal):
-        index = 0
-        self.__log[index] = meal + "" + str(datetime.now)
+        self.__log[self.__time] = meal
         print(self.__log)
 
 day = Journal()
