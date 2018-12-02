@@ -1,16 +1,48 @@
-<!DOCTYPE html>
+
+<DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">FoodHub</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Food Journal</a></li>
+      <li><a href="#">Stores Near You</a></li>
+      <li><a href="#">FAQ</a></li>
+      <li><a href="#">Enter a new food item</a></li>
+    </ul>
+  </div>
+</nav>
+
 <form method="post">
-Username <input type="text"> <div></div>
-Password <input type="password"> <div></div>
-Confirm Password <input type="password"> <div></div>
-Email <input type="email"> <div></div>
-    <button> Submit </button>
+
+    <fieldset>
+            <label for="username"> Username </label> <input name="username" id="username"> <div></div>
+            <label for="password"> Password </label><input type="password" name="password" id ="password"> <div></div>
+            <label for="confirm_password"> Confirm Password</label> <input type="password" name="confirm_password" id="confirm_password"> <div></div>
+            <label for="email">Email</label> <input type="email" name="email"> <div></div>
+            <label for="gender">Gender</label>
+            <input type="radio" value="male" name="gender"> Male
+            <input type="radio" value="female" name="gender"> Female
+</fieldset>
+    <button onclick="register()"> Submit </button>
 </form>
+
+<script>
+function register() {
+    var name = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
+    var conpass = document.getElementById("confirm_password").value;
+    var gender = document.querySelector("radio").value;
+}
+</script>
 </body>
 </html>
+</DOCTYPE>
