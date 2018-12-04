@@ -7,6 +7,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 
 from flaskr.db import get_db
 
+
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
 
@@ -108,4 +109,4 @@ def login():
 def logout():
     """Clear the current session, including the stored user id."""
     session.clear()
-    return redirect(url_for('index'))
+    return redirect(url_for('auth.login'))
