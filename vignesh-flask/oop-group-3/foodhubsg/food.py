@@ -3,12 +3,12 @@ from flask import (
 )
 from werkzeug.exceptions import abort
 
-from flaskr.auth import login_required
-from flaskr.db import get_db
-from flaskr.create_classes import *
+from foodhubsg.auth import login_required
+from foodhubsg.db import get_db
+from foodhubsg.classes import *
 
 
-bp = Blueprint('foodhub', __name__)
+bp = Blueprint('food', __name__)
 
 @bp.route('/')
 @login_required
@@ -21,7 +21,7 @@ def index():
         ' WHERE f.creator_id = ?',
         (g.user['id'],)
     ).fetchall()
-    return render_template('main/index.html', food_items=food_items)
+    return render_template('food/index.html', food_items=food_items)
 
 
 @bp.route('/add', methods=('GET', 'POST'))
@@ -50,44 +50,44 @@ def add_food():
                         (g.user['id'], code, food_name, food_calories)
                     )
                     db.commit()
-                    return redirect(url_for('foodhub.index'))
+                    return redirect(url_for('food.index'))
                 else:
                     error = 'Invalid code entered'
 
         if error is not None:
             flash(error)
 
-    return render_template('main/add_food.html')
+    return render_template('food/add_food.html')
 
 
-def get_post(id, check_author=True):
-    """Get a post and its author by id.
-
-    Checks that the id exists and optionally that the current user is
-    the author.
-
-    :param id: id of post to get
-    :param check_author: require the current user to be the author
-    :return: the post with author information
-    :raise 404: if a post with the given id doesn't exist
-    :raise 403: if the current user isn't the author
-    """
-    post = get_db().execute(
-        'SELECT p.id, title, body, created, author_id, email'
-        ' FROM post p JOIN user u ON p.author_id = u.id'
-        ' WHERE p.id = ?',
-        (id,)
-    ).fetchone()
-
-    if post is None:
-        abort(404, "Post id {0} doesn't exist.".format(id))
-
-    if check_author and post['author_id'] != g.user['id']:
-        abort(403)
-
-    return post
-
-
+# def get_post(id, check_author=True):
+#     """Get a post and its author by id.
+#
+#     Checks that the id exists and optionally that the current user is
+#     the author.
+#
+#     :param id: id of post to get
+#     :param check_author: require the current user to be the author
+#     :return: the post with author information
+#     :raise 404: if a post with the given id doesn't exist
+#     :raise 403: if the current user isn't the author
+#     """
+#     post = get_db().execute(
+#         'SELECT p.id, title, body, created, author_id, email'
+#         ' FROM post p JOIN user u ON p.author_id = u.id'
+#         ' WHERE p.id = ?',
+#         (id,)
+#     ).fetchone()
+#
+#     if post is None:
+#         abort(404, "Post id {0} doesn't exist.".format(id))
+#
+#     if check_author and post['author_id'] != g.user['id']:
+#         abort(403)
+#
+#     return post
+#
+#
 # @bp.route('/<int:id>/update', methods=('GET', 'POST'))
 # @login_required
 # def update(id):

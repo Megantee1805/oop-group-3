@@ -1,7 +1,7 @@
 import os
 
 from flask import Flask
-from .create_classes import Food, Vendor
+from .classes import Food, Vendor
 
 
 def create_app(test_config=None):
@@ -32,13 +32,13 @@ def create_app(test_config=None):
         return 'Hello, World!'
 
     # register the database commands
-    from flaskr import db
+    from foodhubsg import db
     db.init_app(app)
 
     # apply the blueprints to the app
-    from flaskr import auth, foodhub
+    from foodhubsg import auth, food
     app.register_blueprint(auth.bp)
-    app.register_blueprint(foodhub.bp)
+    app.register_blueprint(food.bp)
 
     # make url_for('index') == url_for('blog.index')
     # in another app, you might define a separate main index here with
