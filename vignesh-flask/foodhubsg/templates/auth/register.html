@@ -22,10 +22,6 @@
     <label for="weight">Weight</label>
     <input type="number" name="weight" id="weight"><br>
 
-    {% for message in get_flashed_messages() %}
-        <div class="error-flash">{{ message }}</div>
-    {% endfor %}
-
     <input type="submit" value="Register">
 
   </form>

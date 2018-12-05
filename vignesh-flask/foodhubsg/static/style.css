@@ -70,7 +70,7 @@ nav ul li a, nav ul li span, header .action {
   margin: 1em 0;
   padding: 1em;
   background: #ffc8c3;
-  box-shadow: 10px 10px 40px -24px rgba(0,0,0,0.75);
+  box-shadow: 0 0 10px -10px rgba(0,0,0,0.75);
 }
 
 .post > header {
