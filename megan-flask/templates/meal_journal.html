@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<heads>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+    function log() {
+        var title = document.createTextNode("Enter Your Meal");
+        var meal = document.createElement("input");
+        meal.setAttribute("type", "text");
+        var submit = document.createElement("button");
+        meal.append(submit);
+        document.getElementById("meal").appendChild(title);
+        document.getElementById("meal").appendChild(meal);
+        document.addEventListener("click", function(){
+    document.getElementById("meal").innerHTML = "Completed"; });
+}
+
+    </script>
+</heads>
+<body>
+<button>Enter Your Meal</button>
+<div id="meal">
+
+</div>
+</body>
+<script>
+document.addEventListener("button", log())
+</script>
+</html>
