@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Food Entries{% endblock %}</h1>
+  {% if g.user %}
+    <a class="action" href="{{ url_for('food.add_food') }}">New</a>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  {% for food in food_items %}
+    <article class="post">
+      <header>
+        <div>
+          <h1>{{ food['food_name'] }}</h1>
+          <div class="about"> {{ food['created'].strftime('%Y-%m-%d') }} <br> {{ food['calories'] }} calories</div>
+        </div>
+      </header>
+    </article>
+    {% if not loop.last %}
+      <hr>
+    {% endif %}
+  {% endfor %}
+{% endblock %}
