@@ -8,28 +8,23 @@ def hello_world():
     return render_template("index.html")
 
 
-@app.route('/login')
-def login():
-    return render_template("login.html")
-
-
 @app.route('/homepage/<user>')
 def homepage(user):
-    return render_template("homepage.html", user=user)
+    return render_template("homepage/html")
 
-
-@app.route('/signup')
-def signup():
-    return render_template("signup.html")
-
-@app.route('/<user>/stats')
+@app.route('/stats/<user>')
 def stats(user):
     return render_template("stats.html", user=user)
 
 @app.route('/<user>')
 def profile(user):
-    return render_template("profile.html", user = user)
+    userID = request.args.get("user", " ")
+    return render_template("profile.html", user = userID)
 
+@app.route('/search')
+def search(search): 
+    search = request.args.get("search", " ")
+    return render_template("search.html",  search = search)
 
 if __name__ == '__main__':
     app.run(debug=True)
