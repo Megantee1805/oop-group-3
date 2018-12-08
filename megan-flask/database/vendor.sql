@@ -20,7 +20,7 @@ INSERT INTO Vendors (
 )
 
 values (
-    "MacDonalds", 3
+    "MacDonalds", 4
 )
 
 
@@ -28,10 +28,35 @@ Insert INTO Vendors (
     Name, Menu 
 )
 
-value (
-"Subway", 3 
+values (
+"Subway", 4
   )
 
+Insert INTO Vendors ( 
+    Name, Menu 
+)
+
+values (
+"Manna", 4
+  )
+
+
+Insert INTO Vendors ( 
+    Name, Menu 
+)
+
+values (
+"Western Delight", 4
+  )
+
+
+Insert INTO Vendors ( 
+    Name, Menu 
+)
+
+values (
+"Fishball noodles", 4
+  )
 
 
 COMMIT TRANSACTION;
