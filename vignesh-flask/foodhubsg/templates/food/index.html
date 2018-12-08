@@ -8,17 +8,24 @@
 {% endblock %}
 
 {% block content %}
-  {% for food in food_items %}
-    <article class="post">
-      <header>
-        <div>
-          <h1>{{ food['food_name'] }}</h1>
-          <div class="about"> {{ food['created'].strftime('%Y-%m-%d') }} <br> {{ food['calories'] }} calories</div>
-        </div>
-      </header>
-    </article>
-    {% if not loop.last %}
+  {% for date in food_dates %}
+      {% set example_food = date[0] %}
+      {% set example_date = example_food['created'].strftime('%d %B (%A)') %}
+      <h1> {{ example_date }} </h1>
+        <article class="post">
+          <header>
+              {% for food in date %}
+                <div>
+                  <h3>{{ food['food_name'] }}</h3>
+                  <div class="about"> {{ food['created'].strftime('%I:%M %p') }} <br> {{ food['calories'] }} calories</div>
+                </div>
+              {% if not loop.last %}
+              {% endif %}
+              {% endfor %}
+          </header>
+        </article>
       <hr>
-    {% endif %}
+  {% if not loop.last %}
+  {% endif %}
   {% endfor %}
 {% endblock %}

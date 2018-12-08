@@ -8,6 +8,16 @@ from foodhubsg.db import get_db
 from foodhubsg.classes import *
 
 
+def remove_duplicates(values):
+    output = []
+    seen = set()
+    for value in values:
+        if value not in seen:
+            output.append(value)
+            seen.add(value)
+    return output
+
+
 bp = Blueprint('food', __name__)
 
 @bp.route('/')
@@ -18,10 +28,30 @@ def index():
     food_items = db.execute(
         'SELECT f.id, creator_id, food_name, created, calories, food_code, email'
         ' FROM food_entry f JOIN user u ON f.creator_id = u.id'
-        ' WHERE f.creator_id = ?',
-        (g.user['id'],)
+        ' WHERE f.creator_id = ?'
+        ' ORDER BY datetime(created) DESC',
+        (g.user['id'],),
     ).fetchall()
-    return render_template('food/index.html', food_items=food_items)
+
+    all_dates = []
+    food_dates = []
+
+    for food in food_items:
+        food_date = food['created'].strftime('%d-%m-%y')
+        all_dates.append(food_date)
+    all_dates = remove_duplicates(all_dates)
+
+    for date in all_dates:
+        current_date_food = []
+
+        for food in food_items:
+            if date == food['created'].strftime('%d-%m-%y'):
+                current_date_food.append(food)
+            else:
+                continue
+        food_dates.append(current_date_food)
+
+    return render_template('food/index.html', food_dates=food_dates, all_dates=all_dates)
 
 
 @bp.route('/add', methods=('GET', 'POST'))
