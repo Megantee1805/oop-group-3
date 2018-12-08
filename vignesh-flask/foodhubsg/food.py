@@ -43,10 +43,12 @@ def index():
 
     for date in all_dates:
         current_date_food = []
+        current_date_calories = []
 
         for food in food_items:
             if date == food['created'].strftime('%d-%m-%y'):
                 current_date_food.append(food)
+                current_date_calories.append(food)
             else:
                 continue
         food_dates.append(current_date_food)

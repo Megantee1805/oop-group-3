@@ -93,6 +93,10 @@ nav ul li a, nav ul li span, header .action {
   font-style: italic;
 }
 
+.post #food-subsection {
+  flex-direction: column;
+}
+
 .post .body {
   white-space: pre-line;
 }
@@ -118,7 +122,7 @@ nav ul li a, nav ul li span, header .action {
 
 .content textarea {
   min-height: 12em;
-  resize: vertical;
+  resize: horizontal;
 }
 
 input.danger {

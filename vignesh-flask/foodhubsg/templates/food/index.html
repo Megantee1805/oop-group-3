@@ -1,31 +1,37 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}Food Entries{% endblock %}</h1>
-  {% if g.user %}
-    <a class="action" href="{{ url_for('food.add_food') }}">New</a>
-  {% endif %}
+    <h1>{% block title %}Food Entries{% endblock %}</h1>
+    {% if g.user %}
+        <a class="action" href="{{ url_for('food.add_food') }}">New</a>
+    {% endif %}
 {% endblock %}
 
 {% block content %}
-  {% for date in food_dates %}
-      {% set example_food = date[0] %}
-      {% set example_date = example_food['created'].strftime('%d %B (%A)') %}
-      <h1> {{ example_date }} </h1>
-        <article class="post">
-          <header>
-              {% for food in date %}
-                <div>
-                  <h3>{{ food['food_name'] }}</h3>
-                  <div class="about"> {{ food['created'].strftime('%I:%M %p') }} <br> {{ food['calories'] }} calories</div>
-                </div>
-              {% if not loop.last %}
-              {% endif %}
-              {% endfor %}
-          </header>
-        </article>
-      <hr>
-  {% if not loop.last %}
-  {% endif %}
-  {% endfor %}
+
+    {% for date in food_dates %}
+        {% set example_food = date[0] %}
+        {% set example_date = example_food['created'].strftime('%d %B (%A)') %}
+        <h1> {{ example_date }} </h1>
+
+        {% for food in date %}
+            <article class="post">
+                <header>
+                    <div id="food-subsection">
+                        <div class="about"> {{ food['created'].strftime('%I:%M %p') }} </div>
+                        <h3>{{ food['food_name'] }}</h3>
+                        <div class="about"> {{ food['calories'] }} calories </div>
+                    </div>
+                </header>
+            </article>
+        {% if not loop.last %}
+        {% endif %}
+        {% endfor %}
+
+        <hr>
+
+    {% if not loop.last %}
+    {% endif %}
+    {% endfor %}
+
 {% endblock %}
