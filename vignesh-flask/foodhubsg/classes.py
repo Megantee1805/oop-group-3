@@ -71,8 +71,8 @@ class Vendor:
 
 a00001 = Food("a00001", "Chicken Rice", 673)
 a00002 = Food("a00002", "Fried Rice", 840)
-b00001 = Food("b00001", "Mee Goreng", 752)
-b00002 = Food("b00002", "Just Blood", 109)
+b00001 = Food("b00001", "McSpicy", 752)
+b00002 = Food("b00002", "Straight-Up Blood", 109)
 
 food_list = [a00001, a00002, b00001, b00002]
 
