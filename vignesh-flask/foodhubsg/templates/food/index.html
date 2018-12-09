@@ -1,19 +1,24 @@
 {% extends 'base.html' %}
 
 {% block header %}
-    <h1>{% block title %}Food Entries{% endblock %}</h1>
-    {% if g.user %}
-        <a class="action" href="{{ url_for('food.add_food') }}">New</a>
-    {% endif %}
 {% endblock %}
 
 {% block content %}
+
+    <header id="summary-header">
+    <h1>Summary of your stats</h1>
+    </header>
+
+    <header>
+    <h1>Food History</h1>
+    <a class="action" href="{{ url_for('food.add_food') }}">New</a>
+    </header>
 
     {% for date in food_dates %}
 
         {% set example_food = date[0] %}
         {% set example_date = example_food['created'].strftime('%d %B (%A)') %}
-        <h1> {{ example_date }} </h1>
+        <h2> {{ example_date }} </h2>
 
         {% for food in date %}
             <article class="food-journal">
@@ -28,6 +33,8 @@
         {% if not loop.last %}
         {% endif %}
         {% endfor %}
+
+        <h5>Total calories consumed: {{ calories_list[loop.index - 1] }}</h5>
 
         <hr>
 
