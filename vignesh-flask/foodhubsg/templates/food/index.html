@@ -10,6 +10,7 @@
 {% block content %}
 
     {% for date in food_dates %}
+
         {% set example_food = date[0] %}
         {% set example_date = example_food['created'].strftime('%d %B (%A)') %}
         <h1> {{ example_date }} </h1>

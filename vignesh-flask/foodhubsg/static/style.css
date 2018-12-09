@@ -73,6 +73,17 @@ nav ul li a, nav ul li span, header .action {
   box-shadow: 0 0 10px -10px rgba(0,0,0,0.75);
 }
 
+.food-journal {
+  flex-direction: column;
+  padding-bottom: 1.0em;
+  padding-top: 1.0em;
+  padding-right: 1.0em;
+}
+
+.food-journal h1, h2, h3, h4, h5, h6 {
+  margin: 0.0rem 0;
+}
+
 .food-journal > header {
   display: flex;
   align-items: flex-end;
@@ -95,13 +106,6 @@ nav ul li a, nav ul li span, header .action {
 
 .food-journal .about {
   color: slategray;
-}
-
-.food-journal #food-subsection {
-  flex-direction: column;
-  padding-bottom: 0.5em;
-  padding-top: 0.5em;
-  padding-right: 0.5em;
 }
 
 .food-journal .body {
