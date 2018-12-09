@@ -66,7 +66,7 @@ def register():
         if error is None:
             db.execute(
                 'INSERT INTO user (email, password, name, height, weight) VALUES (?, ?, ?, ?, ?)',
-                (email, generate_password_hash(password), name, weight, height)
+                (email, generate_password_hash(password), name, height, weight)
             )
             db.commit()
 

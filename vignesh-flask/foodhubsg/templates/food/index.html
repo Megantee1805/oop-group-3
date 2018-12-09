@@ -6,7 +6,10 @@
 {% block content %}
 
     <header id="summary-header">
-    <h1>Summary of your stats</h1>
+        <h1>Your name: <b> {{ name }} </b> </h1>
+        <h1>Your weight: <b> {{ weight }} kg </b> </h1>
+        <h1>Your height: <b> {{ height }} m </b> </h1>
+        <h1>Your BMI: <b> {{ bmi }} </b> </h1>
     </header>
 
     <header>
@@ -26,7 +29,7 @@
                     <div id="food-subsection">
                         <div id="time-created"> {{ food['created'].strftime('%I:%M %p') }} </div>
                         <h3>{{ food['food_name'] }}</h3>
-                        <div class="about"> {{ food['calories'] }} calories <br> Code: {{ food['food_code'] }} </div>
+                        <div class="about"> <b> {{ food['calories'] }} calories </b> <br> Code: <b> {{ food['food_code'] }} </b> </div>
                     </div>
                 </header>
             </article>
@@ -34,7 +37,7 @@
         {% endif %}
         {% endfor %}
 
-        <h5>Total calories consumed: {{ calories_list[loop.index - 1] }}</h5>
+        <h5>Total calories consumed: <b> {{ calories_list[loop.index - 1] }} kcal </b> </h5>
 
         <hr>
 

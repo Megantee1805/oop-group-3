@@ -33,7 +33,21 @@ def index():
         (g.user['id'],),
     ).fetchall()
 
+    users = db.execute(
+        'SELECT id, name, email, password, height, weight'
+        ' FROM user'
+        ' WHERE id = ?',
+        (g.user['id'],),
+    ).fetchall()
 
+    for user in users:
+        weight = user['weight']
+        height = user['height'] / 100
+        name = user['name']
+        email = user['email']
+        password = user['password']
+
+    bmi = weight / height ** height
 
     all_dates = []
     food_dates = []
@@ -58,9 +72,9 @@ def index():
         current_date_calories = sum(current_date_calories)
         calories_list.append(current_date_calories)
 
-    i = 0
-
-    return render_template('food/index.html', food_dates=food_dates, all_dates=all_dates, calories_list=calories_list, i = i)
+    return render_template('food/index.html',
+                           food_dates=food_dates, all_dates=all_dates, calories_list=calories_list, name=name,
+                           weight=weight, height=height, bmi=bmi)
 
 
 @bp.route('/add', methods=('GET', 'POST'))
