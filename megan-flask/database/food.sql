@@ -51,7 +51,7 @@ INSERT INTO food (
 )
 
 Values ( 
-    "Subway Club", 300, "Subway"
+    "Subway Melt", 352, "Subway"
 )
 
 

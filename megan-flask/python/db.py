@@ -1,15 +1,15 @@
 import sqlite3
-
 import click
-from flask import current_app, g
+from flask import *
 from flask.cli import with_appcontext
+DATABASE = '../foodhub.db'
+app.config.from_object(__name__)
+def connect_to_database():
+    return sqlite3.connect(app.config[DATABASE])
+
 
 
 def get_db():
-    """Connect to the application's configured database. The connection
-    is unique for each request and will be reused if this is called
-    again.
-    """
     if 'db' not in g:
         g.db = sqlite3.connect(
             current_app.config['DATABASE'],
@@ -45,10 +45,16 @@ def init_db_command():
     init_db()
     click.echo('Initialized the database.')
 
+def make_dicts(cursor, row):
+    return dict((cursor.description[idx][0], value)
+    for idx, value in enumerate(row))
 
 def init_app(app):
-    """Register database functions with the Flask app. This is called by
-    the application factory.
-    """
+    def init_db():
+        with app.app_context():
+            db = get_db()
+            with app.open_resource('schema.sql', mode='r') as f:
+                db.cursor().executescript(f.read())
+            db.commit()
     app.teardown_appcontext(close_db)
     app.cli.add_command(init_db_command)
