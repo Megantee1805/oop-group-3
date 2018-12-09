@@ -73,31 +73,42 @@ nav ul li a, nav ul li span, header .action {
   box-shadow: 0 0 10px -10px rgba(0,0,0,0.75);
 }
 
-.post > header {
+.food-journal {
+  flex-direction: column;
+  padding-bottom: 1.0em;
+  padding-top: 1.0em;
+  padding-right: 1.0em;
+}
+
+.food-journal h3 {
+  margin: 0.25rem 0 0.25rem 0;
+}
+
+.food-journal > header {
   display: flex;
   align-items: flex-end;
   font-size: 0.85em;
 }
 
-.post > header > div:first-of-type {
+.food-journal > header > div:first-of-type {
   flex: auto;
 }
 
-.post > header h1 {
+.food-journal > header h1 {
   font-size: 1.5em;
   margin-bottom: 0;
 }
 
-.post .about {
+.food-journal #time-created {
   color: slategray;
   font-style: italic;
 }
 
-.post #food-subsection {
-  flex-direction: column;
+.food-journal .about {
+  color: slategray;
 }
 
-.post .body {
+.food-journal .body {
   white-space: pre-line;
 }
 
