@@ -20,9 +20,9 @@ def remove_duplicates(values):
 
 bp = Blueprint('food', __name__)
 
-@bp.route('/')
+@bp.route('/food_journal')
 @login_required
-def index():
+def food_journal():
     """Show all recent meals, most recent first."""
     db = get_db()
     food_items = db.execute(
@@ -73,7 +73,7 @@ def index():
         current_date_calories = sum(current_date_calories)
         calories_list.append(current_date_calories)
 
-    return render_template('food/index.html',
+    return render_template('food/food_journal.html',
                            food_dates=food_dates, all_dates=all_dates, calories_list=calories_list, name=name,
                            weight=weight, height=height, bmi=bmi)
 
@@ -104,7 +104,7 @@ def add_food():
                         (g.user['id'], code, food_name, food_calories)
                     )
                     db.commit()
-                    return redirect(url_for('food.index'))
+                    return redirect(url_for('food.food_journal'))
                 else:
                     error = 'Invalid code entered'
 
@@ -112,6 +112,11 @@ def add_food():
             flash(error)
 
     return render_template('food/add_food.html')
+
+@bp.route('/faq', methods=('GET', 'POST'))
+@login_required
+def faq():
+    return render_template('food/faq.html')
 
 
 # def get_post(id, check_author=True):

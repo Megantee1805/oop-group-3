@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="../static/css/owl.carousel.min.css">
 <link rel="stylesheet" href="../static/css/owl.theme.default.min.css">
 <!-- Different Stylesheets -->
-<link rel="stylesheet" href="../static/css/andrea-style.css">
+<link rel="stylesheet" href="../static/css/zafirah-style.css">
 
 <style>
 
@@ -37,15 +37,14 @@ padding-top: 12px; }
                         <div class="row">
                             <div class="col-xs-2">
                                 <div id="colorlib-logo">
-                                    <img src="../static/images/healthhub-logo.png" width="65px" height="65px"; align="left"><a href="index.html"><p id="webname">FoodHub.SG</p></a>
+                                    <img src="../static/images/healthhub-logo.png" width="65px" height="65px"; align="left"><a href="{{ url_for('index') }}"><p id="webname">FoodHub.SG</p></a>
                                 </div>
                             </div>
                             <div class="col-xs-10 text-right menu-1">
                                 <ul>
-                                    <li><a href="index.html">Home</a></li>
                                     <li><a href="event.html">Vendor near you</a></li>
-                                    <li><a href="event.html">Stats</a></li>
-                                    <li><a href="travel.html">FAQ</a></li>
+                                    <li><a href="{{ url_for('food.food_journal') }}">Food Journal</a></li>
+                                    <li><a href="{{ url_for('food.faq') }}">FAQ</a></li>
                                     <a href="{{ url_for('food.add_food') }}"><button type="button" class="btn btn-success">Enter a new food code</button></a>
                                     <li id="user-profile">Welcome, <b>{{ g.user['name'] }}</b>! <br> <a href="{{ url_for('auth.logout') }}">Logout</a></li>
                                 </ul>

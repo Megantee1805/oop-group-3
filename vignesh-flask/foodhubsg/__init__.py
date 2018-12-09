@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask
+from flask import Flask, render_template
 from .classes import Food, Vendor
 
 
@@ -27,18 +27,19 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    @app.route('/hello')
-    def hello():
-        return 'Hello, World!'
+    @app.route('/')
+    def index():
+        return render_template('index.html')
 
     # register the database commands
     from foodhubsg import db
     db.init_app(app)
 
     # apply the blueprints to the app
-    from foodhubsg import auth, food
+    from foodhubsg import auth, food, vendors
     app.register_blueprint(auth.bp)
     app.register_blueprint(food.bp)
+    app.register_blueprint(vendors.bp)
 
     # make url_for('index') == url_for('blog.index')
     # in another app, you might define a separate main index here with
