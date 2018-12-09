@@ -27,10 +27,6 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    @app.route('/')
-    def index():
-        return render_template('index.html')
-
     # register the database commands
     from foodhubsg import db
     db.init_app(app)

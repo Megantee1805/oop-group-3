@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-<link rel="stylesheet" href="../static/css/zafirah-style.css">
+<link rel="stylesheet" href="../../static/css/zafirah-style.css">
 
 {% block header %}
 {% endblock %}
@@ -15,13 +15,13 @@
             <div class="col-md-6">
                 <div class="blog-entry">
                     <div class="blog-img">
-                        <h2 class="font_color">Summary of meals within last 5 days:</h2>
+                        <h2 class="font_color">Summary of your lifestyle</h2>
                         <h4>Your overall calorie intake is decreasing. Keep it up, Ali! </h4>
-                        <a href="Stats.html"><img src="images/stats.jpg" class="img-responsive" alt="html5 bootstrap template"></a>
+                        <a href="{{ url_for('food.food_journal') }}"><img src="images/stats.jpg" class="img-responsive" alt="html5 bootstrap template"></a>
                     </div>
                     <div class="desc">
                         <b class="meta">
-                            <b></b><u><a href="Stats.html">Click here to see your food intake in more detail </a></u></b>
+                            <b></b><u><a href="{{ url_for('food.food_journal') }}">Click here to see your food intake in more detail </a></u></b>
                         </p>
                     </div>
                 </div>
@@ -71,7 +71,7 @@
         </div>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <div class="box1">
-            <h3 class="font_color"><b class="center_subtitle">Recommended food vendors near you.</b></h3>
+            <h3 class="font_color"><b class="center_subtitle">Recommended food vendors near you</b></h3>
         <div class="row row-pb-md">
             <div class="col-md-4">
                 <div class="blog-entry">
