@@ -23,7 +23,6 @@ bp = Blueprint('food', __name__)
 @bp.route('/')
 @login_required
 def index():
-    """Show all recent meals, most recent first."""
     db = get_db()
     food_items = db.execute(
         'SELECT f.id, creator_id, food_name, created, calories, food_code, email'
