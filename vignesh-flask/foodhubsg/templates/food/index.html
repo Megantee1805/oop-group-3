@@ -15,12 +15,12 @@
         <h1> {{ example_date }} </h1>
 
         {% for food in date %}
-            <article class="post">
+            <article class="food-journal">
                 <header>
                     <div id="food-subsection">
-                        <div class="about"> {{ food['created'].strftime('%I:%M %p') }} </div>
+                        <div id="time-created"> {{ food['created'].strftime('%I:%M %p') }} </div>
                         <h3>{{ food['food_name'] }}</h3>
-                        <div class="about"> {{ food['calories'] }} calories </div>
+                        <div class="about"> {{ food['calories'] }} calories <br> Code: {{ food['food_code'] }} </div>
                     </div>
                 </header>
             </article>
