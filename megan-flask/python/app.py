@@ -7,7 +7,7 @@ from stats import *
 from user import *
 from enter_code import *
 app = Flask(__name__)
-DATABASE = '../foodhub.db'
+DATABASE = '../database/foodhub.db'
 app.config.from_object(__name__)
 
 with app.app_context():
