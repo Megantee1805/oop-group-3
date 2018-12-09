@@ -1,0 +1,48 @@
+html {
+    overflow-x: hidden;
+    font-family: "Muli", sans-serif;
+    background: #eee;
+}
+
+#form-input {
+    display: block;
+    background-color: white;
+    height: 850px;
+    width: 550px;
+    text-align: inherit;
+    padding: 100px 0 5px 45px;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+body {
+    background-image: url("../../static/images/green-background.png");
+    height: 100%;
+}
+
+#SN-Logo {
+    margin-left: 170px;
+}
+
+h1 {
+    padding: 0 0 50px 120px;
+}
+
+.col-md-10 {
+    padding-left: 70px;
+}
+
+.heading-2 {
+    padding-left: 53px;
+}
+
+#register-button {
+    padding-top: 50px;
+    padding-left: 55px;
+}
+
+#welcome-msg {
+    color: white;
+    margin-top: 370px;
+}

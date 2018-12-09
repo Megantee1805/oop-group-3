@@ -45,7 +45,6 @@ def register():
         name = request.form['name']
         height = request.form['height']
         weight = request.form['weight']
-        height = height / 100 
         db = get_db()
         check_user = db.execute('SELECT id FROM user WHERE email = ?', (email,)).fetchone()
         error = None

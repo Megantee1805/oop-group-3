@@ -42,12 +42,13 @@ def index():
 
     for user in users:
         weight = user['weight']
-        height = user['height'] / 100
+        height = user['height']
         name = user['name']
         email = user['email']
         password = user['password']
 
     bmi = weight / height ** height
+    bmi = int(bmi)
 
     all_dates = []
     food_dates = []
