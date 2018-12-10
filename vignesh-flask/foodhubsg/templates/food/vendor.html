@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %} Vendors {% endblock %}
+{% block content %}
+<table>
+    {% for vendor in vendor_list %}
+    <tr> {{ vendor }} </tr>
+    {% if not loop.last %}
+    {% endif %}
+    {% endfor %}
+</table>
+{% endblock %}
+
+
