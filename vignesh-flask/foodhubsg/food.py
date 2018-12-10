@@ -250,7 +250,7 @@ def faq():
 #     db.commit()
 #     return redirect(url_for('blog.index'))
 @login_required
-@bp.route('/vendor', methods=['POST', 'GET'])
+@bp.route('/vendors')
 def vendors():
     for i in vendor_list:
         name = i.get_name()

@@ -103,6 +103,20 @@ def login():
 
     return render_template('auth/login.html')
 
+@login_required
+@bp.route('/settings', methods=['POST', 'GET'])
+def settings():
+    if request.method == 'POST':
+        error = None
+        db = get_db()
+        email = db.execute('SELECT * FROM user WHERE email = ?')
+        name = db.execute('SELECT * FROM user Where name = ?')
+        password = db.execute('SELECT * FROM user WHERE password =?')
+        height = db.execute('SELECT * FROM user WHERE height = ?')
+        weight = db.execute('SELECT * FROM user WHERE weight = ?')
+        return render_template("auth/settings.html", email=email, name=name, password=password,
+                               height=height, weight=weight)
+
 
 @bp.route('/logout')
 def logout():
