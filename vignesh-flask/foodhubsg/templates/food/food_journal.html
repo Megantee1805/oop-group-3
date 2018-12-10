@@ -5,15 +5,16 @@
 {% block content %}
 
     <header id="summary-header">
-        <h1>Your name: <b> {{ name }} </b> </h1>
-        <h1>Your weight: <b> {{ weight }} kg </b> </h1>
-        <h1>Your height: <b> {{ height }} m </b> </h1>
-        <h1>Your BMI: <b> {{ bmi }} </b> </h1>
+        <h1>Summary of your stats</h1>
+        <h3>Your name: <b> {{ name }} </b> </h3>
+        <h3>Your weight: <b> {{ weight }} kg </b> </h3>
+        <h3>Your height: <b> {{ height }} m </b> </h3>
+        <h3>Your BMI: <b> {{ bmi }} </b> </h3>
+        <h3>Average calories over {{ number_of_days }} days: <b> {{ average_calories }} </b> kcal </h3>
     </header>
 
     <header>
     <h1>Food History</h1>
-    <a class="action" href="{{ url_for('food.add_food') }}">New</a>
     </header>
 
     {% for date in food_dates %}

@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="../static/css/owl.carousel.min.css">
 <link rel="stylesheet" href="../static/css/owl.theme.default.min.css">
 <!-- Different Stylesheets -->
-<link rel="stylesheet" href="../static/css/andrea-style.css">
+<link rel="stylesheet" href="../static/css/style.css">
 
 <style>
 
@@ -40,7 +40,7 @@ padding-top: 12px; }
                                     <img src="../static/images/healthhub-logo.png" width="65px" height="65px"; align="left"><a href="{{ url_for('index') }}"><p id="webname">FoodHub.SG</p></a>
                                 </div>
                             </div>
-                            <div class="col-xs-10 text-right menu-1">
+                            <div class="col-xs-10 text-right menu-1" id="navbar-stuff">
                                 <ul>
                                     <li><a href="event.html">Vendor near you</a></li>
                                     <li><a href="{{ url_for('food.food_journal') }}">Food Journal</a></li>
@@ -60,10 +60,6 @@ padding-top: 12px; }
     <header>
         {% block header %}{% endblock %}
     </header>
-
-    {% for message in get_flashed_messages() %}
-        <div class="flash">{{ message }}</div>
-    {% endfor %}
 
     {% block content %}{% endblock %}
 </section>
