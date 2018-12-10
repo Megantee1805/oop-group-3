@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS `Food` (
 	`Calories`	INTEGER,
 	PRIMARY KEY(`Name`)
 );
+
 INSERT INTO `Food` VALUES ('Subway Melt','b00001','Subway',352);
 INSERT INTO `Food` VALUES ('Subway Club','b00004','Subway',300);
 INSERT INTO `Food` VALUES ('Egg Mayo','b00003','Subway',435);
