@@ -105,18 +105,18 @@ def login():
 
     return render_template('auth/login.html')
 
-@login_required
-@bp.route('/settings', methods=['POST', 'GET'])
-def settings():
-        init_db()
-        db = get_db()
-        email = query_db('SELECT * FROM user Where email = ?', args=([g.email]), One=True)
-        name = query_db('SELECT * FROM user Where name = ?', args =([g.name]), One=True)
-        password = query_db('SELECT * FROM user WHERE password = ?', args = ([g.password]), One=True)
-        height = query_db('SELECT * FROM user WHERE height = ?', args =([g.height]), One=True)
-        weight = db.execute('SELECT * FROM user WHERE weight = ?', args =([g.weight]), One=True)
-        return render_template("auth/settings.html", email=email, name=name, password=password,
-                               height=height, weight=weight)
+# @login_required
+# @bp.route('/settings', methods=['POST', 'GET'])
+# def settings():
+#         init_db()
+#         db = get_db()
+#         email = query_db('SELECT * FROM user Where email = ?', args=([g.email]), One=True)
+#         name = query_db('SELECT * FROM user Where name = ?', args =([g.name]), One=True)
+#         password = query_db('SELECT * FROM user WHERE password = ?', args = ([g.password]), One=True)
+#         height = query_db('SELECT * FROM user WHERE height = ?', args =([g.height]), One=True)
+#         weight = db.execute('SELECT * FROM user WHERE weight = ?', args =([g.weight]), One=True)
+#         return render_template("auth/settings.html", email=email, name=name, password=password,
+#                                height=height, weight=weight)
 
 
 @bp.route('/logout')
