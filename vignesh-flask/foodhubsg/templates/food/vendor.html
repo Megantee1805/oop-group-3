@@ -2,11 +2,23 @@
 {% block title %} Vendors {% endblock %}
 {% block content %}
 <table>
-    {% for vendor in vendor_list %}
     <tr>
-        <td>{{ vendor }} </td>
-        <td>{{ vendor.location }}</td>
-        <td> {{ vendor.description }}</td>
+        <td>
+            <h1>{{ name }} </h1>
+        </td>
+        <td>
+            <h2>{{ location }}</h2>
+        </td>
+
+        <td>
+            {{ menu }}
+        </td>
+        <td>
+            {{ calories }}
+        </td>
+        <td>
+            {{ description }}
+        </td>
     </tr>
     {% if not loop.last %}
     {% endif %}

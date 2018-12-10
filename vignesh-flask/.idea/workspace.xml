@@ -2,10 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="72fc5b16-baef-48de-a76e-97633c0f5e40" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/tutorial.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/tutorial.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/foodhubsg/food.py" beforeDir="false" afterPath="$PROJECT_DIR$/foodhubsg/food.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/foodhubsg/templates/food/vendor.html" beforeDir="false" afterPath="$PROJECT_DIR$/foodhubsg/templates/food/vendor.html" afterDir="false" />
     </list>
@@ -37,17 +33,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/foodhubsg/vendors.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1003">
+            <state relative-caret-position="67">
               <caret line="66" selection-start-line="66" selection-end-line="66" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/foodhubsg/classes.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="206">
+              <caret line="77" lean-forward="true" selection-start-line="77" selection-end-line="77" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/foodhubsg/food.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="271">
-              <caret line="254" column="46" selection-start-line="254" selection-start-column="46" selection-end-line="254" selection-end-column="46" />
+            <state relative-caret-position="486">
+              <caret line="263" lean-forward="true" selection-start-line="263" selection-end-line="263" />
               <folding>
                 <element signature="e#0#90#0" expanded="true" />
               </folding>
@@ -55,14 +60,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/foodhubsg/auth.py">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/foodhubsg/templates/food/vendor.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1479">
-              <caret line="87" column="58" selection-start-line="87" selection-start-column="58" selection-end-line="87" selection-end-column="58" />
-              <folding>
-                <element signature="e#0#16#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="306">
+              <caret line="18" column="8" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -86,19 +88,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/foodhubsg/templates/food/vendor.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="34" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/foodhubsg/templates/auth/login.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="28" column="105" selection-start-line="28" selection-start-column="105" selection-end-line="28" selection-end-column="105" />
+            <state relative-caret-position="45">
+              <caret line="32" column="105" selection-start-line="32" selection-start-column="105" selection-end-line="32" selection-end-column="105" />
             </state>
           </provider>
         </entry>
@@ -186,13 +179,13 @@
         <option value="$PROJECT_DIR$/foodhubsg/static/css/zafirah-style.css" />
         <option value="$PROJECT_DIR$/foodhubsg/classes.py" />
         <option value="$PROJECT_DIR$/requirements" />
-        <option value="$PROJECT_DIR$/foodhubsg/auth.py" />
         <option value="$PROJECT_DIR$/foodhubsg/templates/base.html" />
         <option value="$PROJECT_DIR$/foodhubsg/templates/auth/login.html" />
         <option value="$PROJECT_DIR$/foodhubsg/templates/auth/register.html" />
         <option value="$PROJECT_DIR$/foodhubsg/static/css/style.css" />
-        <option value="$PROJECT_DIR$/foodhubsg/templates/food/vendor.html" />
+        <option value="$PROJECT_DIR$/foodhubsg/auth.py" />
         <option value="$PROJECT_DIR$/foodhubsg/food.py" />
+        <option value="$PROJECT_DIR$/foodhubsg/templates/food/vendor.html" />
       </list>
     </option>
   </component>
@@ -550,7 +543,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="397000" />
+    <option name="totallyTimeSpent" value="766000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="720" extended-state="0" />
@@ -563,7 +556,7 @@
       <window_info anchor="bottom" id="Event Log" order="0" sideWeight="0.3111588" side_tool="true" weight="0.31892523" />
       <window_info anchor="bottom" id="Version Control" order="1" show_stripe_button="false" />
       <window_info anchor="bottom" id="Python Console" order="2" />
-      <window_info anchor="bottom" id="Terminal" order="3" sideWeight="0.6888412" visible="true" weight="0.34902596" />
+      <window_info anchor="bottom" id="Terminal" order="3" sideWeight="0.6888412" weight="0.34902596" />
       <window_info anchor="bottom" id="Docker" order="4" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="5" />
       <window_info anchor="bottom" id="Find" order="6" weight="0.32943925" />
@@ -578,6 +571,29 @@
       <window_info anchor="right" id="Ant Build" order="3" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="4" weight="0.25" />
     </layout>
+    <layout-to-restore>
+      <window_info id="Favorites" order="0" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.19508196" />
+      <window_info id="Structure" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Database Changes" order="0" />
+      <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.3111588" side_tool="true" weight="0.31892523" />
+      <window_info anchor="bottom" id="Version Control" order="2" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Python Console" order="3" />
+      <window_info anchor="bottom" id="Terminal" order="4" sideWeight="0.6888412" visible="true" weight="0.34902596" />
+      <window_info anchor="bottom" id="Docker" order="5" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Message" order="6" />
+      <window_info anchor="bottom" id="Find" order="7" weight="0.32943925" />
+      <window_info anchor="bottom" id="Run" order="8" weight="0.32943925" />
+      <window_info anchor="bottom" id="Debug" order="9" weight="0.3995327" />
+      <window_info anchor="bottom" id="Cvs" order="10" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="11" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="12" />
+      <window_info anchor="right" id="SciView" order="0" weight="0.3297568" />
+      <window_info anchor="right" id="Database" order="1" weight="0.3297568" />
+      <window_info anchor="right" id="Commander" order="2" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="3" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="4" weight="0.25" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -610,11 +626,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/foodhubsg/schema.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="50" selection-start-line="1" selection-start-column="50" selection-end-line="1" selection-end-column="50" />
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/foodhubsg/db.py">
       <provider selected="true" editor-type-id="text-editor" />
@@ -680,13 +692,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/foodhubsg/classes.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="122">
-          <caret line="26" column="86" selection-start-line="26" selection-start-column="86" selection-end-line="26" selection-end-column="86" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/requirements">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -727,30 +732,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/foodhubsg/auth.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1479">
-          <caret line="87" column="58" selection-start-line="87" selection-start-column="58" selection-end-line="87" selection-end-column="58" />
-          <folding>
-            <element signature="e#0#16#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/foodhubsg/templates/food/food_journal.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="25" selection-start-column="25" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/foodhubsg/templates/auth/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="28" column="105" selection-start-line="28" selection-start-column="105" selection-end-line="28" selection-end-column="105" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/foodhubsg/static/css/vignesh-style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2465">
@@ -765,6 +746,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/foodhubsg/vendors.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="67">
+          <caret line="66" selection-start-line="66" selection-end-line="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/foodhubsg/classes.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="206">
+          <caret line="77" lean-forward="true" selection-start-line="77" selection-end-line="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/foodhubsg/auth.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1">
+          <caret line="95" column="25" lean-forward="true" selection-start-line="95" selection-start-column="25" selection-end-line="95" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#16#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/foodhubsg/templates/auth/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="32" column="105" selection-start-line="32" selection-start-column="105" selection-end-line="32" selection-end-column="105" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/foodhubsg/templates/base.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="986">
@@ -772,27 +784,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/foodhubsg/templates/food/vendor.html">
+    <entry file="file://$PROJECT_DIR$/foodhubsg/templates/food/food_journal.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="34" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/foodhubsg/vendors.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1003">
-          <caret line="66" selection-start-line="66" selection-end-line="66" />
+        <state>
+          <caret column="25" selection-start-column="25" selection-end-column="25" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/foodhubsg/food.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="254" column="46" selection-start-line="254" selection-start-column="46" selection-end-line="254" selection-end-column="46" />
+        <state relative-caret-position="486">
+          <caret line="263" lean-forward="true" selection-start-line="263" selection-end-line="263" />
           <folding>
             <element signature="e#0#90#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/foodhubsg/templates/food/vendor.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="8" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
         </state>
       </provider>
     </entry>
