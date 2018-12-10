@@ -252,4 +252,5 @@ def faq():
 @login_required
 @bp.route('/vendor', methods=['POST', 'GET'])
 def vendors():
-    return render_template("food/vendor.html")
+    return render_template("food/vendor.html", vendor_list = vendor_list)
+
