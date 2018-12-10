@@ -3,7 +3,11 @@
 {% block content %}
 <table>
     {% for vendor in vendor_list %}
-    <tr> {{ vendor }} </tr>
+    <tr>
+        <td>{{ vendor }} </td>
+        <td>{{ vendor.location }}</td>
+        <td> {{ vendor.description }}</td>
+    </tr>
     {% if not loop.last %}
     {% endif %}
     {% endfor %}

@@ -6,6 +6,7 @@ from werkzeug.exceptions import abort
 from foodhubsg.auth import login_required
 from foodhubsg.db import get_db
 from foodhubsg.classes import *
+from foodhubsg.vendors import *
 
 
 def remove_duplicates(values):
@@ -248,3 +249,7 @@ def faq():
 #     db.execute('DELETE FROM post WHERE id = ?', (id,))
 #     db.commit()
 #     return redirect(url_for('blog.index'))
+@login_required
+@bp.route('/vendor', methods=['POST', 'GET'])
+def vendors():
+    return render_template("food/vendor.html")
