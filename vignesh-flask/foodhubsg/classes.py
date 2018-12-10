@@ -24,13 +24,14 @@ class Food:
 
 
 class Vendor:
-    def __init__(self, code, name, average_calories, location, description, food_items):
+    def __init__(self, code, name, average_calories, location, description, food_items, rating):
         self.code = code
         self.name = name
         self.average_calories = average_calories
         self.location = location
         self.description = description
         self.food_items = food_items
+        self.rating
 
     def set_code(self, code):
         self.code = code

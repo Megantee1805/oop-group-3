@@ -129,9 +129,13 @@ def food_journal():
         current_date_calories = sum(current_date_calories)
         calories_list.append(current_date_calories)
 
+        number_of_days = len(calories_list)
+        average_calories = int(sum(calories_list)/len(calories_list))
+
     return render_template('food/food_journal.html',
                            food_dates=food_dates, all_dates=all_dates, calories_list=calories_list, name=name,
-                           weight=weight, height=height, bmi=bmi)
+                           weight=weight, height=height, bmi=bmi, average_calories=average_calories,
+                           number_of_days=number_of_days)
 
 
 @bp.route('/add', methods=('GET', 'POST'))
