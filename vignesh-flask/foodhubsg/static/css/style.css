@@ -1458,6 +1458,7 @@ input[type="text"] {
 .flash {
   padding: 1em;
   background: #d9534f;
+  color: white;
   box-shadow: 0 0 10px -10px rgba(0,0,0,0.75);
 }
 

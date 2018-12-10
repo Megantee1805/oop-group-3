@@ -11,7 +11,7 @@
             <div class="col-md-12">
 
                 <header id="summary-header">
-                    <h1 class="font_color"><b class="center_subtitle">Summary of your stats</b></h1>
+                    <h1 class="font_color">Summary of your stats</h1>
                     <h4>Your name: <b> {{ name }} </b> </h4>
                     <h4>Your weight: <b> {{ weight }} kg </b> </h4>
                     <h4>Your height: <b> {{ height }} m </b> </h4>
@@ -22,14 +22,14 @@
                 <br>
 
                 <header>
-                <h1 class="font_color"><b class="center_subtitle">Food History</b></h1>
+                <h1 class="font_color">Food History</h1>
                 </header>
 
                 {% for date in food_dates %}
 
                     {% set example_food = date[0] %}
                     {% set example_date = example_food['created'].strftime('%d %B (%A)') %}
-                    <h2> {{ example_date }} </h2>
+                    <h2> <b>{{ example_date }}</b> </h2>
 
                     {% for food in date %}
                         <article class="food-journal">
