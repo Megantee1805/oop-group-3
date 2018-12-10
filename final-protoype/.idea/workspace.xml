@@ -45,13 +45,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="food.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="food.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/food.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="60">
+              <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
               <folding>
-                <element signature="e#0#90#0" expanded="true" />
                 <marker date="1544360425510" expanded="true" signature="624:836" ph="SELECT f.id,... food_entry" />
                 <marker date="1544360425510" expanded="true" signature="2385:2499" ph="INSERT INTO food_entry... " />
               </folding>
@@ -79,7 +78,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="foodhub.db.sql" pinned="false" current-in-tab="true">
+      <file leaf-file-name="foodhub.db.sql" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/database/foodhub.db.sql">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="240">
@@ -161,7 +160,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.editor" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
@@ -258,18 +257,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/food.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#90#0" expanded="true" />
-            <marker date="1544360425510" expanded="true" signature="624:836" ph="SELECT f.id,... food_entry" />
-            <marker date="1544360425510" expanded="true" signature="2385:2499" ph="INSERT INTO food_entry... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/Food.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -291,6 +278,17 @@
         <state relative-caret-position="240">
           <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/food.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding>
+            <marker date="1544360425510" expanded="true" signature="624:836" ph="SELECT f.id,... food_entry" />
+            <marker date="1544360425510" expanded="true" signature="2385:2499" ph="INSERT INTO food_entry... " />
+          </folding>
         </state>
       </provider>
     </entry>

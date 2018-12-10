@@ -16,8 +16,8 @@ body {
   font-size: 16px;
   line-height: 2;
   font-family: "Roboto", Arial, sans-serif;
-  color: #666666;
-  background-image: url("../images/person4.png");
+  color: #ffffff;
+  background-image: url("../images/green-background.png");
 }
 
 #form-input{
@@ -1454,3 +1454,7 @@ input[type="text"] {
 
 .js .animate-box {
   opacity: 0; }
+
+#navbar-stuff {
+  float: right;
+}
