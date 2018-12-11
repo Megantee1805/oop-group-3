@@ -5,7 +5,7 @@ from flask import (
 )
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from foodhubsg.db import get_db
+from foodhubsg.db import get_db, query_db, init_db
 
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
@@ -112,13 +112,13 @@ def login():
 @login_required
 @bp.route('/settings', methods=['POST', 'GET'])
 def settings():
-        error = None
+        init_db()
         db = get_db()
-        email = db.execute('SELECT * FROM user WHERE email = ?', (g.email, ))
-        name = db.execute('SELECT * FROM user Where name = ?', (g.name,))
-        password = db.execute('SELECT * FROM user WHERE password =?', (g.password,))
-        height = db.execute('SELECT * FROM user WHERE height = ?', (g.height,))
-        weight = db.execute('SELECT * FROM user WHERE weight = ?', (g.weight,))
+        email = query_db('SELECT * FROM user Where email = ?', args=([g.email]), One=True)
+        name = query_db('SELECT * FROM user Where name = ?', args =([g.name]), One=True)
+        password = query_db('SELECT * FROM user WHERE password = ?', args = ([g.password]), One=True)
+        height = query_db('SELECT * FROM user WHERE height = ?', args =([g.height]), One=True)
+        weight = db.execute('SELECT * FROM user WHERE weight = ?', args =([g.weight]), One=True)
         return render_template("auth/settings.html", email=email, name=name, password=password,
                                height=height, weight=weight)
 
