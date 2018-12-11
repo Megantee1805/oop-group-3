@@ -56,7 +56,7 @@ def index():
     calories_list = []
     user_average_calories = 0
     number_of_days = 0
-    user_location = "sen"
+    user_location = "amk"
     user_vendors = []
 
 
@@ -90,11 +90,10 @@ def index():
             user_average_calories = int(sum(calories_list)/number_of_days)
 
     for vendor in vendor_list:
-        if vendor.get_location_code() == user_location:
+        if user_location == vendor.get_location_code():
             user_vendors.append(vendor)
         else:
             continue
-
 
     return render_template('food/index.html',
                            food_dates=food_dates, all_dates=all_dates, calories_list=calories_list, name=name,
@@ -158,6 +157,7 @@ def food_journal():
                     current_date_calories.append(food['calories'])
                 else:
                     continue
+
             food_dates.append(current_date_food)
             current_date_calories = sum(current_date_calories)
             calories_list.append(current_date_calories)
