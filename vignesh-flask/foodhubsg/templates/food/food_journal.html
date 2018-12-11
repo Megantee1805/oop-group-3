@@ -10,8 +10,6 @@
         <div class="row row-pb-md">
             <div class="col-md-12">
 
-                {% if food_exists == true %}
-
                     <header id="summary-header">
                         <h1 class="font_color">Summary of your stats</h1>
                         <h4>Your name: <b> {{ name }} </b> </h4>
@@ -27,6 +25,16 @@
                     <h1 class="font_color">Food History</h1>
                     </header>
 
+                    {% if food_exists == 0 %}
+                        <article class="food-journal">
+                            <header>
+                                <div class="food-subsection">
+                                    <h4 style="margin-bottom: 0"><b>No food added to list</b></h4>
+                                </div>
+                            </header>
+                        </article>
+
+                    {% else %}
                     {% for date in food_dates %}
 
                         {% set example_food = date[0] %}
@@ -34,6 +42,7 @@
                         <h2> <b>{{ example_date }}</b> </h2>
 
                         {% for food in date %}
+
                             <article class="food-journal">
                                 <header>
                                     <div class="food-subsection">
@@ -43,6 +52,7 @@
                                     </div>
                                 </header>
                             </article>
+
                         {% if not loop.last %}
                         {% endif %}
                         {% endfor %}
@@ -55,12 +65,7 @@
                     {% endif %}
                     {% endfor %}
 
-            {% else %}
-                <h1 class="font_color">You haven't entered any food data yet.</h1>
-
-            {% if not loop.last %}
-            {% endif %}
-            {% endif %}
+                    {% endif %}
 
             </div>
             </div>

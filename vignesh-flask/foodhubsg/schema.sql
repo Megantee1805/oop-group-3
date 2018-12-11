@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS user (
 CREATE TABLE food_entry (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   creator_id INTEGER NOT NULL,
-  created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  created TIMESTAMP NOT NULL DEFAULT (datetime('now','localtime')),
   food_code VARCHAR(6) NOT NULL,
   food_name TEXT NOT NULL,
   calories INT NOT NULL,

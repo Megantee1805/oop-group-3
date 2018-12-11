@@ -21,6 +21,7 @@ def remove_duplicates(values):
 
 bp = Blueprint('food', __name__)
 
+
 @bp.route('/')
 @login_required
 def index():
@@ -54,40 +55,39 @@ def index():
     all_dates = []
     food_dates = []
     calories_list = []
+    user_vendors = []
     user_average_calories = 0
     number_of_days = 0
-    user_location = "amk"
-    user_vendors = []
+    user_location = "sen"
 
 
-    if food_items is None:
-        food_exists = False
-        user_average_calories = 0
-
+    if food_items is []:
+        food_exists = 0
     else:
-        food_exists = True
+        food_exists = 1
+
+    for food in food_items:
+        food_date = food['created'].strftime('%d-%m-%y')
+        all_dates.append(food_date)
+    all_dates = remove_duplicates(all_dates)
+
+    for date in all_dates:
+        current_date_food = []
+        current_date_calories = []
+
         for food in food_items:
-            food_date = food['created'].strftime('%d-%m-%y')
-            all_dates.append(food_date)
-        all_dates = remove_duplicates(all_dates)
+            if date == food['created'].strftime('%d-%m-%y'):
+                current_date_food.append(food)
+                current_date_calories.append(food['calories'])
+            else:
+                continue
+        food_dates.append(current_date_food)
+        current_date_calories = sum(current_date_calories)
+        calories_list.append(current_date_calories)
 
-        for date in all_dates:
-            current_date_food = []
-            current_date_calories = []
+        number_of_days = len(calories_list)
 
-            for food in food_items:
-                if date == food['created'].strftime('%d-%m-%y'):
-                    current_date_food.append(food)
-                    current_date_calories.append(food['calories'])
-                else:
-                    continue
-            food_dates.append(current_date_food)
-            current_date_calories = sum(current_date_calories)
-            calories_list.append(current_date_calories)
-
-            number_of_days = len(calories_list)
-
-            user_average_calories = int(sum(calories_list)/number_of_days)
+        user_average_calories = int(sum(calories_list)/number_of_days)
 
     for vendor in vendor_list:
         if user_location == vendor.get_location_code():
@@ -98,7 +98,7 @@ def index():
     return render_template('food/index.html',
                            food_dates=food_dates, all_dates=all_dates, calories_list=calories_list, name=name,
                            weight=weight, height=height, bmi=bmi, user_average_calories=user_average_calories,
-                           number_of_days=number_of_days, food_exists=food_exists, user_vendors=user_vendors)
+                           number_of_days=number_of_days, food_exists=food_exists, user_vendors=user_vendors, food_items=food_items)
 
 @bp.route('/food_journal')
 @login_required
@@ -136,35 +136,34 @@ def food_journal():
     user_average_calories = 0
     number_of_days = 0
 
-    if food_items is None:
-        food_exists = False
-        user_average_calories = 0
-
+    if food_items is not []:
+        food_exists = 1
     else:
-        food_exists = True
+        food_exists = 0
+
+    for food in food_items:
+        food_date = food['created'].strftime('%d-%m-%y')
+        all_dates.append(food_date)
+    all_dates = remove_duplicates(all_dates)
+
+    for date in all_dates:
+        current_date_food = []
+        current_date_calories = []
+
         for food in food_items:
-            food_date = food['created'].strftime('%d-%m-%y')
-            all_dates.append(food_date)
-        all_dates = remove_duplicates(all_dates)
+            if date == food['created'].strftime('%d-%m-%y'):
+                current_date_food.append(food)
+                current_date_calories.append(food['calories'])
+            else:
+                continue
 
-        for date in all_dates:
-            current_date_food = []
-            current_date_calories = []
+        food_dates.append(current_date_food)
+        current_date_calories = sum(current_date_calories)
+        calories_list.append(current_date_calories)
 
-            for food in food_items:
-                if date == food['created'].strftime('%d-%m-%y'):
-                    current_date_food.append(food)
-                    current_date_calories.append(food['calories'])
-                else:
-                    continue
+        number_of_days = len(calories_list)
 
-            food_dates.append(current_date_food)
-            current_date_calories = sum(current_date_calories)
-            calories_list.append(current_date_calories)
-
-            number_of_days = len(calories_list)
-
-            user_average_calories = int(sum(calories_list)/number_of_days)
+        user_average_calories = int(sum(calories_list)/number_of_days)
 
     return render_template('food/food_journal.html',
                            food_dates=food_dates, all_dates=all_dates, calories_list=calories_list, name=name,

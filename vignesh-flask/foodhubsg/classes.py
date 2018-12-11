@@ -102,16 +102,16 @@ b00002 = Food("b00002", "Straight-Up Blood", 109)
 b00003 = Food("b00003", "Teriyaki Bento", 631)
 b00004 = Food("b00004", "Karage Ramen", 570)
 
-food_list = [a00001, a00002, b00001, b00002]
+food_list = [a00001, a00002, a00003, a00004, b00001, b00002, b00003, b00004]
 
 sen01 = Vendor("sen01", "McDonald's", 1207, "1 Sengkang Square #01-225, Sengkang - 545078", "sen", "This stuff will literally kill you and you pay us for it.", [a00001, a00002], "static/images/mcdonalds-sengkang-image.jpg")
 sen02 = Vendor("sen02", "Misaka - Sengkang Kopitiam", 979, "1 Sengkang Sq Compass Pt #03-210, Sengkang - 545078", "sen", "Come buy overpriced frozen food!", [a00003, a00004], "static/images/misaka-sengkang-image.jpeg")
 amk01 = Vendor("amk01", "The Lawn", 798, "26 Ang Mo Kio Industrial Park 2 #01-00, AMK - 569507", "amk", "The ambience is nice but no more than that", [b00001, b00002], "static/images/thelawn-amk-image.jpeg")
 amk02 = Vendor("amk02", "Lean Bento", 699, "53 Ang Mo Kio Ave 3 AMK Hub #01-34, AMK - 569933", "amk", "The food is decently healthy but still way too sweet", [b00003, b00004], "static/images/leanbento-amk-image.jpeg")
 
-sen01.set_rating(2)
+sen01.set_rating(1)
 sen02.set_rating(3)
-amk01.set_rating(1)
+amk01.set_rating(3)
 amk02.set_rating(4)
 
 vendor_list = [sen01, sen02, amk01, amk02]

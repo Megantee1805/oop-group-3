@@ -10,11 +10,21 @@
         <div class="row row-pb-md">
             <div class="col-md-12">
 
-                  <form method="post">
-                      <h1 class="font_color">Enter Food Code</h1>
+                <form method="post">
+                    <h1 class="font_color">Enter Food Code</h1>
+
                     <input name="code" id="code" value="{{ request.form['code'] }}" required>
                     <input type="submit" value="Save">
-                  </form>
+
+                    {% for message in get_flashed_messages() %}
+                        <div class="row form-group">
+                            <div class="col-md-3">
+                                <div class="code-flash">{{ message }}</div>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                </form>
 
             </div>
         </div>
