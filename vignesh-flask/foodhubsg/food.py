@@ -249,15 +249,3 @@ def faq():
 #     db.execute('DELETE FROM post WHERE id = ?', (id,))
 #     db.commit()
 #     return redirect(url_for('blog.index'))
-@login_required
-@bp.route('/vendors')
-def vendors():
-    for i in vendor_list:
-        name = i.get_name()
-        location = i.get_location()
-        calories = i.get_average_calories()
-        description = i.get_description()
-        menu = i.get_food_items()
-        return render_template("food/vendor.html", name=name, location=location,calories=calories,
-                               description=description, menu=menu)
-

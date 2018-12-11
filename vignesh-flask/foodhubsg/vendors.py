@@ -76,3 +76,13 @@ def food_journal():
     return render_template('food/food_journal.html',
                            food_dates=food_dates, all_dates=all_dates, calories_list=calories_list, name=name,
                            weight=weight, height=height, bmi=bmi)
+
+@login_required
+@bp.route('/vendors')
+def vendors():
+    for i in vendor_list:
+        vendors = []
+        vendors.append(i)
+        return render_template("food/vendor.html")
+
+
