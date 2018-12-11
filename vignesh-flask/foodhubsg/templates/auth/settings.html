@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %} Settings {% endblock %}
+{% block content %}
+<form>
+    <label for="name">Name </label>
+    <input type="text" name="name" id="name"> {{ name }}
+    <label for="email">Email</label>
+    <input type="email" name="email" id="email"> {{ email }}
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password"> {{ password }}
+    <label for="height">Height</label>
+    <input type="number" name="height" id="height">  {{ height }}
+    <label for="weight">Weight</label>
+    <input type="number" name="weight" id="weight"> {{ weight }}
+    <button type="button" onclick="window.open.href='/'"> Submit </button>
+</form>
+{% endblock %}
+

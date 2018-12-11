@@ -42,7 +42,7 @@ padding-top: 12px; }
                             </div>
                             <div class="col-xs-10 text-right menu-1" id="navbar-stuff">
                                 <ul>
-                                    <li><a href="event.html">Vendor near you</a></li>
+                                    <li><a href="{{ url_for('food.vendors') }}">Vendor near you</a></li>
                                     <li><a href="{{ url_for('food.food_journal') }}">Food Journal</a></li>
                                     <li><a href="{{ url_for('food.faq') }}">FAQ</a></li>
                                     <a href="{{ url_for('food.add_food') }}"><button type="button" class="btn btn-success">Enter a new food code</button></a>
