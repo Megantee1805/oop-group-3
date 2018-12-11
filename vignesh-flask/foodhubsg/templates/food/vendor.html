@@ -36,7 +36,7 @@
                                 </td>
                             </tr>
                         </table>
-                                {% elseif location = 'AMK Hub'%}
+                                {% elif location == 'AMK Hub'%}
                             <table>
                             <tr>
                                 <th> Vendor </th>
@@ -80,19 +80,18 @@
                                 <td>
                                     {{ description }}
                                 </td>
-
+                                {% endif %}
                             </tr>
                         </table>
-                                    {% if loop.last %}
-                                    {% endif %}
-                                    {% endfor %}
+
+
                     </div>
                 </div>
                 </div>
             </div>
         </div>
     </div>
-    </div>
-{% endblock %}
+{% endfor %}
 
+{% endblock %}
 
