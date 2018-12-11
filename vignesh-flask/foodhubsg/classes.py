@@ -24,7 +24,7 @@ class Food:
 
 
 class Vendor:
-    def __init__(self, code, name, average_calories, location, description, food_items):
+    def __init__(self, code, name, average_calories, location, description, food_items, image_location):
         self.code = code
         self.name = name
         self.average_calories = average_calories
@@ -77,9 +77,8 @@ b00002 = Food("b00002", "Straight-Up Blood", 109)
 food_list = [a00001, a00002, b00001, b00002]
 
 sen01 = Vendor("sen01", "McDonald's", 1207, "Sengkang", "This stuff will literally kill you and you pay us for it.", [a00001, a00002])
-sen02 = Vendor("sen02", "Western Delight - Sengkang Kopitiam", 979, "Sengkang", "Come buy overpriced frozen food!", [b00001, b00002])
-amk01 = Vendor("amk01", "The Lawn", 798, "AMK Hub", "The ambience is nice but no more than that", [])
-amk02 = Vendor("amk02", "Lean Bento", 699, "AMK Hub", "The food is decently healthy but still way too sweet", [])
-amkhub = [amk01, amk02]
-sengkang = [sen01, sen02]
-locations = [amkhub, sengkang]
+sen02 = Vendor("sen02", "Misaka - Sengkang Kopitiam", 979, "Sengkang", "Come buy overpriced frozen food!", [a00003, a00004])
+amk01 = Vendor("amk01", "The Lawn", 798, "Ang Mio Kio", "The ambience is nice but no more than that", [])
+amk02 = Vendor("amk02", "Lean Bento", 699, "Ang Mio Kio", "The food is decently healthy but still way too sweet", [])
+
+vendor_list = [sen01, sen02, amk01, a00002]

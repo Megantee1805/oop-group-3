@@ -24,6 +24,7 @@ bp = Blueprint('food', __name__)
 @bp.route('/')
 @login_required
 def index():
+    """Show all recent meals, most recent first."""
     db = get_db()
     food_items = db.execute(
         'SELECT f.id, creator_id, food_name, created, calories, food_code, email'
@@ -53,29 +54,55 @@ def index():
     all_dates = []
     food_dates = []
     calories_list = []
+    user_average_calories = 0
+    number_of_days = 0
+    user_location = "Sengkang"
+    user_vendors = []
 
-    for food in food_items:
-        food_date = food['created'].strftime('%d-%m-%y')
-        all_dates.append(food_date)
-    all_dates = remove_duplicates(all_dates)
 
-    for date in all_dates:
-        current_date_food = []
-        current_date_calories = []
+    if food_items is None:
+        food_exists = False
+        user_average_calories = 0
 
+    else:
+        food_exists = True
         for food in food_items:
-            if date == food['created'].strftime('%d-%m-%y'):
-                current_date_food.append(food)
-                current_date_calories.append(food['calories'])
-            else:
-                continue
-        food_dates.append(current_date_food)
-        current_date_calories = sum(current_date_calories)
-        calories_list.append(current_date_calories)
+            food_date = food['created'].strftime('%d-%m-%y')
+            all_dates.append(food_date)
+        all_dates = remove_duplicates(all_dates)
+
+        for date in all_dates:
+            current_date_food = []
+            current_date_calories = []
+
+            for food in food_items:
+                if date == food['created'].strftime('%d-%m-%y'):
+                    current_date_food.append(food)
+                    current_date_calories.append(food['calories'])
+                else:
+                    continue
+            food_dates.append(current_date_food)
+            current_date_calories = sum(current_date_calories)
+            calories_list.append(current_date_calories)
+
+            number_of_days = len(calories_list)
+
+            user_average_calories = int(sum(calories_list)/number_of_days)
+
+    for vendor in vendor_list:
+        if vendor.get_location() == user_location:
+            user_vendors.append(vendor)
+        else:
+            continue
+
+    if user_vendors == []:
+        user_vendors = "There are no vendors near you"
+
 
     return render_template('food/index.html',
                            food_dates=food_dates, all_dates=all_dates, calories_list=calories_list, name=name,
-                           weight=weight, height=height, bmi=bmi)
+                           weight=weight, height=height, bmi=bmi, user_average_calories=user_average_calories,
+                           number_of_days=number_of_days, food_exists=food_exists, user_vendors=user_vendors)
 
 @bp.route('/food_journal')
 @login_required
