@@ -8,7 +8,11 @@
                 <div class="row">
                     <div class="col-md-6">
 
-
+                        {% for vendor in vendors %}
+                            {% set location = vendor.get_location() %}
+                            {% set name = vendor.get_name() %}
+                            {% set calories = vendor.get_average_calories() %}
+                            {% set description = vendor.get_description() %} }
                         <table>
                             <tr>
                                 <th> Vendor </th>
@@ -17,8 +21,9 @@
                                 <th>About</th>
                             </tr>
                             <tr>
+                                {% if location == 'Sengkang' %} }}
                                 <td>
-                                    <h1>{{ name }} </h1>
+                                    <h2>{{ name }} </h2>
                                 </td>
                                 <td>
                                     <h2>{{ location }}</h2>
@@ -31,7 +36,56 @@
                                 </td>
                             </tr>
                         </table>
+                                {% elseif location = 'AMK Hub'%}
+                            <table>
+                            <tr>
+                                <th> Vendor </th>
+                                <th>Address </th>
+                                <th>Calories</th>
+                                <th>About</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h2>{{ name }} </h2>
+                                </td>
+                                <td>
+                                    <h2>{{ location }}</h2>
+                                </td>
+                                <td>
+                                    {{ calories }}
+                                </td>
+                                <td>
+                                    {{ description }}
+                                </td>
+                            </tr>
+                            </table>
+                            {% else %}
+                                 <table>
+                            <tr>
+                                <th> Vendor </th>
+                                <th>Address </th>
+                                <th>Calories</th>
+                                <th>About</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h2>{{ name }} </h2>
+                                </td>
+                                <td>
+                                    <h2>{{ location }}</h2>
+                                </td>
+                                <td>
+                                    {{ calories }}
+                                </td>
+                                <td>
+                                    {{ description }}
+                                </td>
 
+                            </tr>
+                        </table>
+                                    {% if loop.last %}
+                                    {% endif %}
+                                    {% endfor %}
                     </div>
                 </div>
                 </div>
