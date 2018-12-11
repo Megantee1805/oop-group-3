@@ -78,4 +78,7 @@ food_list = [a00001, a00002, b00001, b00002]
 
 sen01 = Vendor("sen01", "McDonald's", 1207, "Sengkang", "This stuff will literally kill you and you pay us for it.", [a00001, a00002])
 sen02 = Vendor("sen02", "Western Delight - Sengkang Kopitiam", 979, "Sengkang", "Come buy overpriced frozen food!", [b00001, b00002])
-vendor_list = [sen01, sen02]
+sen03 = Vendor("sen03", "The Lawn", 798, "AMK Hub", "The ambience is nice but no more than that", [])
+sen04 = Vendor("sen04", "Lean Bento", 699, "AMK Hub", "The food is decently healthy but still way too sweet", [])
+vendor_list = [sen01, sen02, sen03, sen04]
+locations = ["AMK Hub", "Sengkang"]

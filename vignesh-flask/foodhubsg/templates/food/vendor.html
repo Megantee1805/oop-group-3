@@ -1,26 +1,37 @@
 {% extends 'base.html' %}
 {% block title %} Vendors {% endblock %}
 {% block content %}
-<table>
-    <tr>
-        <td>
-            <h1>{{ name }} </h1>
-        </td>
-        <td>
-            <h2>{{ location }}</h2>
-        </td>
+    <div class="col-md-13">
+                <div class="row">
+                    <div class="col-md-6">
 
-        <td>
-            {{ menu }}
-        </td>
-        <td>
-            {{ calories }}
-        </td>
-        <td>
-            {{ description }}
-        </td>
-    </tr>
-</table>
+
+                        <table>
+                            <tr>
+                                <th> Vendor </th>
+                                <th>Address </th>
+                                <th>Calories</th>
+                                <th>About</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h1>{{ name }} </h1>
+                                </td>
+                                <td>
+                                    <h2>{{ location }}</h2>
+                                </td>
+                                <td>
+                                    {{ calories }}
+                                </td>
+                                <td>
+                                    {{ description }}
+                                </td>
+                            </tr>
+                        </table>
+
+                    </div>
+                </div>
+    </div>
 {% endblock %}
 
 
