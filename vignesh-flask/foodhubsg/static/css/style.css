@@ -1477,3 +1477,7 @@ input[type="text"] {
 .row-pb-md {
   padding: 2em;
 }
+
+.img-responsive {
+  max-height: 300px;
+}

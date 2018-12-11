@@ -56,7 +56,7 @@ def index():
     calories_list = []
     user_average_calories = 0
     number_of_days = 0
-    user_location = "Sengkang"
+    user_location = "sen"
     user_vendors = []
 
 
@@ -90,13 +90,10 @@ def index():
             user_average_calories = int(sum(calories_list)/number_of_days)
 
     for vendor in vendor_list:
-        if vendor.get_location() == user_location:
+        if vendor.get_location_code() == user_location:
             user_vendors.append(vendor)
         else:
             continue
-
-    if user_vendors == []:
-        user_vendors = "There are no vendors near you"
 
 
     return render_template('food/index.html',

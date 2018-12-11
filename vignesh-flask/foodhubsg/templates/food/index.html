@@ -71,64 +71,42 @@
         <div class="box1">
             <h3 class="font_color"><b class="center_subtitle">Recommended food vendors near you</b></h3>
         <div class="row row-pb-md">
-            <div class="col-md-4">
-                <div class="blog-entry">
-                    <div class="blog-img">
-                        <a href="mainpage.html"><img src="images/The_Lawn.jpg" class="img-responsive" alt="html5 bootstrap template"></a>
-                    </div>
-                    <div class="desc">
-                        <p class="meta">
-                            <b class="vendors">The Lawn</b><br>
-                            <span class="food_location">Location: <b>#01-201, AMK Hub</b></span><br>
-                            <span class=food_rating">Healthiness rating:
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                            </span>
-                    </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="blog-entry">
-                    <div class="blog-img">
-                        <a href="vendors.html"><img src="images/Lean_Bento.jpg" class="img-responsive" alt="html5 bootstrap template"></a>
-                    </div>
-                    <div class="desc">
-                        <p class="meta">
-                            <b class="food_vendors">Lean Bento</b><br>
-                            <span class="food_location">Location: <b>#03-683, AMK Hub</b></span><br>
-                            <span class=food_rating">Healthiness rating:
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                            </span>
-                        </p>
 
-                    </div>
-                </div>
-            </div>
+        {% if user_vendors == [] %}
             <div class="col-md-4">
                 <div class="blog-entry">
                     <div class="blog-img">
-                        <a href="vendors.html"><img src="images/Miska_Cafe.jpg" class="img-responsive" alt="html5 bootstrap template"></a>
+                        <h3 class="font_color"><b class="center_subtitle">There are no supported food vendors near you right now.</b></h3>
+                    </div>
+                </div>
+            </div>
+
+        {% for vendor in user_vendors %}
+            <div class="col-md-4">
+                <div class="blog-entry">
+                    <div class="blog-img">
+                        <a href="{{ url_for('index') }}"><img src="{{ vendor.get_image_location() }}" class="img-responsive" alt="html5 bootstrap template"></a>
                     </div>
                     <div class="desc">
                         <p class="meta">
-                            <b class="food_vendors">Miska Cafe</b><br>
-                            <span class="food_location">Location: <b>Block A, Nanyang Poly</b></span><br>
+                            <b class="vendors">{{ vendor.get_name() }}</b><br>
+                            <span class="food_location">Location: <b>{{ vendor.get_location() }}</b></span><br>
                             <span class=food_rating">Healthiness rating:
                                 <span class="fa fa-star checked"></span>
                                 <span class="fa fa-star checked"></span>
                                 <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star checked"></span>
                             </span>
                         </p>
                     </div>
                 </div>
             </div>
+        {% if not loop.last %}
+        {% endif %}
+        {% endfor %}
+
+        {% endif %}
+
         </div>
     </div>
     </div>
