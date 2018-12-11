@@ -11,6 +11,7 @@ body {
   font-family: "Muli", Arial, sans-serif;
   color: #707070;
   background-color: #EEEEEE;
+  height:100%;
 }
 
 #form-input{
@@ -23,7 +24,7 @@ body {
 	position: absolute;
 	right: 0;
 	top: 0;
-
+    box-shadow: 0 0 10px -10px rgba(0,0,0,0.75);
 	}
 
 #SN-Logo{
@@ -40,13 +41,12 @@ body {
 	}
 
 	#register-button{
-	padding-top: 50px;
 	padding-left: 55px;
 	}
 
 	#welcome-msg{
 	color: white;
-	margin-top: 20%;
+	margin-top: 30%;
     margin-left: -5%;
 	}
 
@@ -410,7 +410,7 @@ h1, h2, h3, h4, h5, h6, figure {
 #colorlib-about,
 #colorlib-contact,
 #colorlib-footer {
-  padding: 7em 0;
+  padding: 2em 0;
   clear: both; }
   @media screen and (max-width: 768px) {
     #colorlib-container,
@@ -926,7 +926,7 @@ input[type="text"] {
   height: 50px; }
 
 .form-group {
-  margin-bottom: 30px; }
+  margin-bottom: 10px; }
   .form-group .btn-modify {
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -1472,4 +1472,8 @@ input[type="text"] {
 
 .food-subsection {
   margin: 0.7em 0 1.0em 0;
+}
+
+.row-pb-md {
+  padding: 2em;
 }
