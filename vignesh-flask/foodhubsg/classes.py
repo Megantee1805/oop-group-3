@@ -31,6 +31,7 @@ class Vendor:
         self.location = location
         self.description = description
         self.food_items = food_items
+        self.image_location = image_location
 
     def set_code(self, code):
         self.code = code
@@ -50,6 +51,9 @@ class Vendor:
     def set_food_items(self, food_items):
         self.food_items = food_items
 
+    def set_image_location(self, image_location):
+        self.image_location = image_location
+
     def get_code(self):
         return self.code
 
@@ -68,17 +72,25 @@ class Vendor:
     def get_food_items(self):
         return self.food_items
 
+    def get_image_location(self):
+        return self.image_location
+
 
 a00001 = Food("a00001", "Chicken Rice", 673)
 a00002 = Food("a00002", "Fried Rice", 840)
+a00003 = Food("a00003", "Aglio Olio", 600)
+a00004 = Food("a00004", "Cesear Salad", 540)
 b00001 = Food("b00001", "McSpicy", 752)
 b00002 = Food("b00002", "Straight-Up Blood", 109)
+b00003 = Food("b00003", "Teriyaki Bento", 631)
+b00004 = Food("b00004", "Karage Ramen", 570)
+
 
 food_list = [a00001, a00002, b00001, b00002]
 
-sen01 = Vendor("sen01", "McDonald's", 1207, "Sengkang", "This stuff will literally kill you and you pay us for it.", [a00001, a00002])
-sen02 = Vendor("sen02", "Misaka - Sengkang Kopitiam", 979, "Sengkang", "Come buy overpriced frozen food!", [a00003, a00004])
-amk01 = Vendor("amk01", "The Lawn", 798, "Ang Mio Kio", "The ambience is nice but no more than that", [])
-amk02 = Vendor("amk02", "Lean Bento", 699, "Ang Mio Kio", "The food is decently healthy but still way too sweet", [])
+sen01 = Vendor("sen01", "McDonald's", 1207, "Sengkang", "This stuff will literally kill you and you pay us for it.", [a00001, a00002], "static/images/mcdonalds-sengkang-image.jpg")
+sen02 = Vendor("sen02", "Misaka - Sengkang Kopitiam", 979, "Sengkang", "Come buy overpriced frozen food!", [a00003, a00004], "static/images/misaka-sengkang-image.jpg")
+amk01 = Vendor("amk01", "The Lawn", 798, "Ang Mio Kio", "The ambience is nice but no more than that", [b00001, b00002], "static/images/thelawn-amk-image.jpeg")
+amk02 = Vendor("amk02", "Lean Bento", 699, "Ang Mio Kio", "The food is decently healthy but still way too sweet", [b00003, b00004], "static/images/leanbento-amk-image.jpeg")
 
 vendor_list = [sen01, sen02, amk01, a00002]
