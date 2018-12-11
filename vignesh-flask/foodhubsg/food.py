@@ -111,32 +111,38 @@ def food_journal():
     food_dates = []
     calories_list = []
 
-    for food in food_items:
-        food_date = food['created'].strftime('%d-%m-%y')
-        all_dates.append(food_date)
-    all_dates = remove_duplicates(all_dates)
+    if food_items is None:
+        food_exists = False
 
-    for date in all_dates:
-        current_date_food = []
-        current_date_calories = []
-
+    else:
+        food_exists = True
         for food in food_items:
-            if date == food['created'].strftime('%d-%m-%y'):
-                current_date_food.append(food)
-                current_date_calories.append(food['calories'])
-            else:
-                continue
-        food_dates.append(current_date_food)
-        current_date_calories = sum(current_date_calories)
-        calories_list.append(current_date_calories)
+            food_date = food['created'].strftime('%d-%m-%y')
+            all_dates.append(food_date)
+        all_dates = remove_duplicates(all_dates)
 
-        number_of_days = len(calories_list)
-        average_calories = int(sum(calories_list)/len(calories_list))
+        for date in all_dates:
+            current_date_food = []
+            current_date_calories = []
+
+            for food in food_items:
+                if date == food['created'].strftime('%d-%m-%y'):
+                    current_date_food.append(food)
+                    current_date_calories.append(food['calories'])
+                else:
+                    continue
+            food_dates.append(current_date_food)
+            current_date_calories = sum(current_date_calories)
+            calories_list.append(current_date_calories)
+
+            number_of_days = len(calories_list)
+
+            user_average_calories = int(sum(calories_list)/number_of_days)
 
     return render_template('food/food_journal.html',
                            food_dates=food_dates, all_dates=all_dates, calories_list=calories_list, name=name,
-                           weight=weight, height=height, bmi=bmi, average_calories=average_calories,
-                           number_of_days=number_of_days)
+                           weight=weight, height=height, bmi=bmi, user_average_calories=user_average_calories,
+                           number_of_days=number_of_days, food_exists=food_exists)
 
 
 @bp.route('/add', methods=('GET', 'POST'))

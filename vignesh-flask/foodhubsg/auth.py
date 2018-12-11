@@ -40,6 +40,7 @@ def load_logged_in_user():
 @bp.route('/register', methods=('GET', 'POST'))
 def register():
     if request.method == 'POST':
+
         session.clear()
 
         email = request.form['email']
@@ -82,7 +83,9 @@ def register():
 def login():
     """Log in a registered user by adding the user id to the session."""
     if request.method == 'POST':
+
         session.clear()
+
         email = request.form['email']
         password = request.form['password']
         db = get_db()
