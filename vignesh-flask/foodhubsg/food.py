@@ -110,9 +110,12 @@ def food_journal():
     all_dates = []
     food_dates = []
     calories_list = []
+    user_average_calories = 0
+    number_of_days = 0
 
     if food_items is None:
         food_exists = False
+        user_average_calories = 0
 
     else:
         food_exists = True
