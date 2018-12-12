@@ -58,7 +58,7 @@ def index():
     user_vendors = []
     user_average_calories = 0
     number_of_days = 0
-    user_location = "sen"
+    user_location = "amk"
 
 
     if food_items is []:

@@ -24,10 +24,11 @@ class Food:
 
 
 class Vendor:
-    def __init__(self, code, name, average_calories, location, location_code, description, food_items, image_location):
+    def __init__(self, code, name, average_calories, area, location, location_code, description, food_items, image_location):
         self.code = code
         self.name = name
         self.average_calories = average_calories
+        self.area = area
         self.location = location
         self.location_code = location_code
         self.description = description
@@ -43,6 +44,9 @@ class Vendor:
 
     def set_average_calories(self, average_calories):
         self.average_calories = average_calories
+
+    def set_area(self, area):
+        self.area = area
 
     def set_location(self, location):
         self.location = location
@@ -60,7 +64,7 @@ class Vendor:
         self.food_items = food_items
 
     def set_rating(self, rating):
-        self.rating = rating
+        self.__rating = rating
 
     def set_image_location(self, image_location):
         self.image_location = image_location
@@ -73,6 +77,9 @@ class Vendor:
 
     def get_average_calories(self):
         return self.average_calories
+
+    def get_area(self):
+        return self.area
 
     def get_location(self):
         return self.location
@@ -104,10 +111,10 @@ b00004 = Food("b00004", "Karage Ramen", 570)
 
 food_list = [a00001, a00002, a00003, a00004, b00001, b00002, b00003, b00004]
 
-sen01 = Vendor("sen01", "McDonald's", 1207, "1 Sengkang Square #01-225, Sengkang - 545078", "sen", "This stuff will literally kill you and you pay us for it.", [a00001, a00002], "static/images/mcdonalds-sengkang-image.jpg")
-sen02 = Vendor("sen02", "Misaka - Sengkang Kopitiam", 979, "1 Sengkang Sq Compass Pt #03-210, Sengkang - 545078", "sen", "Come buy overpriced frozen food!", [a00003, a00004], "static/images/misaka-sengkang-image.jpeg")
-amk01 = Vendor("amk01", "The Lawn", 798, "26 Ang Mo Kio Industrial Park 2 #01-00, AMK - 569507", "amk", "The ambience is nice but no more than that", [b00001, b00002], "static/images/thelawn-amk-image.jpeg")
-amk02 = Vendor("amk02", "Lean Bento", 699, "53 Ang Mo Kio Ave 3 AMK Hub #01-34, AMK - 569933", "amk", "The food is decently healthy but still way too sweet", [b00003, b00004], "static/images/leanbento-amk-image.jpeg")
+sen01 = Vendor("sen01", "McDonald's", 1207, "Sengkang", "1 Sengkang Square #01-225, Sengkang - 545078", "sen", "This stuff will literally kill you and you pay us for it.", [a00001, a00002], "static/images/mcdonalds-sengkang-image.jpg")
+sen02 = Vendor("sen02", "Misaka - Sengkang Kopitiam", 979, "Sengkang", "1 Sengkang Sq Compass Pt #03-210, Sengkang - 545078", "sen", "Come buy overpriced frozen food!", [a00003, a00004], "static/images/misaka-sengkang-image.jpeg")
+amk01 = Vendor("amk01", "The Lawn", 798, "Ang Mo Kio", "26 Ang Mo Kio Industrial Park 2 #01-00, AMK - 569507", "amk", "The ambience is nice but no more than that", [b00001, b00002], "static/images/thelawn-amk-image.jpeg")
+amk02 = Vendor("amk02", "Lean Bento", 699, "Ang Mo Kio", "53 Ang Mo Kio Ave 3 AMK Hub #01-34, AMK - 569933", "amk", "The food is decently healthy but still way too sweet", [b00003, b00004], "static/images/leanbento-amk-image.jpeg")
 
 sen01.set_rating(1)
 sen02.set_rating(3)
