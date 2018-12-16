@@ -94,7 +94,7 @@ class Vendor:
         return self.food_items
 
     def get_rating(self):
-        return self.rating
+        return self.__rating
 
     def get_image_location(self):
         return self.image_location

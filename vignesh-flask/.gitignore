@@ -1,6 +1,5 @@
 *.pyc
-__pycache__/
-instance/
+/foodhubsg/__pycache__/*
 .cache/
 .pytest_cache/
 .coverage

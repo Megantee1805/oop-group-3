@@ -1,5 +1,4 @@
 import functools
-yay
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
@@ -50,16 +49,16 @@ def register():
         check_user = db.execute('SELECT id FROM user WHERE email = ?', (email,)).fetchone()
         error = None
 
-        if not email:
+        if not name:
+            error = 'Please enter your name'
+        elif not height:
+            error = 'Please enter your height'
+        elif not weight:
+            error = 'Please enter your weight'
+        elif not email:
             error = 'Please enter your email'
         elif not password:
             error = 'Please enter your password'
-        elif not name:
-            error = 'Please enter your name'
-        elif not weight:
-            error = 'Please enter your weight'
-        elif not height:
-            error = 'Please enter your height'
         elif check_user is not None:
             error = 'This email ({}) is already registered.'.format(email)
 
