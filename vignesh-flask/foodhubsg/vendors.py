@@ -24,6 +24,7 @@ bp = Blueprint('vendors', __name__)
 @login_required
 @bp.route('/vendors')
 def vendors():
+
     return render_template("vendors/vendor.html")
 
 
