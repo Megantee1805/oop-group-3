@@ -46,8 +46,6 @@ def index():
         weight = user['weight']
         height = user['height']
         name = user['name']
-        email = user['email']
-        password = user['password']
 
     bmi = weight / height ** height
     bmi = int(bmi)
@@ -58,7 +56,7 @@ def index():
     user_vendors = []
     user_average_calories = 0
     number_of_days = 0
-    user_location = "amk"
+    user_location = "sen"
 
 
     if food_items is []:

@@ -1,5 +1,4 @@
 import functools
-yay
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
@@ -50,18 +49,29 @@ def register():
         check_user = db.execute('SELECT id FROM user WHERE email = ?', (email,)).fetchone()
         error = None
 
-        if not email:
+        if not name:
+            error = 'Please enter your name'
+        elif not name.isalpha():
+            error = 'Please only enter alphabets for your name'
+        elif not len(name) < 16:
+            error = 'Please enter a name below 16 characters'
+        elif not height:
+            error = 'Please enter your height'
+        elif not 0.5 < float(height) < 2.5:
+            error = 'Please enter a valid height value in meters'
+        elif not weight:
+            error = 'Please enter your weight'
+        elif not 20 < float(weight) < 250:
+            error = 'Please enter a valid weight value in kilograms'
+        elif not email:
             error = 'Please enter your email'
         elif not password:
             error = 'Please enter your password'
-        elif not name:
-            error = 'Please enter your name'
-        elif not weight:
-            error = 'Please enter your weight'
-        elif not height:
-            error = 'Please enter your height'
         elif check_user is not None:
             error = 'This email ({}) is already registered.'.format(email)
+
+        name = name.title()
+        email = email.lower()
 
         if error is None:
             db.execute(
@@ -82,10 +92,13 @@ def login():
     """Log in a registered user by adding the user id to the session."""
     session.clear()
     if request.method == 'POST':
-        email = request.form['email']
+        email = request.form['email'].lower()
         password = request.form['password']
         db = get_db()
         error = None
+
+        email = email.lower()
+
         user = db.execute(
             'SELECT * FROM user WHERE email = ?', (email,)
         ).fetchone()
