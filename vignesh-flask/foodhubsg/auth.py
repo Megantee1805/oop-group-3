@@ -119,7 +119,7 @@ def login():
     return render_template('auth/login.html')
 
 
-@bp.route('user_settings', methods=('GET', 'POST'))
+@bp.route('/user_settings', methods=('GET', 'POST'))
 @login_required
 def user_settings():
 
@@ -131,6 +131,7 @@ def user_settings():
         ' ORDER BY datetime(created) DESC',
         (g.user['id'],),
     ).fetchall()
+
 
     users = db.execute(
         'SELECT id, name, email, password, height, weight'
