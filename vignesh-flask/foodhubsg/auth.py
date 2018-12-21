@@ -51,7 +51,7 @@ def register():
 
         if not name:
             error = 'Please enter your name'
-        elif not name.isalpha():
+        elif not all(char.isalpha() or char.isspace() for char in name):
             error = 'Please only enter alphabets for your name'
         elif not len(name) < 16:
             error = 'Please enter a name below 16 characters'
@@ -116,7 +116,7 @@ def login():
 
         flash(error)
 
-    return render_template('auth/verification_email.html')
+    return render_template('auth/login.html')
 
 
 @bp.route('user_settings', methods=('GET', 'POST'))
