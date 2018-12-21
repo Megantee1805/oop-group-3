@@ -116,7 +116,7 @@ def login():
 
         flash(error)
 
-    return render_template('auth/login.html')
+    return render_template('auth/verification_email.html')
 
 
 @bp.route('user_settings', methods=('GET', 'POST'))
@@ -168,6 +168,9 @@ def user_settings():
     return render_template('auth/user_settings.html',
                            name=name, weight=weight, height=height, password=password)
 
+@bp.route('/confirm')
+def confirm():
+    return render_template('auth/verification_email.html')
 
 @bp.route('/logout')
 def logout():
