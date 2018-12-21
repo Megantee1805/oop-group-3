@@ -8,3 +8,4 @@ vignesh-flask/.idea/
 /vignesh-flask/foodhubsg/__pycache__/*
 *.pyc
 *.xml
+*.pyc

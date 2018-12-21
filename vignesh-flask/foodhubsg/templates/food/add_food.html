@@ -13,7 +13,7 @@
                 <form method="post">
                     <h1 class="font_color">Enter Food Code</h1>
 
-                    <input name="code" id="code" value="{{ request.form['code'] }}" required>
+                    <input name="code" id="code" class="form-control" value="{{ request.form['code'] }}" placeholder="Food Code" required>
                     <input type="submit" value="Save">
 
                     {% for message in get_flashed_messages() %}

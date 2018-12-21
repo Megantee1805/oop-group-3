@@ -118,18 +118,55 @@ def login():
 
     return render_template('auth/login.html')
 
-# @login_required
-# @bp.route('/settings', methods=['POST', 'GET'])
-# def settings():
-#         init_db()
-#         db = get_db()
-#         email = query_db('SELECT * FROM user Where email = ?', args=([g.email]), One=True)
-#         name = query_db('SELECT * FROM user Where name = ?', args =([g.name]), One=True)
-#         password = query_db('SELECT * FROM user WHERE password = ?', args = ([g.password]), One=True)
-#         height = query_db('SELECT * FROM user WHERE height = ?', args =([g.height]), One=True)
-#         weight = db.execute('SELECT * FROM user WHERE weight = ?', args =([g.weight]), One=True)
-#         return render_template("auth/settings.html", email=email, name=name, password=password,
-#                                height=height, weight=weight)
+
+@bp.route('user_settings', methods=('GET', 'POST'))
+@login_required
+def user_settings():
+
+    db = get_db()
+    food_items = db.execute(
+        'SELECT f.id, creator_id, food_name, created, calories, food_code, email'
+        ' FROM food_entry f JOIN user u ON f.creator_id = u.id'
+        ' WHERE f.creator_id = ?'
+        ' ORDER BY datetime(created) DESC',
+        (g.user['id'],),
+    ).fetchall()
+
+    users = db.execute(
+        'SELECT id, name, email, password, height, weight'
+        ' FROM user'
+        ' WHERE id = ?',
+        (g.user['id'],),
+    ).fetchall()
+
+    for user in users:
+        name = user['name']
+        weight = user['weight']
+        height = user['height']
+        email = user['email']
+        password = user['password']
+
+    if request.method == 'POST':
+        title = request.form['title']
+        body = request.form['body']
+        error = None
+
+        if not title:
+            error = 'Title is required.'
+
+        if error is not None:
+            flash(error)
+        else:
+            db = get_db()
+            db.execute(
+                'UPDATE post SET title = ?, body = ? WHERE id = ?',
+                (title, body, id)
+            )
+            db.commit()
+            return redirect(url_for('blog.index'))
+
+    return render_template('auth/user_settings.html',
+                           name=name, weight=weight, height=height, password=password)
 
 
 @bp.route('/logout')

@@ -1456,10 +1456,11 @@ input[type="text"] {
 }
 
 .flash {
-  padding: 1em;
+  padding: 0.8em;
   background: #d9534f;
   color: white;
   box-shadow: 0 0 10px -10px rgba(0,0,0,0.75);
+  font-size: 14px;
 }
 
 .btn-primary {
@@ -1488,4 +1489,9 @@ input[type="text"] {
   background: #d9534f;
   color: white;
   box-shadow: 0 0 10px -10px rgba(0,0,0,0.75);
+}
+
+.form-control {
+  border-width: 0.5px;
+  box-shadow: 0 5px 20px -5px rgba(0,0,0,0.1);
 }
