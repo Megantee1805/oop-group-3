@@ -94,6 +94,7 @@ def user_settings():
         new_weight = request.form['weight']
         new_password = request.form['password']
         error = None
+        message = None
 
         db = get_db()
 
@@ -134,19 +135,21 @@ def user_settings():
                     )
 
             if new_password:
-                db.execute(
-                    'UPDATE user SET password = ? WHERE id = ?',
-                    (generate_password_hash(new_password), id)
-                )
-                message = "You've successfully changed your password!"
-                flash(message, "success")
+                if check_password_hash(password, new_password):
+                    error = "You've entered your previous password"
+                else:
+                    db.execute(
+                        'UPDATE user SET password = ? WHERE id = ?',
+                        (generate_password_hash(new_password), id)
+                    )
+                    message = "You've successfully changed your password!"
+                    flash(message, "success")
 
         except ValueError:
             error = "Please enter a valid value"
 
         if error is not None:
             flash(error, "error")
-
         else:
             db.commit()
             return redirect(url_for('user.user_settings'))
