@@ -1491,6 +1491,14 @@ input[type="text"] {
   box-shadow: 0 0 10px -10px rgba(0,0,0,0.75);
 }
 
+.code-flash.error {
+  background: #d9534f;
+}
+
+.flash.success {
+  background: #4CBB17;
+}
+
 .form-control {
   border-width: 0.2px;
   border-color: #999999;

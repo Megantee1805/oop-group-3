@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block title %}User Settings{% endblock %}
+
+{% block content %}
+
+<div id="colorlib-container">
+    <div class="container">
+        <div class="box1">
+        <div class="row row-pb-md">
+            <div class="col-md-12">
+
+                <header id="summary-header">
+                    <h1 class="font_color">Summary of your stats</h1>
+                </header>
+                <h4>Your name: <b> {{ name }} </b> </h4>
+                <h4>Your weight: <b> {{ weight }} kg </b> </h4>
+                <h4>Your height: <b> {{ height }} m </b> </h4>
+                <h4>Your BMI: <b> {{ bmi }} </b> </h4>
+                <h4>Average calories over {{ number_of_days }} days: <b> {{ user_average_calories }} </b> kcal </h4>
+
+                <br>
+
+                <header>
+                    <h1 class="font_color">User Settings</h1>
+                </header>
+                <form method="post">
+
+                    <div class="row form-group">
+                        <div class="col-md-10">
+                            <label>Name</label>
+                            <input name="name" id="name" class="form-control" placeholder="{{ g.user['name'] }}">
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col-md-10">
+                            <label>Height in meters</label>
+                            <input name="height" id="height" type="number" step="0.01" class="form-control" placeholder="{{ g.user['height'] }} m">
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col-md-10">
+                            <label>Weight in kilograms</label>
+                            <input name="weight" id="weight" type="number" step="0.01" class="form-control" placeholder="{{ g.user['weight'] }} kg">
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col-md-10">
+                            <label>Password</label>
+                            <input name="password" id="password" type="password" class="form-control" placeholder="(unchanged)">
+                        </div>
+                    </div>
+
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                        {% if messages %}
+                            {% for category, message in messages %}
+                                <div class="row form-group">
+                                    <div class="col-md-10">
+                                        <div class="flash {{ category }}">{{ message }}</div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+
+                    <div class="form-group" id="register-button">
+                        <input type="submit" value="Change Settings" class="btn btn-primary" style="background-color: #4CAF50; border: lightgreen;">
+                    </div>
+
+                </form>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

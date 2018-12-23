@@ -12,17 +12,18 @@
 
                     <header id="summary-header">
                         <h1 class="font_color">Summary of your stats</h1>
-                        <h4>Your name: <b> {{ name }} </b> </h4>
-                        <h4>Your weight: <b> {{ weight }} kg </b> </h4>
-                        <h4>Your height: <b> {{ height }} m </b> </h4>
-                        <h4>Your BMI: <b> {{ bmi }} </b> </h4>
-                        <h4>Average calories over {{ number_of_days }} days: <b> {{ user_average_calories }} </b> kcal </h4>
                     </header>
+
+                    <h4>Your name: <b> {{ name }} </b> </h4>
+                    <h4>Your weight: <b> {{ weight }} kg </b> </h4>
+                    <h4>Your height: <b> {{ height }} m </b> </h4>
+                    <h4>Your BMI: <b> {{ bmi }} </b> </h4>
+                    <h4>Average calories over {{ number_of_days }} days: <b> {{ user_average_calories }} </b> kcal </h4>
 
                     <br>
 
                     <header>
-                    <h1 class="font_color">Food History</h1>
+                        <h1 class="font_color">Food History</h1>
                     </header>
 
                     {% if food_exists == 0 %}

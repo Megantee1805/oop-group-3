@@ -98,6 +98,7 @@ def index():
                            weight=weight, height=height, bmi=bmi, user_average_calories=user_average_calories,
                            number_of_days=number_of_days, food_exists=food_exists, user_vendors=user_vendors, food_items=food_items)
 
+
 @bp.route('/food_journal')
 @login_required
 def food_journal():
@@ -122,8 +123,6 @@ def food_journal():
         weight = user['weight']
         height = user['height']
         name = user['name']
-        email = user['email']
-        password = user['password']
 
     bmi = weight / height ** height
     bmi = int(bmi)
@@ -203,6 +202,7 @@ def add_food():
             flash(error)
 
     return render_template('food/add_food.html')
+
 
 @bp.route('/faq', methods=('GET', 'POST'))
 @login_required
