@@ -128,6 +128,60 @@ def login():
 
     return render_template('auth/login.html')
 
+<<<<<<< HEAD
+=======
+
+@bp.route('/user_settings', methods=('GET', 'POST'))
+@login_required
+def user_settings():
+
+    db = get_db()
+    food_items = db.execute(
+        'SELECT f.id, creator_id, food_name, created, calories, food_code, email'
+        ' FROM food_entry f JOIN user u ON f.creator_id = u.id'
+        ' WHERE f.creator_id = ?'
+        ' ORDER BY datetime(created) DESC',
+        (g.user['id'],),
+    ).fetchall()
+
+
+    users = db.execute(
+        'SELECT id, name, email, password, height, weight'
+        ' FROM user'
+        ' WHERE id = ?',
+        (g.user['id'],),
+    ).fetchall()
+
+    for user in users:
+        name = user['name']
+        weight = user['weight']
+        height = user['height']
+        email = user['email']
+        password = user['password']
+
+    if request.method == 'POST':
+        title = request.form['title']
+        body = request.form['body']
+        error = None
+
+        if not title:
+            error = 'Title is required.'
+
+        if error is not None:
+            flash(error)
+        else:
+            db = get_db()
+            db.execute(
+                'UPDATE post SET title = ?, body = ? WHERE id = ?',
+                (title, body, id)
+            )
+            db.commit()
+            return redirect(url_for('blog.index'))
+
+    return render_template('auth/user_settings.html',
+                           name=name, weight=weight, height=height, password=password)
+
+>>>>>>> bbc57e0de8d0eeb4e6febb8466def0f738533449
 @bp.route('/confirm')
 def confirm():
     return render_template('auth/verification_email.html')
