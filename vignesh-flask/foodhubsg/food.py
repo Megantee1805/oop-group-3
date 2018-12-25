@@ -99,7 +99,7 @@ def index():
                            number_of_days=number_of_days, food_exists=food_exists, user_vendors=user_vendors, food_items=food_items)
 
 
-@bp.route('/food_journal')
+@bp.route('/food_journal', methods=('GET', 'POST'))
 @login_required
 def food_journal():
     """Show all recent meals, most recent first."""
@@ -126,6 +126,37 @@ def food_journal():
 
     bmi = weight / height ** height
     bmi = int(bmi)
+
+    if request.method == 'POST':
+        code = request.form['code']
+        code = code.lower()
+        error = None
+
+        if not code:
+            error = 'Code is required'
+
+        else:
+            db = get_db()
+            for food in food_list:
+                food_code = food.get_code()
+
+                if code == food_code:
+                    food_calories = food.get_calories()
+                    food_name = food.get_name()
+                    db.execute(
+                        'INSERT INTO food_entry (creator_id, food_code, food_name, calories)'
+                        ' VALUES (?, ?, ?, ?)',
+                        (g.user['id'], code, food_name, food_calories)
+                    )
+                    db.commit()
+                    message = "Added {0} to your food journal!".format(food_name)
+                    flash(message, "success")
+                    return redirect(url_for('food.food_journal'))
+                else:
+                    error = 'Invalid code entered'
+
+        if error is not None:
+            flash(error, "error")
 
     all_dates = []
     food_dates = []
@@ -201,7 +232,7 @@ def add_food():
         if error is not None:
             flash(error)
 
-    return render_template('food/add_food.html')
+    return render_template('food/food_journal.html')
 
 
 @bp.route('/faq', methods=('GET', 'POST'))

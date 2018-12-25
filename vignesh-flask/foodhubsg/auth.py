@@ -90,8 +90,6 @@ def register():
             )
             db.commit()
 
-            return redirect(url_for('auth.login'))
-
         flash(error)
 
     return render_template('auth/register.html')
@@ -129,6 +127,37 @@ def login():
     return render_template('auth/login.html')
 
 
+@bp.route('/change_password', methods=('GET', 'POST'))
+def change_password():
+    session.clear()
+    if request.method == 'POST':
+        email = request.form['email'].lower()
+        password = request.form['password']
+        db = get_db()
+        error = None
+
+        email = email.lower()
+
+        user = db.execute(
+            'SELECT * FROM user WHERE email = ?', (email,)
+        ).fetchone()
+
+        if user is None:
+            error = 'Incorrect email entered'
+        elif not check_password_hash(user['password'], password):
+            error = 'Incorrect password entered'
+
+        if error is None:
+            # store the user id in a new session and return to the index
+            session.clear()
+            session['user_id'] = user['id']
+            return redirect(url_for('index'))
+
+        flash(error)
+
+    return render_template('auth/change_password.html')
+
+
 @bp.route('/confirm')
 def confirm():
     return render_template('auth/verification_email.html')
@@ -142,3 +171,4 @@ def logout():
     """Clear the current session, including the stored user id."""
     session.clear()
     return redirect(url_for('auth.login'))
+
