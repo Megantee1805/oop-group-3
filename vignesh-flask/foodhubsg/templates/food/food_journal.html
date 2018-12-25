@@ -13,6 +13,7 @@
                 <form method="post">
                     <header id="summary-header">
                         <h1 class="font_color">Add Food Code</h1>
+                        <hr>
                     </header>
 
                     <input name="code" id="code" class="form-control" value="{{ request.form['code'] }}" placeholder="Food Code (eg: a00001)" required>
@@ -31,6 +32,7 @@
 
                 <header>
                     <h1 class="font_color">Food History</h1>
+                    <hr>
                 </header>
 
                 {% if food_exists == 0 %}
