@@ -58,6 +58,7 @@ def user_settings():
     calories_list = []
     user_average_calories = 0
     number_of_days = 0
+    password_placeholder = "(unchanged)"
 
     if food_items is not []:
         food_exists = 1
@@ -142,6 +143,7 @@ def user_settings():
                         'UPDATE user SET password = ? WHERE id = ?',
                         (generate_password_hash(new_password), id)
                     )
+                    password_placeholder = "(changed)"
                     message = "You've successfully changed your password!"
                     flash(message, "success")
 
@@ -157,4 +159,4 @@ def user_settings():
     return render_template('user/user_settings.html',
                            name=name, weight=weight, height=height, email=email, password=password, bmi=bmi,
                            user_average_calories=user_average_calories, number_of_days=number_of_days,
-                           food_exists=food_exists)
+                           food_exists=food_exists, password_placeholder=password_placeholder)
