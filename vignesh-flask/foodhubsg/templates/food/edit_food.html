@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Food{% endblock %}
+
+{% block content %}
+
+<div id="colorlib-container">
+    <div class="container">
+        <div class="box1">
+        <div class="row row-pb-md">
+            <div class="col-md-12">
+
+                <form method="post">
+                    <header id="summary-header">
+                        <h1 class="font_color">Edit food entry on {{ food_entry['created'].strftime('%I:%M %p (%d %B)') }}</h1>
+                    </header>
+
+                    <input name="code" id="code" class="form-control" value="{{ request.form['code'] }}" placeholder="Previous Entry: {{ food_entry['food_name'] }} ({{ food_entry['food_code'] }})" required>
+                    <div class="row form-group" id="register-button">
+                        <input type="submit" value="Edit Food Code" class="btn btn-primary" style="background-color: #4CAF50;">
+                    </div>
+
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                        {% if messages %}
+                            {% for category, message in messages %}
+                                <div class="row form-group">
+                                    <div class="col-md-12">
+                                        <div class="flash {{ category }}">{{ message }}</div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+                </form>
+
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

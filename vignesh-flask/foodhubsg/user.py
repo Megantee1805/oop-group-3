@@ -51,19 +51,33 @@ def user_settings():
         password = user['password']
 
     bmi = weight / height ** height
-    bmi = int(bmi)
 
+    bmi = int(bmi)
     all_dates = []
     food_dates = []
     calories_list = []
+    breakfast_list = []
+    lunch_list = []
+    dinner_list = []
+    snack_list = []
     user_average_calories = 0
     number_of_days = 0
     password_placeholder = "(unchanged)"
 
-    if food_items is not []:
-        food_exists = 1
-    else:
+    for food in food_items:
+        if 5 <= int(food['created'].strftime('%-H')) <= 10:
+            breakfast_list.append(food)
+        elif 11 <= int(food['created'].strftime('%-H')) <= 14:
+            lunch_list.append(food)
+        elif 17 <= int(food['created'].strftime('%-H')) <= 22:
+            dinner_list.append(food)
+        else:
+            snack_list.append(food)
+
+    if food_items == []:
         food_exists = 0
+    else:
+        food_exists = 1
 
     for food in food_items:
         food_date = food['created'].strftime('%d-%m-%y')
@@ -159,4 +173,5 @@ def user_settings():
     return render_template('user/user_settings.html',
                            name=name, weight=weight, height=height, email=email, password=password, bmi=bmi,
                            user_average_calories=user_average_calories, number_of_days=number_of_days,
-                           food_exists=food_exists, password_placeholder=password_placeholder)
+                           food_exists=food_exists, password_placeholder=password_placeholder, breakfast_list=breakfast_list,
+                           lunch_list=lunch_list, dinner_list=dinner_list, snack_list=snack_list)

@@ -11,7 +11,6 @@
             <div class="col-md-12">
 
                 <form method="post">
-
                     <header id="summary-header">
                         <h1 class="font_color">Add Food Code</h1>
                     </header>
@@ -32,10 +31,15 @@
                             {% endfor %}
                         {% endif %}
                     {% endwith %}
-
                 </form>
 
-                <br>
+            </div>
+        </div>
+        </div>
+
+        <div class="box1">
+        <div class="row row-pb-md">
+            <div class="col-md-12">
 
                 <header>
                     <h1 class="font_color">Food History</h1>
@@ -64,7 +68,10 @@
                                 <div class="food-subsection">
                                     <div id="time-created"> <i>{{ food['created'].strftime('%I:%M %p') }}</i> </div>
                                     <h4 style="margin-bottom: 0"><b>{{ food['food_name'] }}</b></h4>
-                                    <div class="about"> {{ food['calories'] }} calories <br> Code: <b> {{ food['food_code'] }} </b> </div>
+                                    <div class="about"> {{ food['calories'] }} calories <br> Code: <b> {{ food['food_code'] }} </b>
+                                    <br>
+                                    <span id="user-profile"><a class="action" href="{{ url_for('food.edit_food', id = food['id']) }}"><i>Edit</i></a></span>
+                                    </div>
                                 </div>
                             </header>
                         </article>

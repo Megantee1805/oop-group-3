@@ -98,6 +98,23 @@ def index():
                            weight=weight, height=height, bmi=bmi, user_average_calories=user_average_calories,
                            number_of_days=number_of_days, food_exists=food_exists, user_vendors=user_vendors, food_items=food_items)
 
+def get_food_entry(id, check_user=True):
+    db = get_db()
+    food_entry = db.execute(
+        'SELECT f.id, creator_id, food_name, created, calories, food_code, email'
+        ' FROM food_entry f JOIN user u ON f.creator_id = u.id'
+        ' WHERE f.id = ?',
+        (id,),
+    ).fetchone()
+
+    if food_entry is None:
+        abort(404, "Food entry id {0} doesn't exist".format(id))
+
+    if check_user and food_entry['creator_id'] != g.user['id']:
+        abort(403)
+
+    return food_entry
+
 
 @bp.route('/food_journal', methods=('GET', 'POST'))
 @login_required
@@ -107,7 +124,7 @@ def food_journal():
     food_items = db.execute(
         'SELECT f.id, creator_id, food_name, created, calories, food_code, email'
         ' FROM food_entry f JOIN user u ON f.creator_id = u.id'
-        ' WHERE f.creator_id = ? AND f.created > (SELECT DATETIME("now", "-3 day"))'
+        ' WHERE f.creator_id = ? AND f.created > (SELECT DATETIME("now", "-20 day"))'
         ' ORDER BY datetime(created) DESC',
         (g.user['id'],),
     ).fetchall()
@@ -125,7 +142,17 @@ def food_journal():
         name = user['name']
 
     bmi = weight / height ** height
+
     bmi = int(bmi)
+    all_dates = []
+    food_dates = []
+    calories_list = []
+    breakfast_list = []
+    lunch_list = []
+    dinner_list = []
+    snack_list = []
+    user_average_calories = 0
+    number_of_days = 0
 
     if request.method == 'POST':
         code = request.form['code']
@@ -157,12 +184,6 @@ def food_journal():
 
         if error is not None:
             flash(error, "error")
-
-    all_dates = []
-    food_dates = []
-    calories_list = []
-    user_average_calories = 0
-    number_of_days = 0
 
     if food_items == []:
         food_exists = 0
@@ -199,16 +220,24 @@ def food_journal():
                            number_of_days=number_of_days, food_exists=food_exists)
 
 
-@bp.route('/add', methods=('GET', 'POST'))
+@bp.route('/<int:id>/edit_food', methods=('GET', 'POST'))
 @login_required
-def add_food():
-    """Create a new food entry for the current user."""
+def edit_food(id):
+    """Update a post if the current user is the author."""
+    food_entry = get_food_entry(id)
+    old_food_name = food_entry['food_name']
+    old_food_code = food_entry['food_code']
+
     if request.method == 'POST':
         code = request.form['code']
+        code = code.lower()
         error = None
 
         if not code:
             error = 'Code is required'
+
+        elif code == old_food_code:
+            error = "You've entered your previous code"
 
         else:
             db = get_db()
@@ -216,23 +245,23 @@ def add_food():
                 food_code = food.get_code()
 
                 if code == food_code:
-                    error = None
                     food_calories = food.get_calories()
                     food_name = food.get_name()
                     db.execute(
-                        'INSERT INTO food_entry (creator_id, food_code, food_name, calories)'
-                        ' VALUES (?, ?, ?, ?)',
-                        (g.user['id'], code, food_name, food_calories)
+                        'UPDATE food_entry SET food_code = ?, food_name = ?, calories = ? WHERE id = ?',
+                        (code, food_name, food_calories, id)
                     )
                     db.commit()
+                    message = "Updated {0} ({1}) into {2} ({3}) for your food journal!".format(old_food_name, old_food_code, food_name, food_code)
+                    flash(message, "success")
                     return redirect(url_for('food.food_journal'))
                 else:
                     error = 'Invalid code entered'
 
         if error is not None:
-            flash(error)
+            flash(error, "error")
 
-    return render_template('food/food_journal.html')
+    return render_template('food/edit_food.html', food_entry=food_entry)
 
 
 @bp.route('/faq', methods=('GET', 'POST'))
