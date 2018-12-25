@@ -59,7 +59,7 @@ def index():
     user_location = "sen"
 
 
-    if food_items is []:
+    if food_items == []:
         food_exists = 0
     else:
         food_exists = 1
