@@ -19,18 +19,6 @@
                     <div class="row form-group" id="register-button">
                         <input type="submit" value="Save Food" class="btn btn-primary" style="background-color: #4CAF50;">
                     </div>
-
-                    {% with messages = get_flashed_messages(with_categories=true) %}
-                        {% if messages %}
-                            {% for category, message in messages %}
-                                <div class="row form-group">
-                                    <div class="col-md-12">
-                                        <div class="flash {{ category }}">{{ message }}</div>
-                                    </div>
-                                </div>
-                            {% endfor %}
-                        {% endif %}
-                    {% endwith %}
                 </form>
 
             </div>

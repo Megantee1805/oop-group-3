@@ -10,27 +10,6 @@
         <div class="row row-pb-md">
             <div class="col-md-12">
 
-                <header id="summary-header">
-                    <h1 class="font_color">Summary of your stats</h1>
-                </header>
-                <h4>Your name: <b> {{ name }} </b> </h4>
-                <h4>Your weight: <b> {{ weight }} kg </b> </h4>
-                <h4>Your height: <b> {{ height }} m </b> </h4>
-                <h4>Your BMI: <b> {{ bmi }} </b> </h4>
-                <h4>Average calories over {{ number_of_days }} days: <b> {{ user_average_calories }} </b> kcal </h4>
-                <h4>Breakfast food over {{ number_of_days }} days: <b> {{ breakfast_list }} </b> kcal </h4>
-                <h4>lunch food over {{ number_of_days }} days: <b> {{ lunch_list }} </b> kcal </h4>
-                <h4>dinner food over {{ number_of_days }} days: <b> {{ dinner_list }} </b> kcal </h4>
-                <h4>snacks over {{ number_of_days }} days: <b> {{ snack_list }} </b> kcal </h4>
-
-            </div>
-        </div>
-        </div>
-
-        <div class="box1">
-        <div class="row row-pb-md">
-            <div class="col-md-12">
-
                 <header>
                     <h1 class="font_color">User Settings</h1>
                 </header>
@@ -68,18 +47,6 @@
                         </div>
                     </div>
 
-                    {% with messages = get_flashed_messages(with_categories=true) %}
-                        {% if messages %}
-                            {% for category, message in messages %}
-                                <div class="row form-group">
-                                    <div class="col-md-11">
-                                        <div class="flash {{ category }}">{{ message }}</div>
-                                    </div>
-                                </div>
-                            {% endfor %}
-                        {% endif %}
-                    {% endwith %}
-
                     <div class="row form-group" id="register-button">
                         <input type="submit" value="Change Settings" class="btn btn-primary" style="background-color: #4CAF50;">
                     </div>
@@ -88,6 +55,28 @@
             </div>
         </div>
         </div>
+
+        <div class="box1">
+        <div class="row row-pb-md">
+            <div class="col-md-12">
+
+                <header id="summary-header">
+                    <h1 class="font_color">Summary of your stats</h1>
+                </header>
+                <h4>Your name: <b> {{ name }} </b> </h4>
+                <h4>Your weight: <b> {{ weight }} kg </b> </h4>
+                <h4>Your height: <b> {{ height }} m </b> </h4>
+                <h4>Your BMI: <b> {{ bmi }} </b> </h4>
+                <h4>Average calories over {{ number_of_days }} days: <b> {{ user_average_calories }} </b> kcal </h4>
+                <h4>Breakfast food over {{ number_of_days }} days: <b> {{ breakfast_list }} </b> kcal </h4>
+                <h4>lunch food over {{ number_of_days }} days: <b> {{ lunch_list }} </b> kcal </h4>
+                <h4>dinner food over {{ number_of_days }} days: <b> {{ dinner_list }} </b> kcal </h4>
+                <h4>snacks over {{ number_of_days }} days: <b> {{ snack_list }} </b> kcal </h4>
+
+            </div>
+        </div>
+        </div>
+
     </div>
 </div>
 
