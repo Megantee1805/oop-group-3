@@ -1496,7 +1496,7 @@ input[type="text"] {
   background: #ffffff;
   padding: 0.5em;
   margin-bottom: 3em;
-  box-shadow: 0 0 40px -15px rgba(0,0,0,s0.75);
+  box-shadow: 0 0 40px -15px rgba(0,0,0,0.6);
 }
 
 .row.row-pb-md {
@@ -1504,8 +1504,8 @@ input[type="text"] {
 }
 
 .container {
-    padding-right: 5em;
-    padding-left: 5em;
+    padding-right: 2.5em;
+    padding-left: 2.5em;
 }
 
 #nav-name { font-weight: bold; }
