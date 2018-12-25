@@ -89,6 +89,7 @@ def register():
                 (email, generate_password_hash(password), name, height, weight)
             )
             db.commit()
+            return redirect(url_for('auth.login'))
 
         else:
             flash(error)
