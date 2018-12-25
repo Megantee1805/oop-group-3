@@ -133,6 +133,10 @@ def login():
 def confirm():
     return render_template('auth/verification_email.html')
 
+@bp.route('/reset')
+def reset():
+    return render_template("auth/forgot_password.html")
+
 @bp.route('/logout')
 def logout():
     """Clear the current session, including the stored user id."""
