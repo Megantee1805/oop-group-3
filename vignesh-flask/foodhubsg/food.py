@@ -107,7 +107,7 @@ def food_journal():
     food_items = db.execute(
         'SELECT f.id, creator_id, food_name, created, calories, food_code, email'
         ' FROM food_entry f JOIN user u ON f.creator_id = u.id'
-        ' WHERE f.creator_id = ?'
+        ' WHERE f.creator_id = ? AND f.created > (SELECT DATETIME("now", "-3 day"))'
         ' ORDER BY datetime(created) DESC',
         (g.user['id'],),
     ).fetchall()
@@ -164,10 +164,10 @@ def food_journal():
     user_average_calories = 0
     number_of_days = 0
 
-    if food_items is not []:
-        food_exists = 1
-    else:
+    if food_items == []:
         food_exists = 0
+    else:
+        food_exists = 1
 
     for food in food_items:
         food_date = food['created'].strftime('%d-%m-%y')

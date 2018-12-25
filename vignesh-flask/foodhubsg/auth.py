@@ -90,7 +90,8 @@ def register():
             )
             db.commit()
 
-        flash(error)
+        else:
+            flash(error)
 
     return render_template('auth/register.html')
 
