@@ -46,8 +46,8 @@ body {
 
 	#welcome-msg{
 	color: white;
-	margin-top: 30%;
-    margin-left: -5%;
+	margin-top: 20em;
+    margin-left: -8em;
 	}
 
 	.box1 {
@@ -1496,5 +1496,14 @@ input[type="text"] {
   background: #ffffff;
   padding: 0.5em;
   margin-bottom: 3em;
-  box-shadow: 0 0 40px -15px rgba(0,0,0,0.75);
+  box-shadow: 0 0 40px -15px rgba(0,0,0,s0.75);
+}
+
+.row.row-pb-md {
+    margin: -5px -10px 0 -10px;
+}
+
+.container {
+    padding-right: 5em;
+    padding-left: 5em;
 }
