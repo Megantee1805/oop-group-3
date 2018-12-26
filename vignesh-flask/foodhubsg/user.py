@@ -158,8 +158,9 @@ def user_settings():
                         (generate_password_hash(new_password), id)
                     )
                     password_placeholder = "(changed)"
-                    message = "You've successfully changed your password!"
-                    flash(message, "success")
+
+            if not new_name and not new_height and not new_weight and not new_password:
+                error = "No settings have been changed"
 
         except ValueError:
             error = "Please enter a valid value"
@@ -167,6 +168,8 @@ def user_settings():
         if error is not None:
             flash(error, "error")
         else:
+            message = "You've successfully changed your settings!"
+            flash(message, "success")
             db.commit()
             return redirect(url_for('user.user_settings'))
 
