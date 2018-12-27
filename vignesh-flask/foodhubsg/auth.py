@@ -5,7 +5,9 @@ from flask import (
 from werkzeug.security import check_password_hash, generate_password_hash
 
 from foodhubsg.db import get_db
+from flask_mail import Message, Mail
 
+mail = Mail()
 
 def remove_duplicates(values):
     output = []
@@ -162,6 +164,10 @@ def change_password():
 
 @bp.route('/confirm')
 def confirm():
+    msg = Message("Hello",
+                  sender="Megan.tee1805@gmail.com",
+                  recipients=["dawningmoon1805@gmail.com"])
+    mail.send(msg)
     return render_template('auth/verification_email.html')
 
 @bp.route('/reset')
