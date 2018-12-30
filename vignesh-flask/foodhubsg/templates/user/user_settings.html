@@ -11,7 +11,8 @@
             <div class="col-md-12">
 
                 <header>
-                    <h1 class="font_color">User Settings</h1>
+                    <h1 class="font_color"><b>User Settings</b></h1>
+                    <h5>({{ email }})</h5>
                     <hr>
                 </header>
                 <form method="post">
@@ -62,18 +63,29 @@
             <div class="col-md-12">
 
                 <header id="summary-header">
-                    <h1 class="font_color">Summary of your stats</h1>
+                    <h1 class="font_color"><b>Summary of your stats</b></h1>
                     <hr>
                 </header>
-                <h4>Your name: <b> {{ name }} </b> </h4>
-                <h4>Your weight: <b> {{ weight }} kg </b> </h4>
-                <h4>Your height: <b> {{ height }} m </b> </h4>
-                <h4>Your BMI: <b> {{ bmi }} </b> </h4>
-                <h4>Average calories over {{ number_of_days }} days: <b> {{ user_average_calories }} </b> kcal </h4>
-                <h4>Breakfast food over {{ number_of_days }} days: <b> {{ breakfast_list }} </b> kcal </h4>
-                <h4>lunch food over {{ number_of_days }} days: <b> {{ lunch_list }} </b> kcal </h4>
-                <h4>dinner food over {{ number_of_days }} days: <b> {{ dinner_list }} </b> kcal </h4>
-                <h4>snacks over {{ number_of_days }} days: <b> {{ snack_list }} </b> kcal </h4>
+                <h4><b>Body Mass Index Summary</b></h4>
+                <h5>{{ bmi_statement }}</h5>
+
+                <h4><b>Summary of food habits based on your food journal</b></h4>
+                {% if food_exists == 0 %}
+                    <h5>{{ messages }}</h5>
+                {% else %}
+                    <h5>
+                        {{ calories_statement }}
+                        {% for message in messages %}
+                            {{ message }}
+                        {% if not loop.last %}
+                        {% endif %}
+                        {% endfor %}
+                    </h5>
+                {% endif %}
+
+{#                <h4>Breakfast food over {{ number_of_days }} days: <b> {{ breakfast_list }} </b> kcal </h4>#}
+{#                <h4>lunch food over {{ number_of_days }} days: <b> {{ lunch_list }} </b> kcal </h4>#}
+{#                <h4>dinner food over {{ number_of_days }} days: <b> {{ dinner_list }} </b> kcal </h4>#}
 
             </div>
         </div>

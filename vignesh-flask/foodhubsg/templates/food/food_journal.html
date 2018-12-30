@@ -12,7 +12,7 @@
 
                 <form method="post">
                     <header id="summary-header">
-                        <h1 class="font_color">Add Food Code</h1>
+                        <h1 class="font_color"><b>Add Food Code</b></h1>
                         <hr>
                     </header>
 
@@ -31,7 +31,7 @@
             <div class="col-md-12">
 
                 <header>
-                    <h1 class="font_color">Food History</h1>
+                    <h1 class="font_color"><b>Food History</b></h1>
                     <hr>
                 </header>
 
@@ -60,7 +60,7 @@
                                     <h4 style="margin-bottom: 0"><b>{{ food['food_name'] }}</b></h4>
                                     <div class="about"> {{ food['calories'] }} calories <br> Code: <b> {{ food['food_code'] }} </b>
                                     <br>
-                                    <span id="user-profile"><a class="action" href="{{ url_for('food.edit_food', id = food['id']) }}"><i>Edit</i></a></span>
+                                    <div id="edit-link"><a class="action" href="{{ url_for('food.edit_food', id = food['id']) }}"><i>Edit</i></a></div>
                                     </div>
                                 </div>
                             </header>

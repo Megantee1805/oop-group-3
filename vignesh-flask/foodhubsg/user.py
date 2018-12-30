@@ -52,7 +52,7 @@ def user_settings():
 
     bmi = weight / height ** height
 
-    bmi = int(bmi)
+    bmi = round(bmi, 2)
     all_dates = []
     food_dates = []
     calories_list = []
@@ -60,19 +60,19 @@ def user_settings():
     lunch_list = []
     dinner_list = []
     snack_list = []
-    user_average_calories = 0
-    number_of_days = 0
+    user_average_calories = None
+    number_of_days = None
+    average_breakfast_calories = None
+    average_lunch_calories = None
+    average_dinner_calories = None
+    average_snack_calories = None
+    calories_statement = None
+    breakfast_message = None
+    lunch_message = None
+    dinner_message = None
+    snack_message = None
+    ideal_weight = weight
     password_placeholder = "(unchanged)"
-
-    for food in food_items:
-        if 5 <= int(food['created'].strftime('%-H')) <= 10:
-            breakfast_list.append(food)
-        elif 11 <= int(food['created'].strftime('%-H')) <= 14:
-            lunch_list.append(food)
-        elif 17 <= int(food['created'].strftime('%-H')) <= 22:
-            dinner_list.append(food)
-        else:
-            snack_list.append(food)
 
     if food_items == []:
         food_exists = 0
@@ -102,6 +102,84 @@ def user_settings():
         number_of_days = len(calories_list)
 
         user_average_calories = int(sum(calories_list) / number_of_days)
+
+    for food in food_items:
+        if 5 <= int(food['created'].strftime('%-H')) <= 10:
+            breakfast_list.append(food['calories'])
+            average_breakfast_calories = sum(breakfast_list) / number_of_days
+        elif 11 <= int(food['created'].strftime('%-H')) <= 14:
+            lunch_list.append(food['calories'])
+            average_lunch_calories = sum(lunch_list) / number_of_days
+        elif 17 <= int(food['created'].strftime('%-H')) <= 22:
+            dinner_list.append(food['calories'])
+            average_dinner_calories = sum(dinner_list) / number_of_days
+        else:
+            snack_list.append(food['calories'])
+            average_snack_calories = sum(snack_list) / number_of_days
+
+
+    if bmi < 22:
+        while ideal_weight / height ** height < 23:
+            ideal_weight = ideal_weight + 1
+        lose_weight = ideal_weight - weight
+        bmi_statement = "{}, you have a BMI of {}, which is below the healthy range of 22 to 24. You are recommended " \
+                        "to gain {} kg to reach a body mass of {} kg, which will get you back to the healthy BMI range." \
+                        .format(name, bmi, lose_weight, ideal_weight)
+    elif 22 < bmi < 24:
+        bmi_statement = "{}, you have a BMI of {}, which is exactly within the healthy BMI range. " \
+                        "Keep it up!".format(name, bmi)
+
+    elif bmi > 24:
+        while ideal_weight / height ** height > 23:
+            ideal_weight = ideal_weight - 1
+        lose_weight = weight - ideal_weight
+        bmi_statement = "{}, you have a BMI of {}, which is above the healthy range of 22 to 24. You are recommended " \
+                        "to lose {} kg to reach a body mass of {} kg, which will get you back to the healthy BMI range." \
+                        .format(name, bmi, lose_weight, ideal_weight)
+
+    if user_average_calories:
+        if user_average_calories < 2000:
+            calories_statement = "You consumed an average of {} kcal daily over the past {} days, " \
+                                 "which is below the daily recommended amount of 2500 kcal."\
+                                .format(user_average_calories, number_of_days)
+        elif 2000 < user_average_calories < 3000:
+            calories_statement = "You consumed an average of {} kcal daily over the past {} days, " \
+                                 "which is within the daily recommended amount, so keep following your current diet." \
+                                .format(user_average_calories, number_of_days)
+
+        elif 2000 < user_average_calories < 3000:
+            calories_statement = "You consumed an average of {} kcal daily over the past {} days, " \
+                                 "which is above the daily recommended amount of 2500 kcal." \
+                                .format(user_average_calories, number_of_days)
+
+    if average_breakfast_calories:
+        if average_breakfast_calories < 350:
+            breakfast_message = "You need to increase your breakfast calories."
+        elif average_breakfast_calories > 500:
+            breakfast_message = "You need to decrease your breakfast calories."
+
+    if average_lunch_calories:
+        if average_lunch_calories < 650:
+            lunch_message = "You need to increase your lunch calories."
+        elif average_lunch_calories > 850:
+            lunch_message = "You need to decrease your lunch calories."
+
+    if average_dinner_calories:
+        if average_dinner_calories < 275:
+            dinner_message = "You need to increase your dinner calories."
+        elif average_dinner_calories > 350:
+            dinner_message = "You need to decrease your dinner calories."
+
+    if average_snack_calories:
+        if average_snack_calories > 300:
+            snack_message = "You need to decrease your out-of-schedule snack intake."
+
+    messages = [breakfast_message, lunch_message, dinner_message, snack_message]
+
+    messages = list(filter(None.__ne__, messages))
+
+    if messages == []:
+        messages = "You have not added any food to the journal yet."
 
     if request.method == 'POST':
         new_name = request.form['name']
@@ -174,7 +252,6 @@ def user_settings():
             return redirect(url_for('user.user_settings'))
 
     return render_template('user/user_settings.html',
-                           name=name, weight=weight, height=height, email=email, password=password, bmi=bmi,
-                           user_average_calories=user_average_calories, number_of_days=number_of_days,
-                           food_exists=food_exists, password_placeholder=password_placeholder, breakfast_list=breakfast_list,
-                           lunch_list=lunch_list, dinner_list=dinner_list, snack_list=snack_list)
+                           name=name, weight=weight, height=height, email=email, password=password, bmi_statement=bmi_statement,
+                           calories_statement=calories_statement, number_of_days=number_of_days,
+                           food_exists=food_exists, password_placeholder=password_placeholder, messages=messages)
