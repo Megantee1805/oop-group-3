@@ -9,7 +9,6 @@ class Vendor:
         self.location = location
         self.location_code = location_code
         self.description = description
-        # self.food_items = food_items
         self.rating = rating
         self.image_location = image_location
 
@@ -33,9 +32,6 @@ class Vendor:
 
     def set_description(self, description):
         self.description = description
-
-    # def set_food_items(self, food_items):
-    #     self.food_items = food_items
 
     def set_rating(self, rating):
         self.rating = rating
@@ -63,9 +59,6 @@ class Vendor:
 
     def get_description(self):
         return self.description
-
-    # def get_food_items(self):
-    #     return self.food_items
 
     def get_rating(self):
         return self.rating

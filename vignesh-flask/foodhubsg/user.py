@@ -1,23 +1,5 @@
-from flask import (
-    Blueprint, flash, g, redirect, render_template, request, url_for
-)
-from werkzeug.exceptions import abort
 from werkzeug.security import check_password_hash, generate_password_hash
-
-from foodhubsg.auth import login_required
-from foodhubsg.db import get_db
-from foodhubsg.classes import *
 from foodhubsg.vendors import *
-
-
-def remove_duplicates(values):
-    output = []
-    seen = set()
-    for value in values:
-        if value not in seen:
-            output.append(value)
-            seen.add(value)
-    return output
 
 
 bp = Blueprint('user', __name__)
@@ -30,8 +12,8 @@ def user_settings():
     food_items = db.execute(
         'SELECT f.id, creator_id, food_name, created, calories, food_code, email'
         ' FROM food_entry f JOIN user u ON f.creator_id = u.id'
-        ' WHERE f.creator_id = ?'
-        ' ORDER BY datetime(created) DESC',
+        ' WHERE f.creator_id = ? AND DATE(f.created) IN'
+        ' (SELECT DISTINCT DATE(created) FROM food_entry ORDER BY datetime(created) DESC LIMIT 6)',
         (g.user['id'],),
     ).fetchall()
 
@@ -122,64 +104,92 @@ def user_settings():
         while ideal_weight / height ** height < 23:
             ideal_weight = ideal_weight + 1
         lose_weight = ideal_weight - weight
-        bmi_statement = "{}, you have a BMI of {}, which is below the healthy range of 22 to 24. You are recommended " \
-                        "to gain {} kg to reach a body mass of {} kg, which will get you back to the healthy BMI range." \
+        bmi_statement = "{0}, you have a BMI of {1}, which is below the healthy range of 22 to 24. You are recommended " \
+                        "to gain {2} kg to reach a body mass of {3} kg, which will get you back to the healthy BMI range." \
                         .format(name, bmi, lose_weight, ideal_weight)
     elif 22 < bmi < 24:
-        bmi_statement = "{}, you have a BMI of {}, which is exactly within the healthy BMI range. " \
+        bmi_statement = "{0}, you have a BMI of {1}, which is exactly within the healthy BMI range. " \
                         "Keep it up!".format(name, bmi)
 
     elif bmi > 24:
         while ideal_weight / height ** height > 23:
             ideal_weight = ideal_weight - 1
         lose_weight = weight - ideal_weight
-        bmi_statement = "{}, you have a BMI of {}, which is above the healthy range of 22 to 24. You are recommended " \
-                        "to lose {} kg to reach a body mass of {} kg, which will get you back to the healthy BMI range." \
+        bmi_statement = "{0}, you have a BMI of {1}, which is above the healthy range of 22 to 24. You are recommended " \
+                        "to lose {2} kg to reach a body mass of {3} kg, which will get you back to the healthy BMI range." \
                         .format(name, bmi, lose_weight, ideal_weight)
 
     if user_average_calories:
         if user_average_calories < 2000:
-            calories_statement = "You consumed an average of {} kcal daily over the past {} days, " \
-                                 "which is below the daily recommended amount of 2500 kcal."\
+            calories_statement = "You consumed an average of {0} kcal daily over the last {1} days you've entered food " \
+                                 "into your food journal, which is below the daily recommended amount of 2500 kcal."\
                                 .format(user_average_calories, number_of_days)
         elif 2000 < user_average_calories < 3000:
-            calories_statement = "You consumed an average of {} kcal daily over the past {} days, " \
-                                 "which is within the daily recommended amount, so keep following your current diet." \
+            calories_statement = "You consumed an average of {} kcal daily over the  {} days you've entered food " \
+                                 "into your food journal, which is within the daily recommended amount, so keep following your current diet." \
                                 .format(user_average_calories, number_of_days)
 
         elif 2000 < user_average_calories < 3000:
-            calories_statement = "You consumed an average of {} kcal daily over the past {} days, " \
-                                 "which is above the daily recommended amount of 2500 kcal." \
+            calories_statement = "You consumed an average of {} kcal daily over the last {} days you've entered food " \
+                                 "into your food journal, which is above the daily recommended amount of 2500 kcal." \
                                 .format(user_average_calories, number_of_days)
 
     if average_breakfast_calories:
         if average_breakfast_calories < 350:
-            breakfast_message = "You need to increase your breakfast calories."
+            increase_breakfast = int(400 - average_breakfast_calories)
+            breakfast_message = "increase your breakfast calories by {} kcal against your current average of {} kcal " \
+                                "to reach the ideal breakfast calorie amount of 400 kcal"\
+                                .format(increase_breakfast, int(average_breakfast_calories))
         elif average_breakfast_calories > 500:
-            breakfast_message = "You need to decrease your breakfast calories."
+            decrease_breakfast = int(average_breakfast_calories - 400)
+            breakfast_message = "decrease your breakfast calories by {} kcal against your current average of {} kcal " \
+                                "to reach the ideal breakfast calorie amount of 400 kcal"\
+                                .format(decrease_breakfast, int(average_breakfast_calories))
 
     if average_lunch_calories:
         if average_lunch_calories < 650:
-            lunch_message = "You need to increase your lunch calories."
+            increase_lunch = int(750 - average_lunch_calories)
+            lunch_message = "increase your lunch calories by {} kcal against your current average of {} kcal " \
+                            "to reach the ideal lunch calorie amount of 650 kcal"\
+                            .format(increase_lunch, int(average_lunch_calories))
         elif average_lunch_calories > 850:
-            lunch_message = "You need to decrease your lunch calories."
+            decrease_lunch =  int(average_lunch_calories - 750)
+            lunch_message = "decrease your lunch calories by {} kcal against your current average of {} kcal " \
+                            "to reach the ideal lunch calorie amount of 650 kcal"\
+                            .format(decrease_lunch, int(average_lunch_calories))
 
     if average_dinner_calories:
         if average_dinner_calories < 275:
-            dinner_message = "You need to increase your dinner calories."
+            increase_dinner = int(300 - average_dinner_calories)
+            dinner_message = "increase your dinner calories by {} kcal against your current average of {} kcal " \
+                            "to reach the ideal dinner calorie amount of 300 kcal"\
+                            .format(increase_dinner, int(average_dinner_calories))
         elif average_dinner_calories > 350:
-            dinner_message = "You need to decrease your dinner calories."
+            decrease_dinner =  int(average_dinner_calories - 300)
+            dinner_message = "decrease your dinner calories by {} kcal against your current average of {} kcal " \
+                            "to reach the ideal dinner calorie amount of 300 kcal"\
+                            .format(decrease_dinner, int(average_dinner_calories))
 
     if average_snack_calories:
         if average_snack_calories > 300:
-            snack_message = "You need to decrease your out-of-schedule snack intake."
+            snack_message = "decrease your out-of-schedule snack intake"
 
     messages = [breakfast_message, lunch_message, dinner_message, snack_message]
-
     messages = list(filter(None.__ne__, messages))
 
-    if messages == []:
-        messages = "You have not added any food to the journal yet."
+    meal_message = "On a meal-by-meal basis, you need to "
+    num_messages = len(messages)
+
+    if messages != []:
+        for i in range(num_messages):
+            if i != num_messages - 2 and i != num_messages - 1:
+                meal_message += messages[i] + ", "
+            elif i == num_messages - 2:
+                meal_message += messages[i] + ", and "
+            elif i == num_messages - 1:
+                meal_message += messages[i] + "."
+    else:
+        meal_message += "maintain your current diet because you're consuming the correct amount of calories per meal."
 
     if request.method == 'POST':
         new_name = request.form['name']
@@ -254,4 +264,4 @@ def user_settings():
     return render_template('user/user_settings.html',
                            name=name, weight=weight, height=height, email=email, password=password, bmi_statement=bmi_statement,
                            calories_statement=calories_statement, number_of_days=number_of_days,
-                           food_exists=food_exists, password_placeholder=password_placeholder, messages=messages)
+                           food_exists=food_exists, password_placeholder=password_placeholder, meal_message=meal_message)

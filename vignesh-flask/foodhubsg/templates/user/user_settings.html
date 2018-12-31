@@ -50,7 +50,7 @@
                     </div>
 
                     <div class="row form-group" id="register-button">
-                        <input type="submit" value="Change Settings" class="btn btn-primary" style="background-color: #4CAF50;">
+                        <input type="submit" value="Update Settings" class="btn btn-primary" style="background-color: #4CAF50;">
                     </div>
 
                 </form>
@@ -71,15 +71,18 @@
 
                 <h4><b>Summary of food habits based on your food journal</b></h4>
                 {% if food_exists == 0 %}
-                    <h5>{{ messages }}</h5>
+                    <h5>You have not added any food to the journal yet.</h5>
                 {% else %}
                     <h5>
                         {{ calories_statement }}
-                        {% for message in messages %}
-                            {{ message }}
-                        {% if not loop.last %}
-                        {% endif %}
-                        {% endfor %}
+                        <br>
+                        <br>
+                        {{ meal_message }}
+{#                        {% for message in messages %}#}
+{#                            {{ message }}#}
+{#                        {% if not loop.last %}#}
+{#                        {% endif %}#}
+{#                        {% endfor %}#}
                     </h5>
                 {% endif %}
 
