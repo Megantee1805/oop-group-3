@@ -9,6 +9,23 @@ from foodhubsg.classes import *
 from foodhubsg.vendors import *
 
 
+def get_food_entry(id, check_user=True):
+    db = get_db()
+    food_entry = db.execute(
+        'SELECT f.id, creator_id, food_name, created, calories, food_code, email'
+        ' FROM food_entry f JOIN user u ON f.creator_id = u.id'
+        ' WHERE f.id = ?',
+        (id,),
+    ).fetchone()
+
+    if food_entry is None:
+        abort(404, "That food entry (ID: {0}) doesn't exist".format(id))
+
+    if check_user and food_entry['creator_id'] != g.user['id']:
+        abort(403)
+
+    return food_entry
+
 def remove_duplicates(values):
     output = []
     seen = set()
@@ -116,24 +133,6 @@ def index():
                            weight=weight, height=height, bmi=bmi, user_average_calories=user_average_calories,
                            number_of_days=number_of_days, food_exists=food_exists, user_vendors=user_vendors,
                            food_items=food_items, calories_statement=calories_statement)
-
-def get_food_entry(id, check_user=True):
-    db = get_db()
-    food_entry = db.execute(
-        'SELECT f.id, creator_id, food_name, created, calories, food_code, email'
-        ' FROM food_entry f JOIN user u ON f.creator_id = u.id'
-        ' WHERE f.id = ?',
-        (id,),
-    ).fetchone()
-
-    if food_entry is None:
-        abort(404, "That food entry (ID: {0}) doesn't exist".format(id))
-
-    if check_user and food_entry['creator_id'] != g.user['id']:
-        abort(403)
-
-    return food_entry
-
 
 @bp.route('/food_journal', methods=('GET', 'POST'))
 @login_required

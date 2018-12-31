@@ -110,7 +110,7 @@ sen01 = Vendor(
     location_code = "sen",
     description = "This stuff will literally kill you and you pay us for it.",
     rating = 1,
-    image_location = "static/images/mcdonalds-sengkang-image.jpg"
+    image_location = "../static/images/mcdonalds-sengkang-image.jpg"
     )
 
 sen02 = Vendor(
@@ -122,7 +122,7 @@ sen02 = Vendor(
     location_code = "sen",
     description = "Come buy overpriced frozen food!",
     rating = 3,
-    image_location = "static/images/misaka-sengkang-image.jpeg"
+    image_location = "../static/images/misaka-sengkang-image.jpeg"
     )
 
 amk01 = Vendor(
@@ -134,7 +134,7 @@ amk01 = Vendor(
     location_code = "amk",
     description = "The ambience is nice but no more than that.",
     rating = 2,
-    image_location = "static/images/thelawn-amk-image.jpeg"
+    image_location = "../static/images/thelawn-amk-image.jpeg"
     )
 
 amk02 = Vendor(
@@ -146,7 +146,7 @@ amk02 = Vendor(
     location_code = "amk",
     description = "The food is decently healthy but still way too sweet",
     rating = 4,
-    image_location = "static/images/leanbento-amk-image.jpeg"
+    image_location = "../static/images/leanbento-amk-image.jpeg"
     )
 
 a00001 = Food("a00001", "McSpicy", 752, sen01)
