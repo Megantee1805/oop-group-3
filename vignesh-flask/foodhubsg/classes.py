@@ -9,7 +9,6 @@ class Vendor:
         self.location = location
         self.location_code = location_code
         self.description = description
-        # self.food_items = food_items
         self.rating = rating
         self.image_location = image_location
 
@@ -33,9 +32,6 @@ class Vendor:
 
     def set_description(self, description):
         self.description = description
-
-    # def set_food_items(self, food_items):
-    #     self.food_items = food_items
 
     def set_rating(self, rating):
         self.rating = rating
@@ -63,9 +59,6 @@ class Vendor:
 
     def get_description(self):
         return self.description
-
-    # def get_food_items(self):
-    #     return self.food_items
 
     def get_rating(self):
         return self.rating
@@ -117,7 +110,7 @@ sen01 = Vendor(
     location_code = "sen",
     description = "This stuff will literally kill you and you pay us for it.",
     rating = 1,
-    image_location = "static/images/mcdonalds-sengkang-image.jpg"
+    image_location = "../static/images/mcdonalds-sengkang-image.jpg"
     )
 
 sen02 = Vendor(
@@ -129,7 +122,7 @@ sen02 = Vendor(
     location_code = "sen",
     description = "Come buy overpriced frozen food!",
     rating = 3,
-    image_location = "static/images/misaka-sengkang-image.jpeg"
+    image_location = "../static/images/misaka-sengkang-image.jpeg"
     )
 
 amk01 = Vendor(
@@ -141,7 +134,7 @@ amk01 = Vendor(
     location_code = "amk",
     description = "The ambience is nice but no more than that.",
     rating = 2,
-    image_location = "static/images/thelawn-amk-image.jpeg"
+    image_location = "../static/images/thelawn-amk-image.jpeg"
     )
 
 amk02 = Vendor(
@@ -153,7 +146,7 @@ amk02 = Vendor(
     location_code = "amk",
     description = "The food is decently healthy but still way too sweet",
     rating = 4,
-    image_location = "static/images/leanbento-amk-image.jpeg"
+    image_location = "../static/images/leanbento-amk-image.jpeg"
     )
 
 a00001 = Food("a00001", "McSpicy", 752, sen01)

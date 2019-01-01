@@ -9,6 +9,23 @@ from foodhubsg.classes import *
 from foodhubsg.vendors import *
 
 
+def get_food_entry(id, check_user=True):
+    db = get_db()
+    food_entry = db.execute(
+        'SELECT f.id, creator_id, food_name, created, calories, food_code, email'
+        ' FROM food_entry f JOIN user u ON f.creator_id = u.id'
+        ' WHERE f.id = ?',
+        (id,),
+    ).fetchone()
+
+    if food_entry is None:
+        abort(404, "That food entry (ID: {0}) doesn't exist".format(id))
+
+    if check_user and food_entry['creator_id'] != g.user['id']:
+        abort(403)
+
+    return food_entry
+
 def remove_duplicates(values):
     output = []
     seen = set()
@@ -30,8 +47,8 @@ def index():
     food_items = db.execute(
         'SELECT f.id, creator_id, food_name, created, calories, food_code, email'
         ' FROM food_entry f JOIN user u ON f.creator_id = u.id'
-        ' WHERE f.creator_id = ?'
-        ' ORDER BY datetime(created) DESC',
+        ' WHERE f.creator_id = ? AND DATE(f.created) IN'
+        ' (SELECT DISTINCT DATE(created) FROM food_entry ORDER BY datetime(created) DESC LIMIT 6)',
         (g.user['id'],),
     ).fetchall()
 
@@ -48,16 +65,16 @@ def index():
         name = user['name']
 
     bmi = weight / height ** height
-    bmi = int(bmi)
 
+    bmi = round(bmi, 2)
     all_dates = []
     food_dates = []
-    calories_list = []
     user_vendors = []
-    user_average_calories = 0
-    number_of_days = 0
+    calories_list = []
+    user_average_calories = None
+    number_of_days = None
+    calories_statement = None
     user_location = "sen"
-
 
     if food_items == []:
         food_exists = 0
@@ -87,6 +104,24 @@ def index():
 
         user_average_calories = int(sum(calories_list)/number_of_days)
 
+    if user_average_calories:
+        if user_average_calories < 2000:
+            calories_statement = "{0}, you consumed an average of {1} kcal daily over the last {2} days you've entered food " \
+                                 "into your food journal, which is below the daily recommended amount of 2500 kcal."\
+                                .format(name, user_average_calories, number_of_days)
+        elif 2000 < user_average_calories < 3000:
+            calories_statement = "{0}, you consumed an average of {1} kcal daily over the {2} days you've entered food " \
+                                 "into your food journal, which is within the daily recommended amount, so keep following your current diet!" \
+                                .format(name, user_average_calories, number_of_days)
+
+        elif 2000 < user_average_calories < 3000:
+            calories_statement = "{0}, you consumed an average of {1} kcal daily over the last {2} days you've entered food " \
+                                 "into your food journal, which is above the daily recommended amount of 2500 kcal." \
+                                .format(name, user_average_calories, number_of_days)
+
+    else:
+        calories_statement = "You have not added any food to the journal yet, so there isn't a summary available yet!"
+
     for vendor in vendor_list:
         if user_location == vendor.get_location_code():
             user_vendors.append(vendor)
@@ -96,25 +131,8 @@ def index():
     return render_template('food/index.html',
                            food_dates=food_dates, all_dates=all_dates, calories_list=calories_list, name=name,
                            weight=weight, height=height, bmi=bmi, user_average_calories=user_average_calories,
-                           number_of_days=number_of_days, food_exists=food_exists, user_vendors=user_vendors, food_items=food_items)
-
-def get_food_entry(id, check_user=True):
-    db = get_db()
-    food_entry = db.execute(
-        'SELECT f.id, creator_id, food_name, created, calories, food_code, email'
-        ' FROM food_entry f JOIN user u ON f.creator_id = u.id'
-        ' WHERE f.id = ?',
-        (id,),
-    ).fetchone()
-
-    if food_entry is None:
-        abort(404, "That food entry (ID: {0}) doesn't exist".format(id))
-
-    if check_user and food_entry['creator_id'] != g.user['id']:
-        abort(403)
-
-    return food_entry
-
+                           number_of_days=number_of_days, food_exists=food_exists, user_vendors=user_vendors,
+                           food_items=food_items, calories_statement=calories_statement)
 
 @bp.route('/food_journal', methods=('GET', 'POST'))
 @login_required
@@ -124,7 +142,7 @@ def food_journal():
     food_items = db.execute(
         'SELECT f.id, creator_id, food_name, created, calories, food_code, email'
         ' FROM food_entry f JOIN user u ON f.creator_id = u.id'
-        ' WHERE f.creator_id = ? AND f.created > (SELECT DATETIME("now", "-20 day"))'
+        ' WHERE f.creator_id = ?'
         ' ORDER BY datetime(created) DESC',
         (g.user['id'],),
     ).fetchall()
@@ -147,10 +165,6 @@ def food_journal():
     all_dates = []
     food_dates = []
     calories_list = []
-    breakfast_list = []
-    lunch_list = []
-    dinner_list = []
-    snack_list = []
     user_average_calories = 0
     number_of_days = 0
 
