@@ -289,7 +289,11 @@ def edit_food(id):
 @bp.route('/faq', methods=('GET', 'POST'))
 @login_required
 def faq():
-    return render_template('food/faq.html')
+    if request.method=='POST':
+        question = request.form['query']
+        query = Questions(question)
+        query.add_question(question)
+        return render_template('food/faq.html')
 
 
 # def get_post(id, check_author=True):
