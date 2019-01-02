@@ -146,36 +146,36 @@ def user_settings():
     if average_breakfast_calories:
         if average_breakfast_calories < 350:
             increase_breakfast = int(400 - average_breakfast_calories)
-            breakfast_message = "increase your breakfast calories by {} kcal against your current average of {} kcal " \
+            breakfast_message = "increase your breakfast calorie intake by {} kcal against your current average of {} kcal " \
                                 "to reach the ideal breakfast calorie amount of 400 kcal"\
                                 .format(increase_breakfast, int(average_breakfast_calories))
         elif average_breakfast_calories > 500:
             decrease_breakfast = int(average_breakfast_calories - 400)
-            breakfast_message = "decrease your breakfast calories by {} kcal against your current average of {} kcal " \
+            breakfast_message = "decrease your breakfast calorie intake by {} kcal against your current average of {} kcal " \
                                 "to reach the ideal breakfast calorie amount of 400 kcal"\
                                 .format(decrease_breakfast, int(average_breakfast_calories))
 
     if average_lunch_calories:
         if average_lunch_calories < 650:
             increase_lunch = int(750 - average_lunch_calories)
-            lunch_message = "increase your lunch calories by {} kcal against your current average of {} kcal " \
+            lunch_message = "increase your lunch calorie intake by {} kcal against your current average of {} kcal " \
                             "to reach the ideal lunch calorie amount of 650 kcal"\
                             .format(increase_lunch, int(average_lunch_calories))
         elif average_lunch_calories > 850:
             decrease_lunch =  int(average_lunch_calories - 750)
-            lunch_message = "decrease your lunch calories by {} kcal against your current average of {} kcal " \
+            lunch_message = "decrease your lunch calorie intake by {} kcal against your current average of {} kcal " \
                             "to reach the ideal lunch calorie amount of 650 kcal"\
                             .format(decrease_lunch, int(average_lunch_calories))
 
     if average_dinner_calories:
         if average_dinner_calories < 275:
             increase_dinner = int(300 - average_dinner_calories)
-            dinner_message = "increase your dinner calories by {} kcal against your current average of {} kcal " \
+            dinner_message = "increase your dinner calorie intake by {} kcal against your current average of {} kcal " \
                             "to reach the ideal dinner calorie amount of 300 kcal"\
                             .format(increase_dinner, int(average_dinner_calories))
         elif average_dinner_calories > 350:
             decrease_dinner =  int(average_dinner_calories - 300)
-            dinner_message = "decrease your dinner calories by {} kcal against your current average of {} kcal " \
+            dinner_message = "decrease your dinner calorie intake by {} kcal against your current average of {} kcal " \
                             "to reach the ideal dinner calorie amount of 300 kcal"\
                             .format(decrease_dinner, int(average_dinner_calories))
 
@@ -186,7 +186,7 @@ def user_settings():
     messages = [breakfast_message, lunch_message, dinner_message, snack_message]
     messages = list(filter(None.__ne__, messages))
 
-    meal_message = "On a meal-by-meal basis, you need to "
+    meal_message = "You need to "
     num_messages = len(messages)
 
     if messages != []:
@@ -281,7 +281,7 @@ def user_settings():
 def faq():
     question = request.form['query']
     if request.method == 'POST':
-        if request.form['action'] == 'answer-query':
+        if request.form['action'] == 'submit-query':
             query = Questions(question)
             query.add_question()
             questions = query.get_list()

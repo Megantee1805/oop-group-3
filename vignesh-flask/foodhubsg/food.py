@@ -160,9 +160,7 @@ def food_journal():
         height = user['height']
         name = user['name']
 
-    bmi = weight / height ** height
-
-    bmi = int(bmi)
+    bmi = int(weight / height ** height)
     all_dates = []
     food_dates = []
     calories_list = []
@@ -303,6 +301,8 @@ def search_food(search_date):
     current_date_food = []
     current_date_calories = []
 
+    display_date = datetime.strptime(search_date, '%Y-%m-%d').strftime('%d %B %Y (%A)')
+
     food_items = db.execute(
         'SELECT f.id, creator_id, food_name, created, calories, food_code, email'
         ' FROM food_entry f JOIN user u ON f.creator_id = u.id'
@@ -322,7 +322,7 @@ def search_food(search_date):
     current_date_calories = sum(current_date_calories)
 
     return render_template('food/search_food.html', search_date=search_date, food_exists=food_exists, food_items=food_items,
-                           current_date_calories=current_date_calories)
+                           current_date_calories=current_date_calories, display_date=display_date)
 
 
 # def get_post(id, check_author=True):

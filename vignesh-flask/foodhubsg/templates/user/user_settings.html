@@ -44,7 +44,7 @@
                         </div>
                     </div>
 
-                    <input type="submit" value="Update Settings" class="btn btn-primary" style="background-color: #4CAF50; margin-top: 0.5em">
+                    <input type="submit" value="Update Settings" class="btn btn-primary" style="background-color: #4CAF50; padd">
 
                 </form>
             </div>
@@ -66,22 +66,10 @@
                 {% if food_exists == 0 %}
                     <h5>You have not added any food to the journal yet, so there isn't a summary available yet!</h5>
                 {% else %}
-                    <h5>
-                        {{ calories_statement }}
-                        <br>
-                        <br>
-                        {{ meal_message }}
-{#                        {% for message in messages %}#}
-{#                            {{ message }}#}
-{#                        {% if not loop.last %}#}
-{#                        {% endif %}#}
-{#                        {% endfor %}#}
-                    </h5>
+                    <h5>{{ calories_statement }}</h5>
+                <h4><b>Breakdown on meal-by-meal basis</b></h4>
+                    <h5>{{ meal_message }}</h5>
                 {% endif %}
-
-{#                <h4>Breakfast food over {{ number_of_days }} days: <b> {{ breakfast_list }} </b> kcal </h4>#}
-{#                <h4>lunch food over {{ number_of_days }} days: <b> {{ lunch_list }} </b> kcal </h4>#}
-{#                <h4>dinner food over {{ number_of_days }} days: <b> {{ dinner_list }} </b> kcal </h4>#}
 
             </div>
         </div>
