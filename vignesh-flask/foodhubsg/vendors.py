@@ -9,28 +9,10 @@ from foodhubsg.classes import *
 from foodhubsg.food import *
 
 
-def get_vendor(code):
-    for vendor in vendor_list:
-        if vendor.get_code() == code:
-            return vendor
-
-    abort(404, "That vendor (code: {0}) doesn't exist".format(code))
-
-def remove_duplicates(values):
-    output = []
-    seen = set()
-    for value in values:
-        if value not in seen:
-            output.append(value)
-            seen.add(value)
-    return output
-
-
 bp = Blueprint('vendors', __name__)
 
 
 @bp.route('/vendors', methods=('GET', 'POST'))
-
 def vendors():
     return render_template("vendors/vendor_page.html")
 
@@ -59,7 +41,8 @@ def vendor(code):
                 rating = current_vendor.get_rating()
                 image_location = current_vendor.get_image_location()
 
-    return render_template("vendors/vendor.html", current_vendor=current_vendor, name=name, average_calories=average_calories, area=area,
-                           location=location, description=description, rating=rating, image_location=image_location)
+    return render_template("vendors/vendor.html", current_vendor=current_vendor, name=name,
+                           average_calories=average_calories, area=area, location=location, description=description,
+                           rating=rating, image_location=image_location)
 
 

@@ -1,6 +1,15 @@
 from werkzeug.security import check_password_hash, generate_password_hash
 from foodhubsg.vendors import *
 
+def remove_duplicates(values):
+    output = []
+    seen = set()
+    for value in values:
+        if value not in seen:
+            output.append(value)
+            seen.add(value)
+    return output
+
 
 bp = Blueprint('user', __name__)
 
@@ -125,13 +134,13 @@ def user_settings():
                                  "into your food journal, which is below the daily recommended amount of 2500 kcal."\
                                 .format(user_average_calories, number_of_days)
         elif 2000 < user_average_calories < 3000:
-            calories_statement = "You consumed an average of {} kcal daily over the  {} days you've entered food " \
-                                 "into your food journal, which is within the daily recommended amount, so keep following your current diet." \
+            calories_statement = "You consumed an average of {} kcal daily over the  {} days you've entered food, " \
+                                 "into your food journal,which is within the daily recommended amount, so keep following your current diet." \
                                 .format(user_average_calories, number_of_days)
 
         elif 2000 < user_average_calories < 3000:
-            calories_statement = "You consumed an average of {} kcal daily over the last {} days you've entered food " \
-                                 "into your food journal, which is above the daily recommended amount of 2500 kcal." \
+            calories_statement = "You consumed an average of {} kcal daily over the last {} days you've entered food, " \
+                                 "which is above the daily recommended amount of 2500 kcal." \
                                 .format(user_average_calories, number_of_days)
 
     if average_breakfast_calories:
