@@ -27,7 +27,7 @@
                     {% for question in questions %}
                     {% if not loop.last %}
                         <b class="font_color"> {{ question }}</b>
-                        <button>Answer</button>
+                        <button type="submit" value="answer-button">Answer</button>
                     {% endif %}
                     {% endfor %}
             </div>
@@ -37,7 +37,7 @@
                     <textarea type="text" id="query" name="query" form="query-form" rows="4" cols="70">
                     </textarea>
                     <div></div>
-                    <button type="button"> Submit a Question </button>
+                    <button type="submit" value="submit-query"> Submit a Question </button>
 
                 </form>
         </div>
