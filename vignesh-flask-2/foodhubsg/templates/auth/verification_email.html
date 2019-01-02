@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+    <div id="colorlib-container">
+        <div class="container">
+            <div class="box1">
+                <div class="col-md-13">
+
+                <h1> Your registration is successful</h1>
+                <p>Please check your email for the verfication</p>
+                    <button onclick=" {{url_for('auth.login') }} " > Click here to login</button>
+                </div>
+            </div>
+        </div>
+    </div>

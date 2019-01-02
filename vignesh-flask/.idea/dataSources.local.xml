@@ -10,5 +10,8 @@
       <auth-required>false</auth-required>
       <introspection-schemas>*:main</introspection-schemas>
     </data-source>
+    <data-source name="foodhubsg" uuid="29e90ce7-0ccc-4e09-a740-4df8d576a81c">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
+    </data-source>
   </component>
 </project>
