@@ -274,3 +274,14 @@ def user_settings():
                            name=name, weight=weight, height=height, email=email, password=password, bmi_statement=bmi_statement,
                            calories_statement=calories_statement, number_of_days=number_of_days,
                            food_exists=food_exists, password_placeholder=password_placeholder, meal_message=meal_message)
+
+
+@bp.route('/faq', methods=('GET', 'POST'))
+@login_required
+def faq():
+    if request.method=='POST':
+        question = request.form['query']
+        query = Questions(question)
+        query.add_question()
+        questions = query.get_list()
+        return render_template('user/faq.html', questions = questions)
