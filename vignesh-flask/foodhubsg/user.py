@@ -279,11 +279,9 @@ def user_settings():
 @bp.route('/faq', methods=('GET', 'POST'))
 @login_required
 def faq():
-
     if request.method == 'POST':
         question = request.form['query']
         if request.form['action'] == 'submit-query':
-            question = request.form['query']
             query = Questions(question)
             query.add_question()
             questions = query.get_list()
