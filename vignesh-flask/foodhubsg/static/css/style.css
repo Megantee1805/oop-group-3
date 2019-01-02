@@ -46,8 +46,8 @@ body {
 
 	#welcome-msg{
 	color: white;
-	margin-top: 30%;
-    margin-left: -5%;
+	margin-top: 20em;
+    margin-left: -8em;
 	}
 
 	.box1 {
@@ -70,7 +70,7 @@ body {
 }
 
 .font_color {
-  color: #1c7430;
+  color: #3d8b3d;
 }
 
 #page {
@@ -138,8 +138,7 @@ h1, h2, h3, h4, h5, h6, figure {
   margin: 0;
   padding: 0;
   line-height: 40px;
-  font-weight: 700;
-  text-transform: uppercase; }
+  font-weight: 700;}
   .colorlib-nav #colorlib-logo a {
     position: relative;
     color: #707070;
@@ -437,7 +436,6 @@ h1, h2, h3, h4, h5, h6, figure {
     font-size: 13px; }
 
 .content {
-  padding-right: 2em;
   display: block; }
   @media screen and (max-width: 768px) {
     .content {
@@ -705,14 +703,6 @@ blockquote {
       .side .form-group {
         width: 100%; } }
     .side .form-group input::-webkit-input-placeholder {
-      color: #333333; }
-    .side .form-group input::-moz-input-placeholder {
-      color: #333333; }
-    .side .form-group input::-ms-input-placeholder {
-      color: #333333; }
-    .side .form-group input::-o-input-placeholder {
-      color: #333333; }
-    .side .form-group input::input-placeholder {
       color: #333333; }
   .side #search {
     font-size: 18px;
@@ -1422,13 +1412,13 @@ input[type="text"] {
     border-color: #F6490D; }
 
 .row-pb-lg {
-  padding-bottom: 6em !important; }
+  padding: 6em !important; }
 
 .row-pb-md {
-  padding-bottom: 4em !important; }
+  padding: 2em !important; }
 
 .row-pb-sm {
-  padding-bottom: 2em !important; }
+  padding: 2em !important; }
 
 .nopadding {
   padding: 0 !important;
@@ -1456,10 +1446,11 @@ input[type="text"] {
 }
 
 .flash {
-  padding: 1em;
+  padding: 0.8em;
   background: #d9534f;
   color: white;
   box-shadow: 0 0 10px -10px rgba(0,0,0,0.75);
+  font-size: 14px;
 }
 
 .btn-primary {
@@ -1474,10 +1465,6 @@ input[type="text"] {
   margin: 0.7em 0 1.0em 0;
 }
 
-.row-pb-md {
-  padding: 2em;
-}
-
 .img-responsive {
   max-height: 300px;
 }
@@ -1489,3 +1476,36 @@ input[type="text"] {
   color: white;
   box-shadow: 0 0 10px -10px rgba(0,0,0,0.75);
 }
+
+.code-flash.error {
+  background: #d9534f;
+}
+
+.flash.success {
+  background: #4CBB17;
+}
+
+.form-control {
+  border-width: 0.2px;
+  border-color: #999999;
+  box-shadow: 0 5px 20px -5px rgba(0,0,0,0.1);
+}
+
+.box1 {
+  background: #ffffff;
+  padding: 0.5em;
+  margin-bottom: 3em;
+  box-shadow: 0 0 40px -15px rgba(0,0,0,0.6);
+}
+
+.row.row-pb-md {
+    margin: -5px -10px 0 -10px;
+}
+
+.container {
+    padding-right: 2.5em;
+    padding-left: 2.5em;
+}
+
+#nav-name { font-weight: bold; }
+

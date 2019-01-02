@@ -5,7 +5,9 @@ vignesh-flask/.idea/workspace.xml
 vignesh-flask/.idea/
 *.xml
 *.pyc
-vignesh-flask/foodhubsg/__pycache__/food.cpython-37.pyc
+/vignesh-flask/foodhubsg/__pycache__/*
 *.pyc
 *.xml
+*.pyc
+*.pyc
 *.pyc

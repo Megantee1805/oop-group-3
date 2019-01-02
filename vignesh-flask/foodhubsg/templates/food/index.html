@@ -2,37 +2,26 @@
 
 {% block title %}Home{% endblock %}
 
-<link rel="stylesheet" href="../../static/css/zafirah-style.css">
-
 {% block content %}
 
 <div id="colorlib-container">
     <div class="container">
         <div class="box1">
         <div class="row row-pb-md">
-            <div class="col-md-6">
-                <div class="blog-entry">
-                    <div class="blog-img">
-                        <h3 class="font_color"><b class="center_subtitle">Summary of your food history</b></h3>
-                        <h4>Your overall calorie intake is decreasing. Keep it up, {{ name }}! </h4>
-                        <a href="{{ url_for('food.food_journal') }}"><img src="images/stats.jpg" class="img-responsive" alt="html5 bootstrap template"></a>
-                    </div>
-                    <div class="desc">
-                        <b class="meta">
-                            <u><a href="{{ url_for('food.food_journal') }}">Click here to see your food intake in more detail </a></u></b>
-                        </p>
-                    </div>
+            <div class="blog-entry">
+                <div class="blog-img">
+                    <h3 class="font_color"><b class="center_subtitle">Summary of your food history</b></h3>
+                    <hr>
+                    <h4>{{ calories_statement }}</h4>
                 </div>
-            </div>
-
-
+                <u><a href="{{ url_for('food.food_journal') }}">Click here to see your food intake in more detail </a></u>
             </div>
         </div>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <div class="box1">
-            <h3 class="font_color"><b class="center_subtitle">Recommended food vendors near you</b></h3>
-            <div class="row row-pb-md">
+        </div>
 
+        <div class="box1">
+        <div class="row row-pb-md">
+            <h3 class="font_color"><b class="center_subtitle">Recommended food vendors near you</b></h3>
                 {% if user_vendors == [] %}
                     <div class="col-md-12">
                         <div class="blog-entry">
@@ -43,12 +32,13 @@
                     </div>
 
                 {% else %}
+                    <div class="col-md-12"><h4>Current Location: <b class="center_subtitle">{{ user_vendors[0].get_area() }}</b></h4></div>
                     {% for vendor in user_vendors %}
 
                         <div class="col-md-6">
                             <div class="blog-entry">
                                 <div class="blog-img">
-                                    <a href="{{ url_for('vendors.vendors')}}"><img src="{{ vendor.get_image_location() }}" class="img-responsive" alt="html5 bootstrap template"></a>
+                                    <a class="action" href="{{ url_for('vendors.vendor', code = vendor.get_code()) }}"><img src="{{ vendor.get_image_location() }}" class="img-responsive" alt="html5 bootstrap template"></a>
                                 </div>
                                 <div class="desc">
                                     <p class="meta">
@@ -75,9 +65,9 @@
                     {% endfor %}
 
                 {% endif %}
-
         </div>
-    </div>
+        </div>
+
     </div>
 </div>
 

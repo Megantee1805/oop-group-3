@@ -1,11 +1,22 @@
 import functools
-
 from flask import (
-    Blueprint, flash, g, redirect, render_template, request, session, url_for
+    Blueprint, flash, redirect, render_template, request, session, url_for
 )
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from foodhubsg.db import get_db
+from foodhubsg.db import *
+from flask_mail import Message, Mail
+
+mail = Mail()
+
+def remove_duplicates(values):
+    output = []
+    seen = set()
+    for value in values:
+        if value not in seen:
+            output.append(value)
+            seen.add(value)
+    return output
 
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
@@ -50,18 +61,29 @@ def register():
         check_user = db.execute('SELECT id FROM user WHERE email = ?', (email,)).fetchone()
         error = None
 
-        if not email:
+        if not name:
+            error = 'Please enter your name'
+        elif not all(char.isalpha() or char.isspace() for char in name):
+            error = 'Please only enter alphabets for your name'
+        elif not len(name) < 16:
+            error = 'Please enter a name below 16 characters'
+        elif not height:
+            error = 'Please enter your height'
+        elif not 0.5 < float(height) < 2.5:
+            error = 'Please enter a valid height value in meters'
+        elif not weight:
+            error = 'Please enter your weight'
+        elif not 20 < float(weight) < 250:
+            error = 'Please enter a valid weight value in kilograms'
+        elif not email:
             error = 'Please enter your email'
         elif not password:
             error = 'Please enter your password'
-        elif not name:
-            error = 'Please enter your name'
-        elif not weight:
-            error = 'Please enter your weight'
-        elif not height:
-            error = 'Please enter your height'
         elif check_user is not None:
             error = 'This email ({}) is already registered.'.format(email)
+
+        name = name.title()
+        email = email.lower()
 
         if error is None:
             db.execute(
@@ -69,10 +91,10 @@ def register():
                 (email, generate_password_hash(password), name, height, weight)
             )
             db.commit()
-
             return redirect(url_for('auth.login'))
 
-        flash(error)
+        else:
+            flash(error)
 
     return render_template('auth/register.html')
 
@@ -82,10 +104,13 @@ def login():
     """Log in a registered user by adding the user id to the session."""
     session.clear()
     if request.method == 'POST':
-        email = request.form['email']
+        email = request.form['email'].lower()
         password = request.form['password']
         db = get_db()
         error = None
+
+        email = email.lower()
+
         user = db.execute(
             'SELECT * FROM user WHERE email = ?', (email,)
         ).fetchone()
@@ -105,22 +130,73 @@ def login():
 
     return render_template('auth/login.html')
 
-# @login_required
-# @bp.route('/settings', methods=['POST', 'GET'])
-# def settings():
-#         init_db()
-#         db = get_db()
-#         email = query_db('SELECT * FROM user Where email = ?', args=([g.email]), One=True)
-#         name = query_db('SELECT * FROM user Where name = ?', args =([g.name]), One=True)
-#         password = query_db('SELECT * FROM user WHERE password = ?', args = ([g.password]), One=True)
-#         height = query_db('SELECT * FROM user WHERE height = ?', args =([g.height]), One=True)
-#         weight = db.execute('SELECT * FROM user WHERE weight = ?', args =([g.weight]), One=True)
-#         return render_template("auth/settings.html", email=email, name=name, password=password,
-#                                height=height, weight=weight)
+
+@bp.route('/change_password', methods=('GET', 'POST'))
+def change_password():
+    session.clear()
+    if request.method == 'POST':
+        email = request.form['email'].lower()
+        password = request.form['password']
+        db = get_db()
+        error = None
+
+        email = email.lower()
+
+        user = db.execute(
+            'SELECT * FROM user WHERE email = ?', (email,)
+        ).fetchone()
+
+        if user is None:
+            error = 'Incorrect email entered'
+        elif not check_password_hash(user['password'], password):
+            error = 'Incorrect password entered'
+
+        if error is None:
+            # store the user id in a new session and return to the index
+            session.clear()
+            session['user_id'] = user['id']
+            return redirect(url_for('index'))
+
+        flash(error)
+
+    return render_template('auth/change_password.html')
 
 
+@bp.route('/confirm')
+def confirm():
+    db = get_db()
+    email = db.execute('SELECT * FROM user Where email = ?').fetchone()
+    if email is None:
+        error = 'Registration was not succeasful'
+        flash(error)
+        return render_template('auth/index.html')
+    else:
+        msg = Message("Hello",
+                      sender="Megan.tee1805@gmail.com",
+                      recipients=[email])
+        mail.send(msg)
+        return render_template('auth/verification_email.html')
+
+@bp.route('/reset', methods=['GET','POST'])
+def reset():
+    if request.method =='POST':
+        db = get_db()
+        error = None
+        email = db.execute('SELECT * FROM user Where email = ?').fetchone()
+        if email is None:
+            error= 'No such user exists'
+            flash(error)
+            return render_template('auth/index.html')
+        else:
+            msg = Message(
+                "Click here to change your password",
+                recipients=email
+            )
+            mail.send(msg)
+    return render_template("auth/forgot_password.html")
 @bp.route('/logout')
 def logout():
     """Clear the current session, including the stored user id."""
     session.clear()
     return redirect(url_for('auth.login'))
+
