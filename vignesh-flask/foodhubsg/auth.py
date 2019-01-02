@@ -164,16 +164,36 @@ def change_password():
 
 @bp.route('/confirm')
 def confirm():
-    msg = Message("Hello",
-                  sender="Megan.tee1805@gmail.com",
-                  recipients=["dawningmoon1805@gmail.com"])
-    mail.send(msg)
-    return render_template('auth/verification_email.html')
+    db = get_db()
+    email = db.execute('SELECT * FROM user Where email = ?').fetchone()
+    if email is None:
+        error = 'Registration was not succeasful'
+        flash(error)
+        return render_template('auth/index.html')
+    else:
+        msg = Message("Hello",
+                      sender="Megan.tee1805@gmail.com",
+                      recipients=[email])
+        mail.send(msg)
+        return render_template('auth/verification_email.html')
 
-@bp.route('/reset')
+@bp.route('/reset', methods=['GET','POST'])
 def reset():
+    if request.method =='POST':
+        db = get_db()
+        error = None
+        email = db.execute('SELECT * FROM user Where email = ?').fetchone()
+        if email is None:
+            error= 'No such user exists'
+            flash(error)
+            return render_template('auth/index.html')
+        else:
+            msg = Message(
+                "Click here to change your password",
+                recipients=email
+            )
+            mail.send(msg)
     return render_template("auth/forgot_password.html")
-
 @bp.route('/logout')
 def logout():
     """Clear the current session, including the stored user id."""
