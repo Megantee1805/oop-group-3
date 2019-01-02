@@ -168,6 +168,7 @@ def confirm():
     email = db.execute('SELECT * FROM user Where email = ?').fetchone()
     if email is None:
         error = 'Registration was not succeasful'
+        flash(error)
         return render_template('auth/index.html')
     else:
         msg = Message("Hello",
@@ -180,9 +181,11 @@ def confirm():
 def reset():
     if request.method =='POST':
         db = get_db()
+        error = None
         email = db.execute('SELECT * FROM user Where email = ?').fetchone()
         if email is None:
             error= 'No such user exists'
+            flash(error)
             return render_template('auth/index.html')
         else:
             msg = Message(
