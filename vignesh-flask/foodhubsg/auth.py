@@ -172,8 +172,8 @@ def confirm():
         return render_template('auth/index.html')
     else:
         msg = Message("Hello",
-                      sender="Megan.tee1805@gmail.com",
                       recipients=[email])
+        msg.body = "Your registration was successful"
         mail.send(msg)
         return render_template('auth/verification_email.html')
 
