@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<div id="colorlib-container">
+    <div class="container">
+        <div class="box1">
+        <div class="row row-pb-md">
+            <div class="blog-entry">
+                <div class="blog-img">
+                    <h3 class="font_color"><b class="center_subtitle">Summary of your food history</b></h3>
+                    <hr>
+                    <h4>{{ calories_statement }}</h4>
+                </div>
+                <u><a href="{{ url_for('food.food_journal') }}">Click here to see your food intake in more detail </a></u>
+            </div>
+        </div>
+        </div>
+
+        <div class="box1">
+        <div class="row row-pb-md">
+            <h3 class="font_color"><b class="center_subtitle">Recommended food vendors near you</b></h3>
+                {% if user_vendors == [] %}
+                    <div class="col-md-12">
+                        <div class="blog-entry">
+                            <div class="blog-img">
+                                <h4><b class="center_subtitle">There are no supported food vendors near you right now.</b></h4>
+                            </div>
+                        </div>
+                    </div>
+
+                {% else %}
+                    <div class="col-md-12"><h4>Current Location: <b class="center_subtitle">{{ user_vendors[0].get_area() }}</b></h4></div>
+                    {% for vendor in user_vendors %}
+
+                        <div class="col-md-6">
+                            <div class="blog-entry">
+                                <div class="blog-img">
+                                    <a class="action" href="{{ url_for('vendors.vendor', code = vendor.get_code()) }}"><img src="{{ vendor.get_image_location() }}" class="img-responsive" alt="html5 bootstrap template"></a>
+                                </div>
+                                <div class="desc">
+                                    <p class="meta">
+                                        <b class="vendors"><b>{{ vendor.get_name() }}</b></b><br>
+                                        <span class="food_location"><b>{{ vendor.get_location() }}</b></span><br>
+                                        <span class=food_rating">Healthiness rating:
+                                            {% if vendor.get_rating() == 1 %}
+                                                <span class='fa fa-star checked'></span><span class='fa fa-star'></span><span class='fa fa-star'></span><span class='fa fa-star'></span>
+                                            {% elif vendor.get_rating() == 2 %}
+                                                <span class='fa fa-star checked'></span><span class='fa fa-star checked'></span><span class='fa fa-star'></span><span class='fa fa-star'></span>
+                                            {% elif vendor.get_rating() == 3 %}
+                                                <span class='fa fa-star checked'></span><span class='fa fa-star checked'></span><span class='fa fa-star checked'></span><span class='fa fa-star'></span>
+                                            {% elif vendor.get_rating() == 4 %}
+                                                <span class='fa fa-star checked'></span><span class='fa fa-star checked'></span><span class='fa fa-star checked'></span><span class='fa fa-star checked'></span>
+                                            {% endif %}
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                    {% if not loop.last %}
+                    {% endif %}
+                    {% endfor %}
+
+                {% endif %}
+        </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
