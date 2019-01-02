@@ -21,15 +21,24 @@
                     <p>Yes, beginning a diet to lose weight and improve health is a worthy goal, but it can be a bit overwhelming. There are bound to be challenges whenever you start something new, especially when it involves something you do several times each day like eating and drinking. Still, as long as you don't try to change everything at once, you can meet your weight loss goals. Read on to learn some secrets of the masters those who have lost weight and, more importantly, kept it off.</p>
                 <hr>
                     <b class="font_color">What is calorie counting? Is it just a fancy word for dieting?</b>
+                    <button>Answer</button>
                     <p></p>
+                <hr>
+                    {% for question in questions %}
+                    {% if not loop.last %}
+                        <b class="font_color"> {{ question }}</b>
+                        <button type="submit" value="answer-button">Answer</button>
+                    {% endif %}
+                    {% endfor %}
             </div>
                 <form id="query-form">
-                <label for="name">Name</label>
-                <input type="text" id="name">
-                <label for="query">Question </label>
-                <textarea type="text" id="query" name="query" form="query-form">
-                </textarea>
-                    <button type="button"> Submit a Question </button>
+                    <label for="query">Question </label>
+                    <div></div>
+                    <textarea type="text" id="query" name="query" form="query-form" rows="4" cols="70">
+                    </textarea>
+                    <div></div>
+                    <button type="submit" value="submit-query"> Submit a Question </button>
+
                 </form>
         </div>
         </div>

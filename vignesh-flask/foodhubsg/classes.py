@@ -167,3 +167,21 @@ b00004 = Food("b00004", "Karage Ramen", 570, amk02)
 food_list = [a00001, a00002, a00003, a00004, b00001, b00002, b00003, b00004]
 vendor_list = [sen01, sen02, amk01, amk02]
 vendor_food = {sen01: [a00001, a00002], sen02: [a00003, a00004], amk01: [b00001, b00002], amk02: [b00003, b00004]}
+
+
+class Questions:
+    def __init__(self, question):
+        self.__question = question
+        self.__list_of_queries = []
+
+    def set_questions(self, question):
+        self.__question = question
+
+    def get_question(self):
+        return self.__question
+
+    def add_question(self):
+        self.__list_of_queries.append(self.get_question())
+
+    def get_list(self):
+        return self.__list_of_queries

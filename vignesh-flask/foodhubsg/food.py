@@ -289,12 +289,6 @@ def edit_food(id):
     return render_template('food/edit_food.html', food_entry=food_entry)
 
 
-@bp.route('/faq', methods=('GET', 'POST'))
-@login_required
-def faq():
-    return render_template('food/faq.html')
-
-
 # def get_post(id, check_author=True):
 #     """Get a post and its author by id.
 #
