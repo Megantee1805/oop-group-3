@@ -95,13 +95,13 @@ def user_settings():
         user_average_calories = int(sum(calories_list) / number_of_days)
 
     for food in food_items:
-        if 5 <= int(food['created'].strftime('%-H')) <= 10:
+        if 5 <= int(food['created'].strftime('%H')) <= 10:
             breakfast_list.append(food['calories'])
             average_breakfast_calories = sum(breakfast_list) / number_of_days
-        elif 11 <= int(food['created'].strftime('%-H')) <= 14:
+        elif 11 <= int(food['created'].strftime('%H')) <= 14:
             lunch_list.append(food['calories'])
             average_lunch_calories = sum(lunch_list) / number_of_days
-        elif 17 <= int(food['created'].strftime('%-H')) <= 22:
+        elif 17 <= int(food['created'].strftime('%H')) <= 22:
             dinner_list.append(food['calories'])
             average_dinner_calories = sum(dinner_list) / number_of_days
         else:
