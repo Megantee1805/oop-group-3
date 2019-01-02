@@ -57,7 +57,7 @@ padding-top: 12px; }
                                 <ul>
                                     <li><a href="{{ url_for('vendors.vendors') }}">Vendors near you</a></li>
                                     <li><a href="{{ url_for('food.food_journal') }}">Food Journal</a></li>
-                                    <li><a href="{{ url_for('food.faq') }}">FAQ</a></li>
+                                    <li><a href="{{ url_for('user.faq') }}">FAQ</a></li>
                                     <a href="{{ url_for('food.food_journal') }}"><button type="button" class="btn btn-success">Enter a new food code</button></a>
                                     <li id="user-profile"><a href="{{ url_for('user.user_settings')}}">Welcome, <span id="nav-name">{{ g.user['name'] }}!</span></a> <a href="{{ url_for('auth.logout') }}">Logout</a></li>
                                 </ul>
