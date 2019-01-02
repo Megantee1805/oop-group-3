@@ -2,6 +2,7 @@ from flask import (
     Blueprint, flash, g, redirect, render_template, request, url_for
 )
 from werkzeug.exceptions import abort
+from datetime import datetime
 
 from foodhubsg.auth import login_required
 from foodhubsg.db import get_db
@@ -159,45 +160,12 @@ def food_journal():
         height = user['height']
         name = user['name']
 
-    bmi = weight / height ** height
-
-    bmi = int(bmi)
+    bmi = int(weight / height ** height)
     all_dates = []
     food_dates = []
     calories_list = []
     user_average_calories = 0
     number_of_days = 0
-
-    if request.method == 'POST':
-        code = request.form['code']
-        code = code.lower()
-        error = None
-
-        if not code:
-            error = 'Code is required'
-
-        else:
-            db = get_db()
-            for food in food_list:
-                food_code = food.get_code()
-
-                if code == food_code:
-                    food_calories = food.get_calories()
-                    food_name = food.get_name()
-                    db.execute(
-                        'INSERT INTO food_entry (creator_id, food_code, food_name, calories)'
-                        ' VALUES (?, ?, ?, ?)',
-                        (g.user['id'], code, food_name, food_calories)
-                    )
-                    db.commit()
-                    message = "Added {0} to your food journal!".format(food_name)
-                    flash(message, "success")
-                    return redirect(url_for('food.food_journal'))
-                else:
-                    error = 'Invalid code entered'
-
-        if error is not None:
-            flash(error, "error")
 
     if food_items == []:
         food_exists = 0
@@ -228,10 +196,47 @@ def food_journal():
 
         user_average_calories = int(sum(calories_list)/number_of_days)
 
+        if request.method == 'POST':
+            error = None
+
+            if request.form['action'] == 'Save Food':
+                code = request.form['code']
+                code = code.lower()
+
+                if not code:
+                    error = 'Code is required'
+
+                else:
+                    db = get_db()
+                    for food in food_list:
+                        food_code = food.get_code()
+
+                        if code == food_code:
+                            food_calories = food.get_calories()
+                            food_name = food.get_name()
+                            db.execute(
+                                'INSERT INTO food_entry (creator_id, food_code, food_name, calories)'
+                                ' VALUES (?, ?, ?, ?)',
+                                (g.user['id'], code, food_name, food_calories)
+                            )
+                            db.commit()
+                            message = "Added {0} to your food journal!".format(food_name)
+                            flash(message, "success")
+                            return redirect(url_for('food.food_journal'))
+                        else:
+                            error = 'Invalid code entered'
+
+                if error is not None:
+                    flash(error, "error")
+
+            elif request.form['action'] == 'Search Date':
+                search_date = request.form['search-date']
+                return redirect(url_for('food.search_food', search_date=search_date))
+
     return render_template('food/food_journal.html',
                            food_dates=food_dates, all_dates=all_dates, calories_list=calories_list, name=name,
                            weight=weight, height=height, bmi=bmi, user_average_calories=user_average_calories,
-                           number_of_days=number_of_days, food_exists=food_exists)
+                           number_of_days=number_of_days, food_exists=food_exists, now=datetime.utcnow())
 
 
 @bp.route('/<int:id>/edit_food', methods=('GET', 'POST'))
@@ -287,6 +292,37 @@ def edit_food(id):
             return redirect(url_for('food.edit_food', id = id))
 
     return render_template('food/edit_food.html', food_entry=food_entry)
+
+@bp.route('/search_food/<search_date>', methods=('GET', 'POST'))
+@login_required
+def search_food(search_date):
+    """Search a food entry if the current user is the creator"""
+    db = get_db()
+    current_date_food = []
+    current_date_calories = []
+
+    display_date = datetime.strptime(search_date, '%Y-%m-%d').strftime('%d %B %Y (%A)')
+
+    food_items = db.execute(
+        'SELECT f.id, creator_id, food_name, created, calories, food_code, email'
+        ' FROM food_entry f JOIN user u ON f.creator_id = u.id'
+        ' WHERE f.creator_id = ? AND DATE(f.created) = ?',
+        (g.user['id'], search_date,),
+    ).fetchall()
+
+    if food_items == []:
+        food_exists = 0
+    else:
+        food_exists = 1
+
+    for food in food_items:
+        current_date_food.append(food)
+        current_date_calories.append(food['calories'])
+
+    current_date_calories = sum(current_date_calories)
+
+    return render_template('food/search_food.html', search_date=search_date, food_exists=food_exists, food_items=food_items,
+                           current_date_calories=current_date_calories, display_date=display_date)
 
 
 # def get_post(id, check_author=True):
