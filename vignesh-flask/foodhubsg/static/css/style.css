@@ -1509,3 +1509,7 @@ input[type="text"] {
 
 #nav-name { font-weight: bold; }
 
+#search-date {
+  width: 30px;
+}
+
