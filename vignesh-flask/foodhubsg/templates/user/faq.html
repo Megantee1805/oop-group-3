@@ -31,14 +31,14 @@
                     {% endif %}
                     {% endfor %}
             </div>
-                <form method="post" id="query-form">
+                <form method="post" action="" id="query-form">
                     <label for="query">Question</label>
                     <div></div>
-                    <textarea id="query" name="query" form="query-form" rows="4" cols="70">
+{#                    <textarea id="query" name="query" form="query-form" rows="4" cols="70">#}
+                    <textarea id="query" name="query" form="query-form" class="form-control" rows="4" cols="70">
                     </textarea>
                     <div></div>
-                    <button type="submit" name="query" value="submit-query"> Submit a Question </button>
-
+                    <input type="submit" value="submit-query" name="action" class="btn btn-primary" style="background-color: #4CAF50; height: 54px; margin-left: 0.5em;">
                 </form>
         </div>
         </div>

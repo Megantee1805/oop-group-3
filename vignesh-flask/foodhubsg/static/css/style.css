@@ -56,11 +56,6 @@ body {
     box-shadow: 0 0 40px -15px rgba(0,0,0,0.75);
 	}
 
-	#webname{
-        margin-left: 70px;
-        padding-top: 12px;
-        }
-
 .checked {
     color: orange;
 }
@@ -1498,9 +1493,7 @@ input[type="text"] {
   box-shadow: 0 0 40px -15px rgba(0,0,0,0.6);
 }
 
-.row.row-pb-md {
-    margin: -5px -10px 0 -10px;
-}
+.row.row-pb-md { margin: -5px -10px 0 -10px; }
 
 .container {
     padding-right: 2.5em;
@@ -1509,7 +1502,30 @@ input[type="text"] {
 
 #nav-name { font-weight: bold; }
 
-#search-date {
-  width: 30px;
+#search-date { width: 30px; }
+
+.navbar-nav { flex-direction: row; }
+
+.nav-item {
+  padding: 10px 10px 10px 10px;
+  margin: 10px;
 }
 
+.navbar-nav > .settings {
+  position: relative;
+  display: block;
+  margin-right: 0;
+  padding-right: 0;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+#logout-link {
+  font-size: 12px;
+}
+
+#webname{
+  color: #707070;
+  font-weight: bold;
+  font-size: 30px;
+}

@@ -196,42 +196,45 @@ def food_journal():
 
         user_average_calories = int(sum(calories_list)/number_of_days)
 
-        if request.method == 'POST':
-            error = None
+    if request.method == 'POST':
+        error = None
+        code_list = []
 
-            if request.form['action'] == 'Save Food':
-                code = request.form['code']
-                code = code.lower()
+        if request.form['action'] == 'Save Food':
+            code = request.form['code']
+            code = code.lower()
 
-                if not code:
-                    error = 'Code is required'
+            if not code:
+                error = 'Code is required'
 
-                else:
-                    db = get_db()
-                    for food in food_list:
-                        food_code = food.get_code()
+            else:
+                db = get_db()
+                for food in food_list:
+                    food_code = food.get_code()
+                    code_list.append(food_code)
 
-                        if code == food_code:
-                            food_calories = food.get_calories()
-                            food_name = food.get_name()
-                            db.execute(
-                                'INSERT INTO food_entry (creator_id, food_code, food_name, calories)'
-                                ' VALUES (?, ?, ?, ?)',
-                                (g.user['id'], code, food_name, food_calories)
-                            )
-                            db.commit()
-                            message = "Added {0} to your food journal!".format(food_name)
-                            flash(message, "success")
-                            return redirect(url_for('food.food_journal'))
-                        else:
-                            error = 'Invalid code entered'
+                    if code == food_code:
+                        food_calories = food.get_calories()
+                        food_name = food.get_name()
+                        db.execute(
+                            'INSERT INTO food_entry (creator_id, food_code, food_name, calories)'
+                            ' VALUES (?, ?, ?, ?)',
+                            (g.user['id'], code, food_name, food_calories)
+                        )
+                        db.commit()
+                        message = "Added {0} to your food journal!".format(food_name)
+                        flash(message, "success")
+                        return redirect(url_for('food.food_journal'))
 
-                if error is not None:
-                    flash(error, "error")
+                    else:
+                        error = 'Invalid code entered'
 
-            elif request.form['action'] == 'Search Date':
-                search_date = request.form['search-date']
-                return redirect(url_for('food.search_food', search_date=search_date))
+        elif request.form['action'] == 'Search Date':
+            search_date = request.form['search-date']
+            return redirect(url_for('food.search_food', search_date=search_date))
+
+        if error is not None:
+            flash(error, "error")
 
     return render_template('food/food_journal.html',
                            food_dates=food_dates, all_dates=all_dates, calories_list=calories_list, name=name,
