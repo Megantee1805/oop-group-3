@@ -43,52 +43,50 @@ padding-top: 12px; }
 
     {% block navbar %}
     {% if g.user %}
-        <div id="page">
-            <nav class="colorlib-nav" role="navigation">
-                <div class="top-menu">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-xs-2">
-                                <div id="colorlib-logo">
-                                    <img src="../static/images/healthhub-logo.png" width="65px" height="65px"; align="left"><a href="{{ url_for('index') }}"><p id="webname">FoodHub.SG</p></a>
-                                </div>
+        <nav class="colorlib-nav" role="navigation">
+            <div class="top-menu">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-2">
+                            <div id="colorlib-logo">
+                                <img src="../static/images/healthhub-logo.png" width="65px" height="65px"; align="left"><a href="{{ url_for('index') }}"><p id="webname">FoodHub.SG</p></a>
                             </div>
-                            <div class="col-xs-10 text-right menu-1" id="navbar-stuff">
-                                <ul>
-                                    <li><a href="{{ url_for('vendors.vendors') }}">Vendors near you</a></li>
-                                    <li><a href="{{ url_for('food.food_journal') }}">Food Journal</a></li>
-                                    <li><a href="{{ url_for('user.faq') }}">FAQ</a></li>
-                                    <a href="{{ url_for('food.food_journal') }}"><button type="button" class="btn btn-success">Enter a new food code</button></a>
-                                    <li id="user-profile"><a href="{{ url_for('user.user_settings')}}">Welcome, <span id="nav-name">{{ g.user['name'] }}!</span></a> <a href="{{ url_for('auth.logout') }}">Logout</a></li>
-                                </ul>
-                            </div>
+                        </div>
+                        <div class="col-xs-10 text-right menu-1" id="navbar-stuff">
+                            <ul>
+                                <li><a href="{{ url_for('vendors.vendors') }}">Vendors near you</a></li>
+                                <li><a href="{{ url_for('food.food_journal') }}">Food Journal</a></li>
+                                <li><a href="{{ url_for('user.faq') }}">FAQ</a></li>
+                                <a href="{{ url_for('food.food_journal') }}"><button type="button" class="btn btn-success">Enter a new food code</button></a>
+                                <li id="user-profile"><a href="{{ url_for('user.user_settings')}}">Welcome, <span id="nav-name">{{ g.user['name'] }}!</span></a> <a href="{{ url_for('auth.logout') }}">Logout</a></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
-            </nav>
+            </div>
+        </nav>
     {% else %}
-        <div id="page">
-            <nav class="colorlib-nav" role="navigation">
-                <div class="top-menu">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-xs-2">
-                                <div id="colorlib-logo">
-                                    <img src="../static/images/healthhub-logo.png" width="65px" height="65px"; align="left"><a href="{{ url_for('index') }}"><p id="webname">FoodHub.SG</p></a>
-                                </div>
+        <nav class="colorlib-nav" role="navigation">
+            <div class="top-menu">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-2">
+                            <div id="colorlib-logo">
+                                <img src="../static/images/healthhub-logo.png" width="65px" height="65px"; align="left"><a href="{{ url_for('index') }}"><p id="webname">FoodHub.SG</p></a>
                             </div>
-                            <div class="col-xs-10 text-right menu-1" id="navbar-stuff">
-                                <ul>
-                                    <li><a href="{{ url_for('vendors.vendors') }}">Vendors near you</a></li>
-                                    <li><a href="{{ url_for('food.food_journal') }}">Food Journal</a></li>
-                                    <li><a href="{{ url_for('user.faq') }}">FAQ</a></li>
-                                    <a href="{{ url_for('auth.login') }}"><button type="button" class="btn btn-success">Log In</button></a>
-                                </ul>
-                            </div>
+                        </div>
+                        <div class="col-xs-10 text-right menu-1" id="navbar-stuff">
+                            <ul>
+                                <li><a href="{{ url_for('vendors.vendors') }}">Vendors near you</a></li>
+                                <li><a href="{{ url_for('food.food_journal') }}">Food Journal</a></li>
+                                <li><a href="{{ url_for('user.faq') }}">FAQ</a></li>
+                                <a href="{{ url_for('auth.login') }}"><button type="button" class="btn btn-success">Log In</button></a>
+                            </ul>
                         </div>
                     </div>
                 </div>
-            </nav>
+            </div>
+        </nav>
     {% endif %}
     {% endblock %}
 
@@ -115,5 +113,3 @@ padding-top: 12px; }
     {% block content %}{% endblock %}
 
 </section>
-
-</div>
