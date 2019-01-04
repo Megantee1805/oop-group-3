@@ -50,7 +50,8 @@ def load_logged_in_user():
 
 @bp.route('/register', methods=('GET', 'POST'))
 def register():
-    session.clear()
+    for key in session.keys():
+        session.pop(key)
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
@@ -91,6 +92,10 @@ def register():
                 (email, generate_password_hash(password), name, height, weight)
             )
             db.commit()
+
+            success = "Your account ({}) has been successfully registered!".format(email)
+            flash(success, "success")
+
             return redirect(url_for('auth.login'))
 
         else:
@@ -102,7 +107,6 @@ def register():
 @bp.route('/login', methods=('GET', 'POST'))
 def login():
     """Log in a registered user by adding the user id to the session."""
-    session.clear()
     if request.method == 'POST':
         email = request.form['email'].lower()
         password = request.form['password']

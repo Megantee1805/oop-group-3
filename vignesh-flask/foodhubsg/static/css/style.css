@@ -39,12 +39,6 @@ color: white;
 margin: 20em 0 20em 0;
 }
 
-.box1 {
-background: #ffffff;
-padding: 20px;
-box-shadow: 0 0 40px -15px rgba(0,0,0,0.75);
-}
-
 .checked {
     color: orange;
 }
@@ -1479,7 +1473,7 @@ input[type="text"] {
   background: #ffffff;
   padding: 0.5em;
   margin-bottom: 3em;
-  box-shadow: 0 0 40px -15px rgba(0,0,0,0.6);
+  box-shadow: 0 0 40px 0 rgba(0,0,0,0.125);
 }
 
 .row.row-pb-md { margin: -5px -10px 0 -10px; }
@@ -1535,4 +1529,8 @@ input[type="text"] {
 
 .row-flash {
   padding: 0;
+}
+
+.bg-white {
+  background-color: white;
 }

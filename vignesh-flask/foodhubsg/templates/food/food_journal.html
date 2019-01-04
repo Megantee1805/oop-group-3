@@ -72,10 +72,10 @@
                             <header>
                                 <div class="food-subsection">
                                     <div id="time-created"> <i>{{ food['created'].strftime('%I:%M %p') }}</i> </div>
-                                    <h4 style="margin-bottom: 0"><b>{{ food['food_name'] }}</b></h4>
+                                    <h4 style="margin-bottom: 0; display: inline"><b>{{ food['food_name'] }}</b></h4>
+                                    <p style="display: inline">(Code: {{ food['food_code'] }})</p>
                                     <p>
                                     {{ food['calories'] }} calories <br>
-                                    Code: <b> {{ food['food_code'] }} </b> <br>
                                     <a class="action" href="{{ url_for('food.edit_food', id = food['id']) }}"><i>Edit</i></a>
                                     </p>
                                 </div>

@@ -4,14 +4,15 @@
 
 {% block content %}
 
-{% block flash %}
-{% endblock %}
 
 <style>
     body { background-image: url("../../static/images/green-background.png"); }
 </style>
 
 {% block navbar %}
+{% endblock %}
+
+{% block flash %}
 {% endblock %}
 
 <div style="overflow-y: scroll;">
@@ -64,13 +65,17 @@
                             <input type="password" name="password" id="password" class="form-control" placeholder="Password">
                         </div>
 
-                        {% for message in get_flashed_messages() %}
-                            <div class="row form-group">
-                                <div class="col-md-12 row-flash">
-                                    <div class="flash">{{ message }}</div>
+                        {% with messages = get_flashed_messages(with_categories=true) %}
+                        {% if messages %}
+                            {% for category, message in messages %}
+                                <div class="row form-group">
+                                    <div class="col-md-12 row-flash">
+                                        <div class="flash {{ category }}"><div> {{ message }} </div></div>
+                                    </div>
                                 </div>
-                            </div>
-                        {% endfor %}
+                            {% endfor %}
+                        {% endif %}
+                        {% endwith %}
 
                         <div class="row form-group">
                             <div class="form-group" id="login-button">

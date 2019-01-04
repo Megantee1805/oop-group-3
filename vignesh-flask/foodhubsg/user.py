@@ -22,7 +22,8 @@ def user_settings():
         'SELECT f.id, creator_id, food_name, created, calories, food_code, email'
         ' FROM food_entry f JOIN user u ON f.creator_id = u.id'
         ' WHERE f.creator_id = ? AND DATE(f.created) IN'
-        ' (SELECT DISTINCT DATE(created) FROM food_entry ORDER BY datetime(created) DESC LIMIT 6)',
+        ' (SELECT DISTINCT DATE(created) FROM food_entry ORDER BY datetime(created) DESC LIMIT 5)'
+        ' ORDER BY datetime(created) DESC',
         (g.user['id'],),
     ).fetchall()
 
@@ -208,8 +209,6 @@ def user_settings():
         error = None
         message = None
 
-        db = get_db()
-
         try:
             # if new_name:
             #     if not all(char.isalpha() or char.isspace() for char in new_name):
@@ -224,7 +223,10 @@ def user_settings():
             #             (new_name.title(), id)
             #         )
 
-            if old_password:
+            if not new_height and not new_weight and not old_password and not new_password:
+                error = "No settings have been changed"
+
+            elif old_password:
 
                 if check_password_hash(password, old_password):
 
@@ -259,9 +261,6 @@ def user_settings():
                                 (generate_password_hash(new_password), id)
                             )
                             password_placeholder = "(changed)"
-
-                    if not old_password and not new_height and not new_weight and not new_password:
-                        error = "No settings have been changed"
 
                 else:
                     error = "You've entered your current password incorrectly"
