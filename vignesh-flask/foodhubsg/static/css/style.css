@@ -15,46 +15,35 @@ body {
 }
 
 #form-input{
-	display: block;
 	background-color: white;
+    width: 100%;
 	height: 100%;
-	width: 35%;
 	text-align: inherit;
-	padding: 100px 0 5px 45px;
-	position: absolute;
+	position: fixed;
 	right: 0;
 	top: 0;
     box-shadow: 0 0 10px -10px rgba(0,0,0,0.75);
 	}
 
-#SN-Logo{
-	margin-left: 170px;
-	}
+.heading-2{
+  font-size: 18px;
+  font-weight: lighter;
+}
 
-	.col-md-10{
-	padding-left: 70px;
-	}
+#register-button{
+padding-left: 55px;
+}
 
-	.heading-2{
-	padding-left: 10%;
-    font-size: 20px;
-	}
+#welcome-msg{
+color: white;
+margin: 20em 0 20em 0;
+}
 
-	#register-button{
-	padding-left: 55px;
-	}
-
-	#welcome-msg{
-	color: white;
-	margin-top: 20em;
-    margin-left: -8em;
-	}
-
-	.box1 {
-  	background: #ffffff;
-  	padding: 20px;
-    box-shadow: 0 0 40px -15px rgba(0,0,0,0.75);
-	}
+.box1 {
+background: #ffffff;
+padding: 20px;
+box-shadow: 0 0 40px -15px rgba(0,0,0,0.75);
+}
 
 .checked {
     color: orange;
@@ -881,7 +870,7 @@ blockquote {
   margin-bottom: 1.5em; }
 
 .heading-2 {
-  font-weight: 700;
+  font-weight: 100;
   font-size: 28px;
   margin-bottom: 40px; }
 
@@ -1538,4 +1527,12 @@ input[type="text"] {
   color: #707070;
   font-weight: bold;
   font-size: 30px;
+}
+
+.auth-brand {
+  margin: 4em 0 4em 0;
+}
+
+.row-flash {
+  padding: 0;
 }
