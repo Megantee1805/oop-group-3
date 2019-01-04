@@ -1,4 +1,5 @@
 import os
+import click
 
 from flask import Flask
 from .classes import Food, Vendor
@@ -8,7 +9,7 @@ def create_app(test_config=None):
     """Create and configure an instance of the Flask application."""
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
-        SECRET_KEY='dev',
+        SECRET_KEY='this-is-totally-secret-guys-nobody-can-guess-this-trust-me',
         DATABASE=os.path.join(app.instance_path, 'foodhubsg.sqlite'),
     )
 

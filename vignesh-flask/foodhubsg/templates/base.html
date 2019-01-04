@@ -34,7 +34,7 @@ $(document).ready(function(){
 </script>
 
     {% block navbar %}
-        <nav class="navbar navbar-light bg-light">
+        <nav class="navbar navbar-light bg-white">
             <div class="container">
                 <a class="navbar-brand" href="{{ url_for('index') }}">
                     <img src="../static/images/healthhub-logo.png" width="65px" height="60px" class="d-inline-block align-top" alt="FoodHub.SG Logo">
@@ -54,12 +54,11 @@ $(document).ready(function(){
                         <li class="nav-item">
                             <a href="{{ url_for('food.food_journal') }}"><button type="button" class="btn btn-success">Enter a new food code</button></a>
                         </li>
-                        <li class="nav-item settings" style="line-height: 22px">
-                            <a id="settings-link" href="{{ url_for('user.user_settings')}}">
+                        <li class="nav-item settings nav-link">
+                            <a class="nav-link" id="settings-link" href="{{ url_for('user.user_settings')}}">
                                 Welcome, <span id="nav-name">{{ g.user['name'] }}!</span>
                             </a>
-                            <br>
-                            <a id="logout-link" href="{{ url_for('auth.logout') }}">
+                            <a class="nav-link" id="logout-link" href="{{ url_for('auth.logout') }}">
                                 Logout
                             </a>
                         </li>
@@ -103,6 +102,20 @@ $(document).ready(function(){
         {% endif %}
         {% endwith %}
     {% endblock %}
+
+{#    {% block auth_flash %}#}
+{#        {% with messages = get_flashed_messages(with_categories=true) %}#}
+{#        {% if messages %}#}
+{#            {% for category, message in messages %}#}
+{#                <div class="row form-group">#}
+{#                    <div class="col-md-12 row-flash">#}
+{#                        <div class="flash {{ category }}"><div> {{ message }} </div></div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            {% endfor %}#}
+{#        {% endif %}#}
+{#        {% endwith %}#}
+{#    {% endblock %}#}
 
     {% block content %}{% endblock %}
 

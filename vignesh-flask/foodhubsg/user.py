@@ -22,7 +22,8 @@ def user_settings():
         'SELECT f.id, creator_id, food_name, created, calories, food_code, email'
         ' FROM food_entry f JOIN user u ON f.creator_id = u.id'
         ' WHERE f.creator_id = ? AND DATE(f.created) IN'
-        ' (SELECT DISTINCT DATE(created) FROM food_entry ORDER BY datetime(created) DESC LIMIT 6)',
+        ' (SELECT DISTINCT DATE(created) FROM food_entry ORDER BY datetime(created) DESC LIMIT 5)'
+        ' ORDER BY datetime(created) DESC',
         (g.user['id'],),
     ).fetchall()
 
@@ -201,63 +202,71 @@ def user_settings():
         meal_message += "maintain your current diet because you're consuming the correct amount of calories per meal."
 
     if request.method == 'POST':
-        new_name = request.form['name']
         new_height = request.form['height']
         new_weight = request.form['weight']
         new_password = request.form['password']
+        old_password = request.form['old-password']
         error = None
         message = None
 
-        db = get_db()
-
         try:
-            if new_name:
-                if not all(char.isalpha() or char.isspace() for char in new_name):
-                    error = 'Please only enter alphabets for your name'
-                elif not len(new_name) < 16:
-                    error = 'Please enter a name below 16 characters'
-                elif new_name.title() == name:
-                    error ='Please enter a new name'
-                else:
-                    db.execute(
-                        'UPDATE user SET name = ? WHERE id = ?',
-                        (new_name.title(), id)
-                    )
+            # if new_name:
+            #     if not all(char.isalpha() or char.isspace() for char in new_name):
+            #         error = 'Please only enter alphabets for your name'
+            #     elif not len(new_name) < 16:
+            #         error = 'Please enter a name below 16 characters'
+            #     elif new_name.title() == name:
+            #         error ='Please enter a new name'
+            #     else:
+            #         db.execute(
+            #             'UPDATE user SET name = ? WHERE id = ?',
+            #             (new_name.title(), id)
+            #         )
 
-            if new_height:
-                if not 0.5 < float(new_height) < 2.5:
-                    error = 'Please enter a valid height value in meters'
-                elif new_height == height:
-                    error ='Please enter a new height value'
-                else:
-                    db.execute(
-                        'UPDATE user SET height = ? WHERE id = ?',
-                        (new_height, id)
-                    )
-
-            if new_weight:
-                if not 20 < float(new_weight) < 250:
-                    error = 'Please enter a valid weight value in kilograms'
-                elif new_weight == weight:
-                    error ='Please enter a new weight value'
-                else:
-                    db.execute(
-                        'UPDATE user SET weight = ? WHERE id = ?',
-                        (new_weight, id)
-                    )
-
-            if new_password:
-                if check_password_hash(password, new_password):
-                    error = "You've entered your previous password"
-                else:
-                    db.execute(
-                        'UPDATE user SET password = ? WHERE id = ?',
-                        (generate_password_hash(new_password), id)
-                    )
-                    password_placeholder = "(changed)"
-
-            if not new_name and not new_height and not new_weight and not new_password:
+            if not new_height and not new_weight and not old_password and not new_password:
                 error = "No settings have been changed"
+
+            elif old_password:
+
+                if check_password_hash(password, old_password):
+
+                    if new_height:
+                        if not 0.5 < float(new_height) < 2.5:
+                            error = 'Please enter a valid height value in meters'
+                        elif new_height == height:
+                            error ='Please enter a new height value'
+                        else:
+                            db.execute(
+                                'UPDATE user SET height = ? WHERE id = ?',
+                                (new_height, id)
+                            )
+
+                    if new_weight:
+                        if not 20 < float(new_weight) < 250:
+                            error = 'Please enter a valid weight value in kilograms'
+                        elif new_weight == weight:
+                            error ='Please enter a new weight value'
+                        else:
+                            db.execute(
+                                'UPDATE user SET weight = ? WHERE id = ?',
+                                (new_weight, id)
+                            )
+
+                    if new_password:
+                        if check_password_hash(password, new_password):
+                            error = "You've entered your previous password"
+                        else:
+                            db.execute(
+                                'UPDATE user SET password = ? WHERE id = ?',
+                                (generate_password_hash(new_password), id)
+                            )
+                            password_placeholder = "(changed)"
+
+                else:
+                    error = "You've entered your current password incorrectly"
+
+            else:
+                error = "Please enter your current password to confirm changes"
 
         except ValueError:
             error = "Please enter a valid value"
