@@ -36,7 +36,7 @@
                     <header id="summary-header">
                         <div class="input-group">
                             <h1 class="font_color"><b>Food History</b></h1>
-                            <input type="date" name="search-date" id="search-date" class="form-control" style="margin-left: 25em;" required>
+                            <input type="date" name="search-date" id="search-date" class="form-control" style="margin-left: 25em;" min="2005-01-01" max="2030-12-31" required>
                             <span class="input-group-btn">
                                 <input type="submit" name="action" value="Search Date" class="btn btn-primary" style="background-color: #4CAF50; height: 54px; margin-left: 0.5em;">
                             </span>
@@ -59,7 +59,7 @@
                 {% for date in food_dates %}
 
                     {% set example_food = date[0] %}
-                    {% if now.year == example_food['created'].strftime('%Y') %}
+                    {% if now.strftime('%Y') == example_food['created'].strftime('%Y') %}
                         {% set example_date = example_food['created'].strftime('%d %B (%A)') %}
                     {% else %}
                         {% set example_date = example_food['created'].strftime('%d %B %Y (%A)') %}
@@ -73,7 +73,7 @@
                                 <div class="food-subsection">
                                     <div id="time-created"> <i>{{ food['created'].strftime('%I:%M %p') }}</i> </div>
                                     <h4 style="margin-bottom: 0; display: inline"><b>{{ food['food_name'] }}</b></h4>
-                                    <p style="display: inline">(Code: {{ food['food_code'] }})</p>
+                                    <p style="display: inline">(code: {{ food['food_code'] }})</p>
                                     <p>
                                     {{ food['calories'] }} calories <br>
                                     <a class="action" href="{{ url_for('food.edit_food', id = food['id']) }}"><i>Edit</i></a>

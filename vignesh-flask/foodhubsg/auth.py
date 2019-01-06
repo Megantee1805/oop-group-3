@@ -152,14 +152,17 @@ def change_password():
 
         if user is None:
             error = 'Incorrect email entered'
-        elif not check_password_hash(user['password'], password):
-            error = 'Incorrect password entered'
+        else:
+            db.execute(
+                'UPDATE user SET password = ? WHERE email = ?',
+                (email, generate_password_hash(password))
+            )
+            db.commit()
 
         if error is None:
             # store the user id in a new session and return to the index
             session.clear()
-            session['user_id'] = user['id']
-            return redirect(url_for('index'))
+            return redirect(url_for('auth.login'))
 
         flash(error)
 
