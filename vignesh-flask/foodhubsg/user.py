@@ -22,7 +22,7 @@ def user_settings():
         'SELECT f.id, creator_id, food_name, created, calories, food_code, email'
         ' FROM food_entry f JOIN user u ON f.creator_id = u.id'
         ' WHERE f.creator_id = ? AND DATE(f.created) IN'
-        ' (SELECT DISTINCT DATE(created) FROM food_entry ORDER BY datetime(created) DESC LIMIT 5)'
+        ' (SELECT DISTINCT DATE(created) FROM food_entry ORDER BY datetime(created) DESC LIMIT 7)'
         ' ORDER BY datetime(created) DESC',
         (g.user['id'],),
     ).fetchall()
@@ -52,16 +52,16 @@ def user_settings():
     lunch_list = []
     dinner_list = []
     snack_list = []
-    user_average_calories = None
-    number_of_days = None
-    average_breakfast_calories = None
-    average_lunch_calories = None
-    average_dinner_calories = None
-    average_snack_calories = None
+    user_average_calories = 0
+    number_of_days = 0
+    average_breakfast_calories = 0
+    average_lunch_calories = 0
+    average_dinner_calories = 0
+    average_snack_calories = 0
     calories_statement = None
-    breakfast_message = None
-    lunch_message = None
-    dinner_message = None
+    # breakfast_message = None
+    # lunch_message = None
+    # dinner_message = None
     snack_message = None
     ideal_weight = weight
     password_placeholder = "(unchanged)"
@@ -96,18 +96,18 @@ def user_settings():
         user_average_calories = int(sum(calories_list) / number_of_days)
 
     for food in food_items:
-        if 5 <= int(food['created'].strftime('%H')) <= 10:
+        if 5 <= int(food['created'].strftime('%H')) <= 9:
             breakfast_list.append(food['calories'])
-            average_breakfast_calories = sum(breakfast_list) / number_of_days
+            average_breakfast_calories = round(sum(breakfast_list) / number_of_days, 2)
         elif 11 <= int(food['created'].strftime('%H')) <= 14:
             lunch_list.append(food['calories'])
-            average_lunch_calories = sum(lunch_list) / number_of_days
-        elif 17 <= int(food['created'].strftime('%H')) <= 22:
+            average_lunch_calories = round(sum(lunch_list) / number_of_days, 2)
+        elif 17 <= int(food['created'].strftime('%H')) <= 21:
             dinner_list.append(food['calories'])
-            average_dinner_calories = sum(dinner_list) / number_of_days
+            average_dinner_calories = round(sum(dinner_list) / number_of_days, 2)
         else:
             snack_list.append(food['calories'])
-            average_snack_calories = sum(snack_list) / number_of_days
+            average_snack_calories = round(sum(snack_list) / number_of_days, 2)
 
 
     if bmi < 22:
@@ -143,63 +143,63 @@ def user_settings():
             calories_statement = "You consumed an average of {} kcal daily over the last {} days you've entered food, " \
                                  "which is above the daily recommended amount of 2500 kcal." \
                                 .format(user_average_calories, number_of_days)
-
-    if average_breakfast_calories:
-        if average_breakfast_calories < 350:
-            increase_breakfast = int(400 - average_breakfast_calories)
-            breakfast_message = "increase your breakfast calorie intake by {} kcal against your current average of {} kcal " \
-                                "to reach the ideal breakfast calorie amount of 400 kcal"\
-                                .format(increase_breakfast, int(average_breakfast_calories))
-        elif average_breakfast_calories > 500:
-            decrease_breakfast = int(average_breakfast_calories - 400)
-            breakfast_message = "decrease your breakfast calorie intake by {} kcal against your current average of {} kcal " \
-                                "to reach the ideal breakfast calorie amount of 400 kcal"\
-                                .format(decrease_breakfast, int(average_breakfast_calories))
-
-    if average_lunch_calories:
-        if average_lunch_calories < 650:
-            increase_lunch = int(750 - average_lunch_calories)
-            lunch_message = "increase your lunch calorie intake by {} kcal against your current average of {} kcal " \
-                            "to reach the ideal lunch calorie amount of 650 kcal"\
-                            .format(increase_lunch, int(average_lunch_calories))
-        elif average_lunch_calories > 850:
-            decrease_lunch =  int(average_lunch_calories - 750)
-            lunch_message = "decrease your lunch calorie intake by {} kcal against your current average of {} kcal " \
-                            "to reach the ideal lunch calorie amount of 650 kcal"\
-                            .format(decrease_lunch, int(average_lunch_calories))
-
-    if average_dinner_calories:
-        if average_dinner_calories < 275:
-            increase_dinner = int(300 - average_dinner_calories)
-            dinner_message = "increase your dinner calorie intake by {} kcal against your current average of {} kcal " \
-                            "to reach the ideal dinner calorie amount of 300 kcal"\
-                            .format(increase_dinner, int(average_dinner_calories))
-        elif average_dinner_calories > 350:
-            decrease_dinner =  int(average_dinner_calories - 300)
-            dinner_message = "decrease your dinner calorie intake by {} kcal against your current average of {} kcal " \
-                            "to reach the ideal dinner calorie amount of 300 kcal"\
-                            .format(decrease_dinner, int(average_dinner_calories))
+    #
+    # if average_breakfast_calories:
+    #     if average_breakfast_calories < 350:
+    #         increase_breakfast = int(400 - average_breakfast_calories)
+    #         breakfast_message = "increase your breakfast calorie intake by {} kcal against your current average of {} kcal " \
+    #                             "to reach the ideal breakfast calorie amount of 400 kcal"\
+    #                             .format(increase_breakfast, int(average_breakfast_calories))
+    #     elif average_breakfast_calories > 500:
+    #         decrease_breakfast = int(average_breakfast_calories - 400)
+    #         breakfast_message = "decrease your breakfast calorie intake by {} kcal against your current average of {} kcal " \
+    #                             "to reach the ideal breakfast calorie amount of 400 kcal"\
+    #                             .format(decrease_breakfast, int(average_breakfast_calories))
+    #
+    # if average_lunch_calories:
+    #     if average_lunch_calories < 650:
+    #         increase_lunch = int(750 - average_lunch_calories)
+    #         lunch_message = "increase your lunch calorie intake by {} kcal against your current average of {} kcal " \
+    #                         "to reach the ideal lunch calorie amount of 650 kcal"\
+    #                         .format(increase_lunch, int(average_lunch_calories))
+    #     elif average_lunch_calories > 850:
+    #         decrease_lunch =  int(average_lunch_calories - 750)
+    #         lunch_message = "decrease your lunch calorie intake by {} kcal against your current average of {} kcal " \
+    #                         "to reach the ideal lunch calorie amount of 650 kcal"\
+    #                         .format(decrease_lunch, int(average_lunch_calories))
+    #
+    # if average_dinner_calories:
+    #     if average_dinner_calories < 275:
+    #         increase_dinner = int(300 - average_dinner_calories)
+    #         dinner_message = "increase your dinner calorie intake by {} kcal against your current average of {} kcal " \
+    #                         "to reach the ideal dinner calorie amount of 300 kcal"\
+    #                         .format(increase_dinner, int(average_dinner_calories))
+    #     elif average_dinner_calories > 350:
+    #         decrease_dinner =  int(average_dinner_calories - 300)
+    #         dinner_message = "decrease your dinner calorie intake by {} kcal against your current average of {} kcal " \
+    #                         "to reach the ideal dinner calorie amount of 300 kcal"\
+    #                         .format(decrease_dinner, int(average_dinner_calories))
 
     if average_snack_calories:
         if average_snack_calories > 300:
-            snack_message = "decrease your out-of-schedule snack intake"
+            snack_message = "Also, you need to decrease your out-of-schedule snack intake"
 
-    messages = [breakfast_message, lunch_message, dinner_message, snack_message]
-    messages = list(filter(None.__ne__, messages))
+    # messages = [snack_message]
+    # messages = list(filter(None.__ne__, messages))
+    #
+    # meal_message = "Also, you need to "
+    # num_messages = len(messages)
 
-    meal_message = "You need to "
-    num_messages = len(messages)
-
-    if messages != []:
-        for i in range(num_messages):
-            if i != num_messages - 2 and i != num_messages - 1:
-                meal_message += messages[i] + ", "
-            elif i == num_messages - 2:
-                meal_message += messages[i] + ", and "
-            elif i == num_messages - 1:
-                meal_message += messages[i] + "."
-    else:
-        meal_message += "maintain your current diet because you're consuming the correct amount of calories per meal."
+    # if messages != []:
+    #     for i in range(num_messages):
+    #         if i != num_messages - 2 and i != num_messages - 1:
+    #             meal_message += messages[i] + ", "
+    #         elif i == num_messages - 2:
+    #             meal_message += messages[i] + ", and "
+    #         elif i == num_messages - 1:
+    #             meal_message += messages[i] + "."
+    # else:
+    #     meal_message = None
 
     if request.method == 'POST':
         new_height = request.form['height']
@@ -282,7 +282,9 @@ def user_settings():
     return render_template('user/user_settings.html',
                            name=name, weight=weight, height=height, email=email, password=password, bmi_statement=bmi_statement,
                            calories_statement=calories_statement, number_of_days=number_of_days,
-                           food_exists=food_exists, password_placeholder=password_placeholder, meal_message=meal_message)
+                           food_exists=food_exists, password_placeholder=password_placeholder, snack_message=snack_message,
+                           average_breakfast_calories=average_breakfast_calories, average_lunch_calories=average_lunch_calories,
+                           average_dinner_calories=average_dinner_calories, average_snack_calories=average_snack_calories)
 
 
 @bp.route('/faq', methods=('GET', 'POST'))

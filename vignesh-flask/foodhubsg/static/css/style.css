@@ -1268,8 +1268,7 @@ input[type="text"] {
 
 .btn-primary {
   background: #F6490D;
-  color: #fff;
-  border: 2px solid #F6490D; }
+  color: #fff; }
   .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
     background: #f75b26 !important;
     border-color: #f75b26 !important; }
@@ -1298,8 +1297,7 @@ input[type="text"] {
 
 .btn-info {
   background: #5bc0de;
-  color: #fff;
-  border: 2px solid #5bc0de; }
+  color: #fff; }
   .btn-info:hover, .btn-info:focus, .btn-info:active {
     background: #46b8da !important;
     border-color: #46b8da !important; }
@@ -1433,6 +1431,7 @@ input[type="text"] {
 
 .btn-primary {
   border-radius: 0;
+  border-width: 0;
 }
 
 .btn {
@@ -1533,4 +1532,9 @@ input[type="text"] {
 
 .bg-white {
   background-color: white;
+}
+
+.thead-green {
+  background-color: #4CAF50;
+  color: white;
 }
