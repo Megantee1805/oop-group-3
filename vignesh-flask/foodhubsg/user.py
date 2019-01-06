@@ -302,3 +302,9 @@ def faq():
 
     return render_template('user/faq.html')
 
+@bp.route('/answer', methods=('GET', 'POST'))
+@login_required
+def answer():
+    if request.method=='POST':
+        answer = request.form['answer']
+        return 'You have submitted successfully'
