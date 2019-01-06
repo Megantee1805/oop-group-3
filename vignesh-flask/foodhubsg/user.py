@@ -298,7 +298,7 @@ def faq():
                 return render_template('user/faq.html', question=question)
 
         if request.form['action'] == 'answer-query':
-            return render_template('user/faq.html')
-        
+            return render_template('user/answer_faq.html')
+
     return render_template('user/faq.html')
 
