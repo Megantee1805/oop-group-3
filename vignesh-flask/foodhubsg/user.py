@@ -294,8 +294,13 @@ def faq():
         question = request.form['query']
         if request.form['action'] == 'submit-query':
             query = Questions(question)
-            query.add_question()
+            query.add_question(query)
             questions = query.get_list()
-            return render_template('user/faq.html', questions=questions, question=query)
+            for question in questions:
+                return render_template('user/faq.html', question=question)
+
+        if request.form['action'] == 'answer-query':
+            return render_template('user/answer_faq.html')
+
     return render_template('user/faq.html')
 

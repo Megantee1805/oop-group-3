@@ -180,8 +180,8 @@ class Questions:
     def get_question(self):
         return self.__question
 
-    def add_question(self):
-        self.__list_of_queries.append(self.get_question())
+    def add_question(self, question):
+        self.__list_of_queries.append(question)
 
     def get_list(self):
         return self.__list_of_queries
