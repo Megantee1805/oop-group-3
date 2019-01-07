@@ -299,7 +299,8 @@ def faq():
         if request.form['action'] == 'submit-query':
             db.execute('INSERT INTO question_and_answer (question) VALUES (?)', question)
             queries = db.execute('SELECT * FROM question_and_answer WHERE question = ?').fetchall()
-            return render_template('user/faq.html', queries = queries)
+            for query in queries:
+                return render_template('user/faq.html', queries = query)
 
         if request.form['action'] == 'answer-query':
             return render_template('user/answer_faq.html')
