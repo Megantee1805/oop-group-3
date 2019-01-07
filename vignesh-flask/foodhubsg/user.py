@@ -306,6 +306,8 @@ def faq():
 @bp.route('/answer', methods=('GET', 'POST'))
 @login_required
 def answer():
-    if request.method=='POST':
+    db = get_db()
+    if request.method == 'POST':
         answer = request.form['answer']
-        return 'You have submitted successfully'
+        db.execute('INSERT INTO question_and_answer (answer) VALUES (?)', answer)
+        return render_template('user/faq.html')
