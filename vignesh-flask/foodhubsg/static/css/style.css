@@ -1472,6 +1472,11 @@ input[type="text"] {
   background: #ffffff;
   padding: 0.5em;
   margin-bottom: 3em;
+  transition: box-shadow 0.5s;
+  /*box-shadow: 0 0 40px 0 rgba(0,0,0,0.125);*/
+}
+
+.box1:hover {
   box-shadow: 0 0 40px 0 rgba(0,0,0,0.125);
 }
 
@@ -1484,7 +1489,7 @@ input[type="text"] {
 
 #nav-name { font-weight: bold; }
 
-#search-date { width: 30px; }
+#search-date { width: 10em; }
 
 .navbar-nav { flex-direction: row; }
 

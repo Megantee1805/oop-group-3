@@ -223,7 +223,7 @@ def user_settings():
             #             (new_name.title(), id)
             #         )
 
-            if not new_height and not new_weight and not old_password and not new_password:
+            if not new_height and not new_weight and not new_password and not old_password:
                 error = "No settings have been changed"
 
             elif old_password:
@@ -261,6 +261,9 @@ def user_settings():
                                 (generate_password_hash(new_password), id)
                             )
                             password_placeholder = "(changed)"
+
+                    if not new_height and not new_weight and not new_password:
+                        error = "No settings have been changed"
 
                 else:
                     error = "You've entered your current password incorrectly"
