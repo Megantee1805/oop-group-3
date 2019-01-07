@@ -3,6 +3,7 @@
 
 DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS food_entry;
+DROP TABLE IF EXISTS question_and_answer;
 
 
 CREATE TABLE IF NOT EXISTS user (
@@ -23,3 +24,8 @@ CREATE TABLE food_entry (
   calories INT NOT NULL,
   FOREIGN KEY (creator_id) REFERENCES user (id)
 );
+
+CREATE TABLE question_and_answer (
+ question TEXT NOT NULL PRIMARY KEY,
+ answer TEXT NOT NULL,
+)

@@ -293,17 +293,22 @@ def user_settings():
 @bp.route('/faq', methods=('GET', 'POST'))
 @login_required
 def faq():
+    db = get_db()
     if request.method == 'POST':
         question = request.form['query']
         if request.form['action'] == 'submit-query':
-            query = Questions(question)
-            query.add_question(query)
-            questions = query.get_list()
-            for question in questions:
-                return render_template('user/faq.html', question=question)
+            db.execute('INSERT INTO question_and_answer (question) VALUES (?)', question)
+            queries = db.execute('SELECT * FROM question_and_answer WHERE question = ?').fetchall()
+            return render_template('user/faq.html', queries = queries)
 
         if request.form['action'] == 'answer-query':
             return render_template('user/answer_faq.html')
+    queries = db.execute('SELECT * FROM question_and_answer WHERE question = ?').fetchall()
+    return render_template('user/faq.html', queries = queries)
 
-    return render_template('user/faq.html')
-
+@bp.route('/answer', methods=('GET', 'POST'))
+@login_required
+def answer():
+    if request.method=='POST':
+        answer = request.form['answer']
+        return 'You have submitted successfully'
