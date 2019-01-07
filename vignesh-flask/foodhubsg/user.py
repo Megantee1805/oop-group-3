@@ -307,6 +307,7 @@ def faq():
     queries = db.execute('SELECT * FROM question_and_answer WHERE question = ?').fetchall()
     return render_template('user/faq.html', queries = queries)
 
+
 @bp.route('/answer', methods=('GET', 'POST'))
 @login_required
 def answer():
@@ -315,3 +316,5 @@ def answer():
         answer = request.form['answer']
         db.execute('INSERT INTO question_and_answer (answer) VALUES (?)', answer)
         return render_template('user/faq.html')
+
+    return render_template('user/answer_faw.html')
