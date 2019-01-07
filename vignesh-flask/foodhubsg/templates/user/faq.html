@@ -27,12 +27,13 @@
                     <p></p>
                 <hr>
                     {% for query in queries %}
-                        <b class="font_color"> {{ question }}</b>
+                        <b class="font_color"> {{ query }}</b>
                        <form method="post" action="">
                    <input type="submit" value="answer-query" class="btn btn-primary" style="background-color: #4CAF50; height: 54px; margin-left: 0.5em;">
+                       </form>
                         {% if loop.last %}
+                        {% endif %}
                            {% endfor %}
-                </form>
             </div>
 
                 <form method="post" action="" id="query-form">
