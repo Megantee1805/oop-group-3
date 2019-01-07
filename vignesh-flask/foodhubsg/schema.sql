@@ -3,6 +3,7 @@
 
 DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS food_entry;
+DROP TABLE IF EXISTS question_and_answer; 
 
 
 CREATE TABLE IF NOT EXISTS user (
