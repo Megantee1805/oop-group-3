@@ -7,6 +7,3 @@ INSERT INTO post (title, body, author_id, created)
 VALUES
   ('test title', 'test' || x'0a' || 'body', 1, '2018-01-01 00:00:00');
 
-INSERT INTO question_and_answer (question, answer)
-VALUES
-('What is BMI?','BMI is person weight in kilograms (kg) divided by his or her height in meter squared. The National Institute of Health (NIH) now defines normal weight, overweight and obesity according to BMI rather than the traditional height/weight charts. Overweight is a BMI of 23 for an average person.')
