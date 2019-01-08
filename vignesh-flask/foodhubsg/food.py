@@ -297,6 +297,7 @@ def edit_food(id):
 
     return render_template('food/edit_food.html', food_entry=food_entry)
 
+
 @bp.route('/search_food/<search_date>', methods=('GET', 'POST'))
 @login_required
 def search_food(search_date):
