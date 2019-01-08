@@ -49,7 +49,7 @@ def index():
         'SELECT f.id, creator_id, food_name, created, calories, food_code, email'
         ' FROM food_entry f JOIN user u ON f.creator_id = u.id'
         ' WHERE f.creator_id = ? AND DATE(f.created) IN'
-        ' (SELECT DISTINCT DATE(created) FROM food_entry ORDER BY datetime(created) DESC LIMIT 7)'
+        ' (SELECT DISTINCT DATE(created) FROM food_entry WHERE NOT date(f.created) = date("now") LIMIT 8)'
         ' ORDER BY datetime(created) DESC',
         (g.user['id'],),
     ).fetchall()
@@ -107,22 +107,21 @@ def index():
         user_average_calories = int(sum(calories_list)/number_of_days)
 
     if user_average_calories:
-        if user_average_calories < 2000:
-            calories_statement = "{0}, you consumed an average of {1} kcal daily over the last {2} days you've entered food " \
+        if user_average_calories < 1500:
+            calories_statement = "You consumed an average of {0} kcal daily over the last {1} days you've entered food " \
                                  "into your food journal, which is below the daily recommended amount of 2500 kcal."\
-                                .format(name, user_average_calories, number_of_days)
-        elif 2000 < user_average_calories < 3000:
-            calories_statement = "{0}, you consumed an average of {1} kcal daily over the {2} days you've entered food " \
-                                 "into your food journal, which is within the daily recommended amount, so keep following your current diet!" \
-                                .format(name, user_average_calories, number_of_days)
+                                .format(user_average_calories, number_of_days)
+        elif 1500 <= user_average_calories <= 2500:
+            calories_statement = "You consumed an average of {0} kcal daily over the {1} days you've entered food, " \
+                                 "into your food journal, which is within the daily recommended amount, so keep following your current diet." \
+                                .format(user_average_calories, number_of_days)
 
-        elif 2000 < user_average_calories < 3000:
-            calories_statement = "{0}, you consumed an average of {1} kcal daily over the last {2} days you've entered food " \
-                                 "into your food journal, which is above the daily recommended amount of 2500 kcal." \
-                                .format(name, user_average_calories, number_of_days)
-
+        elif user_average_calories > 2500:
+            calories_statement = "You consumed an average of {} kcal daily over the last {} days you've entered food, " \
+                                 "which is above the daily recommended amount of 2500 kcal." \
+                                .format(user_average_calories, number_of_days)
     else:
-        calories_statement = "You have not added any food to the journal yet, so there isn't a summary available yet!"
+        calories_statement = "You have not added enough food to your journal to generate a summary. Keep adding more food!"
 
     for vendor in vendor_list:
         if user_location == vendor.get_location_code():
@@ -194,8 +193,9 @@ def food_journal():
         current_date_calories = sum(current_date_calories)
         calories_list.append(current_date_calories)
 
-    number_of_days = len(food_dates)
-    user_average_calories = int(sum(calories_list) / number_of_days)
+        number_of_days = len(calories_list)
+
+        user_average_calories = int(sum(calories_list)/number_of_days)
 
     if request.method == 'POST':
         error = None
@@ -296,7 +296,6 @@ def edit_food(id):
             return redirect(url_for('food.edit_food', id = id))
 
     return render_template('food/edit_food.html', food_entry=food_entry)
-
 
 @bp.route('/search_food/<search_date>', methods=('GET', 'POST'))
 @login_required

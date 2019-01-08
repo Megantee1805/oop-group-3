@@ -50,8 +50,6 @@ def load_logged_in_user():
 
 @bp.route('/register', methods=('GET', 'POST'))
 def register():
-    for key in session.keys():
-        session.pop(key)
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']

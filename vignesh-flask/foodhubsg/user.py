@@ -92,8 +92,9 @@ def user_settings():
         current_date_calories = sum(current_date_calories)
         calories_list.append(current_date_calories)
 
-    number_of_days = len(food_dates)
-    user_average_calories = int(sum(calories_list) / number_of_days)
+        number_of_days = len(calories_list)
+
+        user_average_calories = int(sum(calories_list)/number_of_days)
 
     for food in food_items:
         if 5 <= int(food['created'].strftime('%H')) <= 9:
@@ -130,16 +131,16 @@ def user_settings():
                         .format(name, bmi, lose_weight, ideal_weight)
 
     if user_average_calories:
-        if user_average_calories < 2000:
+        if user_average_calories < 1500:
             calories_statement = "You consumed an average of {0} kcal daily over the last {1} days you've entered food " \
                                  "into your food journal, which is below the daily recommended amount of 2500 kcal."\
                                 .format(user_average_calories, number_of_days)
-        elif 2000 <= user_average_calories <= 3000:
+        elif 1500 <= user_average_calories <= 2500:
             calories_statement = "You consumed an average of {0} kcal daily over the {1} days you've entered food, " \
                                  "into your food journal, which is within the daily recommended amount, so keep following your current diet." \
                                 .format(user_average_calories, number_of_days)
 
-        elif user_average_calories > 3000:
+        elif user_average_calories > 2500:
             calories_statement = "You consumed an average of {} kcal daily over the last {} days you've entered food, " \
                                  "which is above the daily recommended amount of 2500 kcal." \
                                 .format(user_average_calories, number_of_days)
@@ -284,7 +285,7 @@ def user_settings():
 
     return render_template('user/user_settings.html',
                            name=name, weight=weight, height=height, email=email, password=password, bmi_statement=bmi_statement,
-                           calories_statement=calories_statement, number_of_days=number_of_days,
+                           calories_statement=calories_statement, number_of_days=number_of_days, user_average_calories=user_average_calories,
                            food_exists=food_exists, password_placeholder=password_placeholder, snack_message=snack_message,
                            average_breakfast_calories=average_breakfast_calories, average_lunch_calories=average_lunch_calories,
                            average_dinner_calories=average_dinner_calories, average_snack_calories=average_snack_calories)
