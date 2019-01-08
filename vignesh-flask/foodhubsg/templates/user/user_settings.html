@@ -78,7 +78,7 @@ $(document).ready(function(){
                     <h1 class="font_color"><b>Summary of your stats</b></h1>
                     {% if number_of_days == 0 %}
                     {% else %}
-                        <h5>(based on the last {{ number_of_days }} days with entries in food journal)</h5>
+                        <h5>(based on the previous {{ number_of_days }} days with entries in food journal)</h5>
                     {% endif %}
                     <hr>
                 </header>
@@ -87,9 +87,10 @@ $(document).ready(function(){
 
                 <h4><b>Summary of your food history</b></h4>
                 {% if food_exists == 0 %}
-                    <h5>You have not added any food to the journal yet, so there isn't a summary available yet!</h5>
+                    <h5>You have not added enough food to your journal to generate a summary. Keep adding more food!</h5>
                 {% else %}
                     <h5>{{ calories_statement }}</h5>
+                    <h5>{{ snack_message }}</h5>
                 <h5><b>Breakdown on meal-by-meal basis</b></h5>
                     <table class="table">
                         <thead class="thead-green">
@@ -97,50 +98,66 @@ $(document).ready(function(){
                                 <th scope="col">Meal Type</th>
                                 <th scope="col">Average Calorie Intake</th>
                                 <th scope="col">Ideal Calorie Intake</th>
-                                <th scope="col">Calories To Lose/Gain</th>
+                                <th scope="col">Est. Calories To Lose/Gain</th>
                             </tr>
                         </thead>
                         <tbody>
                         <tr>
                           <th scope="row">Breakfast (5am-10am)</th>
                           <td>{{ average_breakfast_calories }} kcal</td>
-                          <td>400 kcal</td>
+                          <td>400 - 600 kcal</td>
                           <td>
-                              {% if (average_breakfast_calories - 400)|float < 0.0 %}
-                                  +{{ (average_breakfast_calories - 400)|round(2)|abs }} kcal
+                              {% if average_breakfast_calories < 400 %}
+                                  +{{ (average_breakfast_calories - 500)|round(2)|abs }} kcal
+                              {% elif average_breakfast_calories > 600 %}
+                                  -{{ (average_breakfast_calories - 500)|round(2)|abs }} kcal
                               {% else %}
-                                  -{{ (average_breakfast_calories - 400)|round(2)|abs }} kcal
+                                  Your breakfast intake is within limit!
                               {% endif %}
                           </td>
                         </tr>
                         <tr>
                           <th scope="row">Lunch (11am-2pm)</th>
                           <td>{{ average_lunch_calories }} kcal</td>
-                          <td>600 kcal</td>
+                          <td>300 - 500 kcal</td>
                           <td>
-                              {% if (average_lunch_calories - 600)|float < 0.0 %}
-                                  +{{ (average_lunch_calories - 600)|round(2)|abs }} kcal
+                              {% if average_lunch_calories < 300 %}
+                                  +{{ (average_lunch_calories - 400)|round(2)|abs }} kcal
+                              {% elif average_lunch_calories > 500 %}
+                                  -{{ (average_lunch_calories - 400)|round(2)|abs }} kcal
                               {% else %}
-                                  -{{ (average_lunch_calories - 600)|round(2)|abs }} kcal
+                                  Your lunch intake is within limit!
                               {% endif %}
                           </td>
                         </tr>
                         <tr>
                           <th scope="row">Dinner (5pm-10pm)</th>
                           <td>{{ average_dinner_calories }} kcal</td>
-                          <td>300 kcal</td>
+                          <td>400 - 600 kcal</td>
                           <td>
-                              {% if (average_dinner_calories - 300)|float < 0.0 %}
-                                  +{{ (average_dinner_calories - 300)|round(2)|abs }} kcal
+                              {% if average_dinner_calories < 400 %}
+                                  +{{ (average_dinner_calories - 500)|round(2)|abs }} kcal
+                              {% elif average_dinner_calories > 600 %}
+                                  -{{ (average_dinner_calories - 500)|round(2)|abs }} kcal
                               {% else %}
-                                  -{{ (average_dinner_calories - 300)|round(2)|abs }} kcal
+                                  Your dinner intake is within limit!
                               {% endif %}
                           </td>
                         </tr>
-{#                        {% if (average_lunch_calories - 600)|float < 0.0 %}#}
+                        <tr>
+                          <th scope="row">Out-of-schedule snacks</th>
+                          <td>{{ average_snack_calories }} kcal</td>
+                          <td><300 kcal</td>
+                          <td>
+                              {% if (average_snack_calories - 300)|float < 0.0 %}
+                                  +{{ (average_snack_calories - 300)|round(2)|abs }} kcal
+                              {% else %}
+                                  -{{ (average_snack_calories - 300)|round(2)|abs }} kcal
+                              {% endif %}
+                          </td>
+                        </tr>
                       </tbody>
                     </table>
-                    <h5>{{ meal_message }}</h5>
                 {% endif %}
 
             </div>

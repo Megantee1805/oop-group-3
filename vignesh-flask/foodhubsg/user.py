@@ -22,7 +22,8 @@ def user_settings():
         'SELECT f.id, creator_id, food_name, created, calories, food_code, email'
         ' FROM food_entry f JOIN user u ON f.creator_id = u.id'
         ' WHERE f.creator_id = ? AND DATE(f.created) IN'
-        ' (SELECT DISTINCT DATE(created) FROM food_entry ORDER BY datetime(created) DESC LIMIT 7)'
+        ' (SELECT DISTINCT DATE(created) FROM food_entry WHERE NOT date(f.created) = date("now")'
+        ' ORDER BY datetime(created) DESC LIMIT 8)'
         ' ORDER BY datetime(created) DESC',
         (g.user['id'],),
     ).fetchall()
@@ -91,9 +92,8 @@ def user_settings():
         current_date_calories = sum(current_date_calories)
         calories_list.append(current_date_calories)
 
-        number_of_days = len(calories_list)
-
-        user_average_calories = int(sum(calories_list) / number_of_days)
+    number_of_days = len(food_dates)
+    user_average_calories = int(sum(calories_list) / number_of_days)
 
     for food in food_items:
         if 5 <= int(food['created'].strftime('%H')) <= 9:
@@ -134,12 +134,12 @@ def user_settings():
             calories_statement = "You consumed an average of {0} kcal daily over the last {1} days you've entered food " \
                                  "into your food journal, which is below the daily recommended amount of 2500 kcal."\
                                 .format(user_average_calories, number_of_days)
-        elif 2000 < user_average_calories < 3000:
-            calories_statement = "You consumed an average of {} kcal daily over the  {} days you've entered food, " \
-                                 "into your food journal,which is within the daily recommended amount, so keep following your current diet." \
+        elif 2000 <= user_average_calories <= 3000:
+            calories_statement = "You consumed an average of {0} kcal daily over the {1} days you've entered food, " \
+                                 "into your food journal, which is within the daily recommended amount, so keep following your current diet." \
                                 .format(user_average_calories, number_of_days)
 
-        elif 2000 < user_average_calories < 3000:
+        elif user_average_calories > 3000:
             calories_statement = "You consumed an average of {} kcal daily over the last {} days you've entered food, " \
                                  "which is above the daily recommended amount of 2500 kcal." \
                                 .format(user_average_calories, number_of_days)
@@ -182,7 +182,7 @@ def user_settings():
 
     if average_snack_calories:
         if average_snack_calories > 300:
-            snack_message = "Also, you need to decrease your out-of-schedule snack intake"
+            snack_message = "Also, you need to decrease your out-of-schedule snack intake."
 
     # messages = [snack_message]
     # messages = list(filter(None.__ne__, messages))

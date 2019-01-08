@@ -194,9 +194,8 @@ def food_journal():
         current_date_calories = sum(current_date_calories)
         calories_list.append(current_date_calories)
 
-        number_of_days = len(calories_list)
-
-        user_average_calories = int(sum(calories_list)/number_of_days)
+    number_of_days = len(food_dates)
+    user_average_calories = int(sum(calories_list) / number_of_days)
 
     if request.method == 'POST':
         error = None
