@@ -303,20 +303,19 @@ def faq():
             db.commit()
             queries = db.execute('SELECT * FROM question_and_answer').fetchall()
             return render_template('user/faq.html', queries = queries)
-
         if request.form['action'] == 'answer-query':
-            return render_template('user/answer_faq.html')
-    return render_template('user/faq.html')
+            return redirect(url_for('answer'))
+    queries = db.execute('SELECT * FROM question_and_answer').fetchall()
+    return render_template('user/faq.html', queries=queries)
 
 
 @bp.route('/answer', methods=('GET', 'POST'))
 @login_required
 def answer():
     db = get_db()
-    if request.method == 'POST':
-        answer = request.form['answer']
-        db.execute('INSERT INTO question_and_answer (answer) VALUES (?)', [answer])
-        db.commit()
-        return render_template('user/faq.html')
-
+    #if request.method == 'POST':
+        #answer = request.form['answer']
+        #db.execute('INSERT INTO question_and_answer (answer) VALUES (?)', [answer])
+        #db.commit()
+        #return render_template('user/faq.html')
     return render_template('user/answer_faq.html')
