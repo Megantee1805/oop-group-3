@@ -307,7 +307,10 @@ def search_food(search_date):
     current_date_food = []
     current_date_calories = []
 
-    display_date = datetime.strptime(search_date, '%Y-%m-%d').strftime('%d %B %Y (%A)')
+    try:
+        display_date = datetime.strptime(search_date, '%Y-%m-%d').strftime('%d %B %Y (%A)')
+    except ValueError:
+        abort(404, "That date ({0}) is invalid, please enter a date with a valid YYYY-MM-DD format.".format(search_date))
 
     food_items = db.execute(
         'SELECT f.id, creator_id, food_name, created, calories, food_code, email'
