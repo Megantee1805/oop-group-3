@@ -298,7 +298,8 @@ def faq():
     if request.method == 'POST':
         question = request.form['query']
         if request.form['action'] == 'submit-query':
-            db.execute('INSERT INTO question_and_answer (question) VALUES (?)', [question])
+            answer = "No answer given yet, please answer on your own"
+            db.execute('INSERT INTO question_and_answer (question, answer) VALUES (?, ?)', (question, answer))
             db.commit()
             return render_template('user/faq.html')
 
