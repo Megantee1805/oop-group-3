@@ -298,14 +298,13 @@ def faq():
     if request.method == 'POST':
         question = request.form['query']
         if request.form['action'] == 'submit-query':
-            db.execute('INSERT INTO question_and_answer (question) VALUES (?)', question)
-            queries = db.execute('SELECT * FROM question_and_answer WHERE question = ?').fetchall()
+            db.execute('INSERT INTO question_and_answer (question) VALUES (?)', [question])
+            db.commit()
             return render_template('user/faq.html')
 
         if request.form['action'] == 'answer-query':
             return render_template('user/answer_faq.html')
-    queries = db.execute('SELECT * FROM question_and_answer WHERE question = ?').fetchall()
-    return render_template('user/faq.html', queries = queries)
+    return render_template('user/faq.html')
 
 
 @bp.route('/answer', methods=('GET', 'POST'))
@@ -314,7 +313,8 @@ def answer():
     db = get_db()
     if request.method == 'POST':
         answer = request.form['answer']
-        db.execute('INSERT INTO question_and_answer (answer) VALUES (?)', answer)
+        db.execute('INSERT INTO question_and_answer (answer) VALUES (?)', [answer])
+        db.commit()
         return render_template('user/faq.html')
 
     return render_template('user/answer_faq.html')

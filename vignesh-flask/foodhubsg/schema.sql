@@ -27,6 +27,6 @@ CREATE TABLE food_entry (
 
 CREATE TABLE question_and_answer (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  question TEXT NOT NULL,
-  answer TEXT NOT NULL
+  question TEXT.
+  answer TEXT,
 );
