@@ -160,6 +160,8 @@ def change_password():
         if error is None:
             # store the user id in a new session and return to the index
             session.clear()
+            success = "Your account ({}) has been successfully changed its password!".format(email)
+            flash(success, "success")
             return redirect(url_for('auth.login'))
 
         flash(error)
