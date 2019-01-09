@@ -146,7 +146,7 @@ def food_journal():
         ' FROM food_entry f JOIN user u ON f.creator_id = u.id'
         ' WHERE f.creator_id = ? AND DATE(f.created) IN'
         ' (SELECT DISTINCT DATE(created) FROM food_entry '
-        ' WHERE NOT date(f.created) = date("now") ORDER BY datetime(created) DESC LIMIT 30)'
+        ' ORDER BY datetime(created) DESC LIMIT 30)'
         ' ORDER BY datetime(created) DESC',
         (g.user['id'],),
     ).fetchall()
