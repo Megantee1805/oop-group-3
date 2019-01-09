@@ -254,6 +254,8 @@ def user_settings():
                     if new_password:
                         if check_password_hash(password, new_password):
                             error = "You've entered your previous password"
+                        elif " " in  new_password:
+                            error = "Please don't enter whitespaces in your new password"
                         else:
                             db.execute(
                                 'UPDATE user SET password = ? WHERE id = ?',

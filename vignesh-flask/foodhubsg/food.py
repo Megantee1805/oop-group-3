@@ -309,26 +309,26 @@ def search_food(search_date):
 
     try:
         display_date = datetime.strptime(search_date, '%Y-%m-%d').strftime('%d %B %Y (%A)')
+        food_items = db.execute(
+            'SELECT f.id, creator_id, food_name, created, calories, food_code, email'
+            ' FROM food_entry f JOIN user u ON f.creator_id = u.id'
+            ' WHERE f.creator_id = ? AND DATE(f.created) = ?',
+            (g.user['id'], search_date,),
+        ).fetchall()
+
+        if food_items == []:
+            food_exists = 0
+        else:
+            food_exists = 1
+
+        for food in food_items:
+            current_date_food.append(food)
+            current_date_calories.append(food['calories'])
+
+        current_date_calories = sum(current_date_calories)
+
     except ValueError:
         abort(404, "That date ({0}) is invalid, please enter a date with a valid YYYY-MM-DD format.".format(search_date))
-
-    food_items = db.execute(
-        'SELECT f.id, creator_id, food_name, created, calories, food_code, email'
-        ' FROM food_entry f JOIN user u ON f.creator_id = u.id'
-        ' WHERE f.creator_id = ? AND DATE(f.created) = ?',
-        (g.user['id'], search_date,),
-    ).fetchall()
-
-    if food_items == []:
-        food_exists = 0
-    else:
-        food_exists = 1
-
-    for food in food_items:
-        current_date_food.append(food)
-        current_date_calories.append(food['calories'])
-
-    current_date_calories = sum(current_date_calories)
 
     return render_template('food/search_food.html', search_date=search_date, food_exists=food_exists, food_items=food_items,
                            current_date_calories=current_date_calories, display_date=display_date)
