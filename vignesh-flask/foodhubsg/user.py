@@ -22,8 +22,8 @@ def user_settings():
         'SELECT f.id, creator_id, food_name, created, calories, food_code, email'
         ' FROM food_entry f JOIN user u ON f.creator_id = u.id'
         ' WHERE f.creator_id = ? AND DATE(f.created) IN'
-        ' (SELECT DISTINCT DATE(created) FROM food_entry WHERE NOT date(f.created) = date("now")'
-        ' ORDER BY datetime(created) DESC LIMIT 8)'
+        ' (SELECT DISTINCT DATE(created) FROM food_entry '
+        ' WHERE NOT date(f.created) = date("now") ORDER BY datetime(created) DESC LIMIT 8)'
         ' ORDER BY datetime(created) DESC',
         (g.user['id'],),
     ).fetchall()
@@ -43,9 +43,7 @@ def user_settings():
         email = user['email']
         password = user['password']
 
-    bmi = weight / height ** height
-
-    bmi = round(bmi, 2)
+    bmi = round(weight / height ** height, 2)
     all_dates = []
     food_dates = []
     calories_list = []
@@ -64,7 +62,6 @@ def user_settings():
     # lunch_message = None
     # dinner_message = None
     snack_message = None
-    ideal_weight = weight
     password_placeholder = "(unchanged)"
 
     if food_items == []:
@@ -110,6 +107,7 @@ def user_settings():
             snack_list.append(food['calories'])
             average_snack_calories = round(sum(snack_list) / number_of_days, 2)
 
+    ideal_weight = weight
 
     if bmi < 22:
         while ideal_weight / height ** height < 23:
@@ -136,12 +134,12 @@ def user_settings():
                                  "into your food journal, which is below the daily recommended amount of 2500 kcal."\
                                 .format(user_average_calories, number_of_days)
         elif 1500 <= user_average_calories <= 2500:
-            calories_statement = "You consumed an average of {0} kcal daily over the {1} days you've entered food, " \
+            calories_statement = "You consumed an average of {0} kcal daily over the {1} days you've entered food " \
                                  "into your food journal, which is within the daily recommended amount, so keep following your current diet." \
                                 .format(user_average_calories, number_of_days)
 
         elif user_average_calories > 2500:
-            calories_statement = "You consumed an average of {} kcal daily over the last {} days you've entered food, " \
+            calories_statement = "You consumed an average of {} kcal daily over the last {} days you've entered food " \
                                  "which is above the daily recommended amount of 2500 kcal." \
                                 .format(user_average_calories, number_of_days)
     #
@@ -256,6 +254,8 @@ def user_settings():
                     if new_password:
                         if check_password_hash(password, new_password):
                             error = "You've entered your previous password"
+                        elif " " in  new_password:
+                            error = "Please don't enter whitespaces in your new password"
                         else:
                             db.execute(
                                 'UPDATE user SET password = ? WHERE id = ?',

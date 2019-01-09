@@ -78,6 +78,8 @@ def register():
             error = 'Please enter your email'
         elif not password:
             error = 'Please enter your password'
+        elif " " in password:
+            error = "Please don't enter whitespaces in your password"
         elif check_user is not None:
             error = 'This email ({}) is already registered.'.format(email)
 
@@ -144,16 +146,14 @@ def change_password():
 
         email = email.lower()
 
-        user = db.execute(
-            'SELECT * FROM user WHERE email = ?', (email,)
-        ).fetchone()
+        user = db.execute('SELECT * FROM user WHERE email = ?', (email,)).fetchone()
 
         if user is None:
             error = 'Incorrect email entered'
         else:
             db.execute(
                 'UPDATE user SET password = ? WHERE email = ?',
-                (email, generate_password_hash(password))
+                (generate_password_hash(password), email)
             )
             db.commit()
 
