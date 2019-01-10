@@ -1,7 +1,7 @@
 FoodHub.SG
 ======
 
-A health app that recommends healthy food near you!
+A health app that tracks yout calorie intake and recommends healthy food near you!
 
 Run
 ---
