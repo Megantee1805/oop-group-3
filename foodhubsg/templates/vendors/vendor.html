@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %} Vendors {% endblock %}
+{% block content %}
+<div id="colorlib-container">
+    <div class="container">
+        <div class="box1">
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <div class="blog-entry">
+                        <div class="blog-img"></div>
+                        <img src="{{ current_vendor.get_image_location() }}" class="img-responsive" alt="{{ name }} Image">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="desc">
+                        <p class="meta">
+                            <b class="vendors"><b>{{ name }}</b></b><br>
+                            <span class="food_location"><b>{{ location }}</b></span><br>
+                            <span class=food_rating">Healthiness rating:
+                                {% if rating == 1 %}
+                                    <span class='fa fa-star checked'></span><span class='fa fa-star'></span><span class='fa fa-star'></span><span class='fa fa-star'></span>
+                                {% elif rating == 2 %}
+                                    <span class='fa fa-star checked'></span><span class='fa fa-star checked'></span><span class='fa fa-star'></span><span class='fa fa-star'></span>
+                                {% elif rating == 3 %}
+                                    <span class='fa fa-star checked'></span><span class='fa fa-star checked'></span><span class='fa fa-star checked'></span><span class='fa fa-star'></span>
+                                {% elif rating == 4 %}
+                                    <span class='fa fa-star checked'></span><span class='fa fa-star checked'></span><span class='fa fa-star checked'></span><span class='fa fa-star checked'></span>
+                                {% endif %}
+                            </span>
+                        </p>
+                    </div>
+                    <h4>{{ description }}</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
