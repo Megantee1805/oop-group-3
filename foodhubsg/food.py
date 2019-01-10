@@ -5,7 +5,7 @@ from werkzeug.exceptions import abort
 from datetime import datetime
 
 from foodhubsg.auth import login_required
-from foodhubsg.db import get_db
+from foodhubsg.db import *
 from foodhubsg.classes import *
 from foodhubsg.vendors import *
 
