@@ -35,4 +35,7 @@ def create_app(test_config=None):
 
     app.add_url_rule('/', endpoint='index')
 
+    if __name__ == '__main__':
+        app.run(host='127.0.0.1', port='80')
+
     return app
