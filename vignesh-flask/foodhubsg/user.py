@@ -305,7 +305,8 @@ def faq():
             return render_template('user/faq.html', queries = queries)
         if request.form['action'] == 'answer-query':
             error = None
-            return redirect(url_for('user.answer'))
+            answer_question= request.form['question']
+            return render_template('user/answer_faq.html', qns =answer_question)
     queries = db.execute('SELECT * FROM question_and_answer').fetchall()
     return render_template('user/faq.html', queries=queries)
 

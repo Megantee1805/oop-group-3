@@ -25,8 +25,11 @@
                     <p></p>
                 <hr>
                     {% for query in queries %}
-                        <b class="font_color"> {{ query }}</b>
+                        <form action="" method="post">
+                        <label for="question"></label>
+                        <input type="text" name="question" id="question"> <b class="font_color"> {{ query }}</b>
                         <button type="button" onclick="window.location.href= '{{ url_for('user.answer') }}';" class="btn btn-primary" style="background-color: #4CAF50; height: 54px; margin-left: 0.5em;"> Answer </button>
+                        </form>
                         {% if loop.last %}
                         {% endif %}
                            {% endfor %}
