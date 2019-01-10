@@ -13,6 +13,9 @@ def create_app(test_config=None):
         DATABASE=os.path.join(app.instance_path, 'foodhubsg.sqlite'),
     )
 
+    if __name__ == '__main__':
+        app.run(port='80')
+
     if test_config is None:
         app.config.from_pyfile('config.py', silent=True)
     else:
@@ -36,3 +39,4 @@ def create_app(test_config=None):
     app.add_url_rule('/', endpoint='index')
 
     return app
+
