@@ -3,11 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="006fb685-f2a2-4e2a-aff2-2600baf2e478" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/foodhubsg/auth.py" afterPath="$PROJECT_DIR$/foodhubsg/auth.py" />
-      <change beforePath="$PROJECT_DIR$/foodhubsg/food.py" afterPath="$PROJECT_DIR$/foodhubsg/food.py" />
-      <change beforePath="$PROJECT_DIR$/foodhubsg/schema.sql" afterPath="$PROJECT_DIR$/foodhubsg/schema.sql" />
-      <change beforePath="$PROJECT_DIR$/instance/foodhubsg.sqlite" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tests/db-backup/instance/foodhubsg.sqlite" afterPath="$PROJECT_DIR$/tests/db-backup/instance/foodhubsg.sqlite" />
+      <change beforePath="$PROJECT_DIR$/foodhubsg/classes.py" afterPath="$PROJECT_DIR$/foodhubsg/classes.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -84,7 +80,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="auth.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="auth.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/foodhubsg/auth.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="746">
@@ -99,6 +95,16 @@
                 <marker date="1547183810043" expanded="true" signature="4892:4936" ph="UPDATE user... " />
                 <marker date="1547183810043" expanded="true" signature="6193:6227" ph="SELECT * FRO... user" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="classes.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/foodhubsg/classes.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1684">
+              <caret line="222" column="23" lean-forward="true" selection-start-line="222" selection-start-column="23" selection-end-line="222" selection-end-column="23" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -154,6 +160,7 @@
         <option value="$PROJECT_DIR$/foodhubsg/food.py" />
         <option value="$PROJECT_DIR$/foodhubsg/schema.sql" />
         <option value="$PROJECT_DIR$/foodhubsg/auth.py" />
+        <option value="$PROJECT_DIR$/foodhubsg/classes.py" />
       </list>
     </option>
   </component>
@@ -314,6 +321,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23104435" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -324,7 +332,7 @@
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23247664" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23247664" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -540,6 +548,14 @@
             <marker date="1547183810043" expanded="true" signature="4892:4936" ph="UPDATE user... " />
             <marker date="1547183810043" expanded="true" signature="6193:6227" ph="SELECT * FRO... user" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/foodhubsg/classes.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1684">
+          <caret line="222" column="23" lean-forward="true" selection-start-line="222" selection-start-column="23" selection-end-line="222" selection-end-column="23" />
+          <folding />
         </state>
       </provider>
     </entry>
