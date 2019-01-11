@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="006fb685-f2a2-4e2a-aff2-2600baf2e478" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/foodhubsg/auth.py" afterPath="$PROJECT_DIR$/foodhubsg/auth.py" />
       <change beforePath="$PROJECT_DIR$/foodhubsg/food.py" afterPath="$PROJECT_DIR$/foodhubsg/food.py" />
+      <change beforePath="$PROJECT_DIR$/foodhubsg/schema.sql" afterPath="$PROJECT_DIR$/foodhubsg/schema.sql" />
+      <change beforePath="$PROJECT_DIR$/instance/foodhubsg.sqlite" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/db-backup/instance/foodhubsg.sqlite" afterPath="$PROJECT_DIR$/tests/db-backup/instance/foodhubsg.sqlite" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -13,24 +18,86 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="food.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="food.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/foodhubsg/food.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="7" lean-forward="false" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="7" />
+            <state relative-caret-position="1576">
+              <caret line="312" column="56" lean-forward="false" selection-start-line="312" selection-start-column="56" selection-end-line="312" selection-end-column="56" />
               <folding>
                 <element signature="e#0#90#0" expanded="true" />
-                <marker date="1547114375052" expanded="true" signature="399:560" ph="SELECT f.id,... food_entry" />
-                <marker date="1547114375052" expanded="true" signature="1191:1577" ph="SELECT f.id,... food_entry" />
-                <marker date="1547114375052" expanded="true" signature="1396:1533" ph="SELECT DISTI... food_entry" />
-                <marker date="1547114375052" expanded="true" signature="1656:1749" ph="SELECT id, n... user" />
-                <marker date="1547114375052" expanded="true" signature="5124:5471" ph="SELECT f.id,... food_entry" />
-                <marker date="1547114375052" expanded="true" signature="5329:5427" ph="SELECT DISTI... food_entry" />
-                <marker date="1547114375052" expanded="true" signature="5550:5643" ph="SELECT id, n... user" />
-                <marker date="1547114375052" expanded="true" signature="7501:7619" ph="INSERT INTO food_entry... " />
-                <marker date="1547114375052" expanded="true" signature="9700:9777" ph="UPDATE food_entry... " />
-                <marker date="1547114375052" expanded="true" signature="10417:10452" ph="DELETE FROM food_entry... " />
-                <marker date="1547114375052" expanded="true" signature="11239:11440" ph="SELECT f.id,... food_entry" />
+                <marker date="1547182921293" expanded="true" signature="392:553" ph="SELECT f.id,... food_entry" />
+                <marker date="1547182921293" expanded="true" signature="1184:1570" ph="SELECT f.id,... food_entry" />
+                <marker date="1547182921293" expanded="true" signature="1389:1526" ph="SELECT DISTI... food_entry" />
+                <marker date="1547182921293" expanded="true" signature="1649:1742" ph="SELECT id, n... user" />
+                <marker date="1547182921293" expanded="true" signature="5117:5464" ph="SELECT f.id,... food_entry" />
+                <marker date="1547182921293" expanded="true" signature="5322:5420" ph="SELECT DISTI... food_entry" />
+                <marker date="1547182921293" expanded="true" signature="5543:5636" ph="SELECT id, n... user" />
+                <marker date="1547182921293" expanded="true" signature="7494:7612" ph="INSERT INTO food_entry... " />
+                <marker date="1547182921293" expanded="true" signature="9693:9770" ph="UPDATE food_entry... " />
+                <marker date="1547182921293" expanded="true" signature="10410:10445" ph="DELETE FROM food_entry... " />
+                <marker date="1547182921293" expanded="true" signature="11232:11433" ph="SELECT f.id,... food_entry" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="user.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/foodhubsg/user.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#73#0" expanded="true" />
+                <marker date="1547181669489" expanded="true" signature="488:874" ph="SELECT f.id,... food_entry" />
+                <marker date="1547181669489" expanded="true" signature="693:830" ph="SELECT DISTI... food_entry" />
+                <marker date="1547181669489" expanded="true" signature="953:1046" ph="SELECT id, n... user" />
+                <marker date="1547181669489" expanded="true" signature="10661:10700" ph="UPDATE user... " />
+                <marker date="1547181669489" expanded="true" signature="11187:11226" ph="UPDATE user... " />
+                <marker date="1547181669489" expanded="true" signature="11738:11779" ph="UPDATE user... " />
+                <marker date="1547181669489" expanded="true" signature="13652:13716" ph="INSERT INTO question_and_answer... " />
+                <marker date="1547181669489" expanded="true" signature="13797:13830" ph="SELECT * FRO... question_and_answer" />
+                <marker date="1547181669489" expanded="true" signature="14154:14187" ph="SELECT * FRO... question_and_answer" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/foodhubsg/__init__.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#9#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="schema.sql" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/foodhubsg/schema.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="20" column="66" lean-forward="false" selection-start-line="20" selection-start-column="66" selection-end-line="20" selection-end-column="66" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="auth.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/foodhubsg/auth.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="746">
+              <caret line="216" column="0" lean-forward="false" selection-start-line="216" selection-start-column="0" selection-end-line="216" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#16#0" expanded="true" />
+                <marker date="1547183810043" expanded="true" signature="1125:1156" ph="SELECT * FRO... user" />
+                <marker date="1547183810043" expanded="true" signature="1618:1653" ph="SELECT id FR... user" />
+                <marker date="1547183810043" expanded="true" signature="2848:2927" ph="INSERT INTO user... " />
+                <marker date="1547183810043" expanded="true" signature="3765:3799" ph="SELECT * FRO... user" />
+                <marker date="1547183810043" expanded="true" signature="4707:4741" ph="SELECT * FRO... user" />
+                <marker date="1547183810043" expanded="true" signature="4892:4936" ph="UPDATE user... " />
+                <marker date="1547183810043" expanded="true" signature="6193:6227" ph="SELECT * FRO... user" />
               </folding>
             </state>
           </provider>
@@ -49,8 +116,8 @@
       <file leaf-file-name="db.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/foodhubsg/db.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-6">
-              <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+            <state relative-caret-position="-318">
+              <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
               </folding>
@@ -85,6 +152,8 @@
         <option value="$PROJECT_DIR$/vignesh-flask/foodhubsg/templates/food/faq.html" />
         <option value="$PROJECT_DIR$/vignesh-flask/foodhubsg/auth.py" />
         <option value="$PROJECT_DIR$/foodhubsg/food.py" />
+        <option value="$PROJECT_DIR$/foodhubsg/schema.sql" />
+        <option value="$PROJECT_DIR$/foodhubsg/auth.py" />
       </list>
     </option>
   </component>
@@ -95,10 +164,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="x" value="237" />
-    <option name="y" value="87" />
-    <option name="width" value="1299" />
-    <option name="height" value="672" />
+    <option name="width" value="1440" />
+    <option name="height" value="900" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -115,6 +182,28 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="oop-group-3" type="b2602c69:ProjectViewProjectNode" />
+              <item name="oop-group-3" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="oop-group-3" type="b2602c69:ProjectViewProjectNode" />
+              <item name="oop-group-3" type="462c0819:PsiDirectoryNode" />
+              <item name="foodhubsg" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="oop-group-3" type="b2602c69:ProjectViewProjectNode" />
+              <item name="oop-group-3" type="462c0819:PsiDirectoryNode" />
+              <item name="instance" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
       <pane id="Scope">
         <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
           <expand>
@@ -175,23 +264,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="oop-group-3" type="b2602c69:ProjectViewProjectNode" />
-              <item name="oop-group-3" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="oop-group-3" type="b2602c69:ProjectViewProjectNode" />
-              <item name="oop-group-3" type="462c0819:PsiDirectoryNode" />
-              <item name="foodhubsg" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -243,24 +315,24 @@
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24964234" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23104435" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32943925" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23247664" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
@@ -276,6 +348,92 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/foodhubsg/food.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="27" column="21" lean-forward="true" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#90#0" expanded="true" />
+            <marker date="1547182921293" expanded="true" signature="392:553" ph="SELECT f.id,... food_entry" />
+            <marker date="1547182921293" expanded="true" signature="1184:1570" ph="SELECT f.id,... food_entry" />
+            <marker date="1547182921293" expanded="true" signature="1389:1526" ph="SELECT DISTI... food_entry" />
+            <marker date="1547182921293" expanded="true" signature="1649:1742" ph="SELECT id, n... user" />
+            <marker date="1547182921293" expanded="true" signature="5117:5464" ph="SELECT f.id,... food_entry" />
+            <marker date="1547182921293" expanded="true" signature="5322:5420" ph="SELECT DISTI... food_entry" />
+            <marker date="1547182921293" expanded="true" signature="5543:5636" ph="SELECT id, n... user" />
+            <marker date="1547182921293" expanded="true" signature="7494:7612" ph="INSERT INTO food_entry... " />
+            <marker date="1547182921293" expanded="true" signature="9693:9770" ph="UPDATE food_entry... " />
+            <marker date="1547182921293" expanded="true" signature="10410:10445" ph="DELETE FROM food_entry... " />
+            <marker date="1547182921293" expanded="true" signature="11232:11433" ph="SELECT f.id,... food_entry" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/foodhubsg/schema.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="43" lean-forward="true" selection-start-line="24" selection-start-column="43" selection-end-line="24" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/requirements.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/foodhubsg/db.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/foodhubsg/food.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#90#0" expanded="true" />
+            <marker date="1547182921293" expanded="true" signature="392:553" ph="SELECT f.id,... food_entry" />
+            <marker date="1547182921293" expanded="true" signature="1184:1570" ph="SELECT f.id,... food_entry" />
+            <marker date="1547182921293" expanded="true" signature="1389:1526" ph="SELECT DISTI... food_entry" />
+            <marker date="1547182921293" expanded="true" signature="1649:1742" ph="SELECT id, n... user" />
+            <marker date="1547182921293" expanded="true" signature="5117:5464" ph="SELECT f.id,... food_entry" />
+            <marker date="1547182921293" expanded="true" signature="5322:5420" ph="SELECT DISTI... food_entry" />
+            <marker date="1547182921293" expanded="true" signature="5543:5636" ph="SELECT id, n... user" />
+            <marker date="1547182921293" expanded="true" signature="7494:7612" ph="INSERT INTO food_entry... " />
+            <marker date="1547182921293" expanded="true" signature="9693:9770" ph="UPDATE food_entry... " />
+            <marker date="1547182921293" expanded="true" signature="10410:10445" ph="DELETE FROM food_entry... " />
+            <marker date="1547182921293" expanded="true" signature="11232:11433" ph="SELECT f.id,... food_entry" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/requirements.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/foodhubsg/db.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/vignesh-flask/foodhubsg/templates/user_settings.html" />
     <entry file="file://$PROJECT_DIR$/vignesh-flask/setup.py" />
     <entry file="file://$PROJECT_DIR$/vignesh-flask/foodhubsg/templates/food/food_journal.html" />
@@ -300,33 +458,87 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/foodhubsg/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/foodhubsg/db.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-6">
-          <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+        <state relative-caret-position="-318">
+          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/foodhubsg/user.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#73#0" expanded="true" />
+            <marker date="1547181669489" expanded="true" signature="488:874" ph="SELECT f.id,... food_entry" />
+            <marker date="1547181669489" expanded="true" signature="693:830" ph="SELECT DISTI... food_entry" />
+            <marker date="1547181669489" expanded="true" signature="953:1046" ph="SELECT id, n... user" />
+            <marker date="1547181669489" expanded="true" signature="10661:10700" ph="UPDATE user... " />
+            <marker date="1547181669489" expanded="true" signature="11187:11226" ph="UPDATE user... " />
+            <marker date="1547181669489" expanded="true" signature="11738:11779" ph="UPDATE user... " />
+            <marker date="1547181669489" expanded="true" signature="13652:13716" ph="INSERT INTO question_and_answer... " />
+            <marker date="1547181669489" expanded="true" signature="13797:13830" ph="SELECT * FRO... question_and_answer" />
+            <marker date="1547181669489" expanded="true" signature="14154:14187" ph="SELECT * FRO... question_and_answer" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/foodhubsg/food.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="7" lean-forward="false" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="7" />
+        <state relative-caret-position="1576">
+          <caret line="312" column="56" lean-forward="false" selection-start-line="312" selection-start-column="56" selection-end-line="312" selection-end-column="56" />
           <folding>
             <element signature="e#0#90#0" expanded="true" />
-            <marker date="1547114375052" expanded="true" signature="399:560" ph="SELECT f.id,... food_entry" />
-            <marker date="1547114375052" expanded="true" signature="1191:1577" ph="SELECT f.id,... food_entry" />
-            <marker date="1547114375052" expanded="true" signature="1396:1533" ph="SELECT DISTI... food_entry" />
-            <marker date="1547114375052" expanded="true" signature="1656:1749" ph="SELECT id, n... user" />
-            <marker date="1547114375052" expanded="true" signature="5124:5471" ph="SELECT f.id,... food_entry" />
-            <marker date="1547114375052" expanded="true" signature="5329:5427" ph="SELECT DISTI... food_entry" />
-            <marker date="1547114375052" expanded="true" signature="5550:5643" ph="SELECT id, n... user" />
-            <marker date="1547114375052" expanded="true" signature="7501:7619" ph="INSERT INTO food_entry... " />
-            <marker date="1547114375052" expanded="true" signature="9700:9777" ph="UPDATE food_entry... " />
-            <marker date="1547114375052" expanded="true" signature="10417:10452" ph="DELETE FROM food_entry... " />
-            <marker date="1547114375052" expanded="true" signature="11239:11440" ph="SELECT f.id,... food_entry" />
+            <marker date="1547182921293" expanded="true" signature="392:553" ph="SELECT f.id,... food_entry" />
+            <marker date="1547182921293" expanded="true" signature="1184:1570" ph="SELECT f.id,... food_entry" />
+            <marker date="1547182921293" expanded="true" signature="1389:1526" ph="SELECT DISTI... food_entry" />
+            <marker date="1547182921293" expanded="true" signature="1649:1742" ph="SELECT id, n... user" />
+            <marker date="1547182921293" expanded="true" signature="5117:5464" ph="SELECT f.id,... food_entry" />
+            <marker date="1547182921293" expanded="true" signature="5322:5420" ph="SELECT DISTI... food_entry" />
+            <marker date="1547182921293" expanded="true" signature="5543:5636" ph="SELECT id, n... user" />
+            <marker date="1547182921293" expanded="true" signature="7494:7612" ph="INSERT INTO food_entry... " />
+            <marker date="1547182921293" expanded="true" signature="9693:9770" ph="UPDATE food_entry... " />
+            <marker date="1547182921293" expanded="true" signature="10410:10445" ph="DELETE FROM food_entry... " />
+            <marker date="1547182921293" expanded="true" signature="11232:11433" ph="SELECT f.id,... food_entry" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/foodhubsg/schema.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="66" lean-forward="false" selection-start-line="20" selection-start-column="66" selection-end-line="20" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/foodhubsg/auth.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="746">
+          <caret line="216" column="0" lean-forward="false" selection-start-line="216" selection-start-column="0" selection-end-line="216" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#16#0" expanded="true" />
+            <marker date="1547183810043" expanded="true" signature="1125:1156" ph="SELECT * FRO... user" />
+            <marker date="1547183810043" expanded="true" signature="1618:1653" ph="SELECT id FR... user" />
+            <marker date="1547183810043" expanded="true" signature="2848:2927" ph="INSERT INTO user... " />
+            <marker date="1547183810043" expanded="true" signature="3765:3799" ph="SELECT * FRO... user" />
+            <marker date="1547183810043" expanded="true" signature="4707:4741" ph="SELECT * FRO... user" />
+            <marker date="1547183810043" expanded="true" signature="4892:4936" ph="UPDATE user... " />
+            <marker date="1547183810043" expanded="true" signature="6193:6227" ph="SELECT * FRO... user" />
           </folding>
         </state>
       </provider>
