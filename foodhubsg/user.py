@@ -297,28 +297,31 @@ def faq():
     db = get_db()
     if request.method == 'POST':
         question = request.form['query']
-        if request.form['action'] == 'submit-query':
+        if request.form['action'] == 'Submit A Question':
             answer = "No answer given yet, please answer on your own"
             db.execute('INSERT INTO question_and_answer (question, answer) VALUES (?, ?)', (question, answer))
             db.commit()
             queries = db.execute('SELECT * FROM question_and_answer').fetchall()
-            return render_template('user/faq.html', queries = queries)
-        if request.form['action'] == 'answer-query':
+            for row in queries:
+                return render_template('user/faq.html', queries=row)
+        if request.form['action'] == 'Answer':
             error = None
             answer_question= request.form['question']
             return render_template('user/answer_faq.html', qns =answer_question)
     queries = db.execute('SELECT * FROM question_and_answer').fetchall()
-    return render_template('user/faq.html', queries=queries)
+    for row in queries:
+        return render_template('user/faq.html', queries=row)
 
 
 @bp.route('/answer')
 @login_required
 def answer():
+    db = get_db()
+    if request.method == 'POST':
+        answer = request.form['answer']
+        db.execute('INSERT INTO question_and_answer (answer) VALUES (?)', [answer])
+        db.commit()
+        return render_template('user/faq.html')
     return render_template('user/answer_faq.html')
-    # db = get_db()
-    #if request.method == 'POST':
-        #answer = request.form['answer']
-        #db.execute('INSERT INTO question_and_answer (answer) VALUES (?)', [answer])
-        #db.commit()
-        #return render_template('user/faq.html')
+
 
