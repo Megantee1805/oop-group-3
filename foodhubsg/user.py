@@ -297,14 +297,14 @@ def faq():
     db = get_db()
     if request.method == 'POST':
         question = request.form['query']
-        if request.form['action'] == 'Submit A Question':
+        if request.form['action'] == 'submit-query':
             answer = "No answer given yet, please answer on your own"
             db.execute('INSERT INTO question_and_answer (question, answer) VALUES (?, ?)', (question, answer))
             db.commit()
             queries = db.execute('SELECT * FROM question_and_answer').fetchall()
             for row in queries:
                 return render_template('user/faq.html', queries=row)
-        if request.form['action'] == 'Answer':
+        elif request.form['action'] == 'Answer':
             error = None
             answer_question= request.form['question']
             return render_template('user/answer_faq.html', qns =answer_question)
