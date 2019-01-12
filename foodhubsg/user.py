@@ -309,7 +309,8 @@ def faq():
             answer_question= request.form['question']
             return render_template('user/answer_faq.html', qns =answer_question)
     queries = db.execute('SELECT * FROM question_and_answer').fetchall()
-    return render_template('user/faq.html', queries=queries)
+    for row in queries:
+        return render_template('user/faq.html', queries=row)
 
 
 @bp.route('/answer')

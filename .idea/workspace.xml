@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="006fb685-f2a2-4e2a-aff2-2600baf2e478" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/foodhubsg/templates/user/faq.html" beforeDir="false" afterPath="$PROJECT_DIR$/foodhubsg/templates/user/faq.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/foodhubsg/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/foodhubsg/user.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/instance/foodhubsg.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/instance/foodhubsg.sqlite" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,8 +27,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/foodhubsg/user.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="155">
-              <caret line="306" column="44" selection-start-line="306" selection-start-column="44" selection-end-line="306" selection-end-column="44" />
+            <state relative-caret-position="257">
+              <caret line="312" column="60" selection-start-line="312" selection-start-column="60" selection-end-line="312" selection-end-column="60" />
               <folding>
                 <element signature="e#0#73#0" expanded="true" />
               </folding>
@@ -285,18 +283,18 @@
       <workItem from="1545299591868" duration="84000" />
       <workItem from="1545311224150" duration="2266000" />
       <workItem from="1545662343647" duration="7254000" />
-      <workItem from="1547258329958" duration="963000" />
+      <workItem from="1547258329958" duration="1214000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10958000" />
+    <option name="totallyTimeSpent" value="11209000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23481782" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23481782" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" />
@@ -309,7 +307,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.26395938" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.26395938" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="11" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -411,8 +409,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/foodhubsg/user.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="306" column="44" selection-start-line="306" selection-start-column="44" selection-end-line="306" selection-end-column="44" />
+        <state relative-caret-position="257">
+          <caret line="312" column="60" selection-start-line="312" selection-start-column="60" selection-end-line="312" selection-end-column="60" />
           <folding>
             <element signature="e#0#73#0" expanded="true" />
           </folding>
