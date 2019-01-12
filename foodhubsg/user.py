@@ -302,11 +302,10 @@ def faq():
             db.execute('INSERT INTO question_and_answer (question, answer) VALUES (?, ?)', (question, answer))
             db.commit()
             queries = db.execute('SELECT * FROM question_and_answer').fetchall()
-            no_of_qns = db.execute('SELECT * FROM question_and_answer').fetchall()
             for row in queries:
-                for num in no_of_qns:
-                    return render_template('user/faq.html', queries=row, id = num)
+                return render_template('user/faq.html', queries=row)
         if request.form['action'] == 'Answer':
+            error = None
             answer_question= request.form['question']
             return render_template('user/answer_faq.html', qns =answer_question)
     queries = db.execute('SELECT * FROM question_and_answer').fetchall()
