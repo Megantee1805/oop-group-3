@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="006fb685-f2a2-4e2a-aff2-2600baf2e478" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/oop-group-3.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/oop-group-3.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodhubsg/templates/user/faq.html" beforeDir="false" afterPath="$PROJECT_DIR$/foodhubsg/templates/user/faq.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodhubsg/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/foodhubsg/user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/instance/foodhubsg.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/instance/foodhubsg.sqlite" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,7 +17,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/foodhubsg/food.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5304">
+            <state relative-caret-position="-341">
               <caret line="312" column="56" selection-start-line="312" selection-start-column="56" selection-end-line="312" selection-end-column="56" />
               <folding>
                 <element signature="e#0#90#0" expanded="true" />
@@ -29,8 +29,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/foodhubsg/user.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="325">
-              <caret line="317" column="4" lean-forward="true" selection-start-line="317" selection-start-column="4" selection-end-line="317" selection-end-column="4" />
+            <state relative-caret-position="155">
+              <caret line="306" column="44" selection-start-line="306" selection-start-column="44" selection-end-line="306" selection-end-column="44" />
               <folding>
                 <element signature="e#0#73#0" expanded="true" />
               </folding>
@@ -50,22 +50,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/foodhubsg/schema.sql">
+        <entry file="file://$PROJECT_DIR$/foodhubsg/templates/user/faq.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="20" column="66" selection-start-line="20" selection-start-column="66" selection-end-line="20" selection-end-column="66" />
+            <state relative-caret-position="328">
+              <caret line="44" column="65" selection-start-line="44" selection-start-column="65" selection-end-line="44" selection-end-column="65" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/foodhubsg/auth.py">
+        <entry file="file://$PROJECT_DIR$/foodhubsg/templates/auth/login.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3672">
-              <caret line="216" selection-start-line="216" selection-end-line="216" />
-              <folding>
-                <element signature="e#0#16#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="340">
+              <caret line="68" column="39" lean-forward="true" selection-start-line="68" selection-start-column="32" selection-end-line="68" selection-end-column="178" />
             </state>
           </provider>
         </entry>
@@ -73,8 +70,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/foodhubsg/classes.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3774">
-              <caret line="222" column="23" selection-start-line="222" selection-start-column="23" selection-end-line="222" selection-end-column="23" />
+            <state relative-caret-position="4896">
+              <caret line="288" column="14" selection-start-line="288" selection-start-column="14" selection-end-line="288" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -126,6 +123,8 @@
         <option value="$PROJECT_DIR$/foodhubsg/schema.sql" />
         <option value="$PROJECT_DIR$/foodhubsg/auth.py" />
         <option value="$PROJECT_DIR$/foodhubsg/classes.py" />
+        <option value="$PROJECT_DIR$/foodhubsg/templates/user/faq.html" />
+        <option value="$PROJECT_DIR$/foodhubsg/user.py" />
       </list>
     </option>
   </component>
@@ -214,6 +213,33 @@
             <path>
               <item name="oop-group-3" type="b2602c69:ProjectViewProjectNode" />
               <item name="oop-group-3" type="462c0819:PsiDirectoryNode" />
+              <item name="foodhubsg" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="oop-group-3" type="b2602c69:ProjectViewProjectNode" />
+              <item name="oop-group-3" type="462c0819:PsiDirectoryNode" />
+              <item name="foodhubsg" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="auth" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="oop-group-3" type="b2602c69:ProjectViewProjectNode" />
+              <item name="oop-group-3" type="462c0819:PsiDirectoryNode" />
+              <item name="foodhubsg" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="food" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="oop-group-3" type="b2602c69:ProjectViewProjectNode" />
+              <item name="oop-group-3" type="462c0819:PsiDirectoryNode" />
+              <item name="foodhubsg" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="user" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="oop-group-3" type="b2602c69:ProjectViewProjectNode" />
+              <item name="oop-group-3" type="462c0819:PsiDirectoryNode" />
               <item name="instance" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -259,12 +285,12 @@
       <workItem from="1545299591868" duration="84000" />
       <workItem from="1545311224150" duration="2266000" />
       <workItem from="1545662343647" duration="7254000" />
-      <workItem from="1547258329958" duration="293000" />
+      <workItem from="1547258329958" duration="963000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10288000" />
+    <option name="totallyTimeSpent" value="10958000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
@@ -313,42 +339,6 @@
     <entry file="file://$PROJECT_DIR$/vignesh-flask/foodhubsg/templates/auth/login.html" />
     <entry file="file://$PROJECT_DIR$/vignesh-flask/foodhubsg/user.py" />
     <entry file="file://$PROJECT_DIR$/vignesh-flask/foodhubsg/auth.py" />
-    <entry file="file://$PROJECT_DIR$/foodhubsg/food.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5304">
-          <caret line="312" column="56" selection-start-line="312" selection-start-column="56" selection-end-line="312" selection-end-column="56" />
-          <folding>
-            <element signature="e#0#90#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/foodhubsg/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/foodhubsg/schema.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="66" selection-start-line="20" selection-start-column="66" selection-end-line="20" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/foodhubsg/auth.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3672">
-          <caret line="216" selection-start-line="216" selection-end-line="216" />
-          <folding>
-            <element signature="e#0#16#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/requirements.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -362,17 +352,67 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/foodhubsg/food.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-341">
+          <caret line="312" column="56" selection-start-line="312" selection-start-column="56" selection-end-line="312" selection-end-column="56" />
+          <folding>
+            <element signature="e#0#90#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/foodhubsg/classes.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3774">
-          <caret line="222" column="23" selection-start-line="222" selection-start-column="23" selection-end-line="222" selection-end-column="23" />
+        <state relative-caret-position="4896">
+          <caret line="288" column="14" selection-start-line="288" selection-start-column="14" selection-end-line="288" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/foodhubsg/schema.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="66" selection-start-line="20" selection-start-column="66" selection-end-line="20" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/foodhubsg/auth.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="529">
+          <caret line="216" selection-start-line="216" selection-end-line="216" />
+          <folding>
+            <element signature="e#0#16#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/foodhubsg/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/foodhubsg/templates/auth/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="68" column="39" lean-forward="true" selection-start-line="68" selection-start-column="32" selection-end-line="68" selection-end-column="178" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/foodhubsg/templates/user/faq.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="328">
+          <caret line="44" column="65" selection-start-line="44" selection-start-column="65" selection-end-line="44" selection-end-column="65" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/foodhubsg/user.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="317" column="4" lean-forward="true" selection-start-line="317" selection-start-column="4" selection-end-line="317" selection-end-column="4" />
+        <state relative-caret-position="155">
+          <caret line="306" column="44" selection-start-line="306" selection-start-column="44" selection-end-line="306" selection-end-column="44" />
           <folding>
             <element signature="e#0#73#0" expanded="true" />
           </folding>

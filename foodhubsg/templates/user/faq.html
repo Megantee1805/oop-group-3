@@ -25,10 +25,11 @@
                     <p></p>
                 <hr>
                     {% for query in queries %}
+                        <hr>
                         <form action="" method="post">
                         <label for="question"></label>
-                        <input type="text" name="question" id="question"> <b class="font_color"> {{ query }}</b>
-                        <button type="button" onclick="window.location.href= '{{ url_for('user.answer') }}';" class="btn btn-primary" style="background-color: #4CAF50; height: 54px; margin-left: 0.5em;"> Answer </button>
+                            <b class="font_color"> {{ query }}</b>
+                       <input type="submit" value="Answer" class="btn btn-primary" style="width:135px; background-color: #4CAF50; border: lightgreen; border-radius: 0;">
                         </form>
                         {% if loop.last %}
                         {% endif %}
@@ -41,7 +42,7 @@
                     <textarea id="query" name="query" form="query-form" class="form-control" rows="4" cols="70">
                     </textarea>
                     <div></div>
-                    <input type="submit" value="submit-query" name="action" class="btn btn-primary" style="background-color: #4CAF50; height: 54px; margin-left: 0.5em;">
+                    <input type="submit" value="Submit A Question" name="action" class="btn btn-primary" style="background-color: #4CAF50; height: 54px; margin-left: 0.5em;">
                 </form>
         </div>
         </div>
