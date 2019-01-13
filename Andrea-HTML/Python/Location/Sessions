@@ -1,0 +1,3 @@
+with requests.Session() as session:
+>>>    sengkang = geocoder.google("1 SENGKANG SQUARE, 545078", session=session)
+>>>  
