@@ -240,7 +240,7 @@ amk05 = Vendor (
 
 pun01 = Vendor (
     code = "pun01",
-    name = "Simply Wraps",
+    name = "Grains",
     average_calories = 768,
     area = '',
     location = '',
@@ -252,7 +252,7 @@ pun01 = Vendor (
 
 pun02 = Vendor (
     code = "pun02",
-    name = "The Living Cafe",
+    name = "The Soup Spoon",
     average_calories = 768,
     area = '',
     location = '',
