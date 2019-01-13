@@ -30,7 +30,52 @@
                         </p>
                     </div>
                     <h4>{{ description }}</h4>
+                    
+                    <div class="col-md-4">
+						<div class="blog-entry">
+							
+						    <img src="../static/images/food-image-1.png">
+							<div class="desc">
+								<p><strong>Mee Goreng/Fried Rice Combo</strong><img src="../static/images/thumbs-down-icon.png" > 
+								<br>Code: <strong> {{ code }} </strong>
+								<br>Calories: <strong>{{ food.get_calories }} kcal (not recommended) </strong> </p>
+							</div>
+							
+						</div>
+					</div>
+					
+					
+					<div class="col-md-4">
+						<div class="blog-entry">
+							
+						    <img src="../static/images/food-image-2.png"> 
+						    <div class="desc">
+								<p><strong>Mee Siam</strong> <img src="../static/images/thumbs-up-icon.png">
+								<br>Code: <strong> {{ code }}  </strong>
+								<br>Calories: <strong> {{ food.get_calories }} kcal (recommended)</strong></p>
+							</div>
+                              
+						</div>
+					</div>
+					
+					
+					<div class="col-md-4">
+						<div class="blog-entry">
+							
+									
+							<img src="../static/images/food-image-3.png">
+							<div class="desc">
+								<p><strong>Nasi Briyani</strong><img src="../static/images/thumbs-down-icon.png">
+								<br>Code: <strong> {{ code }}  </strong>
+								<br>Calories: <strong> {{ food.get_calories }} kcal (not recommended) </strong></p>
+							</div>
+							
+						</div>
+					</div>
+					                                
+                                                    
                 </div>
+                                                    
             </div>
         </div>
     </div>
