@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block title %}Search Food{% endblock %}
+
+{% block content %}
+
+<div id="colorlib-container">
+    <div class="container">
+
+        <div class="box1">
+        <div class="row row-pb-md">
+            <div class="col-md-12">
+
+                <form method="post">
+                    <header id="summary-header">
+                        <div class="input-group">
+                            <h1 class="font_color"><b>Food Items Found On {{ display_date }}</b></h1>
+                        </div>
+                        <hr>
+                    </header>
+                </form>
+
+                {% if food_exists == 0 %}
+                    <article class="food-journal">
+                        <header>
+                            <div class="food-subsection">
+                                <h4 style="margin-bottom: 0"><b>No food found on that date </b></h4>
+                            </div>
+                        </header>
+                    </article>
+
+                {% else %}
+
+                    {% for food in food_items %}
+
+                        <article class="food-journal">
+                            <header>
+                                <div class="food-subsection">
+                                    <div id="time-created"> <i>{{ food['created'].strftime('%I:%M %p') }}</i> </div>
+                                    <h4 style="margin-bottom: 0; display: inline"><b>{{ food['food_name'] }}</b></h4>
+                                    <p style="display: inline">(Code: {{ food['food_code'] }})</p>
+                                    <p>
+                                    {{ food['calories'] }} calories <br>
+                                    <a class="action" href="{{ url_for('food.edit_food', id = food['id']) }}"><i>Edit</i></a>
+                                    </p>
+                                </div>
+                            </header>
+                        </article>
+
+                    {% endfor %}
+
+                    <h5>Total calories consumed: <b> {{ current_date_calories }} kcal </b> </h5>
+
+                    <hr>
+
+                {% endif %}
+
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+{% endblock %}

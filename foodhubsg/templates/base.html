@@ -1,0 +1,122 @@
+<!doctype html>
+<title>{% block title %}{% endblock %} - FoodHub.SG</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<link rel="icon" href="../static/images/healthhub-logo.png">
+
+<!-- Animate.css -->
+<link rel="stylesheet" href="../static/css/animate.css">
+<!-- Icomoon Icon Fonts-->
+<link rel="stylesheet" href="../static/css/icomoon.css">
+<!-- Magnific Popup -->
+<link rel="stylesheet" href="../static/css/magnific-popup.css">
+<!-- Flexslider  -->
+<link rel="stylesheet" href="../static/css/flexslider.css">
+<!-- Owl Carousel -->
+<link rel="stylesheet" href="../static/css/owl.carousel.min.css">
+<link rel="stylesheet" href="../static/css/owl.theme.default.min.css">
+<!-- Different Stylesheets -->
+<link rel="stylesheet" href="../static/css/style.css">
+
+<script>
+$(document).ready(function(){
+
+     $("#nav-name").each(function() {
+         if($(this).text().length > 8) {
+           $(this).text($(this).text().substr(0,8)+"...");
+         }
+     });
+});
+</script>
+
+    {% block navbar %}
+        <nav class="navbar navbar-light bg-white">
+            <div class="container">
+                <a class="navbar-brand" href="{{ url_for('index') }}">
+                    <img src="../static/images/healthhub-logo.png" width="65px" height="60px" class="d-inline-block align-top" alt="FoodHub.SG Logo">
+                    <span id="webname">FoodHub.SG</span>
+                </a>
+                {% if g.user %}
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('vendors.vendors') }}">Vendors near you</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('food.food_journal') }}">Food Journal</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('user.faq') }}">FAQ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url_for('food.food_journal') }}"><button type="button" class="btn btn-success">Enter a new food code</button></a>
+                        </li>
+                        <li class="nav-item settings nav-link">
+                            <a class="nav-link" id="settings-link" href="{{ url_for('user.user_settings')}}">
+                                Welcome, <span id="nav-name">{{ g.user['name'] }}!</span>
+                            </a>
+                            <a class="nav-link" id="logout-link" href="{{ url_for('auth.logout') }}">
+                                Logout
+                            </a>
+                        </li>
+                    </ul>
+               {% else %}
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('vendors.vendors') }}">Vendors near you</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('food.food_journal') }}">Food Journal</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('user.faq') }}">FAQ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url_for('auth.login') }}"><button type="button" class="btn btn-success">Log In</button></a>
+                        </li>
+                    </ul>
+                {% endif %}
+                {% endblock %}
+            </div>
+        </nav>
+
+<section class="content">
+
+    <header>
+        {% block header %}{% endblock %}
+    </header>
+
+    {% block flash %}
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        <div class="flash {{ category }}"><div class="container"> {{ message }} </div></div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+    {% endblock %}
+
+{#    {% block auth_flash %}#}
+{#        {% with messages = get_flashed_messages(with_categories=true) %}#}
+{#        {% if messages %}#}
+{#            {% for category, message in messages %}#}
+{#                <div class="row form-group">#}
+{#                    <div class="col-md-12 row-flash">#}
+{#                        <div class="flash {{ category }}"><div> {{ message }} </div></div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            {% endfor %}#}
+{#        {% endif %}#}
+{#        {% endwith %}#}
+{#    {% endblock %}#}
+
+    {% block content %}{% endblock %}
+
+</section>

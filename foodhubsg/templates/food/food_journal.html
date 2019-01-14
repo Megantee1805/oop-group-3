@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+
+{% block title %}Food Journal{% endblock %}
+
+{% block content %}
+
+<div id="colorlib-container">
+    <div class="container">
+        <div class="box1">
+        <div class="row row-pb-md">
+            <div class="col-md-12">
+
+                <form method="post">
+                    <header id="summary-header">
+                        <h1 class="font_color"><b>Add Food Code</b></h1>
+                        <hr>
+                    </header>
+
+                    <div class="input-group">
+                        <input name="code" id="code" class="form-control" value="{{ request.form['code'] }}" placeholder="Food Code (eg: a00001)" required>
+                        <span class="input-group-btn">
+                            <input type="submit" name="action" value="Save Food" class="btn btn-primary" style="background-color: #4CAF50; height: 54px; margin-left: 0.5em;">
+                        </span>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+        </div>
+
+        <div class="box1">
+        <div class="row row-pb-md">
+            <div class="col-md-12">
+
+                <form method="post">
+                    <header id="summary-header">
+                        <div class="input-group">
+                            <h1 class="font_color"><b>Food History</b></h1>
+                            <input type="date" name="search-date" id="search-date" class="form-control" style="margin-left: 25em;" min="2005-01-01" max="2030-12-31" required>
+                            <span class="input-group-btn">
+                                <input type="submit" name="action" value="Search Date" class="btn btn-primary" style="background-color: #4CAF50; height: 54px; margin-left: 0.5em;">
+                            </span>
+                        </div>
+                        <hr>
+                    </header>
+                </form>
+
+                {% if food_exists == 0 %}
+                    <article class="food-journal">
+                        <header>
+                            <div class="food-subsection">
+                                <h4><b>No food added to list</b></h4>
+                            </div>
+                        </header>
+                    </article>
+
+                {% else %}
+                    <div id="accordion">
+                    {% for date in food_dates %}
+
+                        {% set example_food = date[0] %}
+                        {% if now.strftime('%Y') == example_food['created'].strftime('%Y') %}
+                            {% set example_date = example_food['created'].strftime('%d %B (%A)') %}
+                        {% else %}
+                            {% set example_date = example_food['created'].strftime('%d %B %Y (%A)') %}
+                        {% endif %}
+                        <h2> <b>{{ example_date }}</b> </h2>
+
+                        {% for food in date %}
+
+                            <article class="food-journal">
+                                <header>
+                                    <div class="food-subsection">
+                                        <div id="time-created"> <i>{{ food['created'].strftime('%I:%M %p') }}</i> </div>
+                                        <h4 style="margin-bottom: 0; display: inline"><b>{{ food['food_name'] }}</b></h4>
+                                        <p style="display: inline">(code: {{ food['food_code'] }})</p>
+                                        <p>
+                                        {{ food['calories'] }} calories <br>
+                                        <a class="action" href="{{ url_for('food.edit_food', id = food['id']) }}"><i>Edit</i></a>
+                                        </p>
+                                    </div>
+                                </header>
+                            </article>
+
+                        {% if not loop.last %}
+                        {% endif %}
+                        {% endfor %}
+
+                        <h5>Total calories consumed: <b> {{ calories_list[loop.index - 1] }} kcal </b> </h5>
+
+                        <hr>
+
+                    {% if not loop.last %}
+                    {% endif %}
+                    {% endfor %}
+
+                {% endif %}
+
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{#<div class="card">#}
+{#    <div class="card-header" id="collapseOne">#}
+{#        <h5 class="mb-0">#}
+{#            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="date-heading">#}
+{#                <b>{{ example_date }}</b>#}
+{#            </button>#}
+{#        </h5>#}
+{#    </div>#}
+{##}
+{#{% for food in date %}#}
+{##}
+{#    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">#}
+{#        <div class="card-body">#}
+{#            <article class="food-journal">#}
+{#                <header>#}
+{#                    <div class="food-subsection">#}
+{#                        <div id="time-created"> <i>{{ food['created'].strftime('%I:%M %p') }}</i> </div>#}
+{#                        <h4 style="margin-bottom: 0"><b>{{ food['food_name'] }}</b></h4>#}
+{#                        <p>#}
+{#                        {{ food['calories'] }} calories <br>#}
+{#                        Code: <b> {{ food['food_code'] }} </b> <br>#}
+{#                        <a class="action" href="{{ url_for('food.edit_food', id = food['id']) }}"><i>Edit</i></a>#}
+{#                        </p>#}
+{#                    </div>#}
+{#                </header>#}
+{#            </article>#}
+{#        </div>#}
+{#    </div>#}

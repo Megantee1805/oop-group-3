@@ -1,0 +1,170 @@
+{% extends 'base.html' %}
+
+{% block title %}User Settings{% endblock %}
+
+{% block content %}
+
+<script>
+
+$(document).ready(function(){
+    $('.hide-tax').hide();
+
+    if ($('.delprefix[input]').val() != '') {
+        $('.delprefix').focus(function () {
+            $('.hide-tax').show('slow');
+        });
+    } else {
+        $('.hide-tax').hide('fast');
+    }
+
+});
+
+</script>
+
+<div id="colorlib-container">
+    <div class="container">
+        <div class="box1">
+        <div class="row row-pb-md">
+            <div class="col-md-12">
+
+                <header>
+                    <h1 class="font_color"><b>User Settings</b></h1>
+                    <h5>({{ email }})</h5>
+                    <hr>
+                </header>
+
+                <form method="post">
+
+                    <div class="row form-group">
+                        <div class="col-md-3">
+                            <label>Height in meters</label>
+                            <input name="height" id="height" type="number" step="0.01" class="form-control delprefix" value="{{ request.form['height'] }}" placeholder="{{ g.user['height'] }} m">
+                        </div>
+
+                        <div class="col-md-3">
+                            <label>Weight in kilograms</label>
+                            <input name="weight" id="weight" type="number" step="0.01" class="form-control delprefix" value="{{ request.form['weight'] }}" placeholder="{{ g.user['weight'] }} kg">
+                        </div>
+
+                        <div class="col-md-6 new-password">
+                            <label>Password</label>
+                            <input name="password" id="password" type="password" class="form-control delprefix" placeholder="{{ password_placeholder }}">
+                        </div>
+                    </div>
+
+                    <div class="hide-tax" style="display:none;">
+                        <div class="row form-group">
+                            <div class="col-md-12 old-password">
+                                <label>Confirm Password</label>
+                                <input name="old-password" id="old-password" type="password" class="form-control delprefix" placeholder="Enter your current password">
+                            </div>
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <input type="submit" value="Update Settings" class="btn btn-primary" style="background-color: #4CAF50;">
+
+                </form>
+            </div>
+        </div>
+        </div>
+
+        <div class="box1">
+        <div class="row row-pb-md">
+            <div class="col-md-12">
+
+                <header id="summary-header">
+                    <h1 class="font_color"><b>Summary of your stats</b></h1>
+                    {% if number_of_days == 0 %}
+                    {% else %}
+                        <h5>(based on the previous {{ number_of_days }} days with entries in food journal)</h5>
+                    {% endif %}
+                    <hr>
+                </header>
+                <h4><b>Body Mass Index Summary</b></h4>
+                <h5>{{ bmi_statement }}</h5>
+
+                <h4><b>Summary of your food history</b></h4>
+                {% if food_exists == 0 %}
+                    <h5>You have not added enough food to your journal to generate a summary. Keep adding more food!</h5>
+                {% else %}
+                    <h5>{{ calories_statement }}</h5>
+                    <h5>{{ snack_message }}</h5>
+                <h4><b>Breakdown on meal-by-meal basis</b></h4>
+                    <table class="table">
+                        <thead class="thead-green">
+                            <tr>
+                                <th scope="col">Meal Type</th>
+                                <th scope="col">Ideal Calorie Intake</th>
+                                <th scope="col">Average Calorie Intake</th>
+                                <th scope="col">Est. Calories To Lose/Gain</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Breakfast (5am-10am)</th>
+                                <td>400 - 600 kcal</td>
+                                <td>{{ average_breakfast_calories }} kcal</td>
+                                <td>
+                                  {% if average_breakfast_calories < 400 %}
+                                      +{{ (average_breakfast_calories - 500)|round(2)|abs }} kcal
+                                  {% elif average_breakfast_calories > 600 %}
+                                      -{{ (average_breakfast_calories - 500)|round(2)|abs }} kcal
+                                  {% else %}
+                                      Your breakfast intake is within limit
+                                  {% endif %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Lunch (11am-2pm)</th>
+                                <td>300 - 500 kcal</td>
+                                <td>{{ average_lunch_calories }} kcal</td>
+                                <td>
+                                    {% if average_lunch_calories < 300 %}
+                                        +{{ (average_lunch_calories - 400)|round(2)|abs }} kcal
+                                    {% elif average_lunch_calories > 500 %}
+                                        -{{ (average_lunch_calories - 400)|round(2)|abs }} kcal
+                                    {% else %}
+                                        Your lunch intake is within limit
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Dinner (5pm-10pm)</th>
+                                <td>400 - 600 kcal</td>
+                                <td>{{ average_dinner_calories }} kcal</td>
+                                <td>
+                                    {% if average_dinner_calories < 400 %}
+                                        +{{ (average_dinner_calories - 500)|round(2)|abs }} kcal
+                                    {% elif average_dinner_calories > 600 %}
+                                        -{{ (average_dinner_calories - 500)|round(2)|abs }} kcal
+                                    {% else %}
+                                        Your dinner intake is within limit
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Out-of-schedule snacks</th>
+                                <td><300 kcal</td>
+                                <td>{{ average_snack_calories }} kcal</td>
+                                <td>
+                                    {% if (average_snack_calories - 300)|float < 0.0 %}
+                                        +{{ (average_snack_calories - 300)|round(2)|abs }} kcal
+                                    {% else %}
+                                        -{{ (average_snack_calories - 300)|round(2)|abs }} kcal
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                {% endif %}
+
+            </div>
+        </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
