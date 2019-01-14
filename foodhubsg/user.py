@@ -302,16 +302,18 @@ def faq():
             answer = "No answer given yet, please answer on your own"
             db.execute('INSERT INTO question_and_answer (question, answer) VALUES (?, ?)', (question, answer))
             db.commit()
-            queries = db.execute('SELECT question FROM question_and_answer').fetchall()
-            for row in queries:
-                return render_template('user/faq.html', queries=row)
+            queries = db.execute('SELECT id, question FROM question_and_answer').fetchall()
+            # queries = list(map(lambda x: x[0], queries))
+            # for row in queries:
+            return render_template('user/faq.html', queries=queries)
         elif request.form['action'] == 'Answer':
             error = None
             answer_question= request.form['question']
             return render_template('user/answer_faq.html', qns =answer_question)
-    queries = db.execute('SELECT question FROM question_and_answer').fetchall()
-    for row in queries:
-        return render_template('user/faq.html', queries=row)
+    queries = db.execute('SELECT id, question FROM question_and_answer').fetchall()
+    # queries = list(map(lambda x: x[0], queries))
+    # for row in queries:
+    return render_template('user/faq.html', queries=queries)
 
 
 
