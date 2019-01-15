@@ -298,7 +298,7 @@ def faq():
     db = get_db()
     if request.method == 'POST':
         question = request.form['query']
-        if request.form['action'] == 'submit-query':
+        if request.form['action'] == 'Submit A Question':
             answer = "No answer given yet, please answer on your own"
             db.execute('INSERT INTO question_and_answer (question, answer) VALUES (?, ?)', (question, answer))
             db.commit()
@@ -321,12 +321,12 @@ def faq():
 @login_required
 def answer(id):
     db = get_db()
-    # if request.method == 'POST':
-    #     answer = request.form['answer']
-    #     db.execute('UPDATE question_and_answer SET answer = ? WHERE id = ?', [answer], id)
-    #     db.commit()
-    #     return render_template('user/faq.html')
     qns = db.execute('SELECT question FROM question_and_answer WHERE id = ?', [id]).fetchone()
+    if request.method == 'POST':
+        # answer = request.form['answer']
+        # if request.form['action'] == 'Submit Answer':
+        abort(404, "Error")
+
     return render_template('user/answer_faq.html', id=id, qns=qns[0])
 
 
