@@ -1,5 +1,6 @@
 from werkzeug.security import check_password_hash, generate_password_hash
 from foodhubsg.vendors import *
+import sqlite3
 
 def remove_duplicates(values):
     output = []
@@ -301,16 +302,19 @@ def faq():
             answer = "No answer given yet, please answer on your own"
             db.execute('INSERT INTO question_and_answer (question, answer) VALUES (?, ?)', (question, answer))
             db.commit()
-            queries = db.execute('SELECT * FROM question_and_answer').fetchall()
-            for row in queries:
-                return render_template('user/faq.html', queries=row)
+            queries = db.execute('SELECT id, question FROM question_and_answer').fetchall()
+            # for row in queries:
+            return render_template('user/faq.html', queries=queries)
         elif request.form['action'] == 'Answer':
             error = None
-            answer_question= request.form['question']
-            return render_template('user/answer_faq.html', qns =answer_question)
-    queries = db.execute('SELECT * FROM question_and_answer').fetchall()
-    for row in queries:
-        return render_template('user/faq.html', queries=row)
+            return render_template('user/answer_faq.html')
+    queries = db.execute('SELECT id, question FROM question_and_answer').fetchall()
+    # queries = list(map(lambda x: x[0], queries))
+    # for row in queries:
+    return render_template('user/faq.html', queries=queries)
+
+
+# queries = list(map(lambda x: x[0], queries))
 
 
 @bp.route('/answer')
@@ -319,7 +323,8 @@ def answer():
     db = get_db()
     if request.method == 'POST':
         answer = request.form['answer']
-        db.execute('INSERT INTO question_and_answer (answer) VALUES (?)', [answer])
+        id = db.execute('SELECT id FROM question_and_answer').fetchall()
+        db.execute('UPDATE question_and_answer SET answer = ? WHERE id = ?', [answer], id)
         db.commit()
         return render_template('user/faq.html')
     return render_template('user/answer_faq.html')

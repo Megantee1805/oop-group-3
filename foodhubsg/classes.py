@@ -144,25 +144,25 @@ sen02 = Vendor(
 
 sen03 = Vendor (
     code = "sen03",
-    name = '',
+    name = "Real Food",
     average_calories = 768,
-    area = '',
-    location = '',
-    location_code = '',
+    area = "Sengkang",
+    location = "1 Sengkang Square #01-225, Sengkang - 545078",
+    location_code = 'sen',
     description = '',
-    rating = 3,
+    rating = 2,
     image_location = ''
 )
 
 sen04 = Vendor (
     code = "sen04",
-    name = '',
+    name = "Subway",
     average_calories = 768,
-    area = '',
-    location = '',
+    area = "Sengkang",
+    location = "1 Sengkang Square #01-225, Sengkang - 545078",
     location_code = '',
-    description = '',
-    rating = 2,
+    description = "Sandwiches & salads made to order, right in front of you, down to your specifications, with the use of a variety of ingredients",
+    rating = 3,
     image_location = ''
 )
 
@@ -204,11 +204,11 @@ amk02 = Vendor(
 
 amk03 = Vendor (
     code = "amk03",
-    name = '',
+    name =  "The Daily Cut",
     average_calories = 768,
-    area = '',
-    location = '',
-    location_code = '',
+    area = "Ang Mo Kio",
+    location = "53 Ang Mo Kio Ave 3 AMK Hub #01-34, AMK - 569933",
+    location_code = "amk",
     description = '',
     rating = 4,
     image_location = ''
@@ -240,7 +240,7 @@ amk05 = Vendor (
 
 pun01 = Vendor (
     code = "pun01",
-    name = '',
+    name = "Grains",
     average_calories = 768,
     area = '',
     location = '',
@@ -252,7 +252,7 @@ pun01 = Vendor (
 
 pun02 = Vendor (
     code = "pun02",
-    name = '',
+    name = "The Soup Spoon",
     average_calories = 768,
     area = '',
     location = '',
@@ -264,7 +264,7 @@ pun02 = Vendor (
 
 pun03 = Vendor (
     code = "pun03",
-    name = '',
+    name = "VeganBurg",
     average_calories = 768,
     area = '',
     location = '',
