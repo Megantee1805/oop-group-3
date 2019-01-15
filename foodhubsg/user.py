@@ -326,7 +326,7 @@ def answer(id):
     #     db.execute('UPDATE question_and_answer SET answer = ? WHERE id = ?', [answer], id)
     #     db.commit()
     #     return render_template('user/faq.html')
-    qns = db.execute('SELECT question FROM question_and_answer WHERE id = ?', [id])
-    return render_template('user/answer_faq.html', id=id, qns=qns)
+    qns = db.execute('SELECT question FROM question_and_answer WHERE id = ?', [id]).fetchone()
+    return render_template('user/answer_faq.html', id=id, qns=qns[0])
 
 

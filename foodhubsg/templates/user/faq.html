@@ -22,7 +22,7 @@
                 <hr>
                     {% for query in queries %}
 
-                        <form action="{{ url_for('user.answer', id=4)}}" method="post">
+                        <form action="{{ url_for('user.answer', id= query[0])}}" method="post">
                         <hr>
                         <label for="question"></label>
                          <b class="font_color"> {{ query[1] }}</b>
