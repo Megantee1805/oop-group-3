@@ -28,6 +28,9 @@
                          <b class="font_color"> {{ query[1] }}</b>
                         <input type="submit" value="Answer" class="btn btn-primary" style="background-color: #4CAF50; height: 54px; margin-left: 0.5em;">
                         </form>
+                        <form method="post" action=" {{ id  }}"
+                        <input type="submit" value="Delete" class="btn btn-primary" style="background-color: #d9534f; height: 54px; margin-left: 0.5em;">
+                        </form>
                         {% if loop.last %}
                         {% endif %}
                     {% endfor %}

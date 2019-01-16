@@ -308,6 +308,8 @@ def faq():
         elif request.form['action'] == 'Answer':
             error = None
             return render_template('user/answer_faq.html')
+        elif request.form['action'] == 'Delete':
+            return render_template('')
     queries = db.execute('SELECT id, question FROM question_and_answer').fetchall()
     # queries = list(map(lambda x: x[0], queries))
     # for row in queries:
