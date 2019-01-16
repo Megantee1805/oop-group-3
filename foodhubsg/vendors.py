@@ -69,7 +69,7 @@ for vendor in vendor_list:
         else:
             continue
 
-    return render_template('food/vendor_page.html',
+    return render_template('food/index.html',
                            food_dates=food_dates, all_dates=all_dates, calories_list=calories_list, name=name,
                            weight=weight, height=height, bmi=bmi, user_average_calories=user_average_calories,
                            number_of_days=number_of_days, food_exists=food_exists, user_vendors=user_vendors,
