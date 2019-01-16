@@ -317,15 +317,17 @@ def faq():
 # queries = list(map(lambda x: x[0], queries))
 
 
-@bp.route('/<int:id>/answer', methods=('GET', 'POST'))
+@bp.route('/answer/<int:id>', methods=('GET', 'POST'))
 @login_required
 def answer(id):
     db = get_db()
     qns = db.execute('SELECT question FROM question_and_answer WHERE id = ?', [id]).fetchone()
-    if request.method == 'POST':
-        # answer = request.form['answer']
-        # if request.form['action'] == 'Submit Answer':
-        abort(404, "Error")
+    if request.form['action'] == 'Submit Answer':
+        if request.method == 'POST':
+            print(request.form)
+            answer = request.form['answer']
+
+            abort(404, "Error")
 
     return render_template('user/answer_faq.html', id=id, qns=qns[0])
 
