@@ -46,31 +46,3 @@ def vendor(code):
                            rating=rating, image_location=image_location)
 
 
-@bp.route('/')
-@login_required
-def index():
-    """Show all recent meals, most recent first."""
-    db = get_db()
-    food_items = db.execute(
-        'SELECT f.id, creator_id, food_name, created, calories, food_code, email'
-        ' FROM food_entry f JOIN user u ON f.creator_id = u.id'
-        ' WHERE f.creator_id = ? AND DATE(f.created) IN'
-        ' (SELECT DISTINCT DATE(created) FROM food_entry '
-        ' WHERE NOT date(f.created) = date("now") ORDER BY datetime(created) DESC LIMIT 8)'
-        ' ORDER BY datetime(created) DESC',
-        (g.user['id'],),
-    ).fetchall()
-
-    
-    
-for vendor in vendor_list:
-        if user_location == vendor.get_location_code():
-            user_vendors.append(vendor)
-        else:
-            continue
-
-    return render_template('food/index.html',
-                           food_dates=food_dates, all_dates=all_dates, calories_list=calories_list, name=name,
-                           weight=weight, height=height, bmi=bmi, user_average_calories=user_average_calories,
-                           number_of_days=number_of_days, food_exists=food_exists, user_vendors=user_vendors,
-                           food_items=food_items, calories_statement=calories_statement)
