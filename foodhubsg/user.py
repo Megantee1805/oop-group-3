@@ -298,16 +298,23 @@ def faq():
     db = get_db()
     if request.method == 'POST':
         question = request.form['query']
+        error = None
         if request.form['action'] == 'Submit A Question':
             answer = "No answer given yet, please answer on your own"
-            db.execute('INSERT INTO question_and_answer (question, answer) VALUES (?, ?)', (question, answer))
-            db.commit()
-            queries = db.execute('SELECT id, question FROM question_and_answer').fetchall()
+            if question is None:
+                error = 'No value entered please try again'
+            if error is None:
+                db.execute('INSERT INTO question_and_answer (question, answer) VALUES (?, ?)', (question, answer))
+                db.commit()
+                queries = db.execute('SELECT id, question FROM question_and_answer').fetchall()
+                return render_template('user/faq.html', queries=queries)
             # for row in queries:
-            return render_template('user/faq.html', queries=queries)
+            else:
+                flash(error)
+
         elif request.form['action'] == 'Answer':
-            error = None
-            return render_template('user/answer_faq.html')
+            id = request.form['answer-link']
+            return render_template('user/answer_faq.html', id=id)
         elif request.form['action'] == 'Delete':
             return render_template('')
     queries = db.execute('SELECT id, question FROM question_and_answer').fetchall()
