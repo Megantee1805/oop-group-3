@@ -304,17 +304,25 @@ def user_settings():
 def faq():
     db = get_db()
     if request.method == 'POST':
-        question = request.form['query']
-        if request.form['action'] == 'submit-query':
+        error = None
+        if request.form['action'] == 'Submit A Question':
+            question = request.form['query']
             answer = "No answer given yet, please answer on your own"
-            db.execute('INSERT INTO question_and_answer (question, answer) VALUES (?, ?)', (question, answer))
-            db.commit()
-            queries = db.execute('SELECT id, question FROM question_and_answer').fetchall()
+            if question is None:
+                error = 'No value entered please try again'
+            if error is None:
+                db.execute('INSERT INTO question_and_answer (question, answer) VALUES (?, ?)', (question, answer))
+                db.commit()
+                queries = db.execute('SELECT id, question FROM question_and_answer').fetchall()
+                return render_template('user/faq.html', queries=queries)
             # for row in queries:
-            return render_template('user/faq.html', queries=queries)
-        elif request.form['action'] == 'Answer':
-            error = None
-            return render_template('user/answer_faq.html')
+            else:
+                flash(error)
+        elif request.method =='GET':
+            if request.form['answer-link'] == 'Answer':
+                return render_template('user/answer_faq.html')
+            elif request.form['answer-link'] == 'Delete':
+                return render_template('user/faq.html')
     queries = db.execute('SELECT id, question FROM question_and_answer').fetchall()
     # queries = list(map(lambda x: x[0], queries))
     # for row in queries:
@@ -324,16 +332,19 @@ def faq():
 # queries = list(map(lambda x: x[0], queries))
 
 
-@bp.route('/answer')
+@bp.route('/answer/<int:id>', methods=('GET', 'POST'))
 @login_required
-def answer():
-    db = get_db()
-    if request.method == 'POST':
-        answer = request.form['answer']
-        id = db.execute('SELECT id FROM question_and_answer').fetchall()
-        db.execute('UPDATE question_and_answer SET answer = ? WHERE id = ?', [answer], id)
-        db.commit()
-        return render_template('user/faq.html')
-    return render_template('user/answer_faq.html')
+def answer(id):
+    if request.method == 'GET':
+        db = get_db()
+        qns = db.execute('SELECT question FROM question_and_answer WHERE id = ?', [id]).fetchone()
+        if request.form['action'] == 'Submit Answer':
+            if request.method == 'POST':
+                print(request.form)
+                answer = request.form['answer']
+
+                abort(404, "Error")
+
+        return render_template('user/answer_faq.html', id=id, qns=qns[0])
 
 

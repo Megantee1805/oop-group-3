@@ -9,11 +9,13 @@
         <div class="box1">
         <div class="row row-pb-md">
             <div class="col-md-12">
-                <form id="answer-form">
-                    <label for="qns"></label>
-                    <input type="text" id="qns"> {{ qns }}
-                    <label for="answer"> </label>
-                    <textarea id="answer" name="answer" form="answer-form" class="form-control" rows="4" cols="70"></textarea>
+                {{ qns }}
+                <form id="answer-form" method="post" action="">
+{#                    <label for="answer"> </label>#}
+{#                    <textarea id="answer" name="answer" form="answer-form" class="form-control" rows="4" cols="70"></textarea>#}
+{#                    <input type="submit" value="Submit Answer" name="action" class="btn btn-primary" style="background-color: #4CAF50; height: 54px; margin-left: 0.5em;">#}
+                           <input type="submit" value="Submit Answer" name="action" class="btn btn-primary" style="background-color: #4CAF50; height: 54px; margin-left: 0.5em;">#}
+
                 </form>
             </div>
         </div>

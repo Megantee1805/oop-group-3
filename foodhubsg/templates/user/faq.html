@@ -4,6 +4,9 @@
 
 {% block content %}
 
+    {% block flash %}
+        {% endblock %}
+
 <div id="colorlib-container">
     <div class="container">
         <div class="box1">
@@ -20,15 +23,15 @@
                     <b class="font_color">Can I become healthy by dieting?</b>
                     <p>Yes, beginning a diet to lose weight and improve health is a worthy goal, but it can be a bit overwhelming. There are bound to be challenges whenever you start something new, especially when it involves something you do several times each day like eating and drinking. Still, as long as you don't try to change everything at once, you can meet your weight loss goals. Read on to learn some secrets of the masters those who have lost weight and, more importantly, kept it off.</p>
                 <hr>
-                <b class="font_color">What is calorie counting? Is it just a fancy word for dieting?</b>
-                <button type="button" onclick="window.location.href= '{{ url_for('user.answer', id=user_id ) }}';" class="btn btn-primary" style="background-color: #4CAF50; height: 54px; margin-left: 0.5em;">Answer</button>
-                    <p></p>
-                <hr>
                     {% for query in queries %}
-                        <form action="{{ query[0] }}" method="post">
+
+                        <form method="get" id="answer-link" action="">
+{#                        {% id= query[0] %}#}
+                        <hr>
                         <label for="question"></label>
                          <b class="font_color"> {{ query[1] }}</b>
-                        <input type="submit" href= '{{ url_for('user.answer', id = user_id) }}' value="Answer" class="btn btn-primary" style="background-color: #4CAF50; height: 54px; margin-left: 0.5em;">
+                        <input type="submit" value="Answer" class="btn btn-primary" style="background-color: #4CAF50; height: 54px; margin-left: 0.5em;">
+                        <input type="submit" value="Delete" class="btn btn-primary" style="background-color: #d9534f; height: 54px; margin-left: 0.5em;">
                         </form>
                         {% if loop.last %}
                         {% endif %}
@@ -41,7 +44,7 @@
                     <textarea id="query" name="query" form="query-form" class="form-control" rows="4" cols="70">
                     </textarea>
                     <div></div>
-                    <input type="submit" value="submit-query" name="action" class="btn btn-primary" style="background-color: #4CAF50; height: 54px; margin-left: 0.5em;">
+                    <input type="submit" value="Submit A Question" name="action" class="btn btn-primary" style="background-color: #4CAF50; height: 54px; margin-left: 0.5em;">
                 </form>
         </div>
         </div>

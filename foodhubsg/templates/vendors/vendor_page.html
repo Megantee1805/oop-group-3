@@ -1,11 +1,45 @@
 {% extends 'base.html' %}
+
 {% block title %}Vendors{% endblock %}
+
 {% block content %}
+<<<<<<< HEAD
     <div id="colorlib-container">
         <div class="container">
             <div class="box1">
                 <div class="col-md-12">
                 <div class="row">
+=======
+
+<div id="colorlib-container">
+    <div class="container">
+        <div class="box1">
+        <div class="row row-pb-md">
+            <div class="blog-entry">
+                <div class="blog-img">
+                    <h3 class="font_color"><b class="center_subtitle">Summary of your food history</b></h3>
+                    <hr>
+                    <h4>{{ calories_statement }}</h4>
+                </div>
+                <u><a href="{{ url_for('food.food_journal') }}">Click here to see your food intake in more detail </a></u>
+            </div>
+        </div>
+        </div>
+
+        <div class="box1">
+        <div class="row row-pb-md">
+            <h3 class="font_color"><b class="center_subtitle">Recommended food vendors near you</b></h3>
+                {% if user_vendors == [] %}
+                    <div class="col-md-12">
+                        <div class="blog-entry">
+                            <div class="blog-img">
+                                <h4><b class="center_subtitle">There are no supported food vendors near you right now.</b></h4>
+                            </div>
+                        </div>
+                    </div>
+
+                {% else %}
+>>>>>>> c60923855761e475a04a153a340effc8286778b1
                     <div class="col-md-12"><h4>Current Location: <b class="center_subtitle">{{ user_vendors[0].get_area() }}</b></h4></div>
 
                     {% for vendor in user_vendors %}
@@ -34,10 +68,16 @@
                             </div>
                         </div>
                     {% endfor %}
+<<<<<<< HEAD
 
                 </div>
                 </div>
             </div>
+=======
+                {% endif %}
+        </div>
+>>>>>>> c60923855761e475a04a153a340effc8286778b1
         </div>
     </div>
+</div>
 {% endblock %}
