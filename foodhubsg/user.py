@@ -297,9 +297,9 @@ def user_settings():
 def faq():
     db = get_db()
     if request.method == 'POST':
-        question = request.form['query']
         error = None
         if request.form['action'] == 'Submit A Question':
+            question = request.form['query']
             answer = "No answer given yet, please answer on your own"
             if question is None:
                 error = 'No value entered please try again'
@@ -311,12 +311,11 @@ def faq():
             # for row in queries:
             else:
                 flash(error)
-
-        elif request.form['action'] == 'Answer':
-            id = request.form['answer-link']
-            return render_template('user/answer_faq.html', id=id)
-        elif request.form['action'] == 'Delete':
-            return render_template('')
+        elif request.method =='GET':
+            if request.form['answer-link'] == 'Answer':
+                return render_template('user/answer_faq.html')
+            elif request.form['answer-link'] == 'Delete':
+                return render_template('user/faq.html')
     queries = db.execute('SELECT id, question FROM question_and_answer').fetchall()
     # queries = list(map(lambda x: x[0], queries))
     # for row in queries:
@@ -329,15 +328,16 @@ def faq():
 @bp.route('/answer/<int:id>', methods=('GET', 'POST'))
 @login_required
 def answer(id):
-    db = get_db()
-    qns = db.execute('SELECT question FROM question_and_answer WHERE id = ?', [id]).fetchone()
-    if request.form['action'] == 'Submit Answer':
-        if request.method == 'POST':
-            print(request.form)
-            answer = request.form['answer']
+    if request.method == 'GET':
+        db = get_db()
+        qns = db.execute('SELECT question FROM question_and_answer WHERE id = ?', [id]).fetchone()
+        if request.form['action'] == 'Submit Answer':
+            if request.method == 'POST':
+                print(request.form)
+                answer = request.form['answer']
 
-            abort(404, "Error")
+                abort(404, "Error")
 
-    return render_template('user/answer_faq.html', id=id, qns=qns[0])
+        return render_template('user/answer_faq.html', id=id, qns=qns[0])
 
 
