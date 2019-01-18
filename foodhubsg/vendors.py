@@ -14,7 +14,27 @@ bp = Blueprint('vendors', __name__)
 
 @bp.route('/vendors', methods=('GET', 'POST'))
 def vendors():
-    return render_template("vendors/vendor_page.html")
+    db = get_db()
+
+    users = db.execute(
+        'SELECT id, name, email, password, height, weight, location'
+        ' FROM user'
+        ' WHERE id = ?',
+        (g.user['id'],),
+    ).fetchall()
+
+    for user in users:
+        user_location = user['location']
+
+    user_vendors = []
+
+    for vendor in vendor_list:
+        if user_location == vendor.get_area():
+            user_vendors.append(vendor)
+        else:
+            continue
+
+    return render_template("vendors/vendor_page.html", user_vendors=user_vendors)
 
 @bp.route('/vendors/<code>', methods=('GET', 'POST'))
 def vendor(code):

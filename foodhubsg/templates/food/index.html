@@ -34,6 +34,7 @@
                 {% else %}
                     <div class="col-md-12"><h4>Current Location: <b class="center_subtitle">{{ user_vendors[0].get_area() }}</b></h4></div>
                     {% for vendor in user_vendors %}
+                    {% if not loop.index > 2 %}
 
                         <div class="col-md-6">
                             <div class="blog-entry">
@@ -60,7 +61,6 @@
                             </div>
                         </div>
 
-                    {% if not loop.last %}
                     {% endif %}
                     {% endfor %}
 

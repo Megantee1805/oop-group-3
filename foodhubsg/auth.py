@@ -88,11 +88,12 @@ def register():
 
         name = name.title()
         email = email.lower()
+        location = "Sengkang"
 
         if error is None:
             db.execute(
-                'INSERT INTO user (email, password, name, height, weight) VALUES (?, ?, ?, ?, ?)',
-                (email, generate_password_hash(password), name, height, weight)
+                'INSERT INTO user (email, password, name, height, weight, location) VALUES (?, ?, ?, ?, ?, ?)',
+                (email, generate_password_hash(password), name, height, weight, location)
             )
             db.commit()
 

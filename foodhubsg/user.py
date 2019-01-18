@@ -30,7 +30,7 @@ def user_settings():
     ).fetchall()
 
     users = db.execute(
-        'SELECT id, name, email, password, height, weight'
+        'SELECT id, name, email, password, height, weight, location'
         ' FROM user'
         ' WHERE id = ?',
         (g.user['id'],),
@@ -42,6 +42,7 @@ def user_settings():
         weight = user['weight']
         height = user['height']
         email = user['email']
+        user_location = user['location']
         password = user['password']
 
     bmi = round(weight / height ** height, 2)
@@ -205,6 +206,8 @@ def user_settings():
         new_height = request.form['height']
         new_weight = request.form['weight']
         new_password = request.form['password']
+        # new_location = request.form['new-location']
+        new_location = request.form.get('new-location')
         old_password = request.form['old-password']
         error = None
         message = None
@@ -223,36 +226,42 @@ def user_settings():
             #             (new_name.title(), id)
             #         )
 
-            if not new_height and not new_weight and not new_password and not old_password:
+            if not new_height and not new_weight and not new_password and not new_location and not old_password:
                 error = "No settings have been changed"
 
-            elif old_password:
+            if new_height:
+                if not 0.5 < float(new_height) < 2.5:
+                    error = 'Please enter a valid height value in meters'
+                elif new_height == height:
+                    error = 'Please enter a new height value'
+                else:
+                    db.execute(
+                        'UPDATE user SET height = ? WHERE id = ?',
+                        (new_height, id)
+                    )
 
-                if check_password_hash(password, old_password):
+            if new_weight:
+                if not 20 < float(new_weight) < 250:
+                    error = 'Please enter a valid weight value in kilograms'
+                elif new_weight == weight:
+                    error = 'Please enter a new weight value'
+                else:
+                    db.execute(
+                        'UPDATE user SET weight = ? WHERE id = ?',
+                        (new_weight, id)
+                    )
 
-                    if new_height:
-                        if not 0.5 < float(new_height) < 2.5:
-                            error = 'Please enter a valid height value in meters'
-                        elif new_height == height:
-                            error ='Please enter a new height value'
-                        else:
-                            db.execute(
-                                'UPDATE user SET height = ? WHERE id = ?',
-                                (new_height, id)
-                            )
+            if new_location:
+                db.execute(
+                    'UPDATE user SET location = ? WHERE id = ?',
+                    (new_location, id)
+                )
+            else:
+                error = "Previous location selected"
 
-                    if new_weight:
-                        if not 20 < float(new_weight) < 250:
-                            error = 'Please enter a valid weight value in kilograms'
-                        elif new_weight == weight:
-                            error ='Please enter a new weight value'
-                        else:
-                            db.execute(
-                                'UPDATE user SET weight = ? WHERE id = ?',
-                                (new_weight, id)
-                            )
-
-                    if new_password:
+            if new_password:
+                if old_password:
+                    if check_password_hash(password, old_password):
                         if check_password_hash(password, new_password):
                             error = "You've entered your previous password"
                         elif " " in  new_password:
@@ -263,15 +272,13 @@ def user_settings():
                                 (generate_password_hash(new_password), id)
                             )
                             password_placeholder = "(changed)"
-
-                    if not new_height and not new_weight and not new_password:
-                        error = "No settings have been changed"
-
+                    else:
+                        error = "You've entered your current password incorrectly"
                 else:
-                    error = "You've entered your current password incorrectly"
+                    error = "Please enter your current password to change your password"
 
-            else:
-                error = "Please enter your current password to confirm changes"
+            if not new_height and not new_weight and not new_password and new_location == user_location:
+                error = "No settings have been changed"
 
         except ValueError:
             error = "Please enter a valid value"
@@ -285,7 +292,7 @@ def user_settings():
             return redirect(url_for('user.user_settings'))
 
     return render_template('user/user_settings.html',
-                           name=name, weight=weight, height=height, email=email, password=password, bmi_statement=bmi_statement,
+                           name=name, weight=weight, height=height, email=email, password=password, user_location=user_location, bmi_statement=bmi_statement,
                            calories_statement=calories_statement, number_of_days=number_of_days, user_average_calories=user_average_calories,
                            food_exists=food_exists, password_placeholder=password_placeholder, snack_message=snack_message,
                            average_breakfast_calories=average_breakfast_calories, average_lunch_calories=average_lunch_calories,
