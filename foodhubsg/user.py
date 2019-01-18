@@ -60,9 +60,6 @@ def user_settings():
     average_dinner_calories = 0
     average_snack_calories = 0
     calories_statement = None
-    # breakfast_message = None
-    # lunch_message = None
-    # dinner_message = None
     snack_message = None
     password_placeholder = "(unchanged)"
 
@@ -144,91 +141,21 @@ def user_settings():
             calories_statement = "You consumed an average of {} kcal daily over the last {} days you've entered food " \
                                  "which is above the daily recommended amount of 2500 kcal." \
                                 .format(user_average_calories, number_of_days)
-    #
-    # if average_breakfast_calories:
-    #     if average_breakfast_calories < 350:
-    #         increase_breakfast = int(400 - average_breakfast_calories)
-    #         breakfast_message = "increase your breakfast calorie intake by {} kcal against your current average of {} kcal " \
-    #                             "to reach the ideal breakfast calorie amount of 400 kcal"\
-    #                             .format(increase_breakfast, int(average_breakfast_calories))
-    #     elif average_breakfast_calories > 500:
-    #         decrease_breakfast = int(average_breakfast_calories - 400)
-    #         breakfast_message = "decrease your breakfast calorie intake by {} kcal against your current average of {} kcal " \
-    #                             "to reach the ideal breakfast calorie amount of 400 kcal"\
-    #                             .format(decrease_breakfast, int(average_breakfast_calories))
-    #
-    # if average_lunch_calories:
-    #     if average_lunch_calories < 650:
-    #         increase_lunch = int(750 - average_lunch_calories)
-    #         lunch_message = "increase your lunch calorie intake by {} kcal against your current average of {} kcal " \
-    #                         "to reach the ideal lunch calorie amount of 650 kcal"\
-    #                         .format(increase_lunch, int(average_lunch_calories))
-    #     elif average_lunch_calories > 850:
-    #         decrease_lunch =  int(average_lunch_calories - 750)
-    #         lunch_message = "decrease your lunch calorie intake by {} kcal against your current average of {} kcal " \
-    #                         "to reach the ideal lunch calorie amount of 650 kcal"\
-    #                         .format(decrease_lunch, int(average_lunch_calories))
-    #
-    # if average_dinner_calories:
-    #     if average_dinner_calories < 275:
-    #         increase_dinner = int(300 - average_dinner_calories)
-    #         dinner_message = "increase your dinner calorie intake by {} kcal against your current average of {} kcal " \
-    #                         "to reach the ideal dinner calorie amount of 300 kcal"\
-    #                         .format(increase_dinner, int(average_dinner_calories))
-    #     elif average_dinner_calories > 350:
-    #         decrease_dinner =  int(average_dinner_calories - 300)
-    #         dinner_message = "decrease your dinner calorie intake by {} kcal against your current average of {} kcal " \
-    #                         "to reach the ideal dinner calorie amount of 300 kcal"\
-    #                         .format(decrease_dinner, int(average_dinner_calories))
 
     if average_snack_calories:
         if average_snack_calories > 300:
             snack_message = "Also, you need to decrease your out-of-schedule snack intake."
 
-    # messages = [snack_message]
-    # messages = list(filter(None.__ne__, messages))
-    #
-    # meal_message = "Also, you need to "
-    # num_messages = len(messages)
-
-    # if messages != []:
-    #     for i in range(num_messages):
-    #         if i != num_messages - 2 and i != num_messages - 1:
-    #             meal_message += messages[i] + ", "
-    #         elif i == num_messages - 2:
-    #             meal_message += messages[i] + ", and "
-    #         elif i == num_messages - 1:
-    #             meal_message += messages[i] + "."
-    # else:
-    #     meal_message = None
-
     if request.method == 'POST':
         new_height = request.form['height']
         new_weight = request.form['weight']
         new_password = request.form['password']
-        # new_location = request.form['new-location']
         new_location = request.form.get('new-location')
         old_password = request.form['old-password']
         error = None
         message = None
 
         try:
-            # if new_name:
-            #     if not all(char.isalpha() or char.isspace() for char in new_name):
-            #         error = 'Please only enter alphabets for your name'
-            #     elif not len(new_name) < 16:
-            #         error = 'Please enter a name below 16 characters'
-            #     elif new_name.title() == name:
-            #         error ='Please enter a new name'
-            #     else:
-            #         db.execute(
-            #             'UPDATE user SET name = ? WHERE id = ?',
-            #             (new_name.title(), id)
-            #         )
-
-            if not new_height and not new_weight and not new_password and not new_location and not old_password:
-                error = "No settings have been changed"
-
             if new_height:
                 if not 0.5 < float(new_height) < 2.5:
                     error = 'Please enter a valid height value in meters'
