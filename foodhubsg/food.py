@@ -56,7 +56,7 @@ def index():
     ).fetchall()
 
     users = db.execute(
-        'SELECT id, name, email, password, height, weight'
+        'SELECT id, name, email, password, height, weight, location'
         ' FROM user'
         ' WHERE id = ?',
         (g.user['id'],),
@@ -66,6 +66,7 @@ def index():
         weight = user['weight']
         height = user['height']
         name = user['name']
+        user_location = user['location']
 
     bmi = weight / height ** height
 
@@ -77,7 +78,6 @@ def index():
     user_average_calories = None
     number_of_days = None
     calories_statement = None
-    user_location = "sen"
 
     if food_items == []:
         food_exists = 0
@@ -125,7 +125,7 @@ def index():
         calories_statement = "You have not added enough food to your journal to generate a summary. Keep adding more food!"
 
     for vendor in vendor_list:
-        if user_location == vendor.get_location_code():
+        if user_location == vendor.get_area():
             user_vendors.append(vendor)
         else:
             continue
@@ -144,9 +144,7 @@ def food_journal():
     food_items = db.execute(
         'SELECT f.id, creator_id, food_name, created, calories, food_code, email'
         ' FROM food_entry f JOIN user u ON f.creator_id = u.id'
-        ' WHERE f.creator_id = ? AND DATE(f.created) IN'
-        ' (SELECT DISTINCT DATE(created) FROM food_entry '
-        ' ORDER BY datetime(created) DESC LIMIT 30)'
+        ' WHERE f.creator_id = ?'
         ' ORDER BY datetime(created) DESC',
         (g.user['id'],),
     ).fetchall()
@@ -245,7 +243,7 @@ def food_journal():
                            number_of_days=number_of_days, food_exists=food_exists, now=datetime.utcnow())
 
 
-@bp.route('/<int:id>/edit_food', methods=('GET', 'POST'))
+@bp.route('/edit_food/<int:id>', methods=('GET', 'POST'))
 @login_required
 def edit_food(id):
     """Update a food entry if the current user is the creator"""
@@ -255,7 +253,7 @@ def edit_food(id):
     old_food_code = food_entry['food_code']
 
     if request.method == 'POST':
-        if request.form['action'] == 'Edit Food Code':
+        if request.form['action'] == 'Update Entry':
             code = request.form['code']
             code = code.lower()
             error = None

@@ -12,7 +12,8 @@ CREATE TABLE IF NOT EXISTS user (
   email VARCHAR(512) UNIQUE NOT NULL,
   password TEXT NOT NULL,
   height INTEGER NOT NULL,
-  weight INTEGER NOT NULL
+  weight INTEGER NOT NULL,
+  location TEXT NOT NULL
 );
 
 CREATE TABLE food_entry (

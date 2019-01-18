@@ -8,7 +8,6 @@
 
 $(document).ready(function(){
     $('.hide-tax').hide();
-
     if ($('.delprefix[input]').val() != '') {
         $('.delprefix').focus(function () {
             $('.hide-tax').show('slow');
@@ -38,15 +37,25 @@ $(document).ready(function(){
                     <div class="row form-group">
                         <div class="col-md-3">
                             <label>Height in meters</label>
-                            <input name="height" id="height" type="number" step="0.01" class="form-control delprefix" value="{{ request.form['height'] }}" placeholder="{{ g.user['height'] }} m">
+                            <input name="height" id="height" type="number" step="0.01" class="form-control" value="{{ request.form['height'] }}" placeholder="{{ g.user['height'] }} m">
                         </div>
 
                         <div class="col-md-3">
                             <label>Weight in kilograms</label>
-                            <input name="weight" id="weight" type="number" step="0.01" class="form-control delprefix" value="{{ request.form['weight'] }}" placeholder="{{ g.user['weight'] }} kg">
+                            <input name="weight" id="weight" type="number" step="0.01" class="form-control" value="{{ request.form['weight'] }}" placeholder="{{ g.user['weight'] }} kg">
                         </div>
 
-                        <div class="col-md-6 new-password">
+                        <div class="col-md-6" style="padding-bottom: 10px;">
+                            <label>Location</label>
+                            <select class="custom-select form-control" id="inputGroupSelect02" name="new-location">
+                                <option selected>{{ user_location }}</option>
+                                <option name="sen" id="sen" value="Sengkang">Sengkang</option>
+                                <option name="amk" id="amk" value="Ang Mo Kio">Ang Mo Kio</option>
+                                <option name="pun" id="pun" value="Punggol">Punggol</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-12 new-password">
                             <label>Password</label>
                             <input name="password" id="password" type="password" class="form-control delprefix" placeholder="{{ password_placeholder }}">
                         </div>
@@ -90,7 +99,9 @@ $(document).ready(function(){
                     <h5>You have not added enough food to your journal to generate a summary. Keep adding more food!</h5>
                 {% else %}
                     <h5>{{ calories_statement }}</h5>
-                    <h5>{{ snack_message }}</h5>
+                    {% if snack_message != None %}
+                        <h5>{{ snack_message }}</h5>
+                    {% endif %}
                 <h4><b>Breakdown on meal-by-meal basis</b></h4>
                     <table class="table">
                         <thead class="thead-green">
@@ -149,10 +160,10 @@ $(document).ready(function(){
                                 <td><300 kcal</td>
                                 <td>{{ average_snack_calories }} kcal</td>
                                 <td>
-                                    {% if (average_snack_calories - 300)|float < 0.0 %}
-                                        +{{ (average_snack_calories - 300)|round(2)|abs }} kcal
-                                    {% else %}
+                                    {% if (average_snack_calories > 300)|float < 0.0 %}
                                         -{{ (average_snack_calories - 300)|round(2)|abs }} kcal
+                                    {% else %}
+                                        Your snack intake is within limit
                                     {% endif %}
                                 </td>
                             </tr>
