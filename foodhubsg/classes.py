@@ -95,12 +95,14 @@ class Questions:
 
     def set_questions(self, question):
         self.__question = question
+
     def get_question(self):
         return self.__question
-    def add_question(self, question):
-        self.__list_of_queries.append(question)
     def get_list(self):
         return self.__list_of_queries
+
+    def add_question(self, question):
+        self.__list_of_queries.append(question)
 
 
 class ProcessUserInfo:

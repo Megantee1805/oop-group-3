@@ -36,6 +36,7 @@ def vendors():
 
     return render_template("vendors/vendor_page.html", user_vendors=user_vendors)
 
+
 @bp.route('/vendors/<code>', methods=('GET', 'POST'))
 def vendor(code):
     name = None
