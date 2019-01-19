@@ -88,7 +88,7 @@ def register():
 
         name = name.title()
         email = email.lower()
-        location = "Sengkang"
+        location = "Ang Mo Kio"
 
         if error is None:
             db.execute(
