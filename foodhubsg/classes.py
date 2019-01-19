@@ -198,7 +198,7 @@ amk02 = Vendor(
     location = "53 Ang Mo Kio Ave 3 AMK Hub #01-34, AMK - 569933",
     location_code = "amk",
     description = "The food is decently healthy but still way too sweet",
-    rating = 4,
+    rating = 3,
     image_location = "../static/images/leanbento-amk-image.jpeg"
     )
 
@@ -222,7 +222,7 @@ amk04 = Vendor (
     location = '69 Ang Mo Kio Ave 4 #01-34, AMK - 569969',
     location_code = 'amk',
     description = 'High Quality Meat Cuts Available!',
-    rating = 4,
+    rating = 2,
     image_location = '../static/images/warmdrum-amk-image.jpeg'
 )
 
@@ -241,7 +241,7 @@ amk05 = Vendor (
 pun01 = Vendor (
     code = "pun01",
     name = "Grains",
-    average_calories = 768,
+    average_calories = 467,
     area = 'Punggol',
     location = '',
     location_code = 'pun',
