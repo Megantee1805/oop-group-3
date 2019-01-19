@@ -2,15 +2,6 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from foodhubsg.vendors import *
 import sqlite3
 
-def remove_duplicates(values):
-    output = []
-    seen = set()
-    for value in values:
-        if value not in seen:
-            output.append(value)
-            seen.add(value)
-    return output
-
 
 bp = Blueprint('user', __name__)
 

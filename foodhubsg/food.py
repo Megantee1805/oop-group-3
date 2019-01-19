@@ -27,15 +27,6 @@ def get_food_entry(id, check_user=True):
 
     return food_entry
 
-def remove_duplicates(values):
-    output = []
-    seen = set()
-    for value in values:
-        if value not in seen:
-            output.append(value)
-            seen.add(value)
-    return output
-
 
 bp = Blueprint('food', __name__)
 

@@ -1,6 +1,3 @@
-from datetime import datetime
-
-
 def remove_duplicates(values):
     output = []
     seen = set()
@@ -13,103 +10,82 @@ def remove_duplicates(values):
 
 ### Creates the classes ###
 
+
 class Vendor:
     def __init__(self, code, name, average_calories, area, location, location_code, description, rating, image_location):
-        self.code = code
-        self.name = name
-        self.average_calories = average_calories
-        self.area = area
-        self.location = location
-        self.location_code = location_code
-        self.description = description
-        self.rating = rating
-        self.image_location = image_location
+        self.__code = code
+        self.__name = name
+        self.__average_calories = average_calories
+        self.__area = area
+        self.__location = location
+        self.__location_code = location_code
+        self.__description = description
+        self.__rating = rating
+        self.__image_location = image_location
 
     def set_code(self, code):
-        self.code = code
-
+        self.__code = code
     def set_name(self, name):
-        self.name = name
-
+        self.__name = name
     def set_average_calories(self, average_calories):
-        self.average_calories = average_calories
-
+        self.__average_calories = average_calories
     def set_area(self, area):
-        self.area = area
-
+        self.__area = area
     def set_location(self, location):
-        self.location = location
-
+        self.__location = location
     def set_location_code(self, location_code):
-        self.location_code = location_code
-
+        self.__location_code = location_code
     def set_description(self, description):
-        self.description = description
-
+        self.__description = description
     def set_rating(self, rating):
-        self.rating = rating
-
+        self.__rating = rating
     def set_image_location(self, image_location):
-        self.image_location = image_location
+        self.__image_location = image_location
 
     def get_code(self):
-        return self.code
-
+        return self.__code
     def get_name(self):
-        return self.name
-
+        return self.__name
     def get_average_calories(self):
-        return self.average_calories
-
+        return self.__average_calories
     def get_area(self):
-        return self.area
-
+        return self.__area
     def get_location(self):
-        return self.location
-
+        return self.__location
     def get_location_code(self):
-        return self.location_code
-
+        return self.__location_code
     def get_description(self):
-        return self.description
-
+        return self.__description
     def get_rating(self):
-        return self.rating
-
+        return self.__rating
     def get_image_location(self):
-        return self.image_location
+        return self.__image_location
 
 
 class Food:
     def __init__(self, code, name, calories, vendor):
-        self.code = code
-        self.name = name
-        self.calories = calories
-        self.vendor = vendor
+        self.__code = code
+        self.__name = name
+        self.__calories = calories
+        self.__vendor = vendor
 
     def set_code(self, code):
-        self.code = code
-
+        self.__code = code
     def set_name(self, name):
-        self.name = name
-
+        self.__name = name
     def set_calories(self, calories):
-        self.calories = calories
-
+        self.__calories = calories
     def set_vendor(self, vendor):
-        self.vendor = vendor
+        self.__vendor = vendor
 
     def get_code(self):
-        return self.code
-
+        return self.__code
     def get_name(self):
-        return self.name
-
+        return self.__name
     def get_calories(self):
-        return self.calories
-
+        return self.__calories
     def get_vendor(self):
-        return self.vendor
+        return self.__vendor
 
 
 class Questions:
@@ -119,76 +95,73 @@ class Questions:
 
     def set_questions(self, question):
         self.__question = question
-
     def get_question(self):
         return self.__question
-
     def add_question(self, question):
         self.__list_of_queries.append(question)
-
     def get_list(self):
         return self.__list_of_queries
 
 
 class ProcessUserInfo:
     def __init__(self, food_items, users):
-        self.food_items = food_items
-        self.food_exists = 0
-        self.all_dates = []
-        self.food_dates = []
-        self.calories_list = []
-        self.user_average_calories = 0
-        self.number_of_days = 0
+        self.__food_items = food_items
+        self.__food_exists = 0
+        self.__all_dates = []
+        self.__food_dates = []
+        self.__calories_list = []
+        self.__user_average_calories = 0
+        self.__number_of_days = 0
 
-        self.users = users
-        self.id = ''
-        self.name = ''
-        self.weight = 0
-        self.height = 0
-        self.bmi = 0
-        self.email = ''
-        self.user_location = ''
-        self.password = ''
-        self.user_vendors = []
-        self.breakfast_list = []
-        self.lunch_list = []
-        self.dinner_list = []
-        self.snack_list = []
-        self.average_breakfast_calories = 0
-        self.average_lunch_calories = 0
-        self.average_dinner_calories = 0
-        self.average_snack_calories = 0
-        self.bmi_statement = ''
-        self.calories_statement = 'You have not added enough food to your journal to generate a summary. Keep adding more food!'
-        self.snack_message = ''
+        self.__users = users
+        self.__id = ''
+        self.__name = ''
+        self.__weight = 0
+        self.__height = 0
+        self.__bmi = 0
+        self.__email = ''
+        self.__user_location = ''
+        self.__password = ''
+        self.__user_vendors = []
+        self.__breakfast_list = []
+        self.__lunch_list = []
+        self.__dinner_list = []
+        self.__snack_list = []
+        self.__average_breakfast_calories = 0
+        self.__average_lunch_calories = 0
+        self.__average_dinner_calories = 0
+        self.__average_snack_calories = 0
+        self.__bmi_statement = ''
+        self.__calories_statement = 'You have not added enough food to your journal to generate a summary. Keep adding more food!'
+        self.__snack_message = ''
 
     def get_info(self):
-        for user in self.users:
-            self.id = user['id']
-            self.name = user['name']
-            self.weight = user['weight']
-            self.height = user['height']
-            self.email = user['email']
-            self.user_location = user['location']
-            self.password = user['password']
+        for user in self.__users:
+            self.__id = user['id']
+            self.__name = user['name']
+            self.__weight = user['weight']
+            self.__height = user['height']
+            self.__email = user['email']
+            self.__user_location = user['location']
+            self.__password = user['password']
 
         for vendor in vendor_list:
-            if self.user_location == vendor.get_area():
-                self.user_vendors.append(vendor)
+            if self.__user_location == vendor.get_area():
+                self.__user_vendors.append(vendor)
 
-        if self.food_items != []:
-            self.food_exists = 1
+        if self.__food_items != []:
+            self.__food_exists = 1
 
-            for food in self.food_items:
+            for food in self.__food_items:
                 food_date = food['created'].strftime('%d-%m-%y')
-                self.all_dates.append(food_date)
-            self.all_dates = remove_duplicates(self.all_dates)
+                self.__all_dates.append(food_date)
+            self.__all_dates = remove_duplicates(self.__all_dates)
 
-            for date in self.all_dates:
+            for date in self.__all_dates:
                 current_date_food = []
                 current_date_calories = []
 
-                for food in self.food_items:
+                for food in self.__food_items:
                     if date == food['created'].strftime('%d-%m-%y'):
                         current_date_food.append(food)
                         current_date_calories.append(food['calories'])
@@ -197,97 +170,97 @@ class ProcessUserInfo:
 
                 current_date_calories = sum(current_date_calories)
 
-                self.calories_list.append(current_date_calories)
-                self.number_of_days = len(self.calories_list)
-                self.user_average_calories = int(sum(self.calories_list) / self.number_of_days)
-                self.food_dates.append(current_date_food)
+                self.__calories_list.append(current_date_calories)
+                self.__number_of_days = len(self.__calories_list)
+                self.__user_average_calories = int(sum(self.__calories_list) / self.__number_of_days)
+                self.__food_dates.append(current_date_food)
 
-        self.bmi = round(self.weight / self.height ** self.height, 2)
+        self.__bmi = round(self.__weight / self.__height ** self.__height, 2)
 
-        for food in self.food_items:
+        for food in self.__food_items:
             if 5 <= int(food['created'].strftime('%H')) <= 9:
-                self.breakfast_list.append(food['calories'])
-                self.average_breakfast_calories = round(sum(self.breakfast_list) / self.number_of_days, 2)
+                self.__breakfast_list.append(food['calories'])
+                self.__average_breakfast_calories = round(sum(self.__breakfast_list) / self.__number_of_days, 2)
             elif 11 <= int(food['created'].strftime('%H')) <= 14:
-                self.lunch_list.append(food['calories'])
-                self.average_lunch_calories = round(sum(self.lunch_list) / self.number_of_days, 2)
+                self.__lunch_list.append(food['calories'])
+                self.__average_lunch_calories = round(sum(self.__lunch_list) / self.__number_of_days, 2)
             elif 17 <= int(food['created'].strftime('%H')) <= 21:
-                self.dinner_list.append(food['calories'])
-                self.average_dinner_calories = round(sum(self.dinner_list) / self.number_of_days, 2)
+                self.__dinner_list.append(food['calories'])
+                self.__average_dinner_calories = round(sum(self.__dinner_list) / self.__number_of_days, 2)
             else:
-                self.snack_list.append(food['calories'])
-                self.average_snack_calories = round(sum(self.snack_list) / self.number_of_days, 2)
+                self.__snack_list.append(food['calories'])
+                self.__average_snack_calories = round(sum(self.__snack_list) / self.__number_of_days, 2)
 
-        ideal_weight = self.weight
+        ideal_weight = self.__weight
 
-        if self.bmi < 22:
-            while ideal_weight / self.height ** self.height < 23:
+        if self.__bmi < 22:
+            while ideal_weight / self.__height ** self.__height < 23:
                 ideal_weight = ideal_weight + 1
-            lose_weight = ideal_weight - self.weight
-            self.bmi_statement = "{0}, you have a BMI of {1}, which is below the healthy range of 22 to 24. You are recommended " \
+            lose_weight = ideal_weight - self.__weight
+            self.__bmi_statement = "{0}, you have a BMI of {1}, which is below the healthy range of 22 to 24. You are recommended " \
                                  "to gain {2} kg to reach a body mass of {3} kg, which will get you back to the healthy BMI range." \
-                .format(self.name, self.bmi, lose_weight, ideal_weight)
-        elif 22 < self.bmi < 24:
-            self.bmi_statement = "{0}, you have a BMI of {1}, which is exactly within the healthy BMI range. " \
-                                 "Keep it up!".format(self.name, self.bmi)
+                .format(self.__name, self.__bmi, lose_weight, ideal_weight)
+        elif 22 < self.__bmi < 24:
+            self.__bmi_statement = "{0}, you have a BMI of {1}, which is exactly within the healthy BMI range. " \
+                                 "Keep it up!".format(self.__name, self.__bmi)
 
-        elif self.bmi > 24:
-            while ideal_weight / self.height ** self.height > 23:
+        elif self.__bmi > 24:
+            while ideal_weight / self.__height ** self.__height > 23:
                 ideal_weight = ideal_weight - 1
-            lose_weight = self.weight - ideal_weight
-            self.bmi_statement = "{0}, you have a BMI of {1}, which is above the healthy range of 22 to 24. You are recommended " \
+            lose_weight = self.__weight - ideal_weight
+            self.__bmi_statement = "{0}, you have a BMI of {1}, which is above the healthy range of 22 to 24. You are recommended " \
                                  "to lose {2} kg to reach a body mass of {3} kg, which will get you back to the healthy BMI range." \
-                .format(self.name, self.bmi, lose_weight, ideal_weight)
+                .format(self.__name, self.__bmi, lose_weight, ideal_weight)
 
-        if self.user_average_calories:
-            if self.user_average_calories < 1500:
-                self.calories_statement = "You consumed an average of {0} kcal daily over the last {1} days you've entered food " \
+        if self.__user_average_calories:
+            if self.__user_average_calories < 1500:
+                self.__calories_statement = "You consumed an average of {0} kcal daily over the last {1} days you've entered food " \
                                           "into your food journal, which is below the daily recommended amount of 2500 kcal." \
-                    .format(self.user_average_calories, self.number_of_days)
-            elif 1500 <= self.user_average_calories <= 2500:
-                self.calories_statement = "You consumed an average of {0} kcal daily over the {1} days you've entered food " \
+                    .format(self.__user_average_calories, self.__number_of_days)
+            elif 1500 <= self.__user_average_calories <= 2500:
+                self.__calories_statement = "You consumed an average of {0} kcal daily over the {1} days you've entered food " \
                                           "into your food journal, which is within the daily recommended amount, so keep following your current diet." \
-                    .format(self.user_average_calories, self.number_of_days)
+                    .format(self.__user_average_calories, self.__number_of_days)
 
-            elif self.user_average_calories > 2500:
-                self.calories_statement = "You consumed an average of {} kcal daily over the last {} days you've entered food " \
+            elif self.__user_average_calories > 2500:
+                self.__calories_statement = "You consumed an average of {} kcal daily over the last {} days you've entered food " \
                                           "which is above the daily recommended amount of 2500 kcal." \
-                    .format(self.user_average_calories, self.number_of_days)
+                    .format(self.__user_average_calories, self.__number_of_days)
 
-        if self.average_snack_calories:
-            if self.average_snack_calories > 300:
-                self.snack_message = "Also, you need to decrease your out-of-schedule snack intake."
+        if self.__average_snack_calories:
+            if self.__average_snack_calories > 300:
+                self.__snack_message = "Also, you need to decrease your out-of-schedule snack intake."
 
         info = {
-            "id": self.id,
-            "name": self.name,
-            "weight": self.weight,
-            "height": self.height,
-            "bmi": self.bmi,
-            "email": self.email,
-            "user_location": self.user_location,
-            "password": self.password,
-            "user_vendors": self.user_vendors,
+            "id": self.__id,
+            "name": self.__name,
+            "weight": self.__weight,
+            "height": self.__height,
+            "bmi": self.__bmi,
+            "email": self.__email,
+            "user_location": self.__user_location,
+            "password": self.__password,
+            "user_vendors": self.__user_vendors,
 
-            "food_items": self.food_items,
-            "food_exists": self.food_exists,
-            "all_dates": self.all_dates,
-            "calories_list": self.calories_list,
-            "number_of_days": self.number_of_days,
-            "user_average_calories": self.user_average_calories,
-            "food_dates": self.food_dates,
+            "food_items": self.__food_items,
+            "food_exists": self.__food_exists,
+            "all_dates": self.__all_dates,
+            "calories_list": self.__calories_list,
+            "number_of_days": self.__number_of_days,
+            "user_average_calories": self.__user_average_calories,
+            "food_dates": self.__food_dates,
 
-            "bmi_statement": self.bmi_statement,
-            "calories_statement": self.calories_statement,
-            "breakfast_list": self.breakfast_list,
-            "lunch_list": self.lunch_list,
-            "dinner_list": self.dinner_list,
-            "snack_list": self.snack_list,
-            "average_breakfast_calories": self.average_breakfast_calories,
-            "average_lunch_calories": self.average_lunch_calories,
-            "average_dinner_calories": self.average_dinner_calories,
-            "average_snack_calories": self.average_snack_calories,
-            "snack_message": self.snack_message,
+            "bmi_statement": self.__bmi_statement,
+            "calories_statement": self.__calories_statement,
+            "breakfast_list": self.__breakfast_list,
+            "lunch_list": self.__lunch_list,
+            "dinner_list": self.__dinner_list,
+            "snack_list": self.__snack_list,
+            "average_breakfast_calories": self.__average_breakfast_calories,
+            "average_lunch_calories": self.__average_lunch_calories,
+            "average_dinner_calories": self.__average_dinner_calories,
+            "average_snack_calories": self.__average_snack_calories,
+            "snack_message": self.__snack_message,
         }
 
         return info
