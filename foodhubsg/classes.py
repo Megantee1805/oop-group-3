@@ -105,7 +105,7 @@ class Questions:
 
 class ProcessUserInfo:
     def __init__(self, food_items, users):
-        self.__food_items = food_items
+        self.food_items = food_items
         self.__food_exists = 0
         self.__all_dates = []
         self.__food_dates = []
@@ -113,7 +113,7 @@ class ProcessUserInfo:
         self.__user_average_calories = 0
         self.__number_of_days = 0
 
-        self.__users = users
+        self.users = users
         self.__id = ''
         self.__name = ''
         self.__weight = 0
@@ -136,7 +136,7 @@ class ProcessUserInfo:
         self.__snack_message = ''
 
     def get_info(self):
-        for user in self.__users:
+        for user in self.users:
             self.__id = user['id']
             self.__name = user['name']
             self.__weight = user['weight']
@@ -149,10 +149,10 @@ class ProcessUserInfo:
             if self.__user_location == vendor.get_area():
                 self.__user_vendors.append(vendor)
 
-        if self.__food_items != []:
+        if self.food_items != []:
             self.__food_exists = 1
 
-            for food in self.__food_items:
+            for food in self.food_items:
                 food_date = food['created'].strftime('%d-%m-%y')
                 self.__all_dates.append(food_date)
             self.__all_dates = remove_duplicates(self.__all_dates)
@@ -161,7 +161,7 @@ class ProcessUserInfo:
                 current_date_food = []
                 current_date_calories = []
 
-                for food in self.__food_items:
+                for food in self.food_items:
                     if date == food['created'].strftime('%d-%m-%y'):
                         current_date_food.append(food)
                         current_date_calories.append(food['calories'])
@@ -177,7 +177,7 @@ class ProcessUserInfo:
 
         self.__bmi = round(self.__weight / self.__height ** self.__height, 2)
 
-        for food in self.__food_items:
+        for food in self.food_items:
             if 5 <= int(food['created'].strftime('%H')) <= 9:
                 self.__breakfast_list.append(food['calories'])
                 self.__average_breakfast_calories = round(sum(self.__breakfast_list) / self.__number_of_days, 2)
@@ -242,7 +242,7 @@ class ProcessUserInfo:
             "password": self.__password,
             "user_vendors": self.__user_vendors,
 
-            "food_items": self.__food_items,
+            "food_items": self.food_items,
             "food_exists": self.__food_exists,
             "all_dates": self.__all_dates,
             "calories_list": self.__calories_list,
@@ -265,7 +265,9 @@ class ProcessUserInfo:
 
         return info
 
+
 ### Assigns the objects to vendor and food classes accordingly ###
+
 
 sen01 = Vendor(
     code = "sen01",
@@ -301,7 +303,7 @@ sen03 = Vendor (
     description = 'The obvious correct option.',
     rating = 4,
     image_location = '../static/images/realfood-sengkang-image.jpg'
-)
+    )
 
 sen04 = Vendor (
     code = "sen04",
@@ -313,7 +315,7 @@ sen04 = Vendor (
     description = "Sandwiches & salads made to order, right in front of you, down to your specifications, with the use of a variety of ingredients",
     rating = 3,
     image_location = '../static/images/subway-sengkang-image.jpg'
-)
+    )
 
 sen05 = Vendor (
     code = "sen05",
@@ -325,7 +327,7 @@ sen05 = Vendor (
     description = '',
     rating = 3,
     image_location = ''
-)
+    )
 
 amk01 = Vendor(
     code = "amk01",
@@ -361,7 +363,7 @@ amk03 = Vendor (
     description = 'Fresh and healthy meat coming right up!',
     rating = 4,
     image_location = '../static/images/dailycut-amk-image.jpeg'
-)
+    )
 
 amk04 = Vendor (
     code = "amk04",
@@ -373,7 +375,7 @@ amk04 = Vendor (
     description = 'High Quality Meat Cuts Available!',
     rating = 2,
     image_location = '../static/images/warmdrum-amk-image.jpeg'
-)
+    )
 
 amk05 = Vendor (
     code = "amk05",
@@ -385,7 +387,7 @@ amk05 = Vendor (
     description = '',
     rating = 1,
     image_location = ''
-)
+    )
 
 pun01 = Vendor (
     code = "pun01",
@@ -397,7 +399,7 @@ pun01 = Vendor (
     description = '',
     rating = 1,
     image_location = ''
-)
+    )
 
 pun02 = Vendor (
     code = "pun02",
@@ -409,7 +411,7 @@ pun02 = Vendor (
     description = '',
     rating = 2,
     image_location = ''
-)
+    )
 
 pun03 = Vendor (
     code = "pun03",
@@ -421,7 +423,7 @@ pun03 = Vendor (
     description = '',
     rating = 3,
     image_location = ''
-)
+    )
 
 pun04 = Vendor (
     code = "pun04",
@@ -433,7 +435,7 @@ pun04 = Vendor (
     description = '',
     rating = 4,
     image_location = ''
-)
+    )
 
 pun05 = Vendor (
     code = "pun05",
@@ -445,7 +447,7 @@ pun05 = Vendor (
     description = '',
     rating = 3,
     image_location = ''
-)
+    )
 
 
 

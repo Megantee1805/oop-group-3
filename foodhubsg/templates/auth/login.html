@@ -52,6 +52,7 @@
                             <input type="password" name="password" id="password" class="form-control" placeholder="Password">
                         </div>
 
+                        <div class="flash-div">
                         {% with messages = get_flashed_messages(with_categories=true) %}
                         {% if messages %}
                             {% for category, message in messages %}
@@ -63,6 +64,7 @@
                             {% endfor %}
                         {% endif %}
                         {% endwith %}
+                        </div>
 
                         <div class="row form-group">
                             <div class="form-group" id="login-button">
