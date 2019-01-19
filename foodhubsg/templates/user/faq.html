@@ -26,7 +26,6 @@
                     {% for query in queries %}
 
                         <form method="get" id="answer-link" action="{{ url_for('user.answer', id=query[0]) }}">
-{#                        {% id= query[0] %}#}
                         <hr>
                         <label for="question"></label>
                          <b class="font_color"> {{ query[1] }}</b>
