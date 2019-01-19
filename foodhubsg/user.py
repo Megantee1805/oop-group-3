@@ -246,10 +246,10 @@ def faq():
             # for row in queries:
         elif request.method == 'GET':
             if request.form['answer'] == 'Answer':
-                question_no= request.args.get("question_no", id)
                 qns = db.execute('SELECT question FROM question_and_answer WHERE id = ?', id).fetchone()
-                return render_template('user/answon Whereer_faq.html', qns=qns)
+                return render_template('user/answer_faq.html', qns=qns)
             elif request.form['delete'] == 'Delete':
+
                 return render_template('user/faq.html')
     queries = db.execute('SELECT id, question FROM question_and_answer').fetchall()
     # queries = list(map(lambda x: x[0], queries))
@@ -263,14 +263,14 @@ def faq():
 @bp.route('/answer/<int:id>', methods=('GET', 'POST'))
 @login_required
 def answer(id):
+    db = get_db()
+    qns = db.execute('SELECT question FROM question_and_answer WHERE id = ?', [id]).fetchone()
     if request.method == 'POST':
-        db = get_db()
         qns = db.execute('SELECT question FROM question_and_answer WHERE id = ?', [id]).fetchone()
         if request.form['action'] == 'Submit Answer':
-                print(request.form)
-                answer = request.form['answer']
-
-                abort(404, "Error")
+            print(request.form)
+            answer = request.form['answer']
+            return render_template('user/faq.html', answer=answer)
         return render_template('user/answer_faq.html', id=id, qns=qns[0])
     return render_template('user/answer_faq.html', id=id, qns=qns[0])
 
