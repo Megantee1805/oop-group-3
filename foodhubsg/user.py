@@ -275,5 +275,3 @@ def answer(id):
                 abort(404, "Error")
 
         return render_template('user/answer_faq.html', id=id, qns=qns[0])
-
-
