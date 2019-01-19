@@ -25,13 +25,14 @@
                 <hr>
                     {% for query in queries %}
 
-                        <form method="get" id="answer-link" action="">
+                        <form method="get" id="answer-link" action="{{ url_for('user.answer', id=query[0]) }}">
 {#                        {% id= query[0] %}#}
                         <hr>
                         <label for="question"></label>
                          <b class="font_color"> {{ query[1] }}</b>
-                        <input type="submit" value="Answer" class="btn btn-primary" style="background-color: #4CAF50; height: 54px; margin-left: 0.5em;">
-                        <input type="submit" value="Delete" class="btn btn-primary" style="background-color: #d9534f; height: 54px; margin-left: 0.5em;">
+                        <input type="submit" value="Answer" name="answer" class="btn btn-primary" style="background-color: #4CAF50; height: 54px; margin-left: 0.5em;">
+
+                        <input type="submit" value="Delete" onclick="confirm_removal()" name="delete" class="btn btn-primary" style="background-color: #d9534f; height: 54px; margin-left: 0.5em;">
                         </form>
                         {% if loop.last %}
                         {% endif %}
@@ -51,5 +52,13 @@
     </div>
 </div>
 
+
+<script>
+
+function confirm_removal() {
+
+}
+</script>
+
 {% endblock %}
-l
+
