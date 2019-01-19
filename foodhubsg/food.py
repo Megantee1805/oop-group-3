@@ -62,79 +62,14 @@ def index():
         (g.user['id'],),
     ).fetchall()
 
-    for user in users:
-        weight = user['weight']
-        height = user['height']
-        name = user['name']
-        user_location = user['location']
-
-    bmi = weight / height ** height
-
-    bmi = round(bmi, 2)
-    all_dates = []
-    food_dates = []
-    user_vendors = []
-    calories_list = []
-    user_average_calories = None
-    number_of_days = None
-    calories_statement = None
-
-    if food_items == []:
-        food_exists = 0
-    else:
-        food_exists = 1
-
-    for food in food_items:
-        food_date = food['created'].strftime('%d-%m-%y')
-        all_dates.append(food_date)
-    all_dates = remove_duplicates(all_dates)
-
-    for date in all_dates:
-        current_date_food = []
-        current_date_calories = []
-
-        for food in food_items:
-            if date == food['created'].strftime('%d-%m-%y'):
-                current_date_food.append(food)
-                current_date_calories.append(food['calories'])
-            else:
-                continue
-        food_dates.append(current_date_food)
-        current_date_calories = sum(current_date_calories)
-        calories_list.append(current_date_calories)
-
-        number_of_days = len(calories_list)
-
-        user_average_calories = int(sum(calories_list)/number_of_days)
-
-    if user_average_calories:
-        if user_average_calories < 1500:
-            calories_statement = "You consumed an average of {0} kcal daily over the last {1} days you've entered food " \
-                                 "into your food journal, which is below the daily recommended amount of 2500 kcal."\
-                                .format(user_average_calories, number_of_days)
-        elif 1500 <= user_average_calories <= 2500:
-            calories_statement = "You consumed an average of {0} kcal daily over the {1} days you've entered food, " \
-                                 "into your food journal, which is within the daily recommended amount, so keep following your current diet." \
-                                .format(user_average_calories, number_of_days)
-
-        elif user_average_calories > 2500:
-            calories_statement = "You consumed an average of {} kcal daily over the last {} days you've entered food, " \
-                                 "which is above the daily recommended amount of 2500 kcal." \
-                                .format(user_average_calories, number_of_days)
-    else:
-        calories_statement = "You have not added enough food to your journal to generate a summary. Keep adding more food!"
-
-    for vendor in vendor_list:
-        if user_location == vendor.get_area():
-            user_vendors.append(vendor)
-        else:
-            continue
+    user_info = UserFoodInfo(food_items, users)
+    info = user_info.get_info()
 
     return render_template('food/index.html',
-                           food_dates=food_dates, all_dates=all_dates, calories_list=calories_list, name=name,
-                           weight=weight, height=height, bmi=bmi, user_average_calories=user_average_calories,
-                           number_of_days=number_of_days, food_exists=food_exists, user_vendors=user_vendors,
-                           food_items=food_items, calories_statement=calories_statement)
+                           food_dates=info["food_dates"], all_dates=info["all_dates"], calories_list=info["calories_list"], name=info["name"],
+                           weight=info["weight"], height=info["height"], bmi=info["bmi"], user_average_calories=info["user_average_calories"],
+                           number_of_days=info["number_of_days"], food_exists=info["food_exists"], user_vendors=info["user_vendors"],
+                           food_items=info["food_items"], calories_statement=info["calories_statement"])
 
 @bp.route('/food_journal', methods=('GET', 'POST'))
 @login_required
@@ -150,52 +85,14 @@ def food_journal():
     ).fetchall()
 
     users = db.execute(
-        'SELECT id, name, email, password, height, weight'
+        'SELECT id, name, email, password, height, weight, location'
         ' FROM user'
         ' WHERE id = ?',
         (g.user['id'],),
     ).fetchall()
 
-    for user in users:
-        weight = user['weight']
-        height = user['height']
-        name = user['name']
-
-    bmi = int(weight / height ** height)
-    all_dates = []
-    food_dates = []
-    calories_list = []
-    user_average_calories = 0
-    number_of_days = 0
-
-    if food_items == []:
-        food_exists = 0
-    else:
-        food_exists = 1
-
-    for food in food_items:
-        food_date = food['created'].strftime('%d-%m-%y')
-        all_dates.append(food_date)
-    all_dates = remove_duplicates(all_dates)
-
-    for date in all_dates:
-        current_date_food = []
-        current_date_calories = []
-
-        for food in food_items:
-            if date == food['created'].strftime('%d-%m-%y'):
-                current_date_food.append(food)
-                current_date_calories.append(food['calories'])
-            else:
-                continue
-
-        food_dates.append(current_date_food)
-        current_date_calories = sum(current_date_calories)
-        calories_list.append(current_date_calories)
-
-        number_of_days = len(calories_list)
-
-        user_average_calories = int(sum(calories_list)/number_of_days)
+    user_info = UserFoodInfo(food_items, users)
+    info = user_info.get_info()
 
     if request.method == 'POST':
         error = None
@@ -237,10 +134,13 @@ def food_journal():
         if error is not None:
             flash(error, "error")
 
-    return render_template('food/food_journal.html',
-                           food_dates=food_dates, all_dates=all_dates, calories_list=calories_list, name=name,
-                           weight=weight, height=height, bmi=bmi, user_average_calories=user_average_calories,
-                           number_of_days=number_of_days, food_exists=food_exists, now=datetime.utcnow())
+    return render_template('food/food_journal.html', food_items=info["food_items"],
+                           food_dates=info["food_dates"], all_dates=info["all_dates"],
+                           calories_list=info["calories_list"], name=info["name"],
+                           weight=info["weight"], height=info["height"], bmi=info["bmi"],
+                           user_average_calories=info["user_average_calories"],
+                           number_of_days=info["number_of_days"], food_exists=info["food_exists"],
+                           now=datetime.utcnow())
 
 
 @bp.route('/edit_food/<int:id>', methods=('GET', 'POST'))
