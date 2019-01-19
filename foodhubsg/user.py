@@ -270,7 +270,9 @@ def answer(id):
         if request.form['action'] == 'Submit Answer':
             print(request.form)
             answer = request.form['answer']
-            return render_template('user/faq.html', answer=answer)
+            submit_ans = db.execute('UPDATE question_and_answer SET answer= ? WHERE id = ?', ([answer], [id]))
+            queries = db.execute('SELECT id, question FROM question_and_answer').fetchall()
+            return render_template('user/faq.html', answer=submit_ans, queries=queries)
         return render_template('user/answer_faq.html', id=id, qns=qns[0])
     return render_template('user/answer_faq.html', id=id, qns=qns[0])
 
