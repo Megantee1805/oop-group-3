@@ -5,18 +5,6 @@ from flask import (
 from werkzeug.security import check_password_hash, generate_password_hash
 
 from foodhubsg.db import *
-# from flask_mail import Message, Mail
-
-# mail = Mail()
-
-def remove_duplicates(values):
-    output = []
-    seen = set()
-    for value in values:
-        if value not in seen:
-            output.append(value)
-            seen.add(value)
-    return output
 
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
@@ -120,8 +108,6 @@ def login():
         db = get_db()
         error = None
 
-        email = email.lower()
-
         user = db.execute(
             'SELECT * FROM user WHERE email = ?', (email,)
         ).fetchone()
@@ -179,21 +165,6 @@ def change_password():
 
     return render_template('auth/change_password.html')
 
-#
-# @bp.route('/confirm')
-# def confirm():
-#     db = get_db()
-#     email = db.execute('SELECT * FROM user Where email = ?').fetchone()
-#     if email is None:
-#         error = 'Registration was not succeasful'
-#         flash(error)
-#         return render_template('auth/index.html')
-#     else:
-#         msg = Message("Hello",
-#                       sender="Megan.tee1805@gmail.com",
-#                       recipients=[email])
-#         mail.send(msg)
-#         return render_template('auth/verification_email.html')
 
 @bp.route('/reset', methods=['GET','POST'])
 def reset():
@@ -215,6 +186,7 @@ def reset():
             )
             mail.send(msg)
     return render_template("auth/forgot_password.html")
+
 
 @bp.route('/logout')
 def logout():
