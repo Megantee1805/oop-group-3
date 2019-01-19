@@ -62,7 +62,7 @@ def index():
         (g.user['id'],),
     ).fetchall()
 
-    user_info = UserFoodInfo(food_items, users)
+    user_info = ProcessUserInfo(food_items, users)
     info = user_info.get_info()
 
     return render_template('food/index.html',
@@ -91,7 +91,7 @@ def food_journal():
         (g.user['id'],),
     ).fetchall()
 
-    user_info = UserFoodInfo(food_items, users)
+    user_info = ProcessUserInfo(food_items, users)
     info = user_info.get_info()
 
     if request.method == 'POST':

@@ -36,7 +36,7 @@ def user_settings():
         (g.user['id'],),
     ).fetchall()
 
-    user_info = UserFoodInfo(food_items, users)
+    user_info = ProcessUserInfo(food_items, users)
     info = user_info.get_info()
 
     if request.method == 'POST':

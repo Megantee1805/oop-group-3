@@ -130,7 +130,7 @@ class Questions:
         return self.__list_of_queries
 
 
-class UserFoodInfo:
+class ProcessUserInfo:
     def __init__(self, food_items, users):
         self.food_items = food_items
         self.food_exists = 0
