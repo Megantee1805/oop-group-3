@@ -146,6 +146,7 @@ class ProcessUserInfo:
             self.__email = user['email']
             self.__user_location = user['location']
             self.__password = user['password']
+            self.__bmi = round(self.__weight / self.__height ** self.__height, 2)
 
         for vendor in vendor_list:
             if self.__user_location == vendor.get_area():
@@ -167,8 +168,6 @@ class ProcessUserInfo:
                     if date == food['created'].strftime('%d-%m-%y'):
                         current_date_food.append(food)
                         current_date_calories.append(food['calories'])
-                    else:
-                        continue
 
                 current_date_calories = sum(current_date_calories)
 
@@ -176,8 +175,6 @@ class ProcessUserInfo:
                 self.__number_of_days = len(self.__calories_list)
                 self.__user_average_calories = int(sum(self.__calories_list) / self.__number_of_days)
                 self.__food_dates.append(current_date_food)
-
-        self.__bmi = round(self.__weight / self.__height ** self.__height, 2)
 
         for food in self.food_items:
             if 5 <= int(food['created'].strftime('%H')) <= 9:
@@ -302,7 +299,7 @@ sen03 = Vendor (
     area = "Sengkang",
     location = "1 Sengkang Square #01-225, Sengkang - 545078",
     location_code = 'sen',
-    description = 'The obvious correct option.',
+    description = 'The blatantly correct choice.',
     rating = 4,
     image_location = '../static/images/realfood-sengkang-image.jpg'
     )

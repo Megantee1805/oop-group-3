@@ -65,5 +65,3 @@ def vendor(code):
     return render_template("vendors/vendor.html", current_vendor=current_vendor, name=name,
                            average_calories=average_calories, area=area, location=location, description=description,
                            rating=rating, image_location=image_location)
-
-
