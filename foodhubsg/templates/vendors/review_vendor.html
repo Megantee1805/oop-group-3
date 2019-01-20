@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}FAQ{% endblock %}
+
+{% block content %}
+
+<div id="colorlib-container">
+    <div class="container">
+        <div class="box1">
+        <div class="row row-pb-md">
+            <div class="col-md-12">
+               <form method="post" action="" id="review-form">
+                    <label for="query">Question</label>
+                    <div></div>
+                    <textarea id="query" name="query" form="query-form" class="form-control" rows="4" cols="50">
+                    </textarea>
+                    <div></div>
+                    <input type="submit" id="delete-button" value="Submit Review" name="action" class="btn btn-primary" style="background-color: #4CAF50; height: 54px; margin-left: 0.5em;">
+                </form>
+            </div>
+        </div>
+    </div>
+        {% endblock %}
+</div>
+</div>
