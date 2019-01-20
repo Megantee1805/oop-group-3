@@ -10,13 +10,6 @@
                     <div class="row row-pb-md">
                     <div class="col-md-12">
                         <h1 class="font_color"><b class="center_subtitle">Vendors Near You</b></h1>
-                        <select>
-                        <option value="rating">Rating</option>
-                        <option value="4star">4 star</option>
-                        <option value="3star">3 star</option>
-                        <option value="2star">2 star</option>
-                        <option value="1star">1 star</option>
-                        </select>
                         <hr>
                     </div>
 
@@ -32,7 +25,13 @@
                         {% else %}
 
                             <div class="col-md-12"><h4>Current Location: <b class="center_subtitle">{{ user_vendors[0].get_area() }}</b></h4></div>
-
+                             <select>
+                             <option value="rating">Rating</option>
+                             <option value="4star">4 star</option>
+                             <option value="3star">3 star</option>
+                             <option value="2star">2 star</option>
+                             <option value="1star">1 star</option>
+                             </select>
                             {% for vendor in user_vendors %}
                                 <div class="col-md-6">
                                     <div class="blog-entry">
