@@ -10,14 +10,13 @@
             <div class="row row-pb-md">
                 <div class="col-md-6">
                     <div class="blog-entry">
-                        <div class="blog-img"></div>
                         <img src="{{ current_vendor.get_image_location() }}" class="img-responsive" alt="{{ name }} Image">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="desc">
                         <p class="meta">
-                            <b class="vendors"><b>{{ name }}</b></b><br>
+                            <h3 class="vendors"><b>{{ name }}</b></h3>
                             <span class="food_location"><b>{{ location }}</b></span><br>
                             <span class=food_rating">Healthiness rating:
                                 {% if rating == 1 %}
@@ -29,10 +28,27 @@
                                 {% elif rating == 4 %}
                                     <span class='fa fa-star checked'></span><span class='fa fa-star checked'></span><span class='fa fa-star checked'></span><span class='fa fa-star checked'></span>
                                 {% endif %}
-                            </span>
+                            </span><hr>{{ description }}
                         </p>
                     </div>
-                    <h5>{{ description }}</h5>
+                </div>
+            </div><br>
+
+            <div class="row row-pb-md">
+                <div class="col-md">
+                    <div class="blog-entry"><h3 class="font_color">Menu</h3></div>
+                </div>
+            </div>
+
+            <div class="row row-pb-md">
+            <div class="col-md-6">
+                <div class="blog-entry">
+
+                </div>
+            </div>
+            </div>
+
+
                     
 {#                    <div class="col-md-4">#}
 {#			<div class="blog-entry">				#}
@@ -76,6 +92,5 @@
             </div>
         </div>
     </div>
-</div>
 {% endblock %}
 
