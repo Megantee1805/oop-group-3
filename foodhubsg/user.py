@@ -123,10 +123,10 @@ def faq():
             if question is None:
                 error = 'No value entered please try again'
                 flash(error)
-            elif error is None:
+            else:
                 db.execute('INSERT INTO question_and_answer (question, answer) VALUES (?, ?)', (question, answer))
                 db.commit()
-                queries = db.execute('SELECT id, question FROM question_and_answer').fetchall()
+                queries = db.execute('SELECT id, question, answer FROM question_and_answer').fetchall()
                 return render_template('user/faq.html', queries=queries)
             # for row in queries:
         elif request.method == 'GET':
@@ -134,9 +134,9 @@ def faq():
                 qns = db.execute('SELECT question FROM question_and_answer WHERE id = ?', id).fetchone()
                 return render_template('user/answer_faq.html', qns=qns)
             elif request.form['delete'] == 'Delete':
-
+                db.execute('DELETE FROM question_and_answer WHERE id = ?', id).fetchone()
                 return render_template('user/faq.html')
-    queries = db.execute('SELECT id, question FROM question_and_answer').fetchall()
+    queries = db.execute('SELECT id, question, answer FROM question_and_answer').fetchall()
     # queries = list(map(lambda x: x[0], queries))
     # for row in queries:
     return render_template('user/faq.html', queries=queries)
@@ -157,8 +157,8 @@ def answer(id):
             answer = request.form['answer']
             db.execute('UPDATE question_and_answer SET answer= ? WHERE id = ?', (answer, id))
             db.commit()
-            query = db.execute('SELECT id, question, answer FROM question_and_answer').fetchall()
-            return render_template('user/faq.html', id = query[0], answer=query[2], queries=query[1])
+            queries = db.execute('SELECT id, question, answer FROM question_and_answer').fetchall()
+            return render_template('user/faq.html', queries=queries)
         return render_template('user/answer_faq.html', id=id, qns=qns[0])
     return render_template('user/answer_faq.html', id=id, qns=qns[0])
 
