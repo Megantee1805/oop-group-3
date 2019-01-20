@@ -396,23 +396,23 @@ pun01 = Vendor (
     name = "Grains",
     average_calories = 467,
     area = 'Punggol',
-    location = '',
+    location = '11 Northshore Drive, Punggol - 828670',
     location_code = 'pun',
-    description = '',
-    rating = 1,
-    image_location = ''
+    description = 'Ensuring that better food, prepared from whole, unprocessed ingredients is accessible to everyone.',
+    rating = 4,
+    image_location = '../static/images/grains-punggol-image.jpg'
     )
 
 pun02 = Vendor (
     code = "pun02",
     name = "The Soup Spoon",
-    average_calories = 768,
+    average_calories = 892,
     area = 'Punggol',
-    location = '',
+    location = '9 Sentul Cres, #05-01 SAFRA Punggol Club, Punggol - 828654',
     location_code = 'pun',
-    description = '',
+    description = 'We provide a one-of-a-kind experience that energizes everyone with an enthusiastic welcome, exceptional service, awesome food, killer tunes, and an unforgettable time.',
     rating = 2,
-    image_location = ''
+    image_location = '../static/images/soupspoon-punggol-image.jpg'
     )
 
 pun03 = Vendor (
@@ -420,34 +420,34 @@ pun03 = Vendor (
     name = "VeganBurg",
     average_calories = 768,
     area = 'Punggol',
-    location = '',
+    location = '6 Tebing Lane, #01-03, Punggol East, Punggol - 828835',
     location_code = 'pun',
-    description = '',
+    description = ' Our goal is to provide incredible taste at a modest price point in a welcoming, stylish atmosphere.',
     rating = 3,
-    image_location = ''
+    image_location = '../static/images/veganburg-punggol-image.jpg'
     )
 
 pun04 = Vendor (
     code = "pun04",
-    name = '',
+    name = 'Izakaya 95',
     average_calories = 768,
     area = 'Punggol',
-    location = '',
+    location = '3 Punggol Point #02-05 The Punggol Settlement, Punggol - 828694',
     location_code = 'pun',
-    description = '',
+    description = "Here at The Punggol Settlement's Izakaya 95, traditional items like grilled tori negi, Kagoshima buta, hotate and engiri king mushroom are just some of the tastes you can savour.",
     rating = 4,
-    image_location = ''
+    image_location = '../static/images/izakaya95-punggol-image.jpg'
     )
 
 pun05 = Vendor (
     code = "pun05",
     name = '',
     average_calories = 768,
-    area = 'Punggol',
+    area = '',
     location = '',
     location_code = 'pun',
     description = '',
-    rating = 3,
+    rating = 0,
     image_location = ''
     )
 
