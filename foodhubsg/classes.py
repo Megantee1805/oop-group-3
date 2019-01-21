@@ -449,12 +449,11 @@ pun05 = Vendor (
     )
 
 
-
 a00001 = Food("a00001", "McSpicy", 752, sen01)
 a00002 = Food("a00002", "Straight-Up Blood", 109, sen01)
 a00003 = Food("a00003", "Soup of Chicken", 200, sen01)
 a00004 = Food("a00004", "Just Another Food", 109, sen01)
-a00005 = Food("a00005", "Straight-Up Blood", 109, sen01)
+a00005 = Food("a00005", "McChicken", 456, sen01)
 
 a00011 = Food("a00011", "Aglio Olio", 600, sen02)
 a00012 = Food("a00012", "Cesear Salad", 540, sen02)
@@ -540,7 +539,9 @@ c00043 = Food("c00043", "Karage Ramen", 570, pun05)
 c00044 = Food("c00044", "Karage Ramen", 570, pun05)
 c00045 = Food("c00045", "Karage Ramen", 570, pun05)
 
+
 ### Puts the food/vendors in lists accordingly ###
+
 
 food_list = [a00001, a00002, a00003, a00004, a00005,
              a00011, a00012, a00013, a00014, a00015,
