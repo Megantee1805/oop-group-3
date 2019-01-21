@@ -316,18 +316,6 @@ sen04 = Vendor (
     image_location = '../static/images/subway-sengkang-image.jpg'
     )
 
-sen05 = Vendor (
-    code = "sen05",
-    name = '',
-    average_calories = 768,
-    area = '',
-    location = '',
-    location_code = '',
-    description = '',
-    rating = 3,
-    image_location = ''
-    )
-
 amk01 = Vendor(
     code = "amk01",
     name = "The Lawn",
@@ -374,18 +362,6 @@ amk04 = Vendor (
     description = 'High Quality Meat Cuts Available!',
     rating = 2,
     image_location = '../static/images/warmdrum-amk-image.jpeg'
-    )
-
-amk05 = Vendor (
-    code = "amk05",
-    name = '',
-    average_calories = 768,
-    area = '',
-    location = '',
-    location_code = '',
-    description = '',
-    rating = 1,
-    image_location = ''
     )
 
 pun01 = Vendor (
@@ -436,30 +412,18 @@ pun04 = Vendor (
     image_location = '../static/images/izakaya95-punggol-image.jpg'
     )
 
-pun05 = Vendor (
-    code = "pun05",
-    name = '',
-    average_calories = 768,
-    area = '',
-    location = '',
-    location_code = 'pun',
-    description = '',
-    rating = 0,
-    image_location = ''
-    )
-
 
 a00001 = Food("a00001", "McSpicy", 752, sen01)
-a00002 = Food("a00002", "Straight-Up Blood", 109, sen01)
-a00003 = Food("a00003", "Soup of Chicken", 200, sen01)
-a00004 = Food("a00004", "Just Another Food", 109, sen01)
+a00002 = Food("a00002", "McSalad", 209, sen01)
+a00003 = Food("a00003", "4pc McWings", 300, sen01)
+a00004 = Food("a00004", "Big Mac", 954, sen01)
 a00005 = Food("a00005", "McChicken", 456, sen01)
 
 a00011 = Food("a00011", "Aglio Olio", 600, sen02)
 a00012 = Food("a00012", "Cesear Salad", 540, sen02)
-a00013 = Food("a00013", "Cream Pasta", 756, sen02)
+a00013 = Food("a00013", "Cream of Mushroom Soup", 256, sen02)
 a00014 = Food("a00014", "Carbonara", 694, sen02)
-a00015 = Food("a00015", "Mushroom", 307, sen02)
+a00015 = Food("a00015", "Mushroom Pasta", 407, sen02)
 
 a00021 = Food("a00021", "Aglio Olio", 600, sen03)
 a00022 = Food("a00022", "Cesear Salad", 540, sen03)
@@ -472,12 +436,6 @@ a00032 = Food("a00032", "Cesear Salad", 540, sen04)
 a00033 = Food("a00033", "Cream Pasta", 756, sen04)
 a00034 = Food("a00034", "Carbonara", 694, sen04)
 a00035 = Food("a00035", "Mushroom", 307, sen04)
-
-a00041 = Food("a00041", "Aglio Olio", 600, sen05)
-a00042 = Food("a00042", "Cesear Salad", 540, sen05)
-a00043 = Food("a00043", "Cream Pasta", 756, sen05)
-a00044 = Food("a00044", "Carbonara", 694, sen05)
-a00045 = Food("a00045", "Mushroom", 307, sen05)
 
 b00001 = Food("b00001", "Chicken Rice", 673, amk01)
 b00002 = Food("b00002", "Fried Rice", 840, amk01)
@@ -503,12 +461,6 @@ b00033 = Food("b00033", "Unagi Bento", 570, amk04)
 b00034 = Food("b00034", "Cold Udon", 570, amk04)
 b00035 = Food("b00035", "Some kind of Japanese food", 570, amk04)
 
-b00041 = Food("b00041", "Teriyaki Bento", 631, amk05)
-b00042 = Food("b00042", "Karage Ramen", 570, amk05)
-b00043 = Food("b00043", "Unagi Bento", 570, amk05)
-b00044 = Food("b00044", "Cold Udon", 570, amk05)
-b00045 = Food("b00045", "Some kind of Japanese food", 570, amk05)
-
 c00001 = Food("c00001", "Teriyaki Bento", 631, pun01)
 c00002 = Food("c00002", "Karage Ramen", 570, pun01)
 c00003 = Food("c00003", "Karage Ramen", 570, pun01)
@@ -533,12 +485,6 @@ c00033 = Food("c00033", "Karage Ramen", 570, pun04)
 c00034 = Food("c00034", "Karage Ramen", 570, pun04)
 c00035 = Food("c00035", "Karage Ramen", 570, pun04)
 
-c00041 = Food("c00041", "Teriyaki Bento", 631, pun05)
-c00042 = Food("c00042", "Karage Ramen", 570, pun05)
-c00043 = Food("c00043", "Karage Ramen", 570, pun05)
-c00044 = Food("c00044", "Karage Ramen", 570, pun05)
-c00045 = Food("c00045", "Karage Ramen", 570, pun05)
-
 
 ### Puts the food/vendors in lists accordingly ###
 
@@ -547,41 +493,37 @@ food_list = [a00001, a00002, a00003, a00004, a00005,
              a00011, a00012, a00013, a00014, a00015,
              a00021, a00022, a00023, a00024, a00025,
              a00031, a00032, a00033, a00034, a00035,
-             a00041, a00042, a00043, a00044, a00045,
 
              b00001, b00002, b00003, b00004, b00005,
              b00011, b00012, b00013, b00014, b00015,
              b00021, b00022, b00023, b00024, b00025,
              b00031, b00032, b00033, b00034, b00035,
-             b00041, b00042, b00043, b00044, b00045,
 
              c00001, c00002, c00003, c00004, c00005,
              c00011, c00012, c00013, c00014, c00015,
              c00021, c00022, c00023, c00024, c00025,
              c00031, c00032, c00033, c00034, c00035,
-             c00041, c00042, c00043, c00044, c00045]
+             ]
 
-vendor_list = [sen01, sen02, sen03, sen04, sen05,
-               amk01, amk02, amk03, amk04, amk05,
-               pun01, pun02, pun03, pun04, pun05]
+vendor_list = [sen01, sen02, sen03, sen04,
+               amk01, amk02, amk03, amk04,
+               pun01, pun02, pun03, pun04,
+               ]
 
 vendor_food = {sen01: [a00001, a00002, a00003, a00004, a00005],
                sen02: [a00011, a00012, a00013, a00014, a00015],
                sen03: [a00021, a00022, a00023, a00024, a00025],
                sen04: [a00031, a00032, a00033, a00034, a00035],
-               sen05: [a00041, a00042, a00043, a00044, a00045],
 
                amk01: [b00001, b00002, b00003, b00004, b00005],
                amk02: [b00011, b00012, b00013, b00014, b00015],
                amk03: [b00021, b00022, b00023, b00024, b00025],
                amk04: [b00031, b00032, b00033, b00034, b00035],
-               amk05: [b00041, b00042, b00043, b00044, b00045],
 
                pun01: [c00001, c00002, c00003, c00004, c00005],
                pun02: [c00011, c00012, c00013, c00014, c00015],
                pun03: [c00021, c00022, c00023, c00024, c00025],
                pun04: [c00031, c00032, c00033, c00034, c00035],
-               pun05: [c00041, c00042, c00043, c00044, c00045]
                }
 
 
