@@ -27,12 +27,12 @@ def vendors():
         user_location = user['location']
 
     user_vendors = []
-
-    for vendor in vendor_list:
-        if user_location == vendor.get_area():
-            user_vendors.append(vendor)
-        else:
-            continue
+    for vendors in vendor_list:
+        for vendor in vendor_list[vendors]:
+            if user_location == vendor.get_area():
+                user_vendors.append(vendor)
+            else:
+                continue
 
     return render_template("vendors/vendor_page.html", user_vendors=user_vendors)
 
@@ -47,21 +47,25 @@ def vendor(code):
     rating = None
     image_location = None
 
-    if not [vendor for vendor in vendor_list if vendor.get_code() == code]:
-        abort(404, "That vendor (code: {0}) doesn't exist.".format(code))
+    for vendors in vendor_list:
+        for vendor in vendor_list[vendors]:
+            if vendor.get_code() == code:
+                if not vendor:
+                    abort(404, "That vendor (code: {0}) doesn't exist.".format(code))
 
     else:
-        for vendor in vendor_list:
-            if vendor.get_code() == code:
-                current_vendor = vendor
-                name = current_vendor.get_name()
-                average_calories = current_vendor.get_average_calories()
-                area = current_vendor.get_area()
-                location = current_vendor.get_location()
-                description = current_vendor.get_description()
-                rating = current_vendor.get_rating()
-                image_location = current_vendor.get_image_location()
+        for vendors in vendor_list:
+            for vendor in vendor_list[vendors]:
+                if vendor.get_code() == code:
+                    current_vendor = vendor
+                    name = current_vendor.get_name()
+                    average_calories = current_vendor.get_average_calories()
+                    area = current_vendor.get_area()
+                    location = current_vendor.get_location()
+                    description = current_vendor.get_description()
+                    rating = current_vendor.get_rating()
+                    image_location = current_vendor.get_image_location()
 
-    return render_template("vendors/vendor.html", current_vendor=current_vendor, name=name,
-                           average_calories=average_calories, area=area, location=location, description=description,
-                           rating=rating, image_location=image_location)
+                    return render_template("vendors/vendor.html", current_vendor=current_vendor, name=name,
+                                           average_calories=average_calories, area=area, location=location, description=description,
+                                           rating=rating, image_location=image_location)
