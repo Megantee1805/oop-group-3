@@ -114,9 +114,9 @@ def faq():
     if request.method == 'POST':
         if request.form['action'] == 'Submit A Question':
             question = request.form['query']
+            print(request.form)
             answer = "No answer given yet, please answer on your own"
-            error = None
-            if question is None:
+            if question is None or question == '':
                 error = 'No value entered please try again'
                 flash(error)
             else:
@@ -153,14 +153,17 @@ def answer(id):
     db = get_db()
     qns = db.execute('SELECT question FROM question_and_answer WHERE id = ?', [id]).fetchone()
     if request.method == 'POST':
-        qns = db.execute('SELECT question FROM question_and_answer WHERE id = ?', [id]).fetchone()
         if request.form['action'] == 'Submit Answer':
-            print(request.form)
             answer = request.form['answer']
-            db.execute('UPDATE question_and_answer SET answer= ? WHERE id = ?', (answer, id))
-            db.commit()
-            queries = db.execute('SELECT id, question, answer FROM question_and_answer').fetchall()
-            return render_template('user/faq.html', queries=queries)
+            if answer is None or answer == '':
+                print(request.form)
+                error = 'No value entered please try again'
+                flash(error)
+            else:
+                db.execute('UPDATE question_and_answer SET answer= ? WHERE id = ?', (answer, id))
+                db.commit()
+                queries = db.execute('SELECT id, question, answer FROM question_and_answer').fetchall()
+                return render_template('user/faq.html', queries=queries)
     return render_template('user/answer_faq.html', id=id, qns=qns[0])
 
 
