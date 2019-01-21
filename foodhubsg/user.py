@@ -126,10 +126,10 @@ def faq():
                 return render_template('user/faq.html', queries=queries)
             # for row in queries:
         if request.form['action'] == 'Answer':
-            qns = db.execute('SELECT question FROM question_and_answer WHERE id = ?', id).fetchone()
+            qns = db.execute('SELECT question FROM question_and_answer WHERE id = ?', str(id)).fetchone()
             return render_template('user/answer_faq.html', qns=qns)
         if request.form['action'] == 'Delete':
-            db.execute('DELETE FROM question_and_answer WHERE id = ?', id).fetchone()
+            db.execute('DELETE FROM question_and_answer WHERE id = ?', str(id)).fetchone()
             return render_template('user/faq.html')
     queries = db.execute('SELECT id, question, answer FROM question_and_answer').fetchall()
     # queries = list(map(lambda x: x[0], queries))
