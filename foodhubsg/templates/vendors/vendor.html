@@ -42,11 +42,20 @@
 
             <div class="row row-pb-md">
             <div class="col-md-6">
-                {% if  vendors == code %}
-                <div class="blog-entry">
-                    Code: {{ code }}
-                </div>
+                {% for food in vendor_food_list %}
+
+                    <article class="food-journal">
+                        <header>
+                            <div class="food-subsection">
+                                <h4 style="margin-bottom: 0; display: inline"><b>{{ food.get_name() }}</b></h4>
+                                <p style="display: inline">(code: {{ food.get_code() }})</p>
+                            </div>
+                        </header>
+                    </article>
+
+                {% if not loop.last %}
                 {% endif %}
+                {% endfor %}
             </div>
             </div>
 

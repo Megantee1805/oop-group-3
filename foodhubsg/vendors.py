@@ -66,6 +66,15 @@ def vendor(code):
                     rating = current_vendor.get_rating()
                     image_location = current_vendor.get_image_location()
 
+
                     return render_template("vendors/vendor.html", current_vendor=current_vendor, name=name,
                                            average_calories=average_calories, area=area, location=location, description=description,
                                            rating=rating, image_location=image_location)
+        for key, value in vendor_food.items():
+            if key.get_code() == code:
+                vendor_food_list = value
+
+
+    return render_template("vendors/vendor.html", current_vendor=current_vendor, name=name,
+                           average_calories=average_calories, area=area, location=location, description=description,
+                           rating=rating, image_location=image_location, vendor_food_list=vendor_food_list)
