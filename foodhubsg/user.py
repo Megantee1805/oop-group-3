@@ -160,6 +160,8 @@ def faq():
 
 =======
 >>>>>>> 0eedb4bab939e6f3412bb08790160fb6a0b68c48
+=======
+>>>>>>> 0eedb4bab939e6f3412bb08790160fb6a0b68c48
     queries = db.execute('SELECT id, question, answer FROM question_and_answer').fetchall()
     # queries = list(map(lambda x: x[0], queries))
     # for row in queries:
