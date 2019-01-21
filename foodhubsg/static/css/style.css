@@ -38,8 +38,9 @@ body {
   }
 }
 #ratingstars{
-padding: 5px 0 5px 0;
-margin-left: 55em;
+padding: 5px 5px 5px 5px;
+margin-left: 54em;
+margin-top: 15em;
 }
 .heading-2{
   font-size: 18px;
