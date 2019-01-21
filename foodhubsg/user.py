@@ -114,9 +114,9 @@ def faq():
     if request.method == 'POST':
         if request.form['action'] == 'Submit A Question':
             question = request.form['query']
+            print(request.form)
             answer = "No answer given yet, please answer on your own"
-            error = None
-            if question is None:
+            if question is None or question == '':
                 error = 'No value entered please try again'
                 flash(error)
             else:
@@ -125,6 +125,7 @@ def faq():
                 queries = db.execute('SELECT id, question, answer FROM question_and_answer').fetchall()
                 return render_template('user/faq.html', queries=queries)
             # for row in queries:
+<<<<<<< HEAD
 
 #         if request.form['action'] == 'Answer':
 #             qns = db.execute('SELECT question FROM question_and_answer WHERE id = ?', str(id)).fetchone()
@@ -133,6 +134,14 @@ def faq():
 #             db.execute('DELETE FROM question_and_answer WHERE id = ?', str(id)).fetchone()
 #             return render_template('user/faq.html')
 
+=======
+        if request.form['action'] == 'Answer':
+            qns = db.execute('SELECT question FROM question_and_answer WHERE id = ?', str(id)).fetchone()
+            return render_template('user/answer_faq.html', qns=qns)
+        if request.form['action'] == 'Delete':
+            db.execute('DELETE FROM question_and_answer WHERE id = ?', str(id)).fetchone()
+            return render_template('user/faq.html')
+>>>>>>> 0eedb4bab939e6f3412bb08790160fb6a0b68c48
         elif request.method == 'GET':
             if request.form['answer'] == 'Answer':
                 qns = db.execute('SELECT question FROM question_and_answer WHERE id = ?', id).fetchone()
@@ -140,7 +149,10 @@ def faq():
             elif request.form['delete'] == 'Delete':
                 db.execute('DELETE FROM question_and_answer WHERE id = ?', id).fetchone()
                 return render_template('user/faq.html')
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0eedb4bab939e6f3412bb08790160fb6a0b68c48
     queries = db.execute('SELECT id, question, answer FROM question_and_answer').fetchall()
     # queries = list(map(lambda x: x[0], queries))
     # for row in queries:
@@ -156,15 +168,17 @@ def answer(id):
     db = get_db()
     qns = db.execute('SELECT question FROM question_and_answer WHERE id = ?', [id]).fetchone()
     if request.method == 'POST':
-        qns = db.execute('SELECT question FROM question_and_answer WHERE id = ?', [id]).fetchone()
         if request.form['action'] == 'Submit Answer':
-            print(request.form)
             answer = request.form['answer']
-            db.execute('UPDATE question_and_answer SET answer= ? WHERE id = ?', (answer, id))
-            db.commit()
-            queries = db.execute('SELECT id, question, answer FROM question_and_answer').fetchall()
-            return render_template('user/faq.html', queries=queries)
-        return render_template('user/answer_faq.html', id=id, qns=qns[0])
+            if answer is None or answer == '':
+                print(request.form)
+                error = 'No value entered please try again'
+                flash(error)
+            else:
+                db.execute('UPDATE question_and_answer SET answer= ? WHERE id = ?', (answer, id))
+                db.commit()
+                queries = db.execute('SELECT id, question, answer FROM question_and_answer').fetchall()
+                return render_template('user/faq.html', queries=queries)
     return render_template('user/answer_faq.html', id=id, qns=qns[0])
 
 

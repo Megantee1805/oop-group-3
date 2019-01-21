@@ -38,8 +38,10 @@ body {
   }
 }
 #ratingstars{
-padding: 5px 0 5px 0;
-margin-left: 55em;
+padding: 5px 5px 5px 5px;
+border: 1px solid lightgrey;
+margin-right: 27em;
+margin-top: 13em;
 }
 .heading-2{
   font-size: 18px;
