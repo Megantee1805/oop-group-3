@@ -133,6 +133,13 @@ def faq():
             db.execute('DELETE FROM question_and_answer WHERE id = ?', str(id)).fetchone()
             return render_template('user/faq.html')
 =======
+        elif request.method == 'GET':
+            if request.form['answer'] == 'Answer':
+                qns = db.execute('SELECT question FROM question_and_answer WHERE id = ?', id).fetchone()
+                return render_template('user/answer_faq.html', qns=qns)
+            elif request.form['delete'] == 'Delete':
+                db.execute('DELETE FROM question_and_answer WHERE id = ?', id).fetchone()
+                return render_template('user/faq.html')
 >>>>>>> 3f4aa17657e3064956185aefbbda8569a1e218e7
     queries = db.execute('SELECT id, question, answer FROM question_and_answer').fetchall()
     # queries = list(map(lambda x: x[0], queries))
