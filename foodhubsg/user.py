@@ -126,6 +126,7 @@ def faq():
                 return render_template('user/faq.html', queries=queries)
             # for row in queries:
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 #         if request.form['action'] == 'Answer':
 #             qns = db.execute('SELECT question FROM question_and_answer WHERE id = ?', str(id)).fetchone()
@@ -135,12 +136,17 @@ def faq():
 #             return render_template('user/faq.html')
 
 =======
+=======
+>>>>>>> 0eedb4bab939e6f3412bb08790160fb6a0b68c48
         if request.form['action'] == 'Answer':
             qns = db.execute('SELECT question FROM question_and_answer WHERE id = ?', str(id)).fetchone()
             return render_template('user/answer_faq.html', qns=qns)
         if request.form['action'] == 'Delete':
             db.execute('DELETE FROM question_and_answer WHERE id = ?', str(id)).fetchone()
             return render_template('user/faq.html')
+<<<<<<< HEAD
+>>>>>>> 0eedb4bab939e6f3412bb08790160fb6a0b68c48
+=======
 >>>>>>> 0eedb4bab939e6f3412bb08790160fb6a0b68c48
         elif request.method == 'GET':
             if request.form['answer'] == 'Answer':
@@ -149,6 +155,7 @@ def faq():
             elif request.form['delete'] == 'Delete':
                 db.execute('DELETE FROM question_and_answer WHERE id = ?', id).fetchone()
                 return render_template('user/faq.html')
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 =======
