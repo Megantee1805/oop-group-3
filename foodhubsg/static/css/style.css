@@ -40,8 +40,7 @@ body {
 #ratingstars{
 padding: 5px 5px 5px 5px;
 border: 1px solid lightgrey;
-margin-right: 24em;
-margin-top: 5em;
+float: right;
 }
 .heading-2{
   font-size: 18px;
