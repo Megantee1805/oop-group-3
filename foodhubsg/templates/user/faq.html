@@ -32,9 +32,6 @@
                             <b class="font_color"> {{ query[2] }}</b>
                         <input type="submit" value="Answer" name="answer" class="btn btn-primary" style="background-color: #4CAF50; height: 54px; margin-left: 0.5em;">
                         </form>
-                        <form method="get" action="">
-                        <input type="submit" value="Delete" onclick="confirm_removal()" name="delete" class="btn btn-primary" style="background-color: #d9534f; height: 54px; margin-left: 0.5em;">
-                        </form>
                         {% if loop.last %}
                         {% endif %}
                     {% endfor %}
@@ -49,19 +46,6 @@
         </div>
     </div>
 </div>
-
-
-<script>
-
-function confirm_removal() {
-    if (confirm("Are you sure you want to remove the query?")) {
-      document.getElementById("delete-button").value = "Delete Query";
-  } else {
-      document.getElementById("remove-button").value = "";
-      window.location.replace('user.faq')
-  }
-}
-</script>
 
 {% endblock %}
 

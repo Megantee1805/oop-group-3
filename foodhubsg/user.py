@@ -129,9 +129,6 @@ def faq():
             if request.form['answer'] == 'Answer':
                 qns = db.execute('SELECT question FROM question_and_answer WHERE id = ?', id).fetchone()
                 return render_template('user/answer_faq.html', qns=qns)
-            elif request.form['delete'] == 'Delete':
-                db.execute('DELETE FROM question_and_answer WHERE id = ?', id).fetchone()
-                return render_template('user/faq.html')
     queries = db.execute('SELECT id, question, answer FROM question_and_answer').fetchall()
     # queries = list(map(lambda x: x[0], queries))
     # for row in queries:
@@ -155,7 +152,6 @@ def answer(id):
             db.commit()
             queries = db.execute('SELECT id, question, answer FROM question_and_answer').fetchall()
             return render_template('user/faq.html', queries=queries)
-        return render_template('user/answer_faq.html', id=id, qns=qns[0])
     return render_template('user/answer_faq.html', id=id, qns=qns[0])
 
 
