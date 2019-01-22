@@ -172,7 +172,7 @@ class ProcessUserInfo:
                 current_date_calories = sum(current_date_calories)
 
                 self.__calories_list.append(current_date_calories)
-                self.__number_of_days = len(self.__calories_list)
+                self.__number_of_days = len(self.__all_dates)
                 self.__user_average_calories = int(sum(self.__calories_list) / self.__number_of_days)
                 self.__food_dates.append(current_date_food)
 

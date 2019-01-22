@@ -64,9 +64,9 @@ def vendor(code):
 
         for key, value in vendor_food.items():
             if key.get_code() == code:
-                vendor_food_list = value
+                vendor_menu = value
 
 
     return render_template("vendors/vendor.html", current_vendor=current_vendor, name=name,
                            average_calories=average_calories, area=area, location=location, description=description,
-                           rating=rating, image_location=image_location, vendor_food_list=vendor_food_list)
+                           rating=rating, image_location=image_location, vendor_menu=vendor_menu)
