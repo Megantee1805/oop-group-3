@@ -25,11 +25,14 @@ def vendors():
 
     for user in users:
         user_location = user['location']
+        user_rating = user['rating']
+        
 
     user_vendors = []
     for vendors in vendor_list:
         vendor = vendor_list[vendors]
         if user_location == vendor.get_area():
+            if user_rating == vendor.get_rating("4"):
             user_vendors.append(vendor)
         else:
             continue
