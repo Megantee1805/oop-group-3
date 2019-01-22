@@ -503,26 +503,11 @@ food_list = [a00001, a00002, a00003, a00004, a00005,
              c00001, c00002, c00003, c00004, c00005,
              c00011, c00012, c00013, c00014, c00015,
              c00021, c00022, c00023, c00024, c00025,
-             c00031, c00032, c00033, c00034, c00035,
-             ]
+             c00031, c00032, c00033, c00034, c00035]
 
-
-<<<<<<< HEAD
-vendor_list = {'sen01': sen01, 'sen02': sen02, 'sen03': sen03, 'sen04': sen04,
-               'amk01': amk01, 'amk02': amk02, 'amk03': amk03, 'amk04': amk04,
-               'pun01': pun01, 'pun02': pun02, 'pun03': pun03, 'pun04':pun04}
-=======
-vendor_list = {'sen': [sen01, sen02, sen03, sen04],
-               'amk': [amk01, amk02, amk03, amk04],
-               'pun': [pun01, pun02, pun03, pun04]}
->>>>>>> parent of f5e3854... fixed vendor
-
-<<<<<<< HEAD
-=======
-vendor_list = [sen01, sen02, sen03, sen04, sen05,
-               amk01, amk02, amk03, amk04, amk05,
-               pun01, pun02, pun03, pun04, pun05]
->>>>>>> parent of def7e02... changed classes
+vendor_list = [sen01, sen02, sen03, sen04,
+               amk01, amk02, amk03, amk04,
+               pun01, pun02, pun03, pun04]
 
 vendor_food = {sen01: [a00001, a00002, a00003, a00004, a00005],
                sen02: [a00011, a00012, a00013, a00014, a00015],

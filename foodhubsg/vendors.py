@@ -29,29 +29,11 @@ def vendors():
         
 
     user_vendors = []
-<<<<<<< HEAD
-    for vendors in vendor_list:
-<<<<<<< HEAD
-        vendor = vendor_list[vendors]
-        if user_location == vendor.get_area():
-                user_vendors.append(vendor)
-        else:
-            continue
-=======
-        for vendor in vendor_list[vendors]:
-            if user_location == vendor.get_area():
-                user_vendors.append(vendor)
-            else:
-                continue
->>>>>>> parent of f5e3854... fixed vendor
-=======
-
     for vendor in vendor_list:
         if user_location == vendor.get_area():
             user_vendors.append(vendor)
         else:
             continue
->>>>>>> parent of def7e02... changed classes
 
     return render_template("vendors/vendor_page.html", user_vendors=user_vendors)
 
@@ -70,13 +52,7 @@ def vendor(code):
         abort(404, "That vendor (code: {0}) doesn't exist.".format(code))
 
     else:
-<<<<<<< HEAD
-        for vendors in vendor_list:
-<<<<<<< HEAD
-            vendor = vendor_list[vendors]
-=======
         for vendor in vendor_list:
->>>>>>> parent of def7e02... changed classes
             if vendor.get_code() == code:
                 current_vendor = vendor
                 name = current_vendor.get_name()
@@ -86,11 +62,7 @@ def vendor(code):
                 description = current_vendor.get_description()
                 rating = current_vendor.get_rating()
                 image_location = current_vendor.get_image_location()
-<<<<<<< HEAD
 
-
-                
-=======
             for vendor in vendor_list[vendors]:
                 if vendor.get_code() == code:
                     current_vendor = vendor
@@ -106,28 +78,12 @@ def vendor(code):
                     return render_template("vendors/vendor.html", current_vendor=current_vendor, name=name,
                                            average_calories=average_calories, area=area, location=location, description=description,
                                            rating=rating, image_location=image_location)
->>>>>>> parent of f5e3854... fixed vendor
         for key, value in vendor_food.items():
             if key.get_code() == code:
-<<<<<<< HEAD
                 vendor_menu = value
 
 
     return render_template("vendors/vendor.html", current_vendor=current_vendor, name=name,
                            average_calories=average_calories, area=area, location=location, description=description,
                            rating=rating, image_location=image_location, vendor_menu=vendor_menu)
-=======
-                vendor_food_list = value
-   
-                return render_template("vendors/vendor.html", current_vendor=current_vendor, name=name,
-                                           average_calories=average_calories, area=area, location=location, description=description,
-                                           rating=rating, image_location=image_location)
 
-    
->>>>>>> 46d26f470811b079d62fc51b8defc57932a8ba6c
-=======
-
-    return render_template("vendors/vendor.html", current_vendor=current_vendor, name=name,
-                           average_calories=average_calories, area=area, location=location, description=description,
-                           rating=rating, image_location=image_location)
->>>>>>> parent of def7e02... changed classes
