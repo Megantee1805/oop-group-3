@@ -149,7 +149,6 @@ class ProcessUserInfo:
             self.__bmi = round(self.__weight / self.__height ** self.__height, 2)
 
         for vendor in vendor_list:
-            vendor = vendor_list[vendor]
             if self.__user_location == vendor.get_area():
                 self.__user_vendors.append(vendor)
 
@@ -316,7 +315,6 @@ sen04 = Vendor (
     rating = 3,
     image_location = '../static/images/subway-sengkang-image.jpg'
     )
-
 
 amk01 = Vendor(
     code = "amk01",
@@ -507,11 +505,10 @@ food_list = [a00001, a00002, a00003, a00004, a00005,
              c00031, c00032, c00033, c00034, c00035,
              ]
 
-
-vendor_list = {'sen01': sen01, 'sen02': sen02, 'sen03': sen03, 'sen04': sen04,
-               'amk01': amk01, 'amk02': amk02, 'amk03': amk03, 'amk04': amk04,
-               'pun01': pun01, 'pun02': pun02, 'pun03': pun03, 'pun04':pun04}
-
+vendor_list = [sen01, sen02, sen03, sen04,
+               amk01, amk02, amk03, amk04,
+               pun01, pun02, pun03, pun04,
+               ]
 
 vendor_food = {sen01: [a00001, a00002, a00003, a00004, a00005],
                sen02: [a00011, a00012, a00013, a00014, a00015],
