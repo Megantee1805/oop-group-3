@@ -29,6 +29,7 @@ def vendors():
         
 
     user_vendors = []
+<<<<<<< HEAD
     for vendors in vendor_list:
 <<<<<<< HEAD
         vendor = vendor_list[vendors]
@@ -43,6 +44,14 @@ def vendors():
             else:
                 continue
 >>>>>>> parent of f5e3854... fixed vendor
+=======
+
+    for vendor in vendor_list:
+        if user_location == vendor.get_area():
+            user_vendors.append(vendor)
+        else:
+            continue
+>>>>>>> parent of def7e02... changed classes
 
     return render_template("vendors/vendor_page.html", user_vendors=user_vendors)
 
@@ -57,16 +66,17 @@ def vendor(code):
     rating = None
     image_location = None
 
-    for vendors in vendor_list:
-        for vendor in vendor_list[vendors]:
-            if vendor.get_code() == code:
-                if not vendor:
-                    abort(404, "That vendor (code: {0}) doesn't exist.".format(code))
+    if not [vendor for vendor in vendor_list if vendor.get_code() == code]:
+        abort(404, "That vendor (code: {0}) doesn't exist.".format(code))
 
     else:
+<<<<<<< HEAD
         for vendors in vendor_list:
 <<<<<<< HEAD
             vendor = vendor_list[vendors]
+=======
+        for vendor in vendor_list:
+>>>>>>> parent of def7e02... changed classes
             if vendor.get_code() == code:
                 current_vendor = vendor
                 name = current_vendor.get_name()
@@ -76,6 +86,7 @@ def vendor(code):
                 description = current_vendor.get_description()
                 rating = current_vendor.get_rating()
                 image_location = current_vendor.get_image_location()
+<<<<<<< HEAD
 
 
                 
@@ -114,3 +125,9 @@ def vendor(code):
 
     
 >>>>>>> 46d26f470811b079d62fc51b8defc57932a8ba6c
+=======
+
+    return render_template("vendors/vendor.html", current_vendor=current_vendor, name=name,
+                           average_calories=average_calories, area=area, location=location, description=description,
+                           rating=rating, image_location=image_location)
+>>>>>>> parent of def7e02... changed classes
