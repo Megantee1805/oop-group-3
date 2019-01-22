@@ -30,11 +30,19 @@ def vendors():
 
     user_vendors = []
     for vendors in vendor_list:
+<<<<<<< HEAD
         vendor = vendor_list[vendors]
         if user_location == vendor.get_area():
                 user_vendors.append(vendor)
         else:
             continue
+=======
+        for vendor in vendor_list[vendors]:
+            if user_location == vendor.get_area():
+                user_vendors.append(vendor)
+            else:
+                continue
+>>>>>>> parent of f5e3854... fixed vendor
 
     return render_template("vendors/vendor_page.html", user_vendors=user_vendors)
 
@@ -50,13 +58,14 @@ def vendor(code):
     image_location = None
 
     for vendors in vendor_list:
-        vendor = vendor_list[vendors]
-        if vendor.get_code() == code:
-            if not vendor:
-                abort(404, "That vendor (code: {0}) doesn't exist.".format(code))
+        for vendor in vendor_list[vendors]:
+            if vendor.get_code() == code:
+                if not vendor:
+                    abort(404, "That vendor (code: {0}) doesn't exist.".format(code))
 
     else:
         for vendors in vendor_list:
+<<<<<<< HEAD
             vendor = vendor_list[vendors]
             if vendor.get_code() == code:
                 current_vendor = vendor
@@ -70,6 +79,23 @@ def vendor(code):
 
 
                 
+=======
+            for vendor in vendor_list[vendors]:
+                if vendor.get_code() == code:
+                    current_vendor = vendor
+                    name = current_vendor.get_name()
+                    average_calories = current_vendor.get_average_calories()
+                    area = current_vendor.get_area()
+                    location = current_vendor.get_location()
+                    description = current_vendor.get_description()
+                    rating = current_vendor.get_rating()
+                    image_location = current_vendor.get_image_location()
+
+
+                    return render_template("vendors/vendor.html", current_vendor=current_vendor, name=name,
+                                           average_calories=average_calories, area=area, location=location, description=description,
+                                           rating=rating, image_location=image_location)
+>>>>>>> parent of f5e3854... fixed vendor
         for key, value in vendor_food.items():
             if key.get_code() == code:
 <<<<<<< HEAD

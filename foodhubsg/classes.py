@@ -148,10 +148,10 @@ class ProcessUserInfo:
             self.__password = user['password']
             self.__bmi = round(self.__weight / self.__height ** self.__height, 2)
 
-        for vendor in vendor_list:
-            vendor = vendor_list[vendor]
-            if self.__user_location == vendor.get_area():
-                self.__user_vendors.append(vendor)
+        for vendors in vendor_list:
+            for vendor in vendor_list[vendors]:
+                if self.__user_location == vendor.get_area():
+                    self.__user_vendors.append(vendor)
 
         if self.food_items != []:
             self.__food_exists = 1
@@ -508,9 +508,15 @@ food_list = [a00001, a00002, a00003, a00004, a00005,
              ]
 
 
+<<<<<<< HEAD
 vendor_list = {'sen01': sen01, 'sen02': sen02, 'sen03': sen03, 'sen04': sen04,
                'amk01': amk01, 'amk02': amk02, 'amk03': amk03, 'amk04': amk04,
                'pun01': pun01, 'pun02': pun02, 'pun03': pun03, 'pun04':pun04}
+=======
+vendor_list = {'sen': [sen01, sen02, sen03, sen04],
+               'amk': [amk01, amk02, amk03, amk04],
+               'pun': [pun01, pun02, pun03, pun04]}
+>>>>>>> parent of f5e3854... fixed vendor
 
 
 vendor_food = {sen01: [a00001, a00002, a00003, a00004, a00005],
