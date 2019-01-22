@@ -317,17 +317,6 @@ sen04 = Vendor (
     image_location = '../static/images/subway-sengkang-image.jpg'
     )
 
-sen05 = Vendor (
-    code = "sen05",
-    name = "The Bistro",
-    average_calories = 1027,
-    area = "Sengkang",
-    location = "1 Sengkang Square #01-225, Sengkang - 545078",
-    location_code = 'sen',
-    description = "Customise your poke bowls with staples such as flavoured mix rice, truffle pasta, salmon cubes and other ingredients!",
-     rating = 3,
-    image_location = '../static/images/thebistro-sengkang-image.jpeg'
-    )
 
 amk01 = Vendor(
     code = "amk01",
@@ -450,12 +439,6 @@ a00033 = Food("a00033", "Cream Pasta", 756, sen04)
 a00034 = Food("a00034", "Carbonara", 694, sen04)
 a00035 = Food("a00035", "Mushroom", 307, sen04)
 
-a00031 = Food("a00036", "Aglio Olio", 600, sen05)
-a00032 = Food("a00037", "Cesear Salad", 540, sen05)
-a00033 = Food("a00038", "Cream Pasta", 756, sen05)
-a00034 = Food("a00039", "Carbonara", 694, sen05)
-a00035 = Food("a00040", "Mushroom", 307, sen05)
-
 b00001 = Food("b00001", "Chicken Rice", 673, amk01)
 b00002 = Food("b00002", "Fried Rice", 840, amk01)
 b00003 = Food("b00003", "Pineapple Rice", 840, amk01)
@@ -525,9 +508,9 @@ food_list = [a00001, a00002, a00003, a00004, a00005,
              ]
 
 
-vendor_list = {'sen': [sen01, sen02, sen03, sen04, sen05],
-               'amk': [amk01, amk02, amk03, amk04, amk05],
-               'pun': [pun01, pun02, pun03, pun04, pun05]}
+vendor_list = {'sen': [sen01, sen02, sen03, sen04],
+               'amk': [amk01, amk02, amk03, amk04],
+               'pun': [pun01, pun02, pun03, pun04]}
 
 
 vendor_food = {sen01: [a00001, a00002, a00003, a00004, a00005],
