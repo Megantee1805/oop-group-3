@@ -317,6 +317,16 @@ sen04 = Vendor (
     image_location = '../static/images/subway-sengkang-image.jpg'
     )
 
+sen05 = Vendor (
+    code = "sen05",
+    name = "The Bistro",
+    average_calories = 1027,
+    area = "Sengkang",
+    location = "1 Sengkang Square #01-225, Sengkang - 545078",
+    location_code = 'sen',
+    description = "Customise your poke bowls with staples such as flavoured mix rice, truffle pasta, salmon cubes and other ingredients!"
+    image_location = '../static/images/.jpg'
+    )
 amk01 = Vendor(
     code = "amk01",
     name = "The Lawn",
@@ -437,6 +447,12 @@ a00032 = Food("a00032", "Cesear Salad", 540, sen04)
 a00033 = Food("a00033", "Cream Pasta", 756, sen04)
 a00034 = Food("a00034", "Carbonara", 694, sen04)
 a00035 = Food("a00035", "Mushroom", 307, sen04)
+
+a00031 = Food("a00031", "Aglio Olio", 600, sen05)
+a00032 = Food("a00032", "Cesear Salad", 540, sen05)
+a00033 = Food("a00033", "Cream Pasta", 756, sen05)
+a00034 = Food("a00034", "Carbonara", 694, sen05)
+a00035 = Food("a00035", "Mushroom", 307, sen05)
 
 b00001 = Food("b00001", "Chicken Rice", 673, amk01)
 b00002 = Food("b00002", "Fried Rice", 840, amk01)
