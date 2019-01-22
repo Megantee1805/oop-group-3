@@ -115,9 +115,10 @@ def login():
         ).fetchone()
 
         if email == support:
-            if password == support_password:
+            if check_password_hash(user['password'], support_password):
                 session.clear()
                 session['user_id'] = user['id']
+                g.user['name'] = 'Support'
 
         if user is None:
             error = 'Incorrect email entered'

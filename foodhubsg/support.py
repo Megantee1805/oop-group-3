@@ -8,9 +8,10 @@ from foodhubsg.db import *
 
 support = 'support@foodhub.sg'
 support_password = generate_password_hash('Iamasupport')
+g.user['name'] = 'Support'
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
 @bp.route('/support_index')
 def suppprt():
-    return render_template()
+    return render_template('support/support_index.html')
