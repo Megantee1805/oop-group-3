@@ -41,13 +41,11 @@
             </div>
 
             <div class="row row-pb-md">
-            <div class="col-md-6">
                 {% for food in vendor_food_list %}
-
                     <article class="food-journal">
                         <header>
-                            <div class="food-subsection" id="vendor-food">
-                                <h4 style="margin-bottom: 0; display: inline"><b>{{ food.get_name() }}</b></h4>
+                            <div id="vendor-food">
+                                <h4 style="margin-bottom: 0; display: inline"><b>{{ food.get_name() }}</b></h4><br>
                                 <p style="display: inline">(code: {{ food.get_code() }})</p><br>
                                 <p>{{ food.get_calories() }} calories <br></p>
                             </div>
@@ -57,7 +55,6 @@
                 {% if not loop.last %}
                 {% endif %}
                 {% endfor %}
-            </div>
             </div>
 
 
