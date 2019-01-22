@@ -17,7 +17,7 @@ def vendors():
     db = get_db()
 
     users = db.execute(
-        'SELECT id, name, email, password, height, weight, location'
+        'SELECT id, name, email, password, height, weight, location, rating'
         ' FROM user'
         ' WHERE id = ?',
         (g.user['id'],),
@@ -25,12 +25,14 @@ def vendors():
 
     for user in users:
         user_location = user['location']
+        
+        
 
     user_vendors = []
     for vendors in vendor_list:
         vendor = vendor_list[vendors]
         if user_location == vendor.get_area():
-            user_vendors.append(vendor)
+                user_vendors.append(vendor)
         else:
             continue
 
@@ -67,14 +69,22 @@ def vendor(code):
                 image_location = current_vendor.get_image_location()
 
 
-                return render_template("vendors/vendor.html", current_vendor=current_vendor, name=name,
-                                           average_calories=average_calories, area=area, location=location, description=description,
-                                           rating=rating, image_location=image_location)
+                
         for key, value in vendor_food.items():
             if key.get_code() == code:
-                vendor_food_list = value
+<<<<<<< HEAD
+                vendor_menu = value
 
 
     return render_template("vendors/vendor.html", current_vendor=current_vendor, name=name,
                            average_calories=average_calories, area=area, location=location, description=description,
-                           rating=rating, image_location=image_location, vendor_food_list=vendor_food_list)
+                           rating=rating, image_location=image_location, vendor_menu=vendor_menu)
+=======
+                vendor_food_list = value
+   
+                return render_template("vendors/vendor.html", current_vendor=current_vendor, name=name,
+                                           average_calories=average_calories, area=area, location=location, description=description,
+                                           rating=rating, image_location=image_location)
+
+    
+>>>>>>> 46d26f470811b079d62fc51b8defc57932a8ba6c
