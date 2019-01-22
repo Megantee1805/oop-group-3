@@ -2,6 +2,9 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
+from flask import Flask, render_template
+from flask_basicauth import BasicAuth
+from flask import Flask, session, redirect, url_for, escape, request
 
 
 app = Flask(__name__)
@@ -13,9 +16,12 @@ app.config['SECRET_KEY'] = 'mysecret'
 
 #Initialize the db connection
 db = SQLAlchemy(app)
-
+    
 admin = Admin(app)
 
+
+# set optional bootswatch theme
+app.config['FLASK_ADMIN_SWATCH'] = 'cerulean'
 
 #User table
 class User(db.Model):
@@ -90,7 +96,42 @@ admin.add_view(ModelView(FAQ, db.session))
 
 
 
-        
+app.config['BASIC_AUTH_USERNAME'] = 'foodhubsg'
+app.config['BASIC_AUTH_PASSWORD'] = 'amvz'
+app.config['BASIC_AUTH_FORCE'] = True
+
+basic_auth = BasicAuth(app)
+
+# Set the secret key to some random bytes. Use the command $ python -c 'import os; print(os.urandom(16))'
+app.secret_key = 
+
+@app.route('/secret')
+@basic_auth.required
+def secret_login_view():
+    return render_template('login.html')
+
+  
+class MicroBlogModelView(sqla.ModelView):
+
+    def is_accessible(self):
+        return login.current_user.is_authenticated
+
+    def inaccessible_callback(self, name, **kwargs):
+        # redirect to login page if user doesn't have access
+        return redirect(url_for('login', next=request.url))
+      
+login_manager = LoginManager()
+login_manager.init_app(app)
+      
+@login_manager.user_loader
+def load_user(user_id):
+    return User.get(user_id)
+  
+app.logger.error('An error occurred')
+
+
+
+
         
 if __name__ == '__main__':
     app.run(debug=True)
