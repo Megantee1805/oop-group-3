@@ -30,7 +30,7 @@ def vendors():
 
     user_vendors = []
     for vendors in vendor_list:
-        vendor = vendor_list[vendors][amk01]
+        vendor = vendor_list[vendors]['amk01']
         if user_location == vendor.get_area():
                 user_vendors.append(vendor)
         else:
