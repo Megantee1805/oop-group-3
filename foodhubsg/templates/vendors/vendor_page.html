@@ -38,7 +38,7 @@
                         
                             {% for vendor in user_vendors %}
                                 <div class="col-md-6">
-                                    <div class="blog-entry" id="text-appear-area"  style = "display: none;">
+                                    <div class="blog-entry" id="vendors"  style = "display: none;">
                                         <div class="blog-img">
                                             <a class="action" href="{{ url_for('vendors.vendor', code = vendor.get_code()) }}"><img src="{{ vendor.get_image_location() }}" class="img-responsive" alt="html5 bootstrap template"></a>
                                         </div>
