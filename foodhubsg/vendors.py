@@ -17,7 +17,7 @@ def vendors():
     db = get_db()
 
     users = db.execute(
-        'SELECT id, name, email, password, height, weight, location'
+        'SELECT id, name, email, password, height, weight, location, rating'
         ' FROM user'
         ' WHERE id = ?',
         (g.user['id'],),
