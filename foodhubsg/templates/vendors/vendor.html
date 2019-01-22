@@ -42,14 +42,13 @@
 
             <div class="row row-pb-md">
             <div class="col-md-6">
-                {% for food in vendor_menu %}
+                {% for food in vendor_food_list %}
 
                     <article class="food-journal">
                         <header>
                             <div class="food-subsection">
                                 <h4 style="margin-bottom: 0; display: inline"><b>{{ food.get_name() }}</b></h4>
                                 <p style="display: inline">(code: {{ food.get_code() }})</p>
-                                <p>{{ food.get_calories() }} calories <br></p>
                             </div>
                         </header>
                     </article>

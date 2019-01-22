@@ -17,7 +17,7 @@ def vendors():
     db = get_db()
 
     users = db.execute(
-        'SELECT id, name, email, password, height, weight, location'
+        'SELECT id, name, email, password, height, weight, location, rating'
         ' FROM user'
         ' WHERE id = ?',
         (g.user['id'],),
@@ -25,12 +25,14 @@ def vendors():
 
     for user in users:
         user_location = user['location']
+        
+        
 
     user_vendors = []
-
-    for vendor in vendor_list:
+    for vendors in vendor_list:
+        vendor = vendor_list[vendors]
         if user_location == vendor.get_area():
-            user_vendors.append(vendor)
+                user_vendors.append(vendor)
         else:
             continue
 
@@ -47,11 +49,15 @@ def vendor(code):
     rating = None
     image_location = None
 
-    if not [vendor for vendor in vendor_list if vendor.get_code() == code]:
-        abort(404, "That vendor (code: {0}) doesn't exist.".format(code))
+    for vendors in vendor_list:
+        vendor = vendor_list[vendors]
+        if vendor.get_code() == code:
+            if not vendor:
+                abort(404, "That vendor (code: {0}) doesn't exist.".format(code))
 
     else:
-        for vendor in vendor_list:
+        for vendors in vendor_list:
+            vendor = vendor_list[vendors]
             if vendor.get_code() == code:
                 current_vendor = vendor
                 name = current_vendor.get_name()
@@ -62,11 +68,13 @@ def vendor(code):
                 rating = current_vendor.get_rating()
                 image_location = current_vendor.get_image_location()
 
+
+                return render_template("vendors/vendor.html", current_vendor=current_vendor, name=name,
+                                           average_calories=average_calories, area=area, location=location, description=description,
+                                           rating=rating, image_location=image_location)
         for key, value in vendor_food.items():
             if key.get_code() == code:
-                vendor_menu = value
+                vendor_food_list = value
 
 
-    return render_template("vendors/vendor.html", current_vendor=current_vendor, name=name,
-                           average_calories=average_calories, area=area, location=location, description=description,
-                           rating=rating, image_location=image_location, vendor_menu=vendor_menu)
+    
