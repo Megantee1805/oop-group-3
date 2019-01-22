@@ -33,7 +33,7 @@ def vendors():
         vendor = vendor_list[vendors]
         if user_location == vendor.get_area():
             if user_rating == vendor.get_rating("4"):
-            user_vendors.append(vendor)
+                user_vendors.append(vendor)
         else:
             continue
 
