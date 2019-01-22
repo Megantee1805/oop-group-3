@@ -325,7 +325,7 @@ sen05 = Vendor (
     location = "1 Sengkang Square #01-225, Sengkang - 545078",
     location_code = 'sen',
     description = "Customise your poke bowls with staples such as flavoured mix rice, truffle pasta, salmon cubes and other ingredients!"
-    image_location = '../static/images/.jpg'
+    image_location = '../static/images/thebistro-sengkang-image.jpeg'
     )
 amk01 = Vendor(
     code = "amk01",
