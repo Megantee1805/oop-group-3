@@ -39,13 +39,12 @@
                     <div class="blog-entry"><h3 class="font_color"><b>Menu</b></h3></div><hr>
                 </div>
             </div>
-
             <div class="row row-pb-md">
                 {% for food in vendor_food_list %}
                     <article class="food-journal">
                         <header>
                             <div id="vendor-food">
-                                <h4 style="margin-bottom: 0; display: inline"><b>{{ food.get_name() }}</b></h4><br>
+                                <h4 class="font_color" style="margin-bottom: 0; display: inline"><b>{{ food.get_name() }}</b></h4><br>
                                 <p style="display: inline">(code: {{ food.get_code() }})</p><br>
                                 <p>{{ food.get_calories() }} calories <br></p>
                             </div>
