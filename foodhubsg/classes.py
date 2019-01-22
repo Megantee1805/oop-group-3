@@ -508,7 +508,7 @@ food_list = [a00001, a00002, a00003, a00004, a00005,
              ]
 
 
-vendor_list = {'sen01': sen01, 'sen02': sen02, 'sen03': sen03, 'send04': sen04,
+vendor_list = {'sen01': sen01, 'sen02': sen02, 'sen03': sen03, 'sen04': sen04,
                'amk01': amk01, 'amk02': amk02, 'amk03': amk03, 'amk04': amk04,
                'pun01': pun01, 'pun02': pun02, 'pun03': pun03, 'pun04':pun04}
 
