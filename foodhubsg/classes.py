@@ -324,9 +324,11 @@ sen05 = Vendor (
     area = "Sengkang",
     location = "1 Sengkang Square #01-225, Sengkang - 545078",
     location_code = 'sen',
-    description = "Customise your poke bowls with staples such as flavoured mix rice, truffle pasta, salmon cubes and other ingredients!"
+    description = "Customise your poke bowls with staples such as flavoured mix rice, truffle pasta, salmon cubes and other ingredients!",
+     rating = 3,
     image_location = '../static/images/thebistro-sengkang-image.jpeg'
     )
+
 amk01 = Vendor(
     code = "amk01",
     name = "The Lawn",
@@ -448,11 +450,11 @@ a00033 = Food("a00033", "Cream Pasta", 756, sen04)
 a00034 = Food("a00034", "Carbonara", 694, sen04)
 a00035 = Food("a00035", "Mushroom", 307, sen04)
 
-a00031 = Food("a00031", "Aglio Olio", 600, sen05)
-a00032 = Food("a00032", "Cesear Salad", 540, sen05)
-a00033 = Food("a00033", "Cream Pasta", 756, sen05)
-a00034 = Food("a00034", "Carbonara", 694, sen05)
-a00035 = Food("a00035", "Mushroom", 307, sen05)
+a00031 = Food("a00036", "Aglio Olio", 600, sen05)
+a00032 = Food("a00037", "Cesear Salad", 540, sen05)
+a00033 = Food("a00038", "Cream Pasta", 756, sen05)
+a00034 = Food("a00039", "Carbonara", 694, sen05)
+a00035 = Food("a00040", "Mushroom", 307, sen05)
 
 b00001 = Food("b00001", "Chicken Rice", 673, amk01)
 b00002 = Food("b00002", "Fried Rice", 840, amk01)
