@@ -28,17 +28,17 @@
                             <div class="col-md-12"><h4>Current Location: <b class="center_subtitle">{{ user_vendors[0].get_area() }}</b></h4>
                              <select id="ratingstars" name="ratings">
                              <option value="rating" name="title" selected>Ratings</option>
-                             <option value="4star" name="four">4 star</option>
-                             <option value="3star" name="three">3 star</option>
-                             <option value="2star" name="two">2 star</option>
-                             <option value="1star" name="one">1 star</option>
+                             <option value="4star" name="four" id="4" >4 star</option>
+                             <option value="3star" name="three" id="3">3 star</option>
+                             <option value="2star" name="two" id="2">2 star</option>
+                             <option value="1star" name="one" id="1">1 star</option>
                              </select>
                             </div>
                             
                         
                             {% for vendor in user_vendors %}
                                 <div class="col-md-6">
-                                    <div class="blog-entry">
+                                    <div class="blog-entry" id="vendors"  style = "display: block;">
                                         <div class="blog-img">
                                             <a class="action" href="{{ url_for('vendors.vendor', code = vendor.get_code()) }}"><img src="{{ vendor.get_image_location() }}" class="img-responsive" alt="html5 bootstrap template"></a>
                                         </div>
@@ -72,4 +72,17 @@
             </div>
         </div>
     </div>
+    <script>
+     {#  function myfunction() {                                               #}
+     {# var location = document.getElementByClassName("center_subtitle")       #}
+     {# var button = document.getElementById("4");                             #}
+     {# var vendors = document.getElementById("vendors");                      #} 
+     {# var newvendor = document.getElementById("");                           #}  
+     {# if (button == true and location =="Ang Mo Kio") {                      #}         
+     {# newvendors.style.display = "block";                                    #}    
+     {# vendors.style.display = "none";}                                       #}     
+     {# else{                                                                  #}        
+     {# vendors.style.display = "block";                                       #}    
+     {# newvendors.style.display = "none";} }                                  #}                                                                                 #}                              
+    </script>                                                                                
 {% endblock %}
