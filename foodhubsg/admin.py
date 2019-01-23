@@ -9,19 +9,32 @@ from flask import Flask, session, redirect, url_for, escape, request
 
 app = Flask(__name__)
 
+#Initialize the db connection
+db = SQLAlchemy(app)
+
 app.config['SQLACHEMY_DATABASE_URI'] = 'sqlite://///tmp/test.db' #location of database
 
 # Set the secret key to some random bytes. Use the command $ python -c 'import os; print(os.urandom(16))'
-app.config['SECRET_KEY'] = 'mysecret'
+app.secret_key = 'this-is-totally-secret-guys-nobody-can-guess-this-trust-me'
 
-#Initialize the db connection
-db = SQLAlchemy(app)
-    
-admin = Admin(app)
+@app.route('/secret')
+@basic_auth.required
+def secret_login_view():
+    return render_template('login.html')
 
 
-# set optional bootswatch theme
-app.config['FLASK_ADMIN_SWATCH'] = 'cerulean'
+app.config['BASIC_AUTH_USERNAME'] = 'foodhubsg'
+app.config['BASIC_AUTH_PASSWORD'] = 'amvz'
+
+# Protect your staging server from uninvited guests.
+# True: makes the whole site require HTTP basic access authentication.
+# Default False
+app.config['BASIC_AUTH_FORCE'] = True
+
+basic_auth = BasicAuth(app)
+
+
+
 
 #User table
 class User(db.Model):
@@ -36,6 +49,7 @@ class User(db.Model):
     def __repr__(self):
         return '<User %r>' % (self.name)
     
+# Add administrative views here
 admin.add_view(ModelView(User, db.session))    
 
 
@@ -98,21 +112,7 @@ admin.add_view(ModelView(FAQ, db.session))
 
 
 
-app.config['BASIC_AUTH_USERNAME'] = 'foodhubsg'
-app.config['BASIC_AUTH_PASSWORD'] = 'amvz'
-app.config['BASIC_AUTH_FORCE'] = True
 
-basic_auth = BasicAuth(app)
-
-# Set the secret key to some random bytes. Use the command $ python -c 'import os; print(os.urandom(16))'
-app.secret_key = 'this-is-totally-secret-guys-nobody-can-guess-this-trust-me'
-
-@app.route('/secret')
-@basic_auth.required
-def secret_login_view():
-    return render_template('login.html')
-
-  
 class MicroBlogModelView(sqla.ModelView):
 
     def is_accessible(self):
