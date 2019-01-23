@@ -9,6 +9,7 @@ from foodhubsg.db import *
 support = 'support@foodhub.sg'
 support_password = generate_password_hash('Iamasupport')
 
+
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
 
@@ -107,13 +108,14 @@ def login():
     if request.method == 'POST':
         email = request.form['email'].lower()
         password = request.form['password']
+        print(generate_password_hash(password))
+        admin_login = False
         db = get_db()
         error = None
-
         user = db.execute(
-            'SELECT * FROM user WHERE email = ?', (email,)
-        ).fetchone()
-
+                'SELECT * FROM user WHERE email = ?', (email,)
+            ).fetchone()
+            
         if email == support:
             if password == support_password:
                 session.clear()
@@ -121,8 +123,18 @@ def login():
 
         if user is None:
             error = 'Incorrect email entered'
-        elif not check_password_hash(user['password'], password):
-            error = 'Incorrect password entered'
+        else:
+            if email == support:
+                if check_password_hash(support_password, password):
+                    admin_login = True
+                    session.clear()
+                    session['user_id'] = user['id']
+                    return redirect(url_for('support.support'))
+                else:
+                    error = 'Incorrect password entered'
+            else:
+                if not check_password_hash(user['password'], password):
+                    error = 'Incorrect password entered'
 
         if error is None:
             # store the user id in a new session and return to the index
@@ -130,7 +142,8 @@ def login():
             session['user_id'] = user['id']
             return redirect(url_for('index'))
 
-        flash(error)
+        else:
+            flash(error)
 
     return render_template('auth/login.html')
 
@@ -147,6 +160,7 @@ def change_password():
         password = request.form['password']
         db = get_db()
         error = None
+        print(password)
 
         email = email.lower()
 
@@ -169,7 +183,6 @@ def change_password():
             return redirect(url_for('auth.login'))
 
         flash(error)
-
     return render_template('auth/change_password.html')
 
 
