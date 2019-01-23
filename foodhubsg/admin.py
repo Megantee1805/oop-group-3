@@ -9,7 +9,7 @@ from flask import Flask, session, redirect, url_for, escape, request
 
 app = Flask(__name__)
 
-app.config['SQLACHEMY_DATABASE_URI'] = 'sqlite://// {_____}' {#location of database}
+app.config['SQLACHEMY_DATABASE_URI'] = 'sqlite://///tmp/test.db' #location of database
 
 # Set the secret key to some random bytes. Use the command $ python -c 'import os; print(os.urandom(16))'
 app.config['SECRET_KEY'] = 'mysecret'
@@ -105,7 +105,7 @@ app.config['BASIC_AUTH_FORCE'] = True
 basic_auth = BasicAuth(app)
 
 # Set the secret key to some random bytes. Use the command $ python -c 'import os; print(os.urandom(16))'
-app.secret_key = 
+app.secret_key = 'this-is-totally-secret-guys-nobody-can-guess-this-trust-me'
 
 @app.route('/secret')
 @basic_auth.required
