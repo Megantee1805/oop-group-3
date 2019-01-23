@@ -25,6 +25,9 @@ def permission_required(view):
     """View decorator that redirects anonymous users to the login page."""
     @functools.wraps(view)
     def wrapped_view(**kwargs):
+        if g.user is None:
+            return redirect(url_for('auth.login'))
+
         if g.user["id"] != 0:
             flash("You do not have sufficient privileges to enter that page")
             return redirect(url_for('food.index'))
