@@ -5,7 +5,7 @@ from flask import (
 from werkzeug.security import check_password_hash, generate_password_hash
 
 from foodhubsg.db import *
-from foodhubsg.auth import login_required
+from foodhubsg.auth import login_required, permission_required
 from foodhubsg.db import *
 from foodhubsg.classes import *
 from foodhubsg.vendors import *
@@ -15,14 +15,13 @@ bp = Blueprint('support', __name__)
 
 
 @bp.route('/support')
-@login_required
+@permission_required
 def support():
-    admin_login= True
-    return render_template('support/support_index.html', admin_login=True)
+    return render_template('support/support_index.html')
 
 
 @bp.route('/support_faq')
-@login_required
+@permission_required
 def faq():
     db = get_db()
     if g.user == 'support@foodhub.sg':

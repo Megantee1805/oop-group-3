@@ -5,13 +5,6 @@ from flask import (
 from werkzeug.security import check_password_hash, generate_password_hash
 from foodhubsg.db import *
 
-support_dict = {
-    "id": 0,
-    "name": "Support",
-    "email": "support@foodhub.sg",
-    "password": generate_password_hash("iamasupport"),
-}
-
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
@@ -22,9 +15,20 @@ def login_required(view):
     def wrapped_view(**kwargs):
         if g.user is None:
             return redirect(url_for('auth.login'))
-
+        if g.user["id"] == 0:
+            return redirect(url_for('support.support'))
         return view(**kwargs)
+    return wrapped_view
 
+
+def permission_required(view):
+    """View decorator that redirects anonymous users to the login page."""
+    @functools.wraps(view)
+    def wrapped_view(**kwargs):
+        if g.user["id"] != 0:
+            flash("You do not have sufficient privileges to enter that page")
+            return redirect(url_for('food.index'))
+        return view(**kwargs)
     return wrapped_view
 
 
@@ -111,9 +115,11 @@ def login():
     if request.method == 'POST':
         email = request.form['email'].lower()
         password = request.form['password']
+        # print(support_dict["id"])
+
         db = get_db()
-        admin_login = False
         error = None
+
         user = db.execute(
                 'SELECT * FROM user WHERE email = ?', (email,)
             ).fetchone()
@@ -121,22 +127,16 @@ def login():
         if user is None:
             error = 'Incorrect email entered'
 
-        if email == support_dict["email"]:
-            if check_password_hash(support_dict["password"], password):
-                admin_login = True
-                session.clear()
-                session['user_id'] = support_dict["id"]
-                return redirect(url_for('support.support'))
-            else:
-                error = 'Incorrect password entered'
-        else:
-            if not check_password_hash(user['password'], password):
-                error = 'Incorrect password entered'
+        if not check_password_hash(user['password'], password):
+            error = 'Incorrect password entered'
 
         if error is None:
             # store the user id in a new session and return to the index
             session.clear()
             session['user_id'] = user['id']
+            if user["id"] == 0:
+                return redirect(url_for('support.support'))
+
             return redirect(url_for('index'))
 
         else:
