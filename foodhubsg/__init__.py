@@ -31,19 +31,11 @@ except OSError:
 from foodhubsg import db
 db.init_app(app)
 
-<<<<<<< HEAD
 from foodhubsg import auth, food, user, vendors, support
-=======
-# apply the blueprints to the app
-from foodhubsg import auth, food, vendors, user, support
->>>>>>> ba8f17e5669a6f44f9b506566b659cc09ef86242
 app.register_blueprint(auth.bp)
 app.register_blueprint(food.bp)
 app.register_blueprint(user.bp)
-<<<<<<< HEAD
 app.register_blueprint(vendors.bp)
-=======
->>>>>>> ba8f17e5669a6f44f9b506566b659cc09ef86242
 app.register_blueprint(support.bp)
 
 app.add_url_rule('/', endpoint='index')
