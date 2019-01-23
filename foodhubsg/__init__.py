@@ -20,11 +20,12 @@ from foodhubsg import db
 db.init_app(app)
 
 # apply the blueprints to the app
-from foodhubsg import auth, food, vendors, user
+from foodhubsg import auth, food, vendors, user, support
 app.register_blueprint(auth.bp)
 app.register_blueprint(food.bp)
 app.register_blueprint(vendors.bp)
 app.register_blueprint(user.bp)
+app.register_blueprint(support.bp)
 
 app.add_url_rule('/', endpoint='index')
 
