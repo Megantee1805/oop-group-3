@@ -46,3 +46,4 @@ def faq():
             elif request.form['delete'] == 'Delete':
                 db.execute('DELETE FROM question_and_answer WHERE id = ?', id).fetchone()
                 return render_template('user/faq.html', admin_login=admin_login)
+
