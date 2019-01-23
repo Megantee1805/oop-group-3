@@ -26,10 +26,10 @@
                         {% else %}
 
                             <div class="col-md-12"><h4>Current Location: <b class="center_subtitle">{{ user_vendors[0].get_area() }}</b></h4>
-                             <button onclick="myfunction()" id="4">4 star</button>  
+                             
                              <select id="ratingstars" name="ratings">
                              <option value="rating" name="title" selected>Ratings</option>
-                             <option value="4star" name="four"></option>
+                             <option value="4star" name="four" onclick="myfunction()" id="4">4 star</option>
                              <option value="3star" name="three" id="3">3 star</option>
                              <option value="2star" name="two" id="2">2 star</option>
                              <option value="1star" name="one" id="1">1 star</option>
@@ -39,7 +39,7 @@
                         
                             {% for vendor in user_vendors %}
                                 <div class="col-md-6 vendor-rating-{{ vendor.get_rating() }}">
-                                    <div class="blog-entry" id="vendors"  style = "display: block;">
+                                    <div class="blog-entry" id="vendors"  style="display: block;">
                                         <div class="blog-img">
                                             <a class="action" href="{{ url_for('vendors.vendor', code = vendor.get_code()) }}"><img src="{{ vendor.get_image_location() }}" class="img-responsive" alt="html5 bootstrap template"></a>
                                         </div>
@@ -74,17 +74,16 @@
         </div>
     </div>
     <script>
-       function myfunction() {
-      var x = prompt("Testing?");
-      var button = document.getElementById("4");
-      var vendors = document.getElementById("vendors");
-      var newvendor = document.getElementByClassName("vendor-rating-4");
+       function myfunction() { 
+       var button = document.getElementById("4");
+       var vendors = document.getElementById("vendors");
+       var newvendor = document.getElementByClassName("vendor-rating-4");
                                                                       
-      if (button == true and newvendor == 4) {                     
-      newvendors.style.display = "block";
-      vendors.style.display = "none"; }
-      else{
-      vendors.style.display = "block";
-      newvendors.style.display = "none";} }                                                                                                                   #}
+       if (button == true) {                     
+       newvendors.style.display = "block";
+       vendors.style.display = "none"; }
+       else{
+       vendors.style.display = "block";
+       newvendors.style.display = "none";} }                                                                                                                   #}
     </script>                                                                                
 {% endblock %}
