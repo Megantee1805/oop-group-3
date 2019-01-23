@@ -29,7 +29,9 @@ class User(db.Model):
     username = db.Coloumn(db.String(30))
     height = db.Coloumn(db.Numeric)
     weight = db.Coloumn(db.Numeric)
-    email = db.Coloumn(db.Float(30))
+    email = db.Coloumn(db.String(30))
+    password = db.Column(db.String)
+    authenticated = db.Column(db.Boolean, default=False)
     
     def __repr__(self):
         return '<User %r>' % (self.name)
@@ -119,6 +121,21 @@ class MicroBlogModelView(sqla.ModelView):
     def inaccessible_callback(self, name, **kwargs):
         # redirect to login page if user doesn't have access
         return redirect(url_for('login', next=request.url))
+    def is_active(self):
+        """True, as all users are active."""
+        return True
+
+    def get_id(self):
+        """Return the email address to satisfy Flask-Login's requirements."""
+        return self.email
+
+    def is_authenticated(self):
+        """Return True if the user is authenticated."""
+        return self.authenticated
+
+    def is_anonymous(self):
+        """False, as anonymous users aren't supported."""
+        return False
       
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -127,12 +144,13 @@ login_manager.init_app(app)
 def load_user(user_id):
     return User.get(user_id)
   
+    
+    
+    
 app.logger.error('An error occurred')
 
 
 
-
-        
 if __name__ == '__main__':
     app.run(debug=True)
     
