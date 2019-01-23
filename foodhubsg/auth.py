@@ -118,8 +118,10 @@ def login():
             
         if email == support:
             if password == support_password:
+                admin_login = True
                 session.clear()
                 session['user_id'] = user['id']
+                redirect()
 
         if user is None:
             error = 'Incorrect email entered'
