@@ -185,7 +185,7 @@ def edit_food(id):
             return redirect(url_for('food.food_journal'))
 
         else:
-            return redirect(url_for('food.edit_food', id = id))
+            return redirect(url_for('food.edit_food', id=id))
 
     return render_template('food/edit_food.html', food_entry=food_entry)
 

@@ -47,15 +47,12 @@ def vendor(code):
     rating = None
     image_location = None
 
-    for vendors in vendor_list:
-        vendor = vendor_list[vendors]
-        if vendor.get_code() == code:
-            if not vendor:
-                abort(404, "That vendor (code: {0}) doesn't exist.".format(code))
+    if code not in vendor_list:
+        abort(404, "That vendor (code: {0}) doesn't exist.".format(code))
 
     else:
-        for vendors in vendor_list:
-            vendor = vendor_list[vendors]
+        for vendor_code in vendor_list:
+            vendor = vendor_list[vendor_code]
             if vendor.get_code() == code:
                 current_vendor = vendor
                 name = current_vendor.get_name()

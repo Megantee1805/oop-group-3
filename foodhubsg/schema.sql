@@ -16,6 +16,25 @@ CREATE TABLE IF NOT EXISTS user (
   location TEXT NOT NULL
 );
 
+-- CREATE TABLE vendors (
+--   id INTEGER PRIMARY KEY AUTOINCREMENT,
+--   vendor_name TEXT NOT NULL,
+--   average_calories INT NOT NULL,
+--   area TEXT NOT NULL,
+--   location TEXT NOT NULL,
+--   description TEXT NOT NULL,
+--   rating INT NOT NULL,
+--   image_location TEXT NOT NULL
+-- );
+--
+-- CREATE TABLE food (
+--   id INTEGER PRIMARY KEY AUTOINCREMENT,
+--   code VARCHAR(6) UNIQUE NOT NULL,
+--   name TEXT NOT NULL,
+--   calories INT NOT NULL,
+--   vendor TEXT NOT NULL
+-- );
+
 CREATE TABLE food_entry (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   creator_id INTEGER NOT NULL,

@@ -1,19 +1,8 @@
-### INITIALISATION OF APP ###
-
-
 import os
 import click
 import functools
-import sqlite3
-import functools
-from flask import (
-    Flask, Blueprint, flash, redirect, render_template, request, session, url_for
-)
-from werkzeug.security import check_password_hash, generate_password_hash
-from werkzeug.exceptions import abort
-from datetime import datetime
+from flask import Flask
 
-from foodhubsg.classes import Food, Vendor
 from foodhubsg.db import *
 
 
