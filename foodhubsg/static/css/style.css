@@ -18,9 +18,8 @@ body {
   margin: 3px;
   width: 300px;
   padding: 10px;
-  border: 4px solid darkseagreen;
+  border: 4px solid gainsboro;
   height: 150px;
-  box-shadow: 5px 10px #888888;
 }
 
 
@@ -1573,3 +1572,5 @@ input[type="text"] {
   background-color: #4CAF50;
   color: white;
 }
+
+

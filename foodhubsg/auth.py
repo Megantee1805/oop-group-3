@@ -117,7 +117,6 @@ def login():
     if request.method == 'POST':
         email = request.form['email'].lower()
         password = request.form['password']
-        # print(support_dict["id"])
 
         db = get_db()
         error = None
@@ -136,7 +135,7 @@ def login():
             # store the user id in a new session and return to the index
             session.clear()
             session['user_id'] = user['id']
-            if user["id"] == 0:
+            if session['user_id'] == 0:
                 return redirect(url_for('support.support'))
 
             return redirect(url_for('index'))

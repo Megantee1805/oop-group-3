@@ -59,10 +59,12 @@
                     {% for date in food_dates %}
 
                         {% set example_food = date[0] %}
-                        {% if now.strftime('%Y') == example_food['created'].strftime('%Y') %}
-                            {% set example_date = example_food['created'].strftime('%d %B (%A)') %}
-                        {% else %}
+                        {% if now.strftime('%Y') != example_food['created'].strftime('%Y') %}
                             {% set example_date = example_food['created'].strftime('%d %B %Y (%A)') %}
+                        {% elif now.strftime('%d %B %Y') == example_food['created'].strftime('%d %B %Y') %}
+                            {% set example_date = 'Today ' + example_food['created'].strftime('(%A)') %}
+                        {% else %}
+                            {% set example_date = example_food['created'].strftime('%d %B (%A)') %}
                         {% endif %}
                         <h2> <b>{{ example_date }}</b> </h2>
 
