@@ -13,7 +13,8 @@ CREATE TABLE IF NOT EXISTS user (
   password TEXT NOT NULL,
   height INTEGER NOT NULL,
   weight INTEGER NOT NULL,
-  location TEXT NOT NULL
+  location TEXT NOT NULL,
+  status BOOL NOT NULL
 );
 
 -- CREATE TABLE vendors (
@@ -48,5 +49,6 @@ CREATE TABLE food_entry (
 CREATE TABLE question_and_answer (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   question TEXT,
-  answer TEXT
+  answer TEXT,
+  user TEXT
 );

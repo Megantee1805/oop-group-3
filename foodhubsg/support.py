@@ -40,7 +40,7 @@ def support():
     return render_template('support/support_index.html')
 
 
-@bp.route('/support_faq')
+@bp.route('/support_faq', methods=('GET', 'POST'))
 @permission_required
 def faq():
     db = get_db()
@@ -65,3 +65,27 @@ def faq():
             db.commit()
             return render_template('user/faq.html', admin_login=admin_login)
 
+
+@bp.route('/ban_user', methods=('GET', 'POST'))
+@permission_required
+def ban_user():
+    db= get_db()
+    if request.method == 'POST':
+        if request.form['action'] == 'Ban User':
+            name = request.form['name']
+            db.execute('UPDATE user SET status = ? WHERE name = ?', (1, name))
+            db.commit()
+            message = 'Banned the user succesfully'
+            users = db.execute('SELECT name FROM user').fetchall()
+            flash(message)
+            return render_template('support/ban_users.html', users=users)
+        elif request.form['action'] == 'Unban User':
+            name = request.form['name']
+            db.execute('UPDATE user SET status = ? WHERE name = ?', (0, name))
+            db.commit()
+            message = 'The user is now free to post'
+            users = db.execute('SELECT name FROM user').fetchall()
+            flash(message)
+            return render_template('support/ban_users.html', users=users)
+    users = db.execute('SELECT name FROM user').fetchall()
+    return render_template('support/ban_users.html', users=users)

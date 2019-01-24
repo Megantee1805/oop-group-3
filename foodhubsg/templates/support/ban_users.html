@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block title %}FAQ{% endblock %}
+
+{% block content %}
+
+    {% block navbar %}
+{% endblock %}
+
+    <nav class="navbar navbar-light bg-white">
+     <a class="navbar-brand" href="{{ url_for('index') }}">
+         <img src="../static/images/healthhub-logo.png" width="65px" height="60px" class="d-inline-block align-top" alt="FoodHub.SG Logo">
+         <span id="webname">FoodHub.SG</span>
+     </a>
+                            <ul class="navbar-nav ml-auto">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{ url_for('user.faq') }}">FAQ </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{ url_for('support.ban_user') }}">Ban Users </a>
+                                        </li>
+                                        <li class="nav-item">
+                                          <a class="nav-link" id="settings-link" href="{{ url_for('user.user_settings')}}">
+                                                Welcome, <span id="nav-name">{{ g.user['name'] }}!</span>
+                                            </a>
+                                            <a class="nav-link" id="logout-link" href="{{ url_for('auth.logout') }}">
+                                                Logout
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                        </nav>
+
+<div id="colorlib-container">
+    <div class="container">
+        <div class="box1">
+        <div class="row row-pb-md">
+            <div class="col-md-12">
+                {% for user in users %}
+                    <form method="post" action="">
+                    <label for="name"> Username </label>
+                    <input type="text" value="{{ user[0] }}" id="name" name="name">
+                    <input type="submit" value="Ban User" name="action" class="btn btn-primary" style='background-color: #d9534f; height: 54px;'>
+                    <input type="submit" value="Unban User" name="action" class="btn btn-primary" style="background-color: #4CAF50; height: 54px; margin-left: 0.5em;">
+                    </form>
+                {% if loop.last %}
+                {% endif %}
+                    {% endfor %}
+
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+ {% endblock %}

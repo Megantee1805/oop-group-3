@@ -3,6 +3,7 @@
 {% block title %}FAQ{% endblock %}
 
 {% block content %}
+<<<<<<< HEAD
 
         <h3 class="font_color"><b>Frequently Asked Questions</b></h3>
                     <b class="font_color">What is BMI?</b>
@@ -36,6 +37,8 @@
                     <input type="submit" id="submit-query" value="Submit A Question" name="action" class="btn btn-primary" style="background-color: #4CAF50; height: 54px; margin-left: 0.5em;">
                 </form>
 {% else %}
+=======
+>>>>>>> eabd4147aaca8119f117234201d8a8066501ae67
 <div id="colorlib-container">
     <div class="container">
         <div class="box1">
@@ -57,7 +60,8 @@
                         <form method="get" id="answer-link" action="{{ url_for('user.answer', id=query[0]) }}">
                         <hr>
                         <label for="question"></label>
-                            <b class="font_color"> {{ query[1] }}</b> <div></div>
+                            <b class="font_color"> {{ query[1] }}</b>
+                            <b class="font_color"> by {{ query[3] }}</b> <div></div>
                             <b class="font_color"> {{ query[2] }}</b>
                         <input type="submit" value="Answer" name="answer" class="btn btn-primary" style="background-color: #4CAF50; height: 54px; margin-left: 0.5em;">
                         </form>
@@ -75,6 +79,6 @@
     </div>
 </div>
 </div>
-{% endif %}
+
 {% endblock %}
 
