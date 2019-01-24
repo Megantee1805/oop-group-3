@@ -163,7 +163,7 @@ $(document).ready(function(){
                                     <td><300 kcal</td>
                                     <td>{{ average_snack_calories }} kcal</td>
                                     <td>
-                                        {% if (average_snack_calories > 300)|float < 0.0 %}
+                                        {% if (average_snack_calories > 300) %}
                                             -{{ (average_snack_calories - 300)|round(2)|abs }} kcal
                                         {% else %}
                                             Your snack intake is within limit

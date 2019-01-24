@@ -35,7 +35,6 @@ bp = Blueprint('food', __name__)
 @login_required
 def index():
     """Show all recent meals, most recent first."""
-    print(g.user["id"])
     db = get_db()
     food_items = db.execute(
         'SELECT f.id, creator_id, food_name, created, calories, food_code, email'
@@ -208,9 +207,7 @@ def search_food(search_date):
             (g.user['id'], search_date,),
         ).fetchall()
 
-        if food_items == []:
-            food_exists = 0
-        else:
+        if food_items != []:
             food_exists = 1
 
         for food in food_items:

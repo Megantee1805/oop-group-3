@@ -27,7 +27,7 @@ $(document).ready(function(){
 
      $("#nav-name").each(function() {
          if($(this).text().length > 8) {
-           $(this).text($(this).text().substr(0,8)+"...");
+           $(this).text($(this).text().substr(0, 8)+"...");
          }
      });
 });
@@ -43,29 +43,40 @@ setTimeout('$(".flash-div").slideUp()',4000);
                     <span id="webname">FoodHub.SG</span>
                 </a>
                 {% if g.user %}
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('vendors.vendors') }}">Vendors near you</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('food.food_journal') }}">Food Journal</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('user.faq') }}">FAQ</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ url_for('food.food_journal') }}"><button type="button" class="btn btn-success">Enter a new food code</button></a>
-                        </li>
+                    {% if g.user["id"] == 0 %}
                         <li class="nav-item settings nav-link">
-                            <a class="nav-link" id="settings-link" href="{{ url_for('user.user_settings')}}">
+                            <a class="nav-link" id="settings-link">
                                 Welcome, <span id="nav-name">{{ g.user['name'] }}!</span>
                             </a>
                             <a class="nav-link" id="logout-link" href="{{ url_for('auth.logout') }}">
                                 Logout
                             </a>
                         </li>
-                    </ul>
-               {% else %}
+                    {% else %}
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('vendors.vendors') }}">Vendors near you</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('food.food_journal') }}">Food Journal</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('user.faq') }}">FAQ</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ url_for('food.food_journal') }}"><button type="button" class="btn btn-success">Enter a new food code</button></a>
+                            </li>
+                            <li class="nav-item settings nav-link">
+                                <a class="nav-link" id="settings-link" href="{{ url_for('user.user_settings')}}">
+                                    Welcome, <span id="nav-name">{{ g.user['name'] }}!</span>
+                                </a>
+                                <a class="nav-link" id="logout-link" href="{{ url_for('auth.logout') }}">
+                                    Logout
+                                </a>
+                            </li>
+                        </ul>
+                    {% endif %}
+                {% else %}
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url_for('vendors.vendors') }}">Vendors near you</a>

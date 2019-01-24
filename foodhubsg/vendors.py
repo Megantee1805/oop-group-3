@@ -13,6 +13,7 @@ bp = Blueprint('vendors', __name__)
 
 
 @bp.route('/vendors', methods=('GET', 'POST'))
+@login_required
 def vendors():
     db = get_db()
 
@@ -39,14 +40,6 @@ def vendors():
 
 @bp.route('/vendors/<code>', methods=('GET', 'POST'))
 def vendor(code):
-    name = None
-    average_calories = None
-    area = None
-    location = None
-    description = None
-    rating = None
-    image_location = None
-
     if code not in vendor_list:
         abort(404, "That vendor (code: {0}) doesn't exist.".format(code))
 
