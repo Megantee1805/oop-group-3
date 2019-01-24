@@ -9,8 +9,6 @@ from foodhubsg.auth import login_required, permission_required
 from foodhubsg.db import *
 from foodhubsg.classes import *
 from foodhubsg.vendors import *
-
-
 bp = Blueprint('support', __name__)
 
 
@@ -63,7 +61,7 @@ def faq():
         elif request.form['delete'] == 'Delete':
             db.execute('DELETE FROM question_and_answer WHERE id = ?', id)
             db.commit()
-            return render_template('user/faq.html', admin_login=admin_login)
+            return render_template('user/faq.html')
 
 
 @bp.route('/ban_user', methods=('GET', 'POST'))
