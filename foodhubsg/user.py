@@ -111,6 +111,7 @@ def user_settings():
 @login_required
 def faq():
     db = get_db()
+    queries = db.execute('SELECT id, question, answer, user FROM question_and_answer').fetchall()
     if request.method == 'POST':
         if request.form['action'] == 'Submit A Question':
             question = request.form['query']
@@ -120,20 +121,19 @@ def faq():
                 error = 'No value entered please try again'
                 flash(error)
             else:
-                db.execute('INSERT INTO question_and_answer (question, answer) VALUES (?, ?)', (question, answer))
+                user = g.user['name']
+                db.execute('INSERT INTO question_and_answer (question, answer, user) VALUES (?, ?, ?)', (question, answer, user))
                 db.commit()
-                queries = db.execute('SELECT id, question, answer FROM question_and_answer').fetchall()
+                queries = db.execute('SELECT id, question, answer, user FROM question_and_answer').fetchall()
                 return render_template('user/faq.html', queries=queries)
         elif request.method == 'GET':
             if request.form['answer'] == 'Answer':
                 qns = db.execute('SELECT question FROM question_and_answer WHERE id = ?', id).fetchone()
                 return render_template('user/answer_faq.html', qns=qns)
-
-
-        queries = db.execute('SELECT id, question, answer FROM question_and_answer').fetchall()
+        queries = db.execute('SELECT id, question, answer,user FROM question_and_answer').fetchall()
         # queries = list(map(lambda x: x[0], queries))
         # for row in queries:
-        return render_template('user/faq.html', queries=queries)
+    return render_template('user/faq.html', queries=queries)
 
 
 # queries = list(map(lambda x: x[0], queries))
