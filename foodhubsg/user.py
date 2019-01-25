@@ -111,8 +111,8 @@ def user_settings():
 @login_required
 def faq():
     db = get_db()
-    queries = db.execute('SELECT id, question, answer, user FROM question_and_answer').fetchall()
-    user_status = db.execute('SELECT status FROM user WHERE Name = ?', [g.user['name']])
+    user_status = db.execute('SELECT status FROM user WHERE Name = ?', [g.user['name']]).fetchone()
+    queries = db.execute('SELECT id, question, answer,user FROM question_and_answer').fetchall()
     if request.method == 'POST':
         if request.form['action'] == 'Submit A Question':
             question = request.form['query']
@@ -129,8 +129,8 @@ def faq():
                 return render_template('user/faq.html', queries=queries)
             if request.form['answer'] == 'Answer':
                 qns = db.execute('SELECT question FROM question_and_answer WHERE id = ?', id).fetchone()
-                return render_template('user/answer_faq.html', qns=qns)
-    queries = db.execute('SELECT id, question, answer,user FROM question_and_answer').fetchall()
+                return render_template('user/answer_faq.html', qns=qns, status=user_status)
+
         # queries = list(map(lambda x: x[0], queries))
         # for row in queries:
     return render_template('user/faq.html', queries=queries, status=user_status)
@@ -143,6 +143,7 @@ def faq():
 @login_required
 def answer(id):
     db = get_db()
+    user_status = db.execute('SELECT status FROM user WHERE Name = ?', [g.user['name']]).fetchone()
     qns = db.execute('SELECT question FROM question_and_answer WHERE id = ?', [id]).fetchone()
     if request.method == 'POST':
         if request.form['action'] == 'Submit Answer':
@@ -155,6 +156,6 @@ def answer(id):
                 db.commit()
                 queries = db.execute('SELECT id, question, answer, user FROM question_and_answer').fetchall()
                 return redirect(url_for('user.faq'))
-    return render_template('user/answer_faq.html', id=id, qns=qns[0])
+    return render_template('user/answer_faq.html', id=id, qns=qns[0], status=user_status)
 
 
