@@ -14,11 +14,8 @@
 <link rel="stylesheet" href="../static/css/icomoon.css">
 <!-- Magnific Popup -->
 <link rel="stylesheet" href="../static/css/magnific-popup.css">
-<!-- Flexslider  -->
-<link rel="stylesheet" href="../static/css/flexslider.css">
 <!-- Owl Carousel -->
 <link rel="stylesheet" href="../static/css/owl.carousel.min.css">
-<link rel="stylesheet" href="../static/css/owl.theme.default.min.css">
 <!-- Different Stylesheets -->
 <link rel="stylesheet" href="../static/css/style.css">
 
@@ -35,6 +32,11 @@ $(document).ready(function(){
 setTimeout('$(".flash-div").slideUp()',4000);
 </script>
 
+{#<style>#}
+{#.row-pb-md {#}
+{#    padding: 2em 2em 0 2em !important;#}
+{#</style>#}
+
     {% block navbar %}
         <nav class="navbar navbar-light bg-white">
             <div class="container">
@@ -44,14 +46,22 @@ setTimeout('$(".flash-div").slideUp()',4000);
                 </a>
                 {% if g.user %}
                     {% if g.user["id"] == 0 %}
-                        <li class="nav-item settings nav-link">
-                            <a class="nav-link" id="settings-link">
-                                Welcome, <span id="nav-name">{{ g.user['name'] }}!</span>
-                            </a>
-                            <a class="nav-link" id="logout-link" href="{{ url_for('auth.logout') }}">
-                                Logout
-                            </a>
-                        </li>
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('support.ban_user') }}">Ban Users</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('food.food_journal') }}">Food Journal</a>
+                            </li>
+                            <li class="nav-item settings nav-link">
+                                <a class="nav-link" id="settings-link">
+                                    Welcome, <span id="nav-name">{{ g.user['name'] }}!</span>
+                                </a>
+                                <a class="nav-link" id="logout-link" href="{{ url_for('auth.logout') }}">
+                                    Logout
+                                </a>
+                            </li>
+                        </ul>
                     {% else %}
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item">

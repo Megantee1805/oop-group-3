@@ -6,8 +6,7 @@
 <div id="colorlib-container">
     <div class="container">
         <div class="box1">
-            <div class="col-md-12">
-            <input type="button" value="Back" class="btn btn-success" onclick="window.history.back()" />
+            <div class="col-md-12" style="padding: 2em 2em 2em 2em !important;">
             <div class="row row-pb-md">
                 <div class="col-md-6">
                     <div class="blog-entry">
@@ -29,13 +28,15 @@
                                 {% elif rating == 4 %}
                                     <span class='fa fa-star checked'></span><span class='fa fa-star checked'></span><span class='fa fa-star checked'></span><span class='fa fa-star checked'></span>
                                 {% endif %}
-                            </span><hr>{{ description }}
+                            </span>
+                            <hr>
+                            {{ description }}
                         </p>
                     </div>
                 </div>
             </div><br>
 
-            <div class="row row-pb-md">
+            <div class="row row-pb-md" style="padding: 2em 2em 0 2em !important;">
                 <div class="col-md">
                     <div class="blog-entry"><h3 class="font_color"><b>Menu</b></h3></div><hr>
                 </div>
@@ -51,7 +52,6 @@
                             </div>
                         </header>
                     </article>
-
                 {% if not loop.last %}
                 {% endif %}
                 {% endfor %}

@@ -115,28 +115,24 @@ def login():
         return redirect(url_for('food.index'))
 
     if request.method == 'POST':
+        error = None
+        db = get_db()
+
         email = request.form['email'].lower()
         password = request.form['password']
-        # print(support_dict["id"])
 
-        db = get_db()
-        error = None
-
-        user = db.execute(
-                'SELECT * FROM user WHERE email = ?', (email,)
-            ).fetchone()
+        user = db.execute('SELECT * FROM user WHERE email = ?', (email,)).fetchone()
 
         if user is None:
             error = 'Incorrect email entered'
-
-        if not check_password_hash(user['password'], password):
+        elif not check_password_hash(user['password'], password):
             error = 'Incorrect password entered'
 
         if error is None:
             # store the user id in a new session and return to the index
             session.clear()
             session['user_id'] = user['id']
-            if user["id"] == 0:
+            if session['user_id'] == 0:
                 return redirect(url_for('support.support'))
 
             return redirect(url_for('index'))

@@ -3,6 +3,8 @@ from flask import (
 )
 from werkzeug.exceptions import abort
 from datetime import datetime
+from pytz import timezone
+from tzlocal import get_localzone
 
 from foodhubsg.auth import login_required
 from foodhubsg.db import *
@@ -86,6 +88,9 @@ def food_journal():
     user_info = ProcessUserInfo(food_items, users)
     info = user_info.get_info()
 
+    now_utc = datetime.now(timezone('UTC'))
+    now_local = now_utc.astimezone(get_localzone())
+
     if request.method == 'POST':
         error = None
         code_list = []
@@ -132,7 +137,7 @@ def food_journal():
                            weight=info["weight"], height=info["height"], bmi=info["bmi"],
                            user_average_calories=info["user_average_calories"],
                            number_of_days=info["number_of_days"], food_exists=info["food_exists"],
-                           now=datetime.utcnow())
+                           now=now_local)
 
 
 @bp.route('/edit_food/<int:id>', methods=('GET', 'POST'))

@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS user (
   height INTEGER NOT NULL,
   weight INTEGER NOT NULL,
   location TEXT NOT NULL,
-  status BOOL NOT NULL
+  status BOOLEAN NOT NULL
 );
 
 -- CREATE TABLE vendors (
