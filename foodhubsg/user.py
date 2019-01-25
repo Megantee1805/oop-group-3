@@ -112,7 +112,7 @@ def user_settings():
 def faq():
     db = get_db()
     queries = db.execute('SELECT id, question, answer, user FROM question_and_answer').fetchall()
-    user_status = db.execute('SELECT status FROM user WHERE Name = ?', [g.user['name']])
+    user_status = db.execute('SELECT status FROM user WHERE Name = ?', [g.user['name']]).fetchone()
     if request.method == 'POST':
         if request.form['action'] == 'Submit A Question':
             question = request.form['query']
