@@ -33,11 +33,19 @@
                         {% endif %}
                     {% endfor %}
 
+            {% if user_status == 1 %}
+
+            <b class="font_color"> You are not allowed to post. </b>
+
+            {% else %}
+
                 <form method="post" action="" id="query-form">
                     <label for="query">Question</label>
                     <textarea id="query" name="query" form="query-form" class="form-control" rows="4" cols="50"></textarea>
                     <input type="submit" id="submit-query" value="Submit A Question" onclick="enable()" name="action" class="btn btn-primary" style="background-color: #4CAF50; height: 54px; margin-left: 0.5em;">
                 </form>
+
+            {% endif %}
         </div>
         </div>
     </div>

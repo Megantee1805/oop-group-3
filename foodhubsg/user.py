@@ -112,6 +112,7 @@ def user_settings():
 def faq():
     db = get_db()
     queries = db.execute('SELECT id, question, answer, user FROM question_and_answer').fetchall()
+    user_status = db.execute('SELECT status FROM user WHERE Name = ?', [g.user['name']])
     if request.method == 'POST':
         if request.form['action'] == 'Submit A Question':
             question = request.form['query']
@@ -126,14 +127,13 @@ def faq():
                 db.commit()
                 queries = db.execute('SELECT id, question, answer, user FROM question_and_answer').fetchall()
                 return render_template('user/faq.html', queries=queries)
-    elif request.method == 'GET':
-        if request.form['answer'] == 'Answer':
-            qns = db.execute('SELECT question FROM question_and_answer WHERE id = ?', id).fetchone()
-            return render_template('user/answer_faq.html', qns=qns)
-        queries = db.execute('SELECT id, question, answer,user FROM question_and_answer').fetchall()
+            if request.form['answer'] == 'Answer':
+                qns = db.execute('SELECT question FROM question_and_answer WHERE id = ?', id).fetchone()
+                return render_template('user/answer_faq.html', qns=qns)
+    queries = db.execute('SELECT id, question, answer,user FROM question_and_answer').fetchall()
         # queries = list(map(lambda x: x[0], queries))
         # for row in queries:
-    return render_template('user/faq.html', queries=queries)
+    return render_template('user/faq.html', queries=queries, status=user_status)
 
 
 # queries = list(map(lambda x: x[0], queries))
@@ -148,14 +148,13 @@ def answer(id):
         if request.form['action'] == 'Submit Answer':
             answer = request.form['answer']
             if answer is None or answer == '':
-                print(request.form)
                 error = 'No value entered please try again'
                 flash(error)
             else:
                 db.execute('UPDATE question_and_answer SET answer= ? WHERE id = ?', (answer, id))
                 db.commit()
-                queries = db.execute('SELECT id, question, answer FROM question_and_answer').fetchall()
-                return render_template('user/faq.html', queries=queries)
+                queries = db.execute('SELECT id, question, answer, user FROM question_and_answer').fetchall()
+                return redirect(url_for('user.faq'))
     return render_template('user/answer_faq.html', id=id, qns=qns[0])
 
 
