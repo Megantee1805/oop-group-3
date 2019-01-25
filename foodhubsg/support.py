@@ -38,7 +38,7 @@ def support():
     return render_template('support/support_index.html')
 
 
-@bp.route('/support_faq', methods=('GET', 'POST'))
+@bp.route('/faq', methods=('GET', 'POST'))
 @permission_required
 def faq():
     db = get_db()
@@ -62,19 +62,21 @@ def faq():
             db.execute('DELETE FROM question_and_answer WHERE id = ?', id)
             db.commit()
             return render_template('user/faq.html')
+    return render_template('user/faq.html')
 
 
 @bp.route('/ban_user', methods=('GET', 'POST'))
 @permission_required
 def ban_user():
     db= get_db()
+    users = db.execute('SELECT name FROM user').fetchall()
     if request.method == 'POST':
         if request.form['action'] == 'Ban User':
             name = request.form['name']
             db.execute('UPDATE user SET status = ? WHERE name = ?', (1, name))
             db.commit()
             message = 'Banned the user succesfully'
-            users = db.execute('SELECT name FROM user').fetchall()
+            users = db.execute('SELECT * FROM user').fetchall()
             flash(message)
             return render_template('support/ban_users.html', users=users)
         elif request.form['action'] == 'Unban User':
@@ -85,5 +87,4 @@ def ban_user():
             users = db.execute('SELECT name FROM user').fetchall()
             flash(message)
             return render_template('support/ban_users.html', users=users)
-    users = db.execute('SELECT name FROM user').fetchall()
     return render_template('support/ban_users.html', users=users)

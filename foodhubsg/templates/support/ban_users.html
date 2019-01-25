@@ -11,13 +11,13 @@
                 {% for user in users %}
                     <form method="post" action="">
                     <label for="name"> Username </label>
-                    <input type="text" value="{{ user[0] }}" id="name" name="name">
+                    <input type="text" value="{{ user["name"] }}" id="name" name="name">
                     <input type="submit" value="Ban User" name="action" class="btn btn-primary" style='background-color: #d9534f; height: 54px;'>
                     <input type="submit" value="Unban User" name="action" class="btn btn-primary" style="background-color: #4CAF50; height: 54px; margin-left: 0.5em;">
                     </form>
                 {% if loop.last %}
                 {% endif %}
-                    {% endfor %}
+                {% endfor %}
 
             </div>
         </div>
