@@ -9,6 +9,12 @@
         <div class="box1">
         <div class="row row-pb-md">
             <div class="col-md-12">
+                {% if status[0] == 1 %}
+
+
+                <h1 class="font_color"> You are not allowed to answer questions. </h1>
+
+            {% else %}
                 {{ qns }}
                 <form id="answer-form" method="post" action="">
                    <label for="answer"> </label>
@@ -16,6 +22,7 @@
                    <input type="submit" value="Submit Answer" name="action" class="btn btn-primary" style="background-color: #4CAF50; height: 54px; margin-left: 0.5em;">
 
                 </form>
+                {% endif %}
             </div>
         </div>
     </div>
