@@ -1,50 +1,22 @@
 {% extends 'base.html' %}
 {% block title %}Support{% endblock %}
 
-{% block content %}
-    {% block navbar %}
-{% endblock %}
-
-    <nav class="navbar navbar-light bg-white">
-     <a class="navbar-brand" href="{{ url_for('index') }}">
-         <img src="../static/images/healthhub-logo.png" width="65px" height="60px" class="d-inline-block align-top" alt="FoodHub.SG Logo">
-         <span id="webname">FoodHub.SG</span>
-     </a>
-                            <ul class="navbar-nav ml-auto">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="{{ url_for('user.faq') }}">FAQ </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="{{ url_for('support.ban_user') }}">Ban Users </a>
-                                        </li>
-                                        <li class="nav-item">
-                                          <a class="nav-link" id="settings-link" href="{{ url_for('user.user_settings')}}">
-                                                Welcome, <span id="nav-name">{{ g.user['name'] }}!</span>
-                                            </a>
-                                            <a class="nav-link" id="logout-link" href="{{ url_for('auth.logout') }}">
-                                                Logout
-                                            </a>
-                                        </li>
-                                    </ul>
-                        </nav>
-
 <div id="colorlib-container">
     <div class="container">
         <div class="box1">
         <div class="row row-pb-md">
             <div class="col-md-12">
-{#                <h3 class="font_color"><b>Frequently Asked Questions</b></h3>#}
-{#                    <b class="font_color">What is BMI?</b>#}
-{#                    <p>BMI is person's weight in kilograms (kg) divided by his or her height in meter squared. The National Institute of Health (NIH) now defines normal weight, overweight and obesity according to BMI rather than the traditional height/weight charts. Overweight is a BMI of 23 for an average person.</p>#}
-{#                    <hr>#}
-{#                    <b class="font_color">What are calories?</b>#}
-{#                    <p>A calorie is a unit of energy. In nutrition, calories refer to the energy people get from the food and drink they consume, and the energy they use in physical activity.</p>#}
-{#                    <hr>#}
-{#                    <b class="font_color">Can I become healthy by dieting?</b>#}
-{#                    <p>Yes, beginning a diet to lose weight and improve health is  a worthy goal, but it can be a bit overwhelming. There are bound to be challenges whenever you start something new, especially when it involves something you do several times each day like eating and drinking. Still, as long as you don't try to change everything at once, you can meet your weight loss goals. Read on to learn some secrets of the masters those who have lost weight and, more importantly, kept it off.</p>#}
-{#                    <hr>#}
+                <h3 class="font_color"><b>Frequently Asked Questions</b></h3>
+                    <b class="font_color">What is BMI?</b>
+                    <p>BMI is person's weight in kilograms (kg) divided by his or her height in meter squared. The National Institute of Health (NIH) now defines normal weight, overweight and obesity according to BMI rather than the traditional height/weight charts. Overweight is a BMI of 23 for an average person.</p>
+                    <hr>
+                    <b class="font_color">What are calories?</b>
+                    <p>A calorie is a unit of energy. In nutrition, calories refer to the energy people get from the food and drink they consume, and the energy they use in physical activity.</p>
+                    <hr>
+                    <b class="font_color">Can I become healthy by dieting?</b>
+                    <p>Yes, beginning a diet to lose weight and improve health is  a worthy goal, but it can be a bit overwhelming. There are bound to be challenges whenever you start something new, especially when it involves something you do several times each day like eating and drinking. Still, as long as you don't try to change everything at once, you can meet your weight loss goals. Read on to learn some secrets of the masters those who have lost weight and, more importantly, kept it off.</p>
+                    <hr>
 {#                    {% for query in queries %}#}
-{##}
 {#                        <form method="get" id="answer-link" action="{{ url_for('user.answer', id=query[0]) }}">#}
 {#                        <hr>#}
 {#                        <label for="question"></label>#}
@@ -54,9 +26,7 @@
 {#                        </form>#}
 {#                        <form method="get" action="">#}
 {#                        <input type="submit" value="Delete" name="delete" class="btn btn-primary" id="remove-button" style='background-color: #d9534f; height: 54px;'>#}
-{#                        </form>#}
-{#                        {% if loop.last %}#}
-{#                        {% endif %}#}
+{#                        </form>]#}
 {#                    {% endfor %}#}
 {##}
 {#                <form method="post" action="" id="query-form">#}
@@ -70,4 +40,3 @@
 
 </div>
 </div>
- {% endblock %}
