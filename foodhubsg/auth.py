@@ -53,11 +53,13 @@ def register():
         return redirect(url_for('food.index'))
 
     if request.method == 'POST':
-        email = request.form['email']
+        email = request.form['email'].lower()
         password = request.form['password']
-        name = request.form['name']
+        name = request.form['name'].title()
         height = request.form['height']
         weight = request.form['weight']
+        location = "Ang Mo Kio"
+
         db = get_db()
         check_user = db.execute('SELECT id FROM user WHERE email = ?', (email,)).fetchone()
         error = None
@@ -84,10 +86,6 @@ def register():
             error = "Please don't enter whitespaces in your password"
         elif check_user is not None:
             error = 'This email ({}) is already registered.'.format(email)
-
-        name = name.title()
-        email = email.lower()
-        location = "Ang Mo Kio"
 
         if error is None:
             db.execute(

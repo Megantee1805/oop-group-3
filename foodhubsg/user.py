@@ -64,14 +64,6 @@ def user_settings():
                     (new_weight, info["id"])
                 )
 
-        if new_location:
-            db.execute(
-                'UPDATE user SET location = ? WHERE id = ?',
-                (new_location, info["id"])
-            )
-        else:
-            error = "Previous location selected"
-
         if new_password:
             if old_password:
                 if check_password_hash(info["password"], old_password):
@@ -88,6 +80,12 @@ def user_settings():
                     error = "You've entered your current password incorrectly"
             else:
                 error = "Please enter your current password to change your password"
+
+        if new_location != info["user_location"]:
+            db.execute(
+                'UPDATE user SET location = ? WHERE id = ?',
+                (new_location, info["id"])
+            )
 
         if not new_height and not new_weight and not new_password and new_location == info["user_location"]:
             error = "No settings have been changed"
@@ -148,6 +146,7 @@ def answer(id):
     db = get_db()
     user_status = db.execute('SELECT status FROM user WHERE Name = ?', [g.user['name']]).fetchone()
     qns = db.execute('SELECT question FROM question_and_answer WHERE id = ?', [id]).fetchone()
+    ans = db.execute('SELECT answer FROM question_and_answer WHERE id = ?', [id]).fetchone()
     if request.method == 'POST':
         if request.form['action'] == 'Submit Answer':
             answer = request.form['answer']
@@ -159,6 +158,6 @@ def answer(id):
                 db.commit()
                 queries = db.execute('SELECT id, question, answer, user FROM question_and_answer').fetchall()
                 return redirect(url_for('user.faq'))
-    return render_template('user/answer_faq.html', id=id, qns=qns[0], status=user_status)
+    return render_template('user/answer_faq.html', id=id, qns=qns[0], status=user_status, ans=ans)
 
 

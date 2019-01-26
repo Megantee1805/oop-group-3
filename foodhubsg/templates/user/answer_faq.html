@@ -14,10 +14,10 @@
             {% if status[0] == 1 %}
                 <h3> You are not allowed to answer questions. </h3>
             {% else %}
-                {{ qns }}
+                <h3><b class="font_color">{{ qns }}</b></h3>
                 <form id="answer-form" method="post" action="">
                    <label for="answer"> </label>
-                    <textarea id="answer" name="answer" form="answer-form" class="form-control" rows="4" cols="70"></textarea>
+                    <textarea id="answer" name="answer" form="answer-form" class="form-control" rows="4" cols="70" placeholder="{{ ans[0] }}"></textarea>
                    <input type="submit" value="Submit Answer" name="action" class="btn btn-primary" style="background-color: #4CAF50; height: 54px;">
 
                 </form>

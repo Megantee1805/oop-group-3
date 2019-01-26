@@ -192,7 +192,6 @@ class ProcessUserInfo:
                 self.__average_snack_calories = round(sum(self.__snack_list) / self.__number_of_days, 2)
 
         ideal_weight = self.__weight
-
         if self.__bmi < 22:
             while ideal_weight / self.__height ** self.__height < 23:
                 ideal_weight = ideal_weight + 1
