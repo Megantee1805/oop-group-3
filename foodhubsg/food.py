@@ -202,6 +202,7 @@ def search_food(search_date):
     db = get_db()
     current_date_food = []
     current_date_calories = []
+    food_exists = 0
 
     try:
         display_date = datetime.strptime(search_date, '%Y-%m-%d').strftime('%d %B %Y (%A)')
