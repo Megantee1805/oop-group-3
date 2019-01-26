@@ -15,27 +15,10 @@ bp = Blueprint('support', __name__)
 @bp.route('/support')
 @permission_required
 def support():
-    # db = get_db()
-    # if request.method == 'POST':
-    #     if request.form['action'] == 'Submit A Question':
-    #         question = request.form['query']
-    #         print(request.form)
-    #         answer = "No answer given yet, please answer on your own"
-    #         if question is None or question == '':
-    #             error = 'No value entered please try again'
-    #             flash(error)
-    #         else:
-    #             db.execute('INSERT INTO question_and_answer (question, answer) VALUES (?, ?)', (question, answer))
-    #             db.commit()
-    #             queries = db.execute('SELECT id, question, answer FROM question_and_answer').fetchall()
-    # if request.method == "GET":
-    #     if request.form['answer'] == 'Answer':
-    #         qns = db.execute('SELECT question FROM question_and_answer WHERE id = ?', id).fetchone()
-    #         return render_template('user/answer_faq.html', qns=qns)
-    #     elif request.form['delete'] == 'Delete':
-    #         db.execute('DELETE FROM question_and_answer WHERE id = ?', id)
-    #         db.commit()
-    return render_template('support/support_index.html')
+    db = get_db()
+    users = db.execute('SELECT id, name FROM user').fetchall()
+    weight = db.execute('SELECT weight FROM user').fetchall()
+    return render_template('support/support_index.html', average_weight = average_weight)
 
 
 @bp.route('/faq', methods=('GET', 'POST'))
