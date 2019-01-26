@@ -16,9 +16,16 @@ bp = Blueprint('support', __name__)
 @permission_required
 def support():
     db = get_db()
-    users = db.execute('SELECT id, name FROM user').fetchall()
-    weight = db.execute('SELECT weight FROM user').fetchall()
-    return render_template('support/support_index.html')
+    id = 1
+    while id > 0:
+        food = db.execute('SELECT food_code, food_name FROM food_entry WHERE id = ?', [id]).fetchone()
+        food_data = Data()
+        food_code = food[0]
+        food_name = food[1]
+        food_data.add_food(food_code)
+        food_items = food_data.get_food_dict(food_name, food_code)
+        id = id + 1
+        return render_template('support/support_index.html', items=food_items)
 
 
 @bp.route('/faq', methods=('GET', 'POST'))

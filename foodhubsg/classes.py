@@ -543,8 +543,20 @@ vendor_food = {sen01: [a00001, a00002, a00003, a00004, a00005],
 
 
 class Data:
-    def __init__(self, food_items:str, number:int):
+    def __init__(self):
+        self.__food_dict = {}
         self.__count = 0
-        self.__food_items = food_items
-        self.__item = number
-        self.__count = self.__count + self.__item
+        self.__food_code = ''
+
+    def get_food_dict(self, food_name, food_code):
+        return food_name + ' ' + str(self.__food_dict[food_code])
+
+    def add_food(self, food_code:str):
+        for key in self.__food_dict:
+            if self.__food_code == key:
+                self.__count = self.__count + 1
+                self.__food_dict[key] = self.__count
+        self.__food_code = food_code
+        self.__count = self.__count + 1
+        self.__food_dict[food_code] = self.__count
+
