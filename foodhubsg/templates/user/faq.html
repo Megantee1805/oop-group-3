@@ -29,7 +29,7 @@
                         <h3><b class="font_color"> {{ query[1] }}</b></h3>
                         <p><b class="font_color"> by {{ query[3] }}</b></p> <div></div>
                         <p><b> {{ query[2] }}</b></p>
-                    <input type="submit" value="Answer" name="answer" class="btn btn-primary" style="background-color: #4CAF50; height: 54px; margin-left: 0.5em;">
+                    <input type="submit" value="Answer" name="answer" class="btn btn-primary" style="background-color: #4CAF50; height: 54px;">
                     </form>
                     {% if loop.last %}
                     {% endif %}
@@ -40,13 +40,11 @@
             {% if status[0] == 1 %}
                 <h1 class="font_color"> You are not allowed to post questions. </h1>
             {% else %}
-
                 <form method="post" action="" id="query-form">
                     <label for="query">Question</label>
-                    <textarea id="query" name="query" form="query-form" class="form-control" rows="4" cols="50"></textarea>
-                    <input type="submit" id="submit-query" value="Submit A Question" onclick="enable()" name="action" class="btn btn-primary" style="background-color: #4CAF50; height: 54px; margin-left: 0.5em;">
+                    <textarea id="query" name="query" form="query-form" class="form-control" rows="4" cols="50" required></textarea>
+                    <input type="submit" id="submit-query" value="Submit A Question" onclick="enable()" name="action" class="btn btn-primary" style="background-color: #4CAF50; height: 54px;">
                 </form>
-
             {% endif %}
         </div>
         </div>

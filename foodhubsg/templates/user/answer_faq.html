@@ -9,23 +9,22 @@
         <div class="box1">
         <div class="row row-pb-md">
             <div class="col-md-12">
-                {% if status[0] == 1 %}
-
-
-                <h1 class="font_color"> You are not allowed to answer questions. </h1>
-
+            <h1 class="font_color"><b>Answer FAQ</b></h1>
+            <hr>
+            {% if status[0] == 1 %}
+                <h3> You are not allowed to answer questions. </h3>
             {% else %}
                 {{ qns }}
                 <form id="answer-form" method="post" action="">
                    <label for="answer"> </label>
                     <textarea id="answer" name="answer" form="answer-form" class="form-control" rows="4" cols="70"></textarea>
-                   <input type="submit" value="Submit Answer" name="action" class="btn btn-primary" style="background-color: #4CAF50; height: 54px; margin-left: 0.5em;">
+                   <input type="submit" value="Submit Answer" name="action" class="btn btn-primary" style="background-color: #4CAF50; height: 54px;">
 
                 </form>
                 {% endif %}
             </div>
         </div>
+        </div>
     </div>
-        {% endblock %}
 </div>
-</div>
+{% endblock %}
