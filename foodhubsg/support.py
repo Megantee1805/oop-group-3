@@ -18,7 +18,7 @@ def support():
     db = get_db()
     users = db.execute('SELECT id, name FROM user').fetchall()
     weight = db.execute('SELECT weight FROM user').fetchall()
-    return render_template('support/support_index.html', average_weight = average_weight)
+    return render_template('support/support_index.html')
 
 
 @bp.route('/faq', methods=('GET', 'POST'))
