@@ -69,7 +69,7 @@ def faq():
 @permission_required
 def ban_user():
     db= get_db()
-    users = db.execute('SELECT name FROM user').fetchall()
+    users = db.execute('SELECT * FROM user').fetchall()
     if request.method == 'POST':
         if request.form['action'] == 'Ban User':
             name = request.form['name']
