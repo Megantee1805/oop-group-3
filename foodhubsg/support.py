@@ -77,14 +77,14 @@ def ban_user():
             db.commit()
             message = 'Banned the user succesfully'
             users = db.execute('SELECT * FROM user').fetchall()
-            flash(message)
+            flash(message, "success")
             return render_template('support/ban_users.html', users=users)
         elif request.form['action'] == 'Unban User':
             name = request.form['name']
             db.execute('UPDATE user SET status = ? WHERE name = ?', (0, name))
             db.commit()
             message = 'The user is now free to post'
-            users = db.execute('SELECT name FROM user').fetchall()
-            flash(message)
+            users = db.execute('SELECT * FROM user').fetchall()
+            flash(message, "success")
             return render_template('support/ban_users.html', users=users)
     return render_template('support/ban_users.html', users=users)
