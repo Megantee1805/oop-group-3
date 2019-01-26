@@ -542,3 +542,9 @@ vendor_food = {sen01: [a00001, a00002, a00003, a00004, a00005],
                pun04: [c00031, c00032, c00033, c00034, c00035],}
 
 
+class Data:
+    def __init__(self, food_items:str, number:int):
+        self.__count = 0
+        self.__food_items = food_items
+        self.__item = number
+        self.__count = self.__count + self.__item
