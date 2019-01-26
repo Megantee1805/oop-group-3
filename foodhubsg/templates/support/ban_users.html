@@ -8,12 +8,16 @@
         <div class="box1">
         <div class="row row-pb-md">
             <div class="col-md-12">
+            <h1 class="font_color"><b>Ban Users</b></h1>
+            <hr>
                 {% for user in users %}
                     <form method="post" action="">
-                    <label for="name"> Username </label>
-                    <input type="text" value="{{ user["name"] }}" id="name" name="name">
-                    <input type="submit" value="Ban User" name="action" class="btn btn-primary" style='background-color: #d9534f; height: 54px;'>
-                    <input type="submit" value="Unban User" name="action" class="btn btn-primary" style="background-color: #4CAF50; height: 54px; margin-left: 0.5em;">
+                    <input type="text" value="{{ user["name"] }}" id="name" name="name" style='width: 30%;' readonly>
+                    {% if user["status"] == 0 %}
+                        <input type="submit" value="Ban User" name="action" class="btn btn-primary" style='background-color: #d9534f; height: 50px;'>
+                    {% elif user["status"] == 1 %}
+                        <input type="submit" value="Unban User" name="action" class="btn btn-primary" style="background-color: #4CAF50; height: 50px;">
+                    {% endif %}
                     </form>
                 {% endfor %}
 
