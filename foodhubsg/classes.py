@@ -266,6 +266,24 @@ class ProcessUserInfo:
         return info
 
 
+class SupportData:
+    def __init__(self, food_items):
+        self.food_items = food_items
+        self.__food_list = food_list
+        self.__food_dict = {}
+        self.__food_code = ''
+
+    def add_food(self, food_code:str):
+        count = 0
+        for key in self.__food_dict:
+            if self.__food_code == key:
+                count = count + 1
+                self.__food_dict[key] = count
+        self.__food_code = food_code
+        count = count + 1
+        self.__food_dict[food_code] = count
+
+
 ### Assigns the objects to vendor and food classes accordingly ###
 
 
@@ -540,23 +558,3 @@ vendor_food = {sen01: [a00001, a00002, a00003, a00004, a00005],
                pun02: [c00011, c00012, c00013, c00014, c00015],
                pun03: [c00021, c00022, c00023, c00024, c00025],
                pun04: [c00031, c00032, c00033, c00034, c00035],}
-
-
-class Data:
-    def __init__(self):
-        self.__food_dict = {}
-        self.__count = 0
-        self.__food_code = ''
-
-    def get_food_dict(self, food_name, food_code):
-        return food_name + ' ' + str(self.__food_dict[food_code])
-
-    def add_food(self, food_code:str):
-        for key in self.__food_dict:
-            if self.__food_code == key:
-                self.__count = self.__count + 1
-                self.__food_dict[key] = self.__count
-        self.__food_code = food_code
-        self.__count = self.__count + 1
-        self.__food_dict[food_code] = self.__count
-

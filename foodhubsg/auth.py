@@ -1,9 +1,8 @@
-import functools
-from flask import (
-    Blueprint, flash, redirect, render_template, request, session, url_for
-)
+from flask import (Blueprint, flash, redirect, render_template, request, session, url_for, g)
 from werkzeug.security import check_password_hash, generate_password_hash
-from foodhubsg.db import *
+import functools
+
+from foodhubsg.db import get_db
 
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
@@ -125,8 +124,8 @@ def login():
 
         if user is None:
             error = 'Incorrect email entered'
-        elif not check_password_hash(user['password'], password):
-            error = 'Incorrect password entered'
+        if not check_password_hash(user['password'], password):
+                error = 'Incorrect password entered'
 
         if error is None:
             # store the user id in a new session and return to the index

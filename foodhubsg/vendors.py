@@ -1,12 +1,9 @@
-from flask import (
-    Blueprint, flash, g, redirect, render_template, request, url_for
-)
+from flask import (Blueprint, flash, g, redirect, render_template, request, url_for)
 from werkzeug.exceptions import abort
 
 from foodhubsg.auth import login_required
 from foodhubsg.db import get_db
 from foodhubsg.classes import *
-from foodhubsg.food import *
 
 
 bp = Blueprint('vendors', __name__)

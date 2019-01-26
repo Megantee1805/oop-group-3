@@ -1,15 +1,12 @@
-from flask import (
-    Blueprint, flash, g, redirect, render_template, request, url_for
-)
+from flask import (Blueprint, flash, g, redirect, render_template, request, url_for)
 from werkzeug.exceptions import abort
 from datetime import datetime
 from pytz import timezone
 from tzlocal import get_localzone
 
 from foodhubsg.auth import login_required
-from foodhubsg.db import *
+from foodhubsg.db import get_db
 from foodhubsg.classes import *
-from foodhubsg.vendors import *
 
 
 def get_food_entry(id, check_user=True):

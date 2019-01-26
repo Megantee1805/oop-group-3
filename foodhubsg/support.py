@@ -1,14 +1,10 @@
-import functools
-from flask import (
-    Blueprint, flash, redirect, render_template, request, session, url_for
-)
-from werkzeug.security import check_password_hash, generate_password_hash
+from flask import (Blueprint, flash, redirect, render_template, request, session, url_for)
 
-from foodhubsg.db import *
-from foodhubsg.auth import login_required, permission_required
-from foodhubsg.db import *
+from foodhubsg.auth import permission_required
+from foodhubsg.db import get_db
 from foodhubsg.classes import *
-from foodhubsg.vendors import *
+
+
 bp = Blueprint('support', __name__)
 
 
@@ -16,16 +12,18 @@ bp = Blueprint('support', __name__)
 @permission_required
 def support():
     db = get_db()
-    id = 1
-    while id > 0:
-        food = db.execute('SELECT food_code, food_name FROM food_entry WHERE id = ?', [id]).fetchone()
-        food_data = Data()
-        food_code = food[0]
-        food_name = food[1]
-        food_data.add_food(food_code)
-        food_items = food_data.get_food_dict(food_name, food_code)
-        id = id + 1
-        return render_template('support/support_index.html', items=food_items)
+    food_items = db.execute('SELECT * FROM food_entry').fetchall()
+    # food_data = SupportData(food_items)
+    # id = 1
+    # while id > 0:
+    #     food = db.execute('SELECT food_code, food_name FROM food_entry WHERE id = ?', [id]).fetchone()
+    #     food_code = food[0]
+    #     food_name = food[1]
+    #     food_data.add_food(food_code)
+    #     food_items = food_data.get_food_dict(food_name, food_code)
+    #     id = id + 1
+
+    return render_template('support/support_index.html', items=food_items)
 
 
 @bp.route('/faq', methods=('GET', 'POST'))

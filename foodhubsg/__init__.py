@@ -1,9 +1,5 @@
 import os
-import click
-import functools
 from flask import Flask
-
-from foodhubsg.db import *
 
 
 app = Flask(__name__, instance_relative_config=True)
