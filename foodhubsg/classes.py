@@ -288,10 +288,10 @@ class SupportData:
             if food_code == key:
                 self.__menu[food_code] = food_name
 
-    def get_food_menu(self, food_code):
+    def get_food_menu(self):
         for key in self.__food_dict:
-            if key == food_code:
-                return self.__menu[key] + ' ' + self.__food_dict[key]
+            for item in self.__menu:
+                return '{0} has been eaten {1} times'.format(self.__menu[item], self.__food_dict[key])
 
 
 
