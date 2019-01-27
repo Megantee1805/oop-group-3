@@ -26,13 +26,16 @@
 
                         <div class="col-md-12"><h4>Current Location: <b class="center_subtitle">{{ user_vendors[0].get_area() }}</b></h4>
 
-                         <select id="ratingstars" name="ratings" onchange="myfunction()">
-                             <option value="rating" name="title" selected>Ratings</option>
-                             <option value="4star" name="four" id="4">4 star</option>
-                             <option value="3star" name="three" id="3">3 star</option>
-                             <option value="2star" name="two" id="2">2 star</option>
-                             <option value="1star" name="one" id="1">1 star</option>
-                         </select>
+                         
+                         <div class="w3-dropdown-hover">
+                         <button class="btn btn-primary" style="background-color: #4CAF50;">Ratings</button>
+                         <div class="w3-dropdown-content">
+                         <a href="#" class="w3-bar-item w3-button" onchange="click4()">4 Star</a>
+                         <a href="#" class="w3-bar-item w3-button">3 Star</a>
+                         <a href="#" class="w3-bar-item w3-button">Link 3</a>
+                         </div>
+                         </div>
+                            
                         </div>
 
 
@@ -72,10 +75,27 @@
 </div>
 
 <script>
-   function myfunction() {
+   function click4() {
+       $(".vendor-rating-3").hide("fast");
+       $(".vendor-rating-2").hide("fast");
+       $(".vendor-rating-1").hide("fast");                                    
+                                     
+   }
+   function click3() {
+       $(".vendor-rating-4").hide("fast");
+       $(".vendor-rating-2").hide("fast");                                 
+       $(".vendor-rating-1").hide("fast");                                    
+   }
+   function click2() {
+       $(".vendor-rating-4").hide("fast");
+       $(".vendor-rating-3").hide("fast");                                 
+       $(".vendor-rating-1").hide("fast");                               
+   }
+   function click1() {
+       $(".vendor-rating-4").hide("fast");                                 
        $(".vendor-rating-3").hide("fast");
        $(".vendor-rating-2").hide("fast");                                 
                                      
-   }
+   }                                     
 </script>
 {% endblock %}
