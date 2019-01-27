@@ -12,12 +12,9 @@ bp = Blueprint('support', __name__)
 @permission_required
 def support():
     db = get_db()
-    food_code = db.execute('SELECT food_code FROM food_entry').fetchall()
-    food_name = db.execute('SELECT food_name FROM food_entry').fetchall()
-    for food in food_code:
-        data.add_food(food[0])
-        for name in food_name:
-            data.add_menu(name[0], food[0])
+    food_items = db.execute('SELECT * FROM food_entry').fetchall()
+    for food in food_items:
+        data.add_food(food)
     print(data.get_food_menu())
     return render_template('support/support_index.html')
 

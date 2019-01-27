@@ -273,22 +273,23 @@ class SupportData:
         self.__food_code = ''
         self.__count = 0 
 
-    def add_code(self, food_code):
-        self.__food_dict[food_code] = self.__count
+    def add_code(self, food_item):
+        self.__food_dict[food_item.get_code()] = 0
 
-    def add_food(self, food_code:str):
+    def add_food(self, food_item):
         for key in self.__food_dict:
-            if food_code == key:
-                self.__count = self.__count + 1
-                self.__food_dict[key] = self.__count
+            if food_item["food_code"] == key:
+                self.__food_dict[key] += 1
 
-    def add_menu(self, food_name, food_code):
-        for key in self.__food_dict:
-            if food_code == key:
-                self.__menu[food_code] = food_name
+
+
+    # def add_menu(self, food_name, food_code):
+    #     for key in self.__food_dict:
+    #         if food_code == key:
+    #             self.__menu[food_code] = food_name
 
     def get_food_menu(self):
-        return 'List of items {0} {1}'.format(self.__food_dict, self.__food_dict)
+        return 'List of items {0}'.format(self.__food_dict)
 
 
 
@@ -568,65 +569,65 @@ vendor_food = {sen01: [a00001, a00002, a00003, a00004, a00005],
                pun04: [c00031, c00032, c00033, c00034, c00035],}
 
 data = SupportData()
-data.add_code('a00001')
-data.add_code('a00002')
-data.add_code('a00003')
-data.add_code('a00004')
-data.add_code('a00005')
-data.add_code('a00011')
-data.add_code('a00012')
-data.add_code('a00013')
-data.add_code('a00014')
-data.add_code('a00015')
-data.add_code('a00021')
-data.add_code('a00022')
-data.add_code('a00023')
-data.add_code('a00024')
-data.add_code('a00025')
-data.add_code('a00031')
-data.add_code('a00032')
-data.add_code('a00033')
-data.add_code('a00034')
-data.add_code('a00035')
+data.add_code(a00001)
+data.add_code(a00002)
+data.add_code(a00003)
+data.add_code(a00004)
+data.add_code(a00005)
+data.add_code(a00011)
+data.add_code(a00012)
+data.add_code(a00013)
+data.add_code(a00014)
+data.add_code(a00015)
+data.add_code(a00021)
+data.add_code(a00022)
+data.add_code(a00023)
+data.add_code(a00024)
+data.add_code(a00025)
+data.add_code(a00031)
+data.add_code(a00032)
+data.add_code(a00033)
+data.add_code(a00034)
+data.add_code(a00035)
 
-data.add_code('b00001')
-data.add_code('b00002')
-data.add_code('b00003')
-data.add_code('b00004')
-data.add_code('b00005')
-data.add_code('b00011')
-data.add_code('b00012')
-data.add_code('b00013')
-data.add_code('b00014')
-data.add_code('b00015')
-data.add_code('b00021')
-data.add_code('b00022')
-data.add_code('b00023')
-data.add_code('b00024')
-data.add_code('b00025')
-data.add_code('b00031')
-data.add_code('b00032')
-data.add_code('b00033')
-data.add_code('b00034')
-data.add_code('b00035')
+data.add_code(b00001)
+data.add_code(b00002)
+data.add_code(b00003)
+data.add_code(b00004)
+data.add_code(b00005)
+data.add_code(b00011)
+data.add_code(b00012)
+data.add_code(b00013)
+data.add_code(b00014)
+data.add_code(b00015)
+data.add_code(b00021)
+data.add_code(b00022)
+data.add_code(b00023)
+data.add_code(b00024)
+data.add_code(b00025)
+data.add_code(b00031)
+data.add_code(b00032)
+data.add_code(b00033)
+data.add_code(b00034)
+data.add_code(b00035)
 
-data.add_code('c00001')
-data.add_code('c00002')
-data.add_code('c00003')
-data.add_code('c00004')
-data.add_code('c00005')
-data.add_code('c00011')
-data.add_code('c00012')
-data.add_code('c00013')
-data.add_code('c00014')
-data.add_code('c00015')
-data.add_code('c00021')
-data.add_code('c00022')
-data.add_code('c00023')
-data.add_code('c00024')
-data.add_code('c00025')
-data.add_code('c00031')
-data.add_code('c00032')
-data.add_code('c00033')
-data.add_code('c00034')
-data.add_code('c00035')
+data.add_code(c00001)
+data.add_code(c00002)
+data.add_code(c00003)
+data.add_code(c00004)
+data.add_code(c00005)
+data.add_code(c00011)
+data.add_code(c00012)
+data.add_code(c00013)
+data.add_code(c00014)
+data.add_code(c00015)
+data.add_code(c00021)
+data.add_code(c00022)
+data.add_code(c00023)
+data.add_code(c00024)
+data.add_code(c00025)
+data.add_code(c00031)
+data.add_code(c00032)
+data.add_code(c00033)
+data.add_code(c00034)
+data.add_code(c00035)
