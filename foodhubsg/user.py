@@ -110,27 +110,16 @@ def user_settings():
                            average_lunch_calories=info["average_lunch_calories"], average_dinner_calories=info["average_dinner_calories"],
                            average_snack_calories=info["average_snack_calories"])
 def delete_account():
-    db = get_db()
-    users = db.execute(
-        'SELECT id, name, email, password, height, weight, location'
-        ' FROM user'
-        ' WHERE id = ?',
-        (g.user['id'],),
-    ).fetchall()
-    
-    user_info = ProcessUserInfo(users)
-    info = user_info.get_info()
-    
     if request.method == 'POST':
         message = None
-        if request.form['action'] == 'Delete Account':
+        if request.form['action'] == 'Delete Account':  
             db.execute('DELETE FROM user WHERE id = ?', (g.user['id'],))
             db.commit()
-            
+            message = "Your account ({}) has been successfully deleted!".format(email)
+            flash(message, "success")
             return redirect(url_for('auth.register'))
-    return render_template('auth/register.html',
-                           name=info["name"], weight=info["weight"], height=info["height"], email=info["email"],
-                           password=info["password"], user_location=info["user_location"]) 
+        
+    return render_template('auth/register.html') 
 
 
 @bp.route('/faq', methods=('GET', 'POST'))
