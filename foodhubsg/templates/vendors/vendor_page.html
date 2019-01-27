@@ -25,15 +25,12 @@
                     {% else %}
 
                         <div class="col-md-12"><h4>Current Location: <b class="center_subtitle">{{ user_vendors[0].get_area() }}</b></h4>
-
-                         
-                         <div class="w3-dropdown-hover">
-                         <button class="btn btn-primary" style="background-color: #4CAF50;">Ratings</button>
-                         <div class="w3-dropdown-content">
-                         <a href="#" class="w3-bar-item w3-button" onchange="click4()">4 Star</a>
-                         <a href="#" class="w3-bar-item w3-button">3 Star</a>
-                         <a href="#" class="w3-bar-item w3-button">Link 3</a>
-                         </div>
+                            
+                         <div style="border: 1px solid black;">
+                         <button class="btn btn-primary" style="background-color: #4CAF50;" onchange="click4()">4 Star</button> 
+                         <button class="btn btn-primary" style="background-color: #4CAF50;" onchange="click3()">3 Star</button> 
+                         <button class="btn btn-primary" style="background-color: #4CAF50;" onchange="click2()">2 Star</button>
+                         <button class="btn btn-primary" style="background-color: #4CAF50;" onchange="click1()">1 Star</button> 
                          </div>
                             
                         </div>
@@ -41,7 +38,7 @@
 
                         {% for vendor in user_vendors %}
                             <div class="col-md-6 vendor-rating-{{ vendor.get_rating() }}">
-                                <div class="blog-entry" id="vendors"  style="display: block;">
+                                <div class="blog-entry" id="vendors">
                                     <div class="blog-img">
                                         <a class="action" href="{{ url_for('vendors.vendor', code = vendor.get_code()) }}"><img src="{{ vendor.get_image_location() }}" class="img-responsive" alt="html5 bootstrap template"></a>
                                     </div>
