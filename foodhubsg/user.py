@@ -104,6 +104,7 @@ def user_settings():
             message = "Your account ({}) has been successfully deleted!".format(email)
             flash(message, "success")
             return redirect(url_for('auth.register'))
+            return render_template('auth/register.html')
         
     return render_template('user/user_settings.html',
                            name=info["name"], weight=info["weight"], height=info["height"], email=info["email"],
