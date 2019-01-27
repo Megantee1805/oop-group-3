@@ -98,6 +98,14 @@ def user_settings():
             db.commit()
             return redirect(url_for('user.user_settings'))
 
+   if request.method == 'POST':
+        if request.form['action'] == 'Delete Account':
+            db.execute('DELETE FROM user WHERE id = ?', (g.user['id'],))
+            db.commit()
+            message = "Your account ({}) has been successfully deleted!".format(email)
+            flash(message, "success")
+            return redirect(url_for('auth.register'))
+    
     return render_template('user/user_settings.html',
                            name=info["name"], weight=info["weight"], height=info["height"], email=info["email"],
                            password=info["password"], user_location=info["user_location"], bmi_statement=info["bmi_statement"],
