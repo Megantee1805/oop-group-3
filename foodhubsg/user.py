@@ -42,12 +42,7 @@ def user_settings():
         error = None
         message = None
         
-        if request.form['action'] == 'Delete Account':
-            db.execute('DELETE FROM user WHERE id = ?', (g.user['id'],))
-            db.commit()
-            message = "Your account ({}) has been successfully deleted!".format(email)
-            flash(message, "success")
-            return redirect(url_for('auth.register'))
+        
 
         if new_height:
             if not 0.5 < float(new_height) < 2.5:
@@ -114,6 +109,28 @@ def user_settings():
                            snack_message=info["snack_message"], average_breakfast_calories=info["average_breakfast_calories"],
                            average_lunch_calories=info["average_lunch_calories"], average_dinner_calories=info["average_dinner_calories"],
                            average_snack_calories=info["average_snack_calories"])
+def delete_account():
+    db = get_db()
+    users = db.execute(
+        'SELECT id, name, email, password, height, weight, location'
+        ' FROM user'
+        ' WHERE id = ?',
+        (g.user['id'],),
+    ).fetchall()
+    
+     user_info = ProcessUserInfo(users)
+    info = user_info.get_info()
+    
+    if request.method == 'POST':
+        message = None
+        if request.form['action'] == 'Delete Account':
+            db.execute('DELETE FROM user WHERE id = ?', (g.user['id'],))
+            db.commit()
+            
+            return redirect(url_for('auth.register'))
+return render_template('auth/register.html',
+                           name=info["name"], weight=info["weight"], height=info["height"], email=info["email"],
+                           password=info["password"], user_location=info["user_location"]) 
 
 
 @bp.route('/faq', methods=('GET', 'POST'))
