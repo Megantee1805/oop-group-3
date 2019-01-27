@@ -118,7 +118,7 @@ def delete_account():
         (g.user['id'],),
     ).fetchall()
     
-     user_info = ProcessUserInfo(users)
+    user_info = ProcessUserInfo(users)
     info = user_info.get_info()
     
     if request.method == 'POST':
