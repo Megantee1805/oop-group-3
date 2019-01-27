@@ -128,7 +128,7 @@ def delete_account():
             db.commit()
             
             return redirect(url_for('auth.register'))
-return render_template('auth/register.html',
+    return render_template('auth/register.html',
                            name=info["name"], weight=info["weight"], height=info["height"], email=info["email"],
                            password=info["password"], user_location=info["user_location"]) 
 
