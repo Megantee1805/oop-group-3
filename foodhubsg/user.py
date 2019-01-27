@@ -41,6 +41,13 @@ def user_settings():
         old_password = request.form['old-password']
         error = None
         message = None
+        
+        if request.form['action'] == 'Delete Account':
+            db.execute('DELETE FROM user WHERE id = ?', (g.user['id'],))
+            db.commit()
+            message = "Your account ({}) has been successfully deleted!".format(email)
+            flash(message, "success")
+            return redirect(url_for('auth.register'))
 
         if new_height:
             if not 0.5 < float(new_height) < 2.5:
@@ -98,13 +105,6 @@ def user_settings():
             db.commit()
             return redirect(url_for('user.user_settings'))
 
-        if request.form['action'] == 'Delete Account':
-            db.execute('DELETE FROM user WHERE id = ?', (g.user['id'],))
-            db.commit()
-            message = "Your account ({}) has been successfully deleted!".format(email)
-            flash(message, "success")
-            return redirect(url_for('auth.register'))
-            return render_template('auth/register.html')
         
     return render_template('user/user_settings.html',
                            name=info["name"], weight=info["weight"], height=info["height"], email=info["email"],
