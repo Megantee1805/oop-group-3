@@ -11,7 +11,10 @@ itsdangerous==1.1.0
 Jinja2==2.10
 Mako==1.0.7
 MarkupSafe==1.1.0
+pytz==2018.7
+requests==2.21.0
 requirements==0.1
 SQLAlchemy==1.2.14
+tzlocal==1.5.1
 Werkzeug==0.14.1
 WTForms==2.2.1

@@ -281,8 +281,6 @@ class SupportData:
             if food_item["food_code"] == key:
                 self.__food_dict[key] += 1
 
-
-
     # def add_menu(self, food_name, food_code):
     #     for key in self.__food_dict:
     #         if food_code == key:
