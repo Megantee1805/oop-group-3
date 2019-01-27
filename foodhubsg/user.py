@@ -99,8 +99,15 @@ def user_settings():
             flash(message, "success")
             db.commit()
             return redirect(url_for('user.user_settings'))
-
         
+        
+        if request.form['action'] == 'Delete Account':
+            db.execute('DELETE FROM user WHERE id = ?', (g.user['id'],))
+            db.commit()
+            message = "Your account ({}) has been successfully deleted!".format(email)
+            flash(message, "success")
+            return redirect(url_for('auth.register'))
+
     return render_template('user/user_settings.html',
                            name=info["name"], weight=info["weight"], height=info["height"], email=info["email"],
                            password=info["password"], user_location=info["user_location"], bmi_statement=info["bmi_statement"],
@@ -109,17 +116,6 @@ def user_settings():
                            snack_message=info["snack_message"], average_breakfast_calories=info["average_breakfast_calories"],
                            average_lunch_calories=info["average_lunch_calories"], average_dinner_calories=info["average_dinner_calories"],
                            average_snack_calories=info["average_snack_calories"])
-def delete_account():
-    if request.method == 'POST':
-        message = None
-        if request.form['action'] == 'Delete Account':  
-            db.execute('DELETE FROM user WHERE id = ?', (g.user['id'],))
-            db.commit()
-            message = "Your account ({}) has been successfully deleted!".format(email)
-            flash(message, "success")
-            return redirect(url_for('auth.register'))
-        
-    return render_template('auth/register.html') 
 
 
 @bp.route('/faq', methods=('GET', 'POST'))
