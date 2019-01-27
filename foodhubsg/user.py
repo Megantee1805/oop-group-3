@@ -98,7 +98,6 @@ def user_settings():
             db.commit()
             return redirect(url_for('user.user_settings'))
 
-    if request.method == 'POST':
         if request.form['action'] == 'Delete Account':
             db.execute('DELETE FROM user WHERE id = ?', (g.user['id'],))
             db.commit()
