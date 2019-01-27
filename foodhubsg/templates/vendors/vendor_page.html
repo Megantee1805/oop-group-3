@@ -26,9 +26,9 @@
 
                         <div class="col-md-12"><h4>Current Location: <b class="center_subtitle">{{ user_vendors[0].get_area() }}</b></h4>
 
-                         <select id="ratingstars" name="ratings" onchange="myfunction()">
+                         <select id="ratingstars" name="ratings">
                              <option value="rating" name="title" selected>Ratings</option>
-                             <option value="4star" name="four" id="4">4 star</option>
+                             <option value="4star" name="four" id="4" onchange="myfunction()">4 star</option>
                              <option value="3star" name="three" id="3">3 star</option>
                              <option value="2star" name="two" id="2">2 star</option>
                              <option value="1star" name="one" id="1">1 star</option>
