@@ -271,17 +271,16 @@ class SupportData:
         self.__menu = {}
         self.__food_dict = {}
         self.__food_code = ''
+        self.__count = 0 
 
     def add_code(self, food_code):
-        count = 0
-        self.__food_dict[food_code] = count
+        self.__food_dict[food_code] = self.__count
 
     def add_food(self, food_code:str):
-        count = 0
         for key in self.__food_dict:
             if food_code == key:
-                count = count + 1
-                self.__food_dict[key] = count
+                self.__count = self.__count + 1
+                self.__food_dict[key] = self.__count
 
     def add_menu(self, food_name, food_code):
         for key in self.__food_dict:
@@ -289,9 +288,7 @@ class SupportData:
                 self.__menu[food_code] = food_name
 
     def get_food_menu(self):
-        for key in self.__food_dict:
-            for item in self.__menu:
-                return '{0} has been eaten {1} times'.format(self.__menu[item], self.__food_dict[key])
+        return 'List of items {0} {1}'.format(self.__food_dict, self.__food_dict)
 
 
 
