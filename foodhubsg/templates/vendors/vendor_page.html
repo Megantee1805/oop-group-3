@@ -25,13 +25,12 @@
                     {% else %}
 
                         <div class="col-md-12"><h4>Current Location: <b class="center_subtitle">{{ user_vendors[0].get_area() }}</b></h4>
+                         
+                         <select id="ratingstars" name="ratings" onchange="click4()" value="4star">
+                             <option value="4star" name="four" id="4">4 star</option>
+                         </select>   
                             
-                         <div style="border: 1px solid black;">
-                         <button class="btn btn-primary" style="background-color: #4CAF50;" onchange="click4()">4 Star</button> 
-                         <button class="btn btn-primary" style="background-color: #4CAF50;" onchange="click3()">3 Star</button> 
-                         <button class="btn btn-primary" style="background-color: #4CAF50;" onchange="click2()">2 Star</button>
-                         <button class="btn btn-primary" style="background-color: #4CAF50;" onchange="click1()">1 Star</button> 
-                         </div>
+                      
                             
                         </div>
 
