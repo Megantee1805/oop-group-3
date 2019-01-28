@@ -34,13 +34,6 @@ def user_settings():
     info = user_info.get_info()
 
     if request.method == 'POST':
-        if request.form['action'] == 'Delete Account':
-            db.execute('DELETE FROM user WHERE id = ?', (g.user['id'],))
-            message = "Your account ({}) has been successfully deleted!".format(info["email"])
-            flash(message, "success")
-            db.commit()
-            return redirect(url_for('auth.register'))
-
         new_height = request.form['height']
         new_weight = request.form['weight']
         new_password = request.form['password']
@@ -48,61 +41,70 @@ def user_settings():
         old_password = request.form['old-password']
         error = None
 
-        if new_height:
-            if not 0.5 < float(new_height) < 2.5:
-                error = 'Please enter a valid height value in meters'
-            elif new_height == info["height"]:
-                error = 'Please enter a new height value'
-            else:
-                db.execute(
-                    'UPDATE user SET height = ? WHERE id = ?',
-                    (new_height, info["id"])
-                )
-
-        if new_weight:
-            if not 20 < float(new_weight) < 250:
-                error = 'Please enter a valid weight value in kilograms'
-            elif new_weight == info["weight"]:
-                error = 'Please enter a new weight value'
-            else:
-                db.execute(
-                    'UPDATE user SET weight = ? WHERE id = ?',
-                    (new_weight, info["id"])
-                )
-
-        if new_password:
-            if old_password:
-                if check_password_hash(info["password"], old_password):
-                    if check_password_hash(info["password"], new_password):
-                        error = "You've entered your previous password"
-                    elif " " in  new_password:
-                        error = "Please don't enter whitespaces in your new password"
-                    else:
-                        db.execute(
-                            'UPDATE user SET password = ? WHERE id = ?',
-                            (generate_password_hash(new_password), info["id"])
-                        )
+        if request.form['action'] == 'Update Settings':
+            if new_height:
+                if not 0.5 < float(new_height) < 2.5:
+                    error = 'Please enter a valid height value in meters'
+                elif new_height == info["height"]:
+                    error = 'Please enter a new height value'
                 else:
-                    error = "You've entered your current password incorrectly"
+                    db.execute(
+                        'UPDATE user SET height = ? WHERE id = ?',
+                        (new_height, info["id"])
+                    )
+
+            if new_weight:
+                if not 20 < float(new_weight) < 250:
+                    error = 'Please enter a valid weight value in kilograms'
+                elif new_weight == info["weight"]:
+                    error = 'Please enter a new weight value'
+                else:
+                    db.execute(
+                        'UPDATE user SET weight = ? WHERE id = ?',
+                        (new_weight, info["id"])
+                    )
+
+            if new_password:
+                if old_password:
+                    if check_password_hash(info["password"], old_password):
+                        if check_password_hash(info["password"], new_password):
+                            error = "You've entered your previous password"
+                        elif " " in new_password:
+                            error = "Please don't enter whitespaces in your new password"
+                        else:
+                            db.execute(
+                                'UPDATE user SET password = ? WHERE id = ?',
+                                (generate_password_hash(new_password), info["id"])
+                            )
+                    else:
+                        error = "You've entered your current password incorrectly"
+                else:
+                    error = "Please enter your current password to change your password"
+
+            if new_location != info["user_location"]:
+                db.execute(
+                    'UPDATE user SET location = ? WHERE id = ?',
+                    (new_location, info["id"])
+                )
+
+            if not new_height and not new_weight and not new_password and new_location == info["user_location"]:
+                error = "No settings have been changed"
+
+            if error is not None:
+                flash(error, "error")
             else:
-                error = "Please enter your current password to change your password"
+                message = "You've successfully changed your settings!"
+                flash(message, "success")
+                db.commit()
+                return redirect(url_for('user.user_settings'))
 
-        if new_location != info["user_location"]:
-            db.execute(
-                'UPDATE user SET location = ? WHERE id = ?',
-                (new_location, info["id"])
-            )
-
-        if not new_height and not new_weight and not new_password and new_location == info["user_location"]:
-            error = "No settings have been changed"
-
-        if error is not None:
-            flash(error, "error")
-        else:
-            message = "You've successfully changed your settings!"
+        if request.form['action'] == 'Delete Account':
+            db.execute('DELETE FROM user WHERE id = ?', (g.user['id'],))
+            message = "Your account ({}) has been successfully deleted!".format(info["email"])
             flash(message, "success")
             db.commit()
-            return redirect(url_for('user.user_settings'))
+            return redirect(url_for('auth.register'))
+
 
     return render_template('user/user_settings.html',
                            name=info["name"], weight=info["weight"], height=info["height"], email=info["email"],

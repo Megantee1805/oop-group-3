@@ -10,11 +10,11 @@
         <div class="row row-pb-md">
             <div class="col-md-12">
              <h3> <b class="font_color"> List of Items </b></h3>
-                {% for food_code in food_dict %}
+                {% for food in food_dict %}
                         <b class="font_color"> Food Code </b>
-                        <b class="font_color">{{ food_code[0]}} </b> <div></div>
+                        <b class="font_color">{{ food.get_code() }} </b> <div></div>
                         <b class="font_color"> Number of times added </b>
-                        <b class="font_color"> {{ food_code[1]}} </b> <div></div>
+                        <b class="font_color"> {{ food_dict["food"] }} </b> <div></div>
             {% endfor %}
             </div>
         </div>

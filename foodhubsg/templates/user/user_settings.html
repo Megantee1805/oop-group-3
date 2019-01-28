@@ -11,7 +11,7 @@ $(document).ready(function(){
     if ($('.delprefix[input]').val() != '') {
         ($('.delprefix').focus(function () {
             $('.hide-tax').show('slow');
-        });
+        }));
     }
 });
 
@@ -70,7 +70,7 @@ $(document).ready(function(){
 
                         <br>
 
-                        <input type="submit" value="Update Settings" class="btn btn-primary" style="background-color: #4CAF50;">
+                        <input type="submit" name="action" value="Update Settings" class="btn btn-primary" style="background-color: #4CAF50;">
                         <input type="submit" name="action" value="Delete Account" class="btn btn-primary delprefix" style="background-color: #d9534f;">
                     </form>
                 </div>

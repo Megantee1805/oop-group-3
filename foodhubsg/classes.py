@@ -269,11 +269,11 @@ class SupportData:
     def __init__(self):
         self.__food_dict = {}
         for food in food_list:
-            self.__food_dict[food.get_code()] = 0
+            self.__food_dict[food] = 0
 
     def add_food(self, food_item):
         for key in self.__food_dict:
-            if food_item["food_code"] == key:
+            if food_item["food_code"] == key.get_code():
                 self.__food_dict[key] += 1
 
     def get_food_menu(self):
