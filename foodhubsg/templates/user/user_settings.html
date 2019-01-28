@@ -9,13 +9,10 @@
 $(document).ready(function(){
     $('.hide-tax').hide();
     if ($('.delprefix[input]').val() != '') {
-        $('.delprefix').focus(function () {
+        ($('.delprefix').focus(function () {
             $('.hide-tax').show('slow');
         });
-    } else {
-        $('.hide-tax').hide('fast');
     }
-
 });
 
 </script>
@@ -30,9 +27,6 @@ $(document).ready(function(){
                     <header>
                         <h1 class="font_color"><b>User Settings</b></h1>
                         <h5>({{ email }})</h5>
-                        <form method ="post" action="">
-                            <input type="submit" name="action" value="Delete Account" class="btn btn-primary" style="background-color: #4CAF50; align: right;">
-                        </form>
                         <hr>
                     </header>
 
@@ -77,8 +71,7 @@ $(document).ready(function(){
                         <br>
 
                         <input type="submit" value="Update Settings" class="btn btn-primary" style="background-color: #4CAF50;">
-                      
-
+                        <input type="submit" name="action" value="Delete Account" class="btn btn-primary delprefix" style="background-color: #d9534f;">
                     </form>
                 </div>
             </div>
