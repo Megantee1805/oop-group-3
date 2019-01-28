@@ -34,15 +34,19 @@ def user_settings():
     info = user_info.get_info()
 
     if request.method == 'POST':
+        if request.form['action'] == 'Delete Account':
+            db.execute('DELETE FROM user WHERE id = ?', (g.user['id'],))
+            message = "Your account ({}) has been successfully deleted!".format(info["email"])
+            flash(message, "success")
+            db.commit()
+            return redirect(url_for('auth.register'))
+
         new_height = request.form['height']
         new_weight = request.form['weight']
         new_password = request.form['password']
         new_location = request.form.get('new-location')
         old_password = request.form['old-password']
         error = None
-        message = None
-        
-        
 
         if new_height:
             if not 0.5 < float(new_height) < 2.5:
@@ -92,12 +96,6 @@ def user_settings():
         if not new_height and not new_weight and not new_password and new_location == info["user_location"]:
             error = "No settings have been changed"
 
-        if request.form['action'] == 'Delete Account':
-            db.execute('DELETE FROM user WHERE id = ?', (g.user['id'],))
-            message = "Your account ({}) has been successfully deleted!".format(email)
-            flash(message, "success")
-            return redirect(url_for('auth.register'))
-
         if error is not None:
             flash(error, "error")
         else:
@@ -105,18 +103,7 @@ def user_settings():
             flash(message, "success")
             db.commit()
             return redirect(url_for('user.user_settings'))
-        
-<<<<<<< HEAD
-=======
-        
-        if request.form['action'] == 'Delete Account':
-            db.execute('DELETE FROM user WHERE id = ?', (g.user['id'],))
-            db.commit()
-            message = "Your account ({}) has been successfully deleted!".format(email)
-            flash(message, "success")
-            return redirect(url_for('auth.register'))
 
->>>>>>> ce5e61089f51584ffe4d9de6265fcc1593717ddd
     return render_template('user/user_settings.html',
                            name=info["name"], weight=info["weight"], height=info["height"], email=info["email"],
                            password=info["password"], user_location=info["user_location"], bmi_statement=info["bmi_statement"],
