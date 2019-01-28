@@ -109,6 +109,12 @@ def user_settings():
 <<<<<<< HEAD
 =======
         
+        if request.form['action'] == 'Delete Account':
+            db.execute('DELETE FROM user WHERE id = ?', (g.user['id'],))
+            db.commit()
+            message = "Your account ({}) has been successfully deleted!".format(email)
+            flash(message, "success")
+            return redirect(url_for('auth.register'))
 
 >>>>>>> ce5e61089f51584ffe4d9de6265fcc1593717ddd
     return render_template('user/user_settings.html',
