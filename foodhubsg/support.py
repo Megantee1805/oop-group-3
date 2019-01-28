@@ -20,10 +20,13 @@ def support():
         support_data.add_food(food)
     food_dict = support_data.get_food_menu()
     sorted_food_dict = sorted(food_dict.items(), key=operator.itemgetter(1), reverse=True)
+<<<<<<< HEAD
 
     return render_template('support/support_index.html', food_dict=sorted_food_dict)
+=======
     most_common_food =sorted_food_dict[:3]
     return render_template('support/support_index.html', food_dict=most_common_food)
+>>>>>>> b70d066293cfbf6b2c4e4dc3a53e21e1173303d9
 
 
 @bp.route('/support_faq', methods=('GET', 'POST'))
