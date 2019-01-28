@@ -146,7 +146,7 @@ class ProcessUserInfo:
             self.__email = user['email']
             self.__user_location = user['location']
             self.__password = user['password']
-            self.__bmi = round(self.__weight / self.__height ** self.__height, 2)
+            self.__bmi = round(self.__weight / self.__height * self.__height, 2)
 
         for vendor in vendor_list:
             vendor = vendor_list[vendor]
@@ -193,7 +193,7 @@ class ProcessUserInfo:
 
         ideal_weight = self.__weight
         if self.__bmi < 22:
-            while ideal_weight / self.__height ** self.__height < 23:
+            while ideal_weight / self.__height * self.__height < 23:
                 ideal_weight = ideal_weight + 1
             lose_weight = ideal_weight - self.__weight
             self.__bmi_statement = "{0}, you have a BMI of {1}, which is below the healthy range of 22 to 24. You are recommended " \
@@ -204,7 +204,7 @@ class ProcessUserInfo:
                                  "Keep it up!".format(self.__name, self.__bmi)
 
         elif self.__bmi > 24:
-            while ideal_weight / self.__height ** self.__height > 23:
+            while ideal_weight / self.__height * self.__height > 23:
                 ideal_weight = ideal_weight - 1
             lose_weight = self.__weight - ideal_weight
             self.__bmi_statement = "{0}, you have a BMI of {1}, which is above the healthy range of 22 to 24. You are recommended " \
@@ -543,7 +543,7 @@ vendor_list = {'sen01': sen01, 'sen02': sen02, 'sen03': sen03, 'sen04': sen04,
 #                'pun01': {pun01: [c00001, c00002, c00003, c00004, c00005]},
 #                'pun02': {pun02: [c00011, c00012, c00013, c00014, c00015]},
 #                'pun03': {pun03: [c00021, c00022, c00023, c00024, c00025]},
-#                'pun04': {pun04: [c00031, c00032, c00033, c00034, c00035]}}
+#                'pun04': {pun04: [c00031, c00032, c00033, c00034, c00035]}
 
 vendor_food = {sen01: [a00001, a00002, a00003, a00004, a00005],
                sen02: [a00011, a00012, a00013, a00014, a00015],
