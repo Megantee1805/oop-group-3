@@ -48,7 +48,7 @@ setTimeout('$(".flash-div").slideUp()',4000);
                     {% if g.user["id"] == 0 %}
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url_for('support.ban_user') }}">Ban Users</a>
+                                <a class="nav-link" href="{{ url_for('support.support') }}">Index</a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ url_for('support.ban_user') }}"><button type="button" class="btn btn-danger">Ban Users</button></a>

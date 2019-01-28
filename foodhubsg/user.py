@@ -90,6 +90,12 @@ def user_settings():
         if not new_height and not new_weight and not new_password and new_location == info["user_location"]:
             error = "No settings have been changed"
 
+        if request.form['action'] == 'Delete Account':
+            db.execute('DELETE FROM user WHERE id = ?', (g.user['id'],))
+            message = "Your account ({}) has been successfully deleted!".format(email)
+            flash(message, "success")
+            return redirect(url_for('auth.register'))
+
         if error is not None:
             flash(error, "error")
         else:
@@ -97,13 +103,6 @@ def user_settings():
             flash(message, "success")
             db.commit()
             return redirect(url_for('user.user_settings'))
-
-        if request.form['action'] == 'Delete Account':
-            db.execute('DELETE FROM user WHERE id = ?', (g.user['id'],))
-            db.commit()
-            message = "Your account ({}) has been successfully deleted!".format(email)
-            flash(message, "success")
-            return redirect(url_for('auth.register'))
         
     return render_template('user/user_settings.html',
                            name=info["name"], weight=info["weight"], height=info["height"], email=info["email"],

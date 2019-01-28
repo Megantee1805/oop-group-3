@@ -280,7 +280,6 @@ class SupportData:
         return 'List of items {0}'.format(self.__food_dict)
 
 
-
 ### Assigns the objects to vendor and food classes accordingly ###
 
 
