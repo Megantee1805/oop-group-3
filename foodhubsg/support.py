@@ -22,7 +22,6 @@ def support():
     food_dict = support_data.get_food_menu()
     sorted_food_dict = sorted(food_dict.items(), key=operator.itemgetter(1), reverse=True)
 
-    print(sorted_food_dict)
     return render_template('support/support_index.html', food_dict=sorted_food_dict)
 
 
