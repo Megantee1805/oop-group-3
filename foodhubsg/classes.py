@@ -285,7 +285,6 @@ class SupportData:
         return key_list, value_list
 
 
-
 ### Assigns the objects to vendor and food classes accordingly ###
 
 

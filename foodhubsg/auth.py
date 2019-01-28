@@ -114,7 +114,6 @@ def login():
     if request.method == 'POST':
         error = None
         db = get_db()
-
         email = request.form['email'].lower()
         password = request.form['password']
 
@@ -122,7 +121,7 @@ def login():
 
         if user is None:
             error = 'Incorrect email entered'
-        if not check_password_hash(user['password'], password):
+        elif not check_password_hash(user['password'], password):
                 error = 'Incorrect password entered'
 
         if error is None:

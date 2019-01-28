@@ -9,13 +9,12 @@
         <div class="box1">
         <div class="row row-pb-md">
             <div class="col-md-12">
+                <header id="summary-header">
+                    <h1 class="font_color"><b>Add Food Code</b></h1>
+                    <hr>
+                </header>
 
                 <form method="post">
-                    <header id="summary-header">
-                        <h1 class="font_color"><b>Add Food Code</b></h1>
-                        <hr>
-                    </header>
-
                     <div class="input-group">
                         <input name="code" id="code" class="form-control" value="{{ request.form['code'] }}" placeholder="Food Code (eg: a00001)" required>
                         <span class="input-group-btn">
@@ -23,7 +22,6 @@
                         </span>
                     </div>
                 </form>
-
             </div>
         </div>
         </div>
