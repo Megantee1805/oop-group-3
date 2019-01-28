@@ -9,13 +9,14 @@
         <div class="box1">
         <div class="row row-pb-md">
             <div class="col-md-12">
-             <h3> <b class="font_color"> List of Items </b></h3>
-                {% for food in food_dict %}
-                        <b class="font_color"> Food Code </b>
-                        <b class="font_color">{{ food.get_code() }} </b> <div></div>
-                        <b class="font_color"> Number of times added </b>
-                        <b class="font_color"> {{ food_dict["food"] }} </b> <div></div>
-            {% endfor %}
+            <h1><b class="font_color">Most Added Food Items</b></h1>
+            <hr>
+                {% for food_pair in food_list %}
+                    <b>Food Code</b>
+                    <h3 style="margin-bottom: 0;"><b class="font_color">{{ food_pair[0].get_code() }} ({{ food_pair[0].get_name() }})</b></h3>
+                    <b>Number of times added</b>
+                    <h3><b class="font_color">{{ food_pair[1] }} </b></h3>
+                {% endfor %}
             </div>
         </div>
         </div>

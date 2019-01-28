@@ -20,10 +20,12 @@ def support():
         support_data.add_food(food)
     food_dict = support_data.get_food_menu()
 
-    sorted_food_dict = sorted(food_dict.items(), key=operator.itemgetter(1), reverse=True)
-    common_food_dict = sorted_food_dict[:3]
+    sorted_food_list = sorted(food_dict.items(), key=operator.itemgetter(1), reverse=True)
+    simplified_food_list = [food_pair for food_pair in sorted_food_list if not food_pair[1] == 0]
 
-    return render_template('support/support_index.html', food_dict=sorted_food_dict, common_food_dict=common_food_dict)
+    common_food_list = simplified_food_list[:3]
+
+    return render_template('support/support_index.html', food_list=simplified_food_list, common_food_list=common_food_list)
 
 
 @bp.route('/support_faq', methods=('GET', 'POST'))
