@@ -41,6 +41,8 @@ def user_settings():
         old_password = request.form['old-password']
         error = None
         message = None
+        
+        
 
         if new_height:
             if not 0.5 < float(new_height) < 2.5:
@@ -104,6 +106,11 @@ def user_settings():
             db.commit()
             return redirect(url_for('user.user_settings'))
         
+<<<<<<< HEAD
+=======
+        
+
+>>>>>>> ce5e61089f51584ffe4d9de6265fcc1593717ddd
     return render_template('user/user_settings.html',
                            name=info["name"], weight=info["weight"], height=info["height"], email=info["email"],
                            password=info["password"], user_location=info["user_location"], bmi_statement=info["bmi_statement"],

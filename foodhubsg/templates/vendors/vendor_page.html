@@ -25,20 +25,32 @@
                     {% else %}
 
                         <div class="col-md-12"><h4>Current Location: <b class="center_subtitle">{{ user_vendors[0].get_area() }}</b></h4>
-
-                         <select id="ratingstars" name="ratings" onchange="myfunction()">
-                             <option value="rating" name="title" selected>Ratings</option>
-                             <option value="4star" name="four" id="4">4 star</option>
-                             <option value="3star" name="three" id="3">3 star</option>
-                             <option value="2star" name="two" id="2">2 star</option>
-                             <option value="1star" name="one" id="1">1 star</option>
-                         </select>
+                         
+                         <div>
+                         <select onchange="click4()" class="btn btn-primary" style="background-color: #4CAF50;">
+                             <option name="title" selected>Ratings 4</option>
+                             <option name="four">4 star</option>
+                         </select>  
+                         <select onchange="click3()" class="btn btn-primary" style="background-color: #4CAF50;">
+                             <option name="title" selected>Ratings 3</option>
+                             <option name="three">3 star</option>
+                         </select>  
+                         <select onchange="click2()" class="btn btn-primary" style="background-color: #4CAF50;">
+                             <option name="title" selected>Ratings 2</option>
+                             <option name="two">2 star</option>
+                         </select>  
+                         <select onchange="click1()" class="btn btn-primary" style="background-color: #4CAF50;">
+                             <option name="title" selected>Ratings 1</option>
+                             <option name="one">1 star</option>
+                         </select>  
+                         </div>
+                            
                         </div>
 
 
                         {% for vendor in user_vendors %}
                             <div class="col-md-6 vendor-rating-{{ vendor.get_rating() }}">
-                                <div class="blog-entry" id="vendors"  style="display: block;">
+                                <div class="blog-entry" id="vendors">
                                     <div class="blog-img">
                                         <a class="action" href="{{ url_for('vendors.vendor', code = vendor.get_code()) }}"><img src="{{ vendor.get_image_location() }}" class="img-responsive" alt="html5 bootstrap template"></a>
                                     </div>
@@ -72,9 +84,30 @@
 </div>
 
 <script>
-   function myfunction() {
+   function click4() {
+       $(".vendor-rating-4").show("fast");                                                            
        $(".vendor-rating-3").hide("fast");
+       $(".vendor-rating-2").hide("fast");
+       $(".vendor-rating-1").hide("fast");                                    
                                      
    }
+   function click3() {
+       $(".vendor-rating-4").hide("fast");
+       $(".vendor-rating-3").show("fast");                  
+       $(".vendor-rating-2").hide("fast");                                 
+       $(".vendor-rating-1").hide("fast");                                    
+   }
+   function click2() {
+       $(".vendor-rating-4").hide("fast");
+       $(".vendor-rating-3").hide("fast");
+       $(".vendor-rating-2").show("fast");                                  
+       $(".vendor-rating-1").hide("fast");                               
+   }
+   function click1() {
+       $(".vendor-rating-4").hide("fast");                                 
+       $(".vendor-rating-3").hide("fast");
+       $(".vendor-rating-2").hide("fast");                                 
+       $(".vendor-rating-1").show("fast");                               
+   }                                     
 </script>
 {% endblock %}
