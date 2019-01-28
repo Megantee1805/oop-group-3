@@ -6,9 +6,17 @@
         <div class="box1">
         <div class="row row-pb-md">
             <div class="col-md-12">
-                <h1 class="font_color"><b>Support Index</b></h1>
-                <hr>
-                {{ food_dict }}
+                {% for var in food_dict %}
+                    {% key_list = var[0] %}
+                    {% value_list = var[1] %}
+                    {% for key in key_list%}
+                    {% for value in value_list %}
+                        {{ key }}
+                        {{ value }}
+                    {% endfor %}
+                {% endfor %}
+                {% endfor %}
+
             </div>
         </div>
     </div>
