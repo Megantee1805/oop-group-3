@@ -199,6 +199,7 @@ class ProcessUserInfo:
             self.__bmi_statement = "{0}, you have a BMI of {1}, which is below the healthy range of 22 to 24. You are recommended " \
                                  "to gain {2} kg to reach a body mass of {3} kg, which will get you back to the healthy BMI range." \
                 .format(self.__name, self.__bmi, lose_weight, ideal_weight)
+            
         elif 22 < self.__bmi < 24:
             self.__bmi_statement = "{0}, you have a BMI of {1}, which is exactly within the healthy BMI range. " \
                                  "Keep it up!".format(self.__name, self.__bmi)
@@ -211,11 +212,13 @@ class ProcessUserInfo:
                                  "to lose {2} kg to reach a body mass of {3} kg, which will get you back to the healthy BMI range." \
                 .format(self.__name, self.__bmi, lose_weight, ideal_weight)
 
+            
         if self.__user_average_calories:
             if self.__user_average_calories < 1500:
                 self.__calories_statement = "You consumed an average of {0} kcal daily over the last {1} days you've entered food " \
                                           "into your food journal, which is below the daily recommended amount of 2500 kcal." \
                     .format(self.__user_average_calories, self.__number_of_days)
+                
             elif 1500 <= self.__user_average_calories <= 2500:
                 self.__calories_statement = "You consumed an average of {0} kcal daily over the {1} days you've entered food " \
                                           "into your food journal, which is within the daily recommended amount, so keep following your current diet." \
@@ -543,7 +546,7 @@ vendor_list = {'sen01': sen01, 'sen02': sen02, 'sen03': sen03, 'sen04': sen04,
 #                'pun01': {pun01: [c00001, c00002, c00003, c00004, c00005]},
 #                'pun02': {pun02: [c00011, c00012, c00013, c00014, c00015]},
 #                'pun03': {pun03: [c00021, c00022, c00023, c00024, c00025]},
-#                'pun04': {pun04: [c00031, c00032, c00033, c00034, c00035]}}
+#                'pun04': {pun04: [c00031, c00032, c00033, c00034, c00035]}
 
 vendor_food = {sen01: [a00001, a00002, a00003, a00004, a00005],
                sen02: [a00011, a00012, a00013, a00014, a00015],
