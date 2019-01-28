@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}FAQ{% endblock %}
+
+{% block content %}
+
+<div id="colorlib-container">
+<div class="container">
+    <div class="box1">
+    <div class="row row-pb-md">
+        <div class="col-md-12">
+
+            <h1 class="font_color"><b>Frequently Asked Questions (Support)</b></h1>
+            <hr>
+
+            <h3><b class="font_color">What is BMI?</b></h3>
+            <p>BMI is person's weight in kilograms (kg) divided by his or her height in meter squared. The National Institute of Health (NIH) now defines normal weight, overweight and obesity according to BMI rather than the traditional height/weight charts. Overweight is a BMI of 23 for an average person.</p>
+            <hr>
+
+            <h3><b class="font_color">What are calories?</b></h3>
+            <p>A calorie is a unit of energy. In nutrition, calories refer to the energy people get from the food and drink they consume, and the energy they use in physical activity.</p>
+            <hr>
+
+            <h3><b class="font_color">Can I become healthy by dieting?</b></h3>
+            <p>Yes, beginning a diet to lose weight and improve health is  a worthy goal, but it can be a bit overwhelming. There are bound to be challenges whenever you start something new, especially when it involves something you do several times each day like eating and drinking. Still, as long as you don't try to change everything at once, you can meet your weight loss goals. Read on to learn some secrets of the masters those who have lost weight and, more importantly, kept it off.</p>
+
+            {% for query in queries %}
+                <form method="get" id="answer-link" action="{{ url_for('support.edit_faq', id=query[0]) }}">
+                    <hr>
+                    <h3><b class="font_color"> {{ query[1] }}</b></h3>
+                    <p><b class="font_color"> by {{ query[3] }}</b></p> <div></div>
+                    <p><b> {{ query[2] }}</b></p>
+                    <input type="submit" value="Edit" name="answer" class="btn btn-primary" style="background-color: #4CAF50; height: 54px;">
+                    </form>
+            {% endfor %}
+
+{#            {% if status[0] == 1 %}#}
+{#                <h1 class="font_color"> You are not allowed to post questions. </h1>#}
+{#            {% else %}#}
+{#                <br><br><form method="post" action="" id="query-form">#}
+{#                    <label for="query">Question</label>#}
+{#                    <textarea id="query" name="query" form="query-form" class="form-control" rows="4" cols="50" required></textarea>#}
+{#                    <input type="submit" id="submit-query" value="Submit A Question" onclick="enable()" name="action" class="btn btn-primary" style="background-color: #4CAF50; height: 54px;">#}
+{#                </form>#}
+{#            {% endif %}#}
+        </div>
+        </div>
+    </div>
+</div>
+</div>
+
+{% endblock %}
