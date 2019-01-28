@@ -36,7 +36,7 @@
                         <article class="food-journal">
                             <header>
                                 <div class="food-subsection">
-                                    <div id="time-created"> <i>{{ food['created'].strftime('%I:%M %p') }}</i> </div>
+                                    <div id="time-created"> <i>{{ datetime.strptime(food['datetime(created, "localtime")'], '%Y-%m-%d %H:%M:%S').strftime('%I:%M %p') }}</i> </div>
                                     <h4 style="margin-bottom: 0; display: inline"><b>{{ food['food_name'] }}</b></h4>
                                     <p style="display: inline">(Code: {{ food['food_code'] }})</p>
                                     <p>

@@ -12,7 +12,7 @@ from foodhubsg.classes import *
 def get_food_entry(id, check_user=True):
     db = get_db()
     food_entry = db.execute(
-        'SELECT f.id, creator_id, food_name, created, calories, food_code, email'
+        'SELECT f.id, creator_id, food_name, datetime(created, "localtime"), calories, food_code, email'
         ' FROM food_entry f JOIN user u ON f.creator_id = u.id'
         ' WHERE f.id = ?',
         (id,),
@@ -36,7 +36,7 @@ def index():
     """Show all recent meals, most recent first."""
     db = get_db()
     food_items = db.execute(
-        'SELECT f.id, creator_id, food_name, created, calories, food_code, email'
+        'SELECT f.id, creator_id, food_name, datetime(created, "localtime"), calories, food_code, email'
         ' FROM food_entry f JOIN user u ON f.creator_id = u.id'
         ' WHERE f.creator_id = ? AND DATE(f.created) IN'
         ' (SELECT DISTINCT DATE(created) FROM food_entry '
@@ -59,7 +59,7 @@ def index():
                            food_dates=info["food_dates"], all_dates=info["all_dates"], calories_list=info["calories_list"], name=info["name"],
                            weight=info["weight"], height=info["height"], bmi=info["bmi"], user_average_calories=info["user_average_calories"],
                            number_of_days=info["number_of_days"], food_exists=info["food_exists"], user_vendors=info["user_vendors"],
-                           food_items=info["food_items"], calories_statement=info["calories_statement"])
+                           food_items=info["food_items"], calories_statement=info["calories_statement"], datetime=datetime)
 
 
 @bp.route('/food_journal', methods=('GET', 'POST'))
@@ -68,10 +68,10 @@ def food_journal():
     """Show all recent meals, most recent first."""
     db = get_db()
     food_items = db.execute(
-        'SELECT f.id, creator_id, food_name, created, calories, food_code, email'
+        'SELECT f.id, creator_id, food_name, datetime(created, "localtime"), calories, food_code, email'
         ' FROM food_entry f JOIN user u ON f.creator_id = u.id'
         ' WHERE f.creator_id = ?'
-        ' ORDER BY datetime(created) DESC',
+        ' ORDER BY datetime(created, "localtime") DESC',
         (g.user['id'],),
     ).fetchall()
 
@@ -134,7 +134,7 @@ def food_journal():
                            weight=info["weight"], height=info["height"], bmi=info["bmi"],
                            user_average_calories=info["user_average_calories"],
                            number_of_days=info["number_of_days"], food_exists=info["food_exists"],
-                           now=now_local)
+                           now=now_local, datetime=datetime)
 
 
 @bp.route('/edit_food/<int:id>', methods=('GET', 'POST'))
@@ -189,7 +189,7 @@ def edit_food(id):
         else:
             return redirect(url_for('food.edit_food', id=id))
 
-    return render_template('food/edit_food.html', food_entry=food_entry)
+    return render_template('food/edit_food.html', food_entry=food_entry, datetime=datetime)
 
 
 @bp.route('/search_food/<search_date>', methods=('GET', 'POST'))
@@ -204,7 +204,7 @@ def search_food(search_date):
     try:
         display_date = datetime.strptime(search_date, '%Y-%m-%d').strftime('%d %B %Y (%A)')
         food_items = db.execute(
-            'SELECT f.id, creator_id, food_name, created, calories, food_code, email'
+            'SELECT f.id, creator_id, food_name, datetime(created, "localtime"), calories, food_code, email'
             ' FROM food_entry f JOIN user u ON f.creator_id = u.id'
             ' WHERE f.creator_id = ? AND DATE(f.created) = ?',
             (g.user['id'], search_date,),
@@ -223,4 +223,4 @@ def search_food(search_date):
         abort(404, "That date ({0}) is invalid, please enter a date with a valid YYYY-MM-DD format.".format(search_date))
 
     return render_template('food/search_food.html', search_date=search_date, food_exists=food_exists, food_items=food_items,
-                           current_date_calories=current_date_calories, display_date=display_date)
+                           current_date_calories=current_date_calories, display_date=display_date, datetime=datetime)

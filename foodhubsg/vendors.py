@@ -1,5 +1,6 @@
 from flask import (Blueprint, flash, g, redirect, render_template, request, url_for)
 from werkzeug.exceptions import abort
+from datetime import datetime
 
 from foodhubsg.auth import login_required
 from foodhubsg.db import get_db
@@ -32,7 +33,7 @@ def vendors():
         else:
             continue
 
-    return render_template("vendors/vendor_page.html", user_vendors=user_vendors)
+    return render_template("vendors/vendor_page.html", user_vendors=user_vendors, datetime=datetime)
 
 
 @bp.route('/vendors/<code>', methods=('GET', 'POST'))
@@ -59,4 +60,4 @@ def vendor(code):
 
                 return render_template("vendors/vendor.html", current_vendor=current_vendor, name=name,
                                            average_calories=average_calories, area=area, location=location, description=description,
-                                           rating=rating, image_location=image_location, vendor_food_list=vendor_food_list)
+                                           rating=rating, image_location=image_location, vendor_food_list=vendor_food_list, datetime=datetime)

@@ -1,5 +1,6 @@
 from flask import (Blueprint, flash, redirect, render_template, request, session, url_for)
 from collections import OrderedDict
+from datetime import datetime
 import operator
 
 from foodhubsg.auth import permission_required
@@ -25,7 +26,7 @@ def support():
 
     common_food_list = simplified_food_list[:3]
 
-    return render_template('support/support_index.html', food_list=simplified_food_list, common_food_list=common_food_list)
+    return render_template('support/support_index.html', food_list=simplified_food_list, common_food_list=common_food_list, datetime=datetime)
 
 
 @bp.route('/support_faq', methods=('GET', 'POST'))
@@ -36,8 +37,8 @@ def support_faq():
     if request.method == 'POST':
         if request.form['answer'] == 'Edit':
             qns = db.execute('SELECT question FROM question_and_answer WHERE id = ?', id).fetchone()
-            return render_template('support/edit_faq.html', qns=qns)
-    return render_template('support/support_faq.html', queries=queries)
+            return render_template('support/edit_faq.html', qns=qns, datetime=datetime)
+    return render_template('support/support_faq.html', queries=queries, datetime=datetime)
 
 
 @bp.route('/edit_faq/<int:id>', methods=('GET', 'POST'))
@@ -62,7 +63,7 @@ def edit_faq(id):
             db.commit()
             return redirect(url_for('support.support_faq'))
 
-    return render_template('support/edit_faq.html', id=id, qns=qns[0], ans=ans)
+    return render_template('support/edit_faq.html', id=id, qns=qns[0], ans=ans, datetime=datetime)
 
 
 @bp.route('/ban_user', methods=('GET', 'POST'))
@@ -78,7 +79,7 @@ def ban_user():
             message = 'Banned the user succesfully'
             users = db.execute('SELECT * FROM user').fetchall()
             flash(message, "success")
-            return render_template('support/ban_users.html', users=users)
+            return render_template('support/ban_users.html', users=users, datetime=datetime)
         elif request.form['action'] == 'Unban User':
             name = request.form['name']
             db.execute('UPDATE user SET status = ? WHERE name = ?', (0, name))
@@ -86,6 +87,6 @@ def ban_user():
             message = 'The user is now free to post'
             users = db.execute('SELECT * FROM user').fetchall()
             flash(message, "success")
-            return render_template('support/ban_users.html', users=users)
+            return render_template('support/ban_users.html', users=users, datetime=datetime)
 
-    return render_template('support/ban_users.html', users=users)
+    return render_template('support/ban_users.html', users=users, datetime=datetime)

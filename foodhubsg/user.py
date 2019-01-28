@@ -1,5 +1,6 @@
 from flask import (Blueprint, flash, g, redirect, render_template, request, url_for)
 from werkzeug.security import check_password_hash, generate_password_hash
+from datetime import datetime
 
 from foodhubsg.auth import login_required
 from foodhubsg.db import get_db
@@ -14,7 +15,7 @@ bp = Blueprint('user', __name__)
 def user_settings():
     db = get_db()
     food_items = db.execute(
-        'SELECT f.id, creator_id, food_name, created, calories, food_code, email'
+        'SELECT f.id, creator_id, food_name, datetime(created, "localtime"), calories, food_code, email'
         ' FROM food_entry f JOIN user u ON f.creator_id = u.id'
         ' WHERE f.creator_id = ? AND DATE(f.created) IN'
         ' (SELECT DISTINCT DATE(created) FROM food_entry '
@@ -121,7 +122,7 @@ def user_settings():
 def faq():
     db = get_db()
     user_status = db.execute('SELECT status FROM user WHERE Name = ?', [g.user['name']]).fetchone()
-    queries = db.execute('SELECT id, question, answer,user FROM question_and_answer').fetchall()
+    queries = db.execute('SELECT id, question, answer, user FROM question_and_answer').fetchall()
     if request.method == 'POST':
         if request.form['action'] == 'Submit A Question':
             question = request.form['query']

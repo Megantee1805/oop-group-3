@@ -1,5 +1,6 @@
 from flask import (Blueprint, flash, redirect, render_template, request, session, url_for, g)
 from werkzeug.security import check_password_hash, generate_password_hash
+from datetime import datetime
 import functools
 
 from foodhubsg.db import get_db
@@ -102,7 +103,7 @@ def register():
         else:
             flash(error)
 
-    return render_template('auth/register.html')
+    return render_template('auth/register.html', datetime=datetime)
 
 
 @bp.route('/login', methods=('GET', 'POST'))
@@ -136,7 +137,7 @@ def login():
         else:
             flash(error)
 
-    return render_template('auth/login.html')
+    return render_template('auth/login.html', datetime=datetime)
 
 
 @bp.route('/change_password', methods=('GET', 'POST'))
@@ -174,7 +175,7 @@ def change_password():
             return redirect(url_for('auth.login'))
 
         flash(error)
-    return render_template('auth/change_password.html')
+    return render_template('auth/change_password.html', datetime=datetime)
 
 
 @bp.route('/reset', methods=['GET','POST'])
@@ -190,7 +191,7 @@ def reset():
             error= 'No such user exists'
             flash(error)
             return render_template('auth/index.html')
-    return render_template("auth/forgot_password.html")
+    return render_template("auth/forgot_password.html", datetime=datetime)
 
 
 @bp.route('/logout')

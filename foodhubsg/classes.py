@@ -1,3 +1,8 @@
+from datetime import datetime
+from pytz import timezone
+from tzlocal import get_localzone
+
+
 def remove_duplicates(values):
     output = []
     seen = set()
@@ -156,8 +161,9 @@ class ProcessUserInfo:
         if self.food_items != []:
             self.__food_exists = 1
 
+
             for food in self.food_items:
-                food_date = food['created'].strftime('%d-%m-%y')
+                food_date = datetime.strptime(food['datetime(created, "localtime")'], '%Y-%m-%d %H:%M:%S').strftime('%d-%m-%y')
                 self.__all_dates.append(food_date)
             self.__all_dates = remove_duplicates(self.__all_dates)
 
@@ -166,7 +172,7 @@ class ProcessUserInfo:
                 current_date_calories = []
 
                 for food in self.food_items:
-                    if date == food['created'].strftime('%d-%m-%y'):
+                    if date == datetime.strptime(food['datetime(created, "localtime")'], '%Y-%m-%d %H:%M:%S').strftime('%d-%m-%y'):
                         current_date_food.append(food)
                         current_date_calories.append(food['calories'])
 
@@ -178,13 +184,13 @@ class ProcessUserInfo:
                 self.__food_dates.append(current_date_food)
 
         for food in self.food_items:
-            if 5 <= int(food['created'].strftime('%H')) <= 9:
+            if 5 <= int(datetime.strptime(food['datetime(created, "localtime")'], '%Y-%m-%d %H:%M:%S').strftime('%H')) <= 9:
                 self.__breakfast_list.append(food['calories'])
                 self.__average_breakfast_calories = round(sum(self.__breakfast_list) / self.__number_of_days, 2)
-            elif 11 <= int(food['created'].strftime('%H')) <= 14:
+            elif 11 <= int(datetime.strptime(food['datetime(created, "localtime")'], '%Y-%m-%d %H:%M:%S').strftime('%H')) <= 14:
                 self.__lunch_list.append(food['calories'])
                 self.__average_lunch_calories = round(sum(self.__lunch_list) / self.__number_of_days, 2)
-            elif 17 <= int(food['created'].strftime('%H')) <= 21:
+            elif 17 <= int(datetime.strptime(food['datetime(created, "localtime")'], '%Y-%m-%d %H:%M:%S').strftime('%H')) <= 21:
                 self.__dinner_list.append(food['calories'])
                 self.__average_dinner_calories = round(sum(self.__dinner_list) / self.__number_of_days, 2)
             else:

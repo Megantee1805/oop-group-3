@@ -12,7 +12,7 @@
 
                 <form id="edit-food" action="" method="post">
                     <header id="summary-header">
-                        <h1 class="font_color"><b>Edit food entry on {{ food_entry['created'].strftime('%I:%M %p (%d %B)') }}</b></h1>
+                        <h1 class="font_color"><b>Edit food entry on {{ datetime.strptime(food_entry['datetime(created, "localtime")'], '%Y-%m-%d %H:%M:%S').strftime('%I:%M %p (%d %B)') }}</b></h1>
                         <hr>
                     </header>
                     <div class="input-group">
