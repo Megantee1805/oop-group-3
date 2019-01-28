@@ -146,7 +146,7 @@ class ProcessUserInfo:
             self.__email = user['email']
             self.__user_location = user['location']
             self.__password = user['password']
-            self.__bmi = round(self.__weight / self.__height * self.__height, 2)
+            self.__bmi = round(self.__weight / self.__height ** self.__height, 2)
 
         for vendor in vendor_list:
             vendor = vendor_list[vendor]
@@ -193,29 +193,32 @@ class ProcessUserInfo:
 
         ideal_weight = self.__weight
         if self.__bmi < 22:
-            while ideal_weight / self.__height * self.__height < 23:
+            while ideal_weight / self.__height ** self.__height < 23:
                 ideal_weight = ideal_weight + 1
             lose_weight = ideal_weight - self.__weight
             self.__bmi_statement = "{0}, you have a BMI of {1}, which is below the healthy range of 22 to 24. You are recommended " \
                                  "to gain {2} kg to reach a body mass of {3} kg, which will get you back to the healthy BMI range." \
                 .format(self.__name, self.__bmi, lose_weight, ideal_weight)
+            
         elif 22 < self.__bmi < 24:
             self.__bmi_statement = "{0}, you have a BMI of {1}, which is exactly within the healthy BMI range. " \
                                  "Keep it up!".format(self.__name, self.__bmi)
 
         elif self.__bmi > 24:
-            while ideal_weight / self.__height * self.__height > 23:
+            while ideal_weight / self.__height ** self.__height > 23:
                 ideal_weight = ideal_weight - 1
             lose_weight = self.__weight - ideal_weight
             self.__bmi_statement = "{0}, you have a BMI of {1}, which is above the healthy range of 22 to 24. You are recommended " \
                                  "to lose {2} kg to reach a body mass of {3} kg, which will get you back to the healthy BMI range." \
                 .format(self.__name, self.__bmi, lose_weight, ideal_weight)
 
+            
         if self.__user_average_calories:
             if self.__user_average_calories < 1500:
                 self.__calories_statement = "You consumed an average of {0} kcal daily over the last {1} days you've entered food " \
                                           "into your food journal, which is below the daily recommended amount of 2500 kcal." \
                     .format(self.__user_average_calories, self.__number_of_days)
+                
             elif 1500 <= self.__user_average_calories <= 2500:
                 self.__calories_statement = "You consumed an average of {0} kcal daily over the {1} days you've entered food " \
                                           "into your food journal, which is within the daily recommended amount, so keep following your current diet." \
