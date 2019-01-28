@@ -6,17 +6,10 @@
         <div class="box1">
         <div class="row row-pb-md">
             <div class="col-md-12">
-                {% for var in food_dict %}
-                    {% key_list = var[0] %}
-                    {% value_list = var[1] %}
-                    {% for key in key_list%}
-                    {% for value in value_list %}
-                        {{ key }}
-                        {{ value }}
-                    {% endfor %}
+                {% for food_code in food_dict %}
+                    {{ food_code }}
+                    {{ food_dict["food_code"] }}
                 {% endfor %}
-                {% endfor %}
-
             </div>
         </div>
     </div>

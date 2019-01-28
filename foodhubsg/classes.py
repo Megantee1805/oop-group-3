@@ -277,12 +277,12 @@ class SupportData:
                 self.__food_dict[key] += 1
 
     def get_food_menu(self):
-        key_list = []
-        value_list = []
-        for key, value in self.__food_dict.items():
-            key_list.append(key)
-            value_list.append(value)
-        return key_list, value_list
+        # key_list = []
+        # value_list = []
+        # for key, value in self.__food_dict.items():
+        #     key_list.append(key)
+        #     value_list.append(value)
+        return self.__food_dict
 
 
 ### Assigns the objects to vendor and food classes accordingly ###

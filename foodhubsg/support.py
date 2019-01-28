@@ -1,4 +1,6 @@
 from flask import (Blueprint, flash, redirect, render_template, request, session, url_for)
+from collections import OrderedDict
+import operator
 
 from foodhubsg.auth import permission_required
 from foodhubsg.db import get_db
@@ -16,7 +18,12 @@ def support():
     support_data = SupportData()
     for food in food_items:
         support_data.add_food(food)
-    return render_template('support/support_index.html', food_dict=support_data.get_food_menu())
+
+    food_dict = support_data.get_food_menu()
+    sorted_food_dict = sorted(food_dict.items(), key=operator.itemgetter(1), reverse=True)
+
+    print(sorted_food_dict)
+    return render_template('support/support_index.html', food_dict=sorted_food_dict)
 
 
 @bp.route('/faq', methods=('GET', 'POST'))
