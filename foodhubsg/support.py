@@ -1,6 +1,4 @@
 from flask import (Blueprint, flash, redirect, render_template, request, session, url_for)
-from collections import OrderedDict
-from datetime import datetime
 import operator
 
 from foodhubsg.auth import permission_required

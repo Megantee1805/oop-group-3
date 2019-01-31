@@ -7,10 +7,10 @@ from foodhubsg.db import get_db
 from foodhubsg.classes import *
 
 
-bp = Blueprint('vendors', __name__)
+bp = Blueprint('vendors', __name__, url_prefix='/vendors')
 
 
-@bp.route('/vendors', methods=('GET', 'POST'))
+@bp.route('/', methods=('GET', 'POST'))
 @login_required
 def vendors():
     db = get_db()
@@ -36,7 +36,7 @@ def vendors():
     return render_template("vendors/vendor_page.html", user_vendors=user_vendors, datetime=datetime)
 
 
-@bp.route('/vendors/<code>', methods=('GET', 'POST'))
+@bp.route('/<code>', methods=('GET', 'POST'))
 def vendor(code):
     if code not in vendor_list:
         abort(404, "That vendor (code: {0}) doesn't exist.".format(code))

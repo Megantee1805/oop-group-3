@@ -13,7 +13,8 @@
                 {% for user in users %}
                     {% if user["id"] != 0 %}
                         <form method="post" action="">
-                            <input type="text" value="{{ user["name"] }} ({{ user["email"] }})" id="name" name="name" style='width: 30%;' readonly>
+                            <input type="text" value="{{ user["name"] }} ({{ user["email"] }})" id="user-info" name="user-info" style='width: 30%;' readonly>
+                            <input hidden type="text" value="{{ user["name"] }}" id="name" name="name" style='width: 30%;' readonly>
                             {% if user["status"] == 0 %}
                                 <input type="submit" value="Ban User" name="action" class="btn btn-primary" style='background-color: #d9534f; height: 50px;'>
                             {% elif user["status"] == 1 %}
@@ -26,7 +27,7 @@
             </div>
         </div>
     </div>
-
+s
 </div>
 </div>
  {% endblock %}

@@ -15,6 +15,15 @@ $(document).ready(function(){
     }
 });
 
+function remove_confirm() {
+  if (confirm("Are you sure you want to delete your account?")) {
+      document.getElementById("remove-account").value = "Delete Account";
+  } else {
+      document.getElementById("remove-account").value = "Délete Account";
+      window.location.replace("user_settings")
+  }
+}
+
 </script>
 
 <div id="colorlib-container">
@@ -71,7 +80,7 @@ $(document).ready(function(){
                         <br>
 
                         <input type="submit" name="action" value="Update Settings" class="btn btn-primary" style="background-color: #4CAF50;">
-                        <input type="submit" name="action" value="Delete Account" class="btn btn-primary delprefix" style="background-color: #d9534f;">
+                        <input type="submit" name="action" value="Delete Account" onclick="remove_confirm()" class="btn btn-primary delprefix" id="remove-account" style="background-color: #d9534f;">
                     </form>
                 </div>
             </div>
